@@ -463,6 +463,8 @@ module.exports = class Game {
         this._gang  = null;
         /** 各 seat 最近一次舍牌（中断巡目时置空，暗切记空） */
         this._lastDiscard = [null, null, null, null];
+        /** 各 seat 立直宣言牌（只记录宣言立直时打出的横置牌，后续摸切不算） */
+        this._riichiDeclarationTiles = [null, null, null, null];
         /** 各 seat 是否尚未开始第一巡（true=该玩家未进行过任何巡目） */
         this._isFirstTurn = [true, true, true, true];
         /** 立直后所有玩家打出的牌（不含暗切），用于现物计算 */
@@ -475,6 +477,12 @@ module.exports = class Game {
         this._skillRiverSource = null;
         /** 技能标记：涩谷尧深手切限制（不可切本巡摸入牌），{ seat } */
         this._skillHandDiscard = null;
+        /** 神代小莳技能①：原始打点乘算系数（初始1），按 seat 索引 */
+        this._pointMulCoeff = [1, 1, 1, 1];
+        /** 神代小莳技能①：原始打点加算系数（初始0），按 seat 索引 */
+        this._pointAddCoeff = [0, 0, 0, 0];
+        /** 神代小莳技能①：已公开的手牌集合（Set of tile strings），按 seat 索引 */
+        this._jindaiOpened = [new Set(), new Set(), new Set(), new Set()];
 
         /**
          * 各 seat 是否已立直（0=未立直/1=已立直）。
@@ -688,6 +696,8 @@ module.exports = class Game {
         if (dapai.slice(-1) == '*') {
             this._lizhi[lunban] = this._diyizimo ? 2 : 1;
             this._yifa[lunban]  = this._rule['一発あり'];
+            /* 记录立直宣言牌（去*的原始牌面） */
+            this._riichiDeclarationTiles[lunban] = dapai.replace(/\*$/, '');
         }
 
         /* 振听判定：手牌听牌在牌河中有非暗切的牌 → 不能荣和 */
@@ -1105,6 +1115,119 @@ module.exports = class Game {
                 }
                 he._hidden = newHidden;
             }
+        }
+
+        /* 重新计算牌河振听 */
+        this._recalculateFuriten();
+    }
+
+    /**
+     * 翻转牌河中某张牌的暗切状态
+     * 原本暗切的改为非暗切，非暗切的改为暗切
+     * @param {number} seat — 牌河所属玩家
+     * @param {number} index — _pai 数组中的位置
+     * @returns {Object} { flipped: true/false, beforeHidden: bool, afterHidden: bool }
+     */
+    _flipRiverTile(seat, index) {
+        let model = this._model;
+        let he = model.he[seat];
+        let tile = he._pai[index];
+
+        /* 已副露牌（后缀 +/=/-）不参与翻转 */
+        if (tile.match(/[\+\=\-]$/)) {
+            return { flipped: false };
+        }
+
+        let wasHidden = !!(he._hidden && he._hidden[index]);
+
+        /* 摸切牌（'_'）：仅翻转暗切标记，不影响 _find */
+        if (tile === '_') {
+            if (wasHidden) {
+                delete he._hidden[index];
+            } else {
+                if (!he._hidden) he._hidden = {};
+                he._hidden[index] = true;
+            }
+            this._skill_trigger(TimingPoints.AFTER_RIVER_FLIP, {
+                player: seat, seat: seat, riverSeat: seat,
+                riverIndex: index, tile: '_', wasHidden: wasHidden, isHidden: !wasHidden,
+            });
+            this._recalculateFuriten();
+            return { flipped: true, beforeHidden: wasHidden, afterHidden: !wasHidden };
+        }
+
+        let color = tile[0];
+        let num = +tile[1] || 5;
+
+        if (wasHidden) {
+            /* 暗切 → 非暗切：从 _hidden 移除，加入 _find */
+            delete he._hidden[index];
+            he._find[color + num] = true;
+        } else {
+            /* 非暗切 → 暗切：加入 _hidden，检查 _find 是否需要移除 */
+            if (!he._hidden) he._hidden = {};
+            he._hidden[index] = true;
+
+            /* 检查牌河中是否还有其他同花色数字的非暗切牌 */
+            let hasOtherNonHidden = false;
+            for (let i = 0; i < he._pai.length; i++) {
+                if (i === index) continue;
+                if (he._hidden && he._hidden[i]) continue;
+                let hp = he._pai[i];
+                if (hp === '_' || hp.match(/[\+\=\-]$/)) continue;
+                let hc = hp[0], hn = +hp[1] || 5;
+                if (hc === color && hn === num) {
+                    hasOtherNonHidden = true;
+                    break;
+                }
+            }
+            if (!hasOtherNonHidden) {
+                delete he._find[color + num];
+            }
+        }
+
+        /* 触发 AFTER_RIVER_FLIP 时点 */
+        this._skill_trigger(TimingPoints.AFTER_RIVER_FLIP, {
+            player: seat,
+            seat: seat,
+            riverSeat: seat,
+            riverIndex: index,
+            tile: tile,
+            wasHidden: wasHidden,
+            isHidden: !wasHidden,
+        });
+
+        /* 重新计算牌河振听 */
+        this._recalculateFuriten();
+
+        return { flipped: true, beforeHidden: wasHidden, afterHidden: !wasHidden };
+    }
+
+    /**
+     * 重新计算所有玩家的牌河振听状态
+     * 牌河操作（加牌、交换、取走、翻面）后调用
+     */
+    _recalculateFuriten() {
+        let model = this._model;
+        for (let l = 0; l < 4; l++) {
+            if (Majiang.Util.xiangting(model.shoupai[l]) !== 0) continue;
+
+            let ting = Majiang.Util.tingpai(model.shoupai[l]);
+            let he = model.he[l];
+            let hasFuriten = ting && ting.find(p => {
+                if (!he.find(p)) return false;
+                let ps = p[0], pn = +p[1] || 5;
+                for (let i = 0; i < he._pai.length; i++) {
+                    let hp = he._pai[i];
+                    if (hp === '_' || hp.match(/[\+\=\-]$/)) continue;
+                    let hs = hp[0], hn = +hp[1] || 5;
+                    if (ps === hs && pn === hn) {
+                        if (!he._hidden || !he._hidden[i]) return true;
+                    }
+                }
+                return false;
+            });
+            this._neng_rong[l] = !hasFuriten;
         }
     }
 

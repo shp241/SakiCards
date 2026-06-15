@@ -91,6 +91,9 @@ const TimingPoints = {
     /** ⑯ 牌被取走/交换时 — 牌被超能力从牌河/手牌移走时，受影响玩家在此触发技能 */
     TILE_TAKEN:           'tile_taken',
 
+    /** ⑰ 牌河翻面后 — 牌河中的牌暗切状态被翻转后触发 */
+    AFTER_RIVER_FLIP:     'after_river_flip',
+
     /* ===== 被动常驻 ===== */
 
     /** 持续生效的被动技能（不是时点，是技能类型标记） */
@@ -135,6 +138,7 @@ const TimingLabels = {
     [TimingPoints.RYUUKYOKU]:             '流局时',
     [TimingPoints.ON_TOBISARU]:           '被飞时',
     [TimingPoints.TILE_TAKEN]:            '牌被取走/交换时',
+    [TimingPoints.AFTER_RIVER_FLIP]:      '牌河翻面后',
     [TimingPoints.CONTINUOUS]:            '持续生效',
 };
 

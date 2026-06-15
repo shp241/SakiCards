@@ -531,6 +531,544 @@ function _getRiverFirstTile(he) {
     return null;
 }
 
+/**
+ * 获取手牌中所有牌面字符串列表（含重复）
+ * @param {Object} shoupai
+ * @returns {string[]}
+ */
+function _getAllHandTiles(shoupai) {
+    let tiles = [];
+    for (let s of ['m', 'p', 's', 'z']) {
+        let bp = shoupai._bingpai[s];
+        if (!bp) continue;
+        let maxN = s === 'z' ? 7 : 9;
+        for (let n = 1; n <= maxN; n++) {
+            let count = bp[n] || 0;
+            if (n === 5 && s !== 'z') count -= (bp[0] || 0);
+            for (let i = 0; i < count; i++) {
+                tiles.push(s + n);
+            }
+        }
+        if (s !== 'z' && bp[0]) {
+            for (let i = 0; i < bp[0]; i++) {
+                tiles.push(s + '0');
+            }
+        }
+    }
+    return tiles;
+}
+
+/**
+ * 检查手牌中是否存在未公开的牌
+ * @param {Object} shoupai
+ * @param {Set} openedSet
+ * @returns {boolean}
+ */
+function _hasUnopenedTiles(shoupai, openedSet) {
+    let tiles = _getAllHandTiles(shoupai);
+    for (let t of tiles) {
+        if (!openedSet.has(t)) return true;
+    }
+    return false;
+}
+
+/**
+ * 神代小莳：根据 hule.defen 重新计算 fenpei（点数分配）
+ * @param {Object} context — FENPEI_CALCULATED 上下文
+ * @param {Object} hule — 和牌结果
+ * @param {number} seat — 和牌者席位
+ */
+function _recalcJindaiFenpei(context, hule, seat) {
+    let game = context.game;
+    let model = game._model;
+    let chang = model.changbang || 0;
+    let lizhi = model.lizhibang || 0;
+    let defen = hule.defen;
+    let isRon = !!context.rongpai;
+
+    if (isRon) {
+        let ronSeat = model.lunban;
+        hule.fenpei[seat] = defen + chang * 300 + lizhi * 1000;
+        hule.fenpei[ronSeat] = -(defen + chang * 300);
+    } else if (seat === 0) {
+        /* 庄家自摸 */
+        let zhuangjia = Math.ceil(defen / 3 / 100) * 100;
+        hule.fenpei[0] = defen + chang * 300 + lizhi * 1000;
+        for (let l = 1; l < 4; l++) {
+            hule.fenpei[l] = -(zhuangjia + chang * 100);
+        }
+    } else {
+        /* 子家自摸 */
+        let zhuangjia = Math.ceil(defen * 2 / 400) * 100;
+        let sanjia = Math.ceil(defen / 400) * 100;
+        hule.fenpei[seat] = defen + chang * 300 + lizhi * 1000;
+        hule.fenpei[0] = -(zhuangjia + chang * 100);
+        for (let l = 1; l < 4; l++) {
+            if (l !== seat) {
+                hule.fenpei[l] = -(sanjia + chang * 100);
+            }
+        }
+    }
+}
+
+/**
+ * 获取某牌的靠张集合（相同的字牌，或点数差2以内的数牌）
+ * @param {string} tile — 牌面字符串，如 'p6'、'z3'
+ * @returns {Set<string>}
+ */
+function _getKaozhangSet(tile) {
+    let s = tile[0];
+    let n = tile[1] === '0' ? 5 : parseInt(tile[1]);
+    let result = new Set();
+    if (s === 'z') {
+        result.add('z' + n);
+    } else {
+        for (let i = Math.max(1, n - 2); i <= Math.min(9, n + 2); i++) {
+            result.add(s + i);
+        }
+        if (result.has(s + '5')) result.add(s + '0');
+    }
+    return result;
+}
+
+/**
+ * 统计手牌+副露中出现的牌种类数（m/p/s/风/三元）
+ * @param {Object} shoupai
+ * @returns {number} 3-5
+ */
+function _countCategories(shoupai) {
+    let has = { m: false, p: false, s: false, wind: false, dragon: false };
+
+    /* 手牌 */
+    for (let s of ['m', 'p', 's']) {
+        let bp = shoupai._bingpai[s];
+        if (bp) {
+            for (let n = 0; n <= 9; n++) {
+                if (bp[n] > 0) { has[s] = true; break; }
+            }
+        }
+    }
+    let bpz = shoupai._bingpai['z'];
+    if (bpz) {
+        for (let n = 1; n <= 4; n++) { if (bpz[n] > 0) { has.wind = true; break; } }
+        for (let n = 5; n <= 7; n++) { if (bpz[n] > 0) { has.dragon = true; break; } }
+    }
+
+    /* 副露：fulou 首字母即为花色，z 时所有牌数字相同 */
+    for (let m of (shoupai._fulou || [])) {
+        let s = m[0];
+        if (s === 'm') has.m = true;
+        else if (s === 'p') has.p = true;
+        else if (s === 's') has.s = true;
+        else if (s === 'z') {
+            let n = parseInt(m[1]);
+            if (n >= 1 && n <= 4) has.wind = true;
+            else if (n >= 5 && n <= 7) has.dragon = true;
+        }
+    }
+
+    let count = 0;
+    for (let k of ['m', 'p', 's', 'wind', 'dragon']) {
+        if (has[k]) count++;
+    }
+    return count;
+}
+
+/**
+ * 静态牌价值评估（仅基于牌面本身，不考虑手牌上下文）
+ * z < 1/9 < 2/8 < 3/7 < 4/6 < 5 < 赤5
+ */
+function _evalStaticTileValue(tile) {
+    let s = tile[0], n = tile[1];
+    if (s === 'z') return 0;
+    if (n === '0') return 6;
+    let num = parseInt(n);
+    if (num === 1 || num === 9) return 1;
+    if (num === 2 || num === 8) return 2;
+    if (num === 3 || num === 7) return 3;
+    if (num === 4 || num === 6) return 4;
+    return 5;
+}
+
+/**
+ * 泽村智纪：宽松一杯口/两杯口判定
+ * 仅需顺子点数相同（不需同花色），允许副露
+ * @param {Object} shoupai — 手牌对象
+ * @returns {number} 一杯口对数之和（0/1/2）
+ */
+function _countRelaxedIipeikou(shoupai) {
+    let shunziByNum = {};
+    for (let n = 1; n <= 7; n++) shunziByNum[n] = 0;
+
+    for (let s of ['m', 'p', 's']) {
+        let bp = shoupai._bingpai[s];
+        if (!bp) continue;
+        let c = {};
+        for (let n = 1; n <= 9; n++) c[n] = (bp[n] || 0);
+        c[5] += (bp[0] || 0);  /* 红5合并到5 */
+
+        /* 贪心提取顺子 */
+        for (let n = 1; n <= 7; n++) {
+            let count = Math.min(c[n], c[n + 1], c[n + 2]);
+            if (count > 0) {
+                shunziByNum[n] += count;
+                c[n] -= count;
+                c[n + 1] -= count;
+                c[n + 2] -= count;
+            }
+        }
+    }
+
+    let beikou = 0;
+    for (let n = 1; n <= 7; n++) {
+        beikou += (shunziByNum[n] >> 1);
+    }
+    return beikou;
+}
+
+/**
+ * 获取手牌+副露+荣牌的所有牌面列表
+ * @param {Object} shoupai
+ * @param {string|null} rongpai — 荣和牌（自摸时为 null）
+ * @returns {string[]}
+ */
+function _getAllTilesWithMelds(shoupai, rongpai) {
+    let tiles = _getAllHandTiles(shoupai);
+    if (rongpai) tiles.push(rongpai);
+    if (shoupai._fulou) {
+        for (let m of shoupai._fulou) {
+            let parts = m.match(/[mpsz]\d/g);
+            if (parts) tiles.push(...parts);
+        }
+    }
+    return tiles;
+}
+
+/**
+ * 一姬：按类型统计宝牌枚数（表/杠/红/里）
+ * @param {string[]} allTiles — 全部牌面
+ * @param {Object} model
+ * @returns {{ omote: number, kan: number, aka: number, ura: number }}
+ */
+function _countDoraByType(allTiles, model) {
+    /* 表宝牌：仅 baopai[0]（最初翻开的那一枚） */
+    let omoteSet = tileUtils.buildDoraSet([model.shan._baopai[0]].filter(Boolean));
+    /* 杠宝牌：baopai[1..4]（任何情况下新开的宝牌） */
+    let kanSet = tileUtils.buildDoraSet(model.shan._baopai.slice(1).filter(Boolean));
+    /* 里宝牌 */
+    let uraSet = tileUtils.buildDoraSet(model.shan._fubaopai.filter(Boolean));
+
+    let omote = 0, kan = 0, aka = 0, ura = 0;
+    for (let t of allTiles) {
+        let n = (t[1] === '0') ? t[0] + '5' : t;
+        if (omoteSet.has(n)) omote++;
+        if (kanSet.has(n)) kan++;
+        if (uraSet.has(n)) ura++;
+    }
+    /* 红宝牌：手牌中牌面第二位为 '0' 的牌 */
+    aka = allTiles.filter(t => t[1] === '0').length;
+
+    return { omote, kan, aka, ura };
+}
+
+/**
+ * 统计手牌中出现的数牌花色种类数（m/p/s）
+ * 含手牌和所有副露（包括暗杠）
+ */
+function _countNumberSuits(shoupai) {
+    let has = { m: false, p: false, s: false };
+    /* 手牌 */
+    for (let s of ['m', 'p', 's']) {
+        let bp = shoupai._bingpai[s];
+        if (bp) {
+            for (let n = 0; n <= 9; n++) {
+                if (bp[n] > 0) { has[s] = true; break; }
+            }
+        }
+    }
+    /* 副露（含暗杠） */
+    for (let m of (shoupai._fulou || [])) {
+        let s = m[0];
+        if (s === 'm' || s === 'p' || s === 's') has[s] = true;
+    }
+    let count = 0;
+    for (let k of ['m', 'p', 's']) { if (has[k]) count++; }
+    return count;
+}
+
+/**
+ * 检查手牌中是否有字牌（含手牌和副露）
+ */
+function _hasZipai(shoupai) {
+    let bpz = shoupai._bingpai['z'];
+    if (bpz) {
+        for (let n = 1; n <= 7; n++) { if (bpz[n] > 0) return true; }
+    }
+    for (let m of (shoupai._fulou || [])) {
+        if (m[0] === 'z') return true;
+    }
+    return false;
+}
+
+/**
+ * 统计副露区（不含暗杠）中数牌花色种类数
+ * 暗杠不属于副露区（只检查吃碰大明杠）
+ */
+function _countMeldSuits(shoupai) {
+    let has = { m: false, p: false, s: false };
+    for (let m of (shoupai._fulou || [])) {
+        let s = m[0];
+        if (s !== 'm' && s !== 'p' && s !== 's') continue;
+        /* 检测暗杠：4同数字且符号全同 → 跳过 */
+        let digits = (m.match(/\d/g) || []).map(Number);
+        if (digits.length === 4) {
+            let normalized = digits.map(d => d === 0 ? 5 : d);
+            if (normalized.every(d => d === normalized[0])) {
+                let signs = m.match(/[\-\+]/g) || [];
+                if (signs.length === 4 && signs.every(si => si === signs[0])) {
+                    continue;
+                }
+            }
+        }
+        has[s] = true;
+    }
+    let count = 0;
+    for (let k of ['m', 'p', 's']) { if (has[k]) count++; }
+    return count;
+}
+
+/**
+ * 统计全桌可见的某张牌的数量（牌河 + 副露 + 他人明牌）
+ * @param {Object} model — game._model
+ * @param {number} seat — 当前玩家席位
+ * @param {string} suit — 花色
+ * @param {number} num  — 点数（5为红5普通5统一）
+ * @param {string|null} excludeTile — 不计入的牌（本次自摸/荣和的牌）
+ */
+function _countAllVisibleTiles(model, seat, suit, num, excludeTile) {
+    let count = 0;
+    /* 所有玩家牌河可见牌 */
+    for (let i = 0; i < 4; i++) {
+        let he = model.he[i];
+        if (!he || !he._pai) continue;
+        for (let t of he._pai) {
+            if (t.match(/[\+\=\-]$/)) continue; /* 已被副露 */
+            if (t.slice(-1) === '_') continue;   /* 暗切隐藏 */
+            let pai = t.length >= 2 ? t.slice(0, 2) : t;
+            let pS = pai[0], pN = parseInt(pai[1]);
+            if (isNaN(pN) || pN === 0) pN = 5;
+            if (pS === suit && pN === num) count++;
+        }
+    }
+    /* 所有玩家副露（含暗杠） */
+    for (let i = 0; i < 4; i++) {
+        let sp = model.shoupai[i];
+        if (!sp || !sp._fulou) continue;
+        for (let m of sp._fulou) {
+            if (typeof m !== 'string' || m[0] !== suit) continue;
+            let digits = (m.match(/\d/g) || []).map(function(d) {
+                let dn = parseInt(d); return isNaN(dn) || dn === 0 ? 5 : dn;
+            });
+            for (let d of digits) {
+                if (d === num) count++;
+            }
+        }
+    }
+    /* 其他玩家手中明牌 */
+    for (let i = 0; i < 4; i++) {
+        if (i === seat) continue;
+        let sp = model.shoupai[i];
+        if (!sp || !sp._markedTiles) continue;
+        for (let mt of sp._markedTiles) {
+            let mS = mt[0], mN = parseInt(mt[1]);
+            if (isNaN(mN) || mN === 0) mN = 5;
+            if (mS === suit && mN === num) count++;
+        }
+    }
+    /* 不计入本次自摸/荣和的牌 */
+    if (excludeTile) {
+        let exS = excludeTile[0], exN = parseInt(excludeTile[1]);
+        if (isNaN(exN) || exN === 0) exN = 5;
+        if (exS === suit && exN === num && count > 0) count--;
+    }
+    return count;
+}
+
+/**
+ * 计算某张牌的残枚数
+ * 4 - 自己手牌 - 全桌可见牌（牌河/副露/他人明牌），不计入本次自摸/荣和牌
+ */
+function _countRemaining(model, seat, tile, excludeTile) {
+    let s = tile[0], n = parseInt(tile[1]);
+    if (isNaN(n) || n === 0) n = 5;
+
+    let remaining = 4;
+    /* 手牌 */
+    let shoupai = model.shoupai[seat];
+    if (shoupai && shoupai._bingpai[s]) {
+        remaining -= (shoupai._bingpai[s][n] || 0);
+        if (n === 5) remaining -= (shoupai._bingpai[s][0] || 0);
+    }
+    /* 全桌可见牌 */
+    remaining -= _countAllVisibleTiles(model, seat, s, n, excludeTile);
+    return Math.max(0, remaining);
+}
+
+/**
+ * 检查手牌中是否全是 3-7 的中张数牌（无字牌、无1/2/8/9）
+ * 含手牌和副露
+ */
+function _isAllChunchan(shoupai) {
+    /* 仅检查手牌：m/p/s 不能有 1/2/8/9，也不能有 z */
+    for (let s of ['m', 'p', 's']) {
+        let bp = shoupai._bingpai[s];
+        if (!bp) continue;
+        for (let n of [1, 2, 8, 9]) {
+            if (bp[n] > 0) return false;
+        }
+    }
+    let bpz = shoupai._bingpai['z'];
+    if (bpz) {
+        for (let n = 1; n <= 7; n++) {
+            if (bpz[n] > 0) return false;
+        }
+    }
+    /* 至少有一些 3-7 的牌 */
+    let hasTiles = false;
+    for (let s of ['m', 'p', 's']) {
+        let bp = shoupai._bingpai[s];
+        if (!bp) continue;
+        for (let n = 3; n <= 7; n++) {
+            if (bp[n] > 0) { hasTiles = true; break; }
+        }
+        if (bp[0] > 0) { hasTiles = true; break; }
+    }
+    return hasTiles;
+}
+
+/**
+ * 辻垣内智叶：牌墙交换辅助
+ * @param {Object} context — 技能上下文
+ * @param {string} wallTile — 牌山第一张牌
+ * @returns {Object} { executed: true, cancelled?: true }
+ */
+async function _doWallSwap(context, wallTile) {
+    let game = context.game;
+    let seat = context.seat;
+    let model = game._model;
+    let shoupai = model.shoupai[seat];
+    let input = context.input;
+
+    /* 收集手牌选项 */
+    let handTiles = _getAllHandTiles(shoupai);
+    let handOpts = handTiles.map(function(t) { return t + ' (手牌)'; });
+
+    /* 收集牌河选项（所有玩家可见牌河牌） */
+    let riverOpts = [];
+    let riverEntries = []; /* { tile, seat, index } */
+    for (let l = 0; l < 4; l++) {
+        let he = model.he[l];
+        if (!he || !he._pai) continue;
+        for (let i = 0; i < he._pai.length; i++) {
+            let t = he._pai[i];
+            if (t.match(/[\+\=\-]$/)) continue; /* 已被副露 */
+            let base = t.length >= 2 ? t.slice(0, 2) : t;
+            riverOpts.push(base + ' (牌河:' + l + ')');
+            riverEntries.push({ tile: base, seat: l, index: i });
+        }
+    }
+
+    let allOpts = handOpts.concat(riverOpts).concat(['取消']);
+    let wallName = game._pai_name(wallTile);
+
+    /* AI 处理 */
+    if (!input || typeof input.askTileOptions !== 'function') {
+        let wallVal = _evalHandTileValue(wallTile, shoupai, game, seat);
+
+        if (wallVal > 0) {
+            /* 牌墙牌有价值：用手牌中价值最低的牌交换 */
+            handTiles.sort(function(a, b) {
+                return _evalHandTileValue(a, shoupai, game, seat) - _evalHandTileValue(b, shoupai, game, seat);
+            });
+            let chosen = handTiles[0];
+            tileOps.popFront(model, 1);
+            tileOps.removeFromHand(shoupai, chosen);
+            shoupai.zimo(wallTile, false);
+            shoupai._zimo = null;
+            tileOps.pushEnd(model, [chosen]);
+            game._add_action_log('辻垣内智叶 牌墙交换: ' + game._pai_name(chosen) + ' ↔ ' + wallName, seat);
+            return { executed: true };
+        }
+
+        /* 牌墙牌无价值：对手策略 */
+        let nextSeat = (model.lunban + 1) % 4;
+        if (nextSeat === seat) {
+            /* 下巡是自己：从所有牌河挑价值最高的交换 */
+            if (riverEntries.length === 0) return { executed: true, cancelled: true };
+            riverEntries.sort(function(a, b) {
+                return _evalTileValue(b.tile, game, seat) - _evalTileValue(a.tile, game, seat);
+            });
+            let chosen = riverEntries[0];
+            tileOps.popFront(model, 1);
+            model.he[chosen.seat]._pai[chosen.index] = wallTile;
+            tileOps.pushEnd(model, [chosen.tile]);
+            if (game._recalculateFuriten) game._recalculateFuriten();
+            game._add_action_log('辻垣内智叶 牌河交换: ' + game._pai_name(chosen.tile) + ' ↔ ' + wallName, seat);
+            return { executed: true };
+        } else {
+            /* 下巡是他人：从他家牌河挑价值最低的（优先字牌）交换 */
+            let otherRiver = [];
+            for (let e of riverEntries) {
+                if (e.seat !== seat) otherRiver.push(e);
+            }
+            if (otherRiver.length === 0) return { executed: true, cancelled: true };
+            otherRiver.sort(function(a, b) {
+                let aZ = a.tile[0] === 'z' ? -100 : 0;
+                let bZ = b.tile[0] === 'z' ? -100 : 0;
+                return (aZ + _evalTileValue(a.tile, game, seat)) - (bZ + _evalTileValue(b.tile, game, seat));
+            });
+            let chosen = otherRiver[0];
+            tileOps.popFront(model, 1);
+            model.he[chosen.seat]._pai[chosen.index] = wallTile;
+            tileOps.pushEnd(model, [chosen.tile]);
+            if (game._recalculateFuriten) game._recalculateFuriten();
+            game._add_action_log('辻垣内智叶 牌河交换: ' + game._pai_name(chosen.tile) + ' ↔ ' + wallName, seat);
+            return { executed: true };
+        }
+    }
+
+    /* 真人玩家：弹窗选择 */
+    let chosen = await input.askTileOptions(allOpts,
+        '牌山第一张: ' + wallName + '，选择交换的牌（或取消）',
+        function() { return '取消'; });
+
+    if (!chosen || chosen === '取消') return { executed: true, cancelled: true };
+
+    /* 解析选择 */
+    let isHand = chosen.indexOf('(手牌)') >= 0;
+    if (isHand) {
+        let tile = chosen.replace(' (手牌)', '');
+        tileOps.popFront(model, 1);
+        tileOps.removeFromHand(shoupai, tile);
+        shoupai.zimo(wallTile, false);
+        shoupai._zimo = null;
+        tileOps.pushEnd(model, [tile]);
+        game._add_action_log('辻垣内智叶 手牌交换: ' + game._pai_name(tile) + ' ↔ ' + wallName, seat);
+    } else {
+        /* 牌河 */
+        let selIdx = allOpts.indexOf(chosen) - handOpts.length;
+        if (selIdx >= 0 && selIdx < riverEntries.length) {
+            let r = riverEntries[selIdx];
+            tileOps.popFront(model, 1);
+            model.he[r.seat]._pai[r.index] = wallTile;
+            tileOps.pushEnd(model, [r.tile]);
+            if (game._recalculateFuriten) game._recalculateFuriten();
+            game._add_action_log('辻垣内智叶 牌河交换: ' + game._pai_name(r.tile) + ' ↔ ' + wallName, seat);
+        }
+    }
+    return { executed: true };
+}
+
 const SKILL_EXECUTE_MAP = {
 
     /* ===== 爱丝琳·威夏尔特 (Aislinn_Wishart) ===== */
@@ -3278,6 +3816,995 @@ const SKILL_EXECUTE_MAP = {
             },
         },
     },
+
+    /* ===== 神代小莳 (Jindai_Komaki) ===== */
+    'Jindai_Komaki': {
+        0: {
+            /* ① 舍牌后公开手牌并增加打点倍率 */
+            timing: TimingPoints.AFTER_DISCARD,
+            type: SkillType.CONDITIONAL,
+            isOptional: true,
+            priority: 100,
+
+            parts: [
+                {
+                    /* Part A — AFTER_DISCARD：公开手牌，乘算系数+1 */
+                    timing: TimingPoints.AFTER_DISCARD,
+                    condition: function(context) {
+                        let game = context.game;
+                        if (!game || context.player !== context.seat) return false;
+                        let seat = context.seat;
+                        let he = game._model.he[seat];
+                        if (!he) return false;
+                        /* 牌河排数（不计被副露的牌），减去当前舍牌 */
+                        let count = 0;
+                        for (let t of he._pai) {
+                            if (!t.match(/[\+\=\-]$/)) count++;
+                        }
+                        let riverCount = count - 1;
+                        if (riverCount !== 0 && riverCount !== 6 && riverCount !== 12) return false;
+                        /* 手牌中存在未公开的牌 */
+                        let openedSet = game._jindaiOpened[seat];
+                        let shoupai = game._model.shoupai[seat];
+                        if (!shoupai) return false;
+                        return _hasUnopenedTiles(shoupai, openedSet);
+                    },
+                    execute: function(context) {
+                        let game = context.game;
+                        let seat = context.seat;
+                        let shoupai = game._model.shoupai[seat];
+                        let openedSet = game._jindaiOpened[seat];
+                        /* 标记所有当前手牌为已公开 */
+                        let tiles = _getAllHandTiles(shoupai);
+                        for (let t of tiles) {
+                            openedSet.add(t);
+                        }
+                        /* 也同步到 Shoupai 模型的 markedTiles，
+                           联机模式下其他玩家可通过消息同步看到公开牌 */
+                        shoupai.markTiles(tiles);
+                        game._pointMulCoeff[seat] += 1;
+                        game._add_action_log(
+                            '神代小莳 公开手牌（倍率系数=' + game._pointMulCoeff[seat] + '）', seat);
+                        if (game._view) game._view.redraw();
+                        return { executed: true };
+                    },
+                    aiDecision: function(context) {
+                        return true;
+                    },
+                },
+                {
+                    /* Part B — FENPEI_CALCULATED：应用乘算/加算系数 */
+                    timing: TimingPoints.FENPEI_CALCULATED,
+                    type: SkillType.PASSIVE,
+                    condition: function(context) {
+                        return context.seat === context.player
+                            && !!(context.hule && context.hule.defen != null && context.hule.fenpei);
+                    },
+                    execute: function(context) {
+                        let hule = context.hule;
+                        let seat = context.seat;
+                        let game = context.game;
+                        let coeff = game._pointMulCoeff[seat] || 1;
+                        let adder = game._pointAddCoeff[seat] || 0;
+                        if (coeff === 1 && adder === 0) return { executed: true };
+                        hule.defen = Math.floor(coeff * hule.defen + adder);
+                        _recalcJindaiFenpei(context, hule, seat);
+                        return { executed: true };
+                    },
+                },
+            ],
+        },
+
+        1: {
+            /* ② 立直/一发/里宝视为2番，两立直视为4番 */
+            timing: TimingPoints.HULE_SETTLE,
+            type: SkillType.PASSIVE,
+            priority: 200,
+            condition: function(context) {
+                return context.seat === context.player
+                    && !!(context.hule && context.hule.hupai);
+            },
+            execute: function(context) {
+                let hule = context.hule;
+                if (hanOps.hasYaku(hule, '立直')) hanOps.setYakuHan(hule, '立直', 2);
+                if (hanOps.hasYaku(hule, '一発')) hanOps.setYakuHan(hule, '一発', 2);
+                /* 裏宝牌：每枚2番 → 总番加倍 */
+                for (let y of hule.hupai) {
+                    if (y.name === '裏宝牌') {
+                        hule.fanshu = hule.fanshu - y.fanshu + y.fanshu * 2;
+                        y.fanshu = y.fanshu * 2;
+                        break;
+                    }
+                }
+                if (hanOps.hasYaku(hule, '両立直')) hanOps.setYakuHan(hule, '両立直', 4);
+                return { executed: true };
+            },
+        },
+
+        2: {
+            /* ③ 天和/地和视为双倍役满 */
+            timing: TimingPoints.HULE_SETTLE,
+            type: SkillType.PASSIVE,
+            priority: 199,
+            parts: [
+                {
+                    /* Part A — HULE_SETTLE：检查天和/地 */
+                    timing: TimingPoints.HULE_SETTLE,
+                    type: SkillType.PASSIVE,
+                    condition: function(context) {
+                        return context.seat === context.player
+                            && !!(context.hule && context.hule.hupai);
+                    },
+                    execute: function(context) {
+                        let hule = context.hule;
+                        if (hanOps.hasYaku(hule, '天和') || hanOps.hasYaku(hule, '地和')) {
+                            hule._jindaiDoubleYakuman = true;
+                        }
+                        return { executed: true };
+                    },
+                },
+                {
+                    /* Part B — FENPEI_CALCULATED：打点翻倍 */
+                    timing: TimingPoints.FENPEI_CALCULATED,
+                    type: SkillType.PASSIVE,
+                    priority: 199,
+                    condition: function(context) {
+                        return context.seat === context.player
+                            && !!(context.hule && context.hule._jindaiDoubleYakuman
+                                  && context.hule.defen != null && context.hule.fenpei);
+                    },
+                    execute: function(context) {
+                        let hule = context.hule;
+                        let seat = context.seat;
+                        hule.defen = hule.defen * 2;
+                        _recalcJindaiFenpei(context, hule, seat);
+                        return { executed: true };
+                    },
+                },
+            ],
+        },
+    },
+
+    /* ===== 戒能良子 (Kainou_Yoshiko) ===== */
+    'Kainou_Yoshiko': {
+        0: {
+            /* ① 三/四/五门齐视为1/2/3番食下役且可以翻里宝 */
+            timing: TimingPoints.HULE_SETTLE,
+            type: SkillType.PASSIVE,
+            priority: 150,
+            condition: function(context) {
+                return context.seat === context.player
+                    && !!(context.hule && context.hule.hupai);
+            },
+            execute: function(context) {
+                let hule = context.hule;
+                let shoupai = context.shoupai;
+                let game = context.game;
+                let seat = context.seat;
+                let model = game._model;
+
+                let catCount = _countCategories(shoupai);
+                if (catCount < 3) return { executed: true };
+
+                let names = ['', '', '', '三门齐', '四门齐', '五门齐'];
+                let name = names[catCount];
+                let han = catCount - 2; /* 3→1, 4→2, 5→3 */
+
+                /* 食下：有副露（非暗杠）则-1番 */
+                let stats = fanModifier.getMeldStats(model, seat);
+                let isMenzen = (stats.total - stats.ankan) === 0;
+                if (!isMenzen) han -= 1;
+
+                if (han > 0) {
+                    hanOps.setYakuHan(hule, name, han);
+                }
+
+                /* 可以翻里宝：即使食下后0番也仍能翻，翻牌数量跟立直一致 */
+                _addExtraUraDora(hule, model, shoupai, model.shan.baopai.length);
+
+                return { executed: true };
+            },
+        },
+
+        1: {
+            /* ② 舍牌后暗切靠张摸牌 */
+            timing: TimingPoints.AFTER_DISCARD,
+            type: SkillType.CONDITIONAL,
+            isOptional: true,
+            priority: 100,
+            condition: function(context) {
+                let game = context.game;
+                if (!game || context.player !== context.seat) return false;
+                /* 立直时无法发动 */
+                let seat = context.seat;
+                if (game._lizhi[seat]) return false;
+                let dapai = context.dapai || '';
+                let base = dapai.replace(/\*$/, '');
+                if (!base || base.endsWith('_')) return false;
+                /* 手牌中存在靠张 */
+                let kaozhangSet = _getKaozhangSet(base);
+                let shoupai = game._model.shoupai[seat];
+                if (!shoupai) return false;
+                let tiles = _getAllHandTiles(shoupai);
+                for (let t of tiles) {
+                    if (kaozhangSet.has(t) || kaozhangSet.has(t[0] + (t[1] === '0' ? '5' : t[1]))) {
+                        return true;
+                    }
+                }
+                return false;
+            },
+            execute: async function(context) {
+                let game = context.game;
+                let seat = context.seat;
+                let model = game._model;
+                let shoupai = model.shoupai[seat];
+                let input = context.input;
+                let dapai = context.dapai || '';
+                let base = dapai.replace(/\*$/, '');
+
+                let kaozhangSet = _getKaozhangSet(base);
+                let handTiles = _getAllHandTiles(shoupai);
+                let candidates = [];
+                for (let t of handTiles) {
+                    let key = t[1] === '0' ? t[0] + '5' : t;
+                    if (kaozhangSet.has(key)) {
+                        candidates.push(t);
+                    }
+                }
+
+                if (candidates.length === 0) { context.done(); return; }
+
+                let chosen;
+                if (candidates.length === 1) {
+                    chosen = candidates[0];
+                } else if (!input || typeof input.askHandTile !== 'function') {
+                    /* 无 UI 输入时取第一张 */
+                    chosen = candidates[0];
+                } else {
+                    chosen = await input.askHandTile(
+                        '选择一张靠张暗切并摸牌', () => candidates[0], candidates);
+                }
+                if (!chosen) { context.done(); return; }
+
+                /* 展示靠张 */
+                game._add_action_log(
+                    '戒能良子 展示靠张「' + game._pai_name(chosen) + '」并暗切摸牌', seat);
+
+                /* 从手牌移除并暗切置入牌河 */
+                tileOps.removeFromHand(shoupai, chosen);
+                model.he[seat].dapai(chosen, true);
+                /* 摸1张牌 */
+                let newTile = model.shan.zimo();
+                shoupai.zimo(newTile);
+                if (game._view) game._view.redraw();
+                context.done();
+            },
+            aiDecision: function(context) {
+                let game = context.game;
+                let seat = context.seat;
+                let model = game._model;
+                let shoupai = model.shoupai[seat];
+                let dapai = context.dapai || '';
+                let base = dapai.replace(/\*$/, '');
+                let kaozhangSet = _getKaozhangSet(base);
+                let handTiles = _getAllHandTiles(shoupai);
+
+                /* 计算当前向听数 */
+                let currentShanten = Majiang.Util.xiangting(shoupai);
+
+                let bestTile = null;
+                let bestValue = Infinity;
+                for (let t of handTiles) {
+                    let key = t[1] === '0' ? t[0] + '5' : t;
+                    if (!kaozhangSet.has(key)) continue;
+                    /* 模拟移除靠张后向听数不降低（不增加） */
+                    let test = shoupai.clone();
+                    tileOps.removeFromHand(test, t);
+                    if (Majiang.Util.xiangting(test) > currentShanten) continue;
+                    let val = _evalStaticTileValue(t);
+                    if (val < bestValue) {
+                        bestValue = val;
+                        bestTile = t;
+                    }
+                }
+                return !!bestTile;
+            },
+        },
+    },
+
+    /* ===== 泽村智纪 (Sawamura_Tomoki) ===== */
+    'Sawamura_Tomoki': {
+        0: {
+            /* ① 一杯口/两杯口仅需顺子点数相同，2/5番且可副露，不复计三色同顺 */
+            yakuExpander: function(context) {
+                let shoupai = context.shoupai;
+                if (!shoupai) return [];
+                let beikou = _countRelaxedIipeikou(shoupai);
+                if (beikou >= 2) return [{ name: '二杯口', fanshu: 5 }];
+                if (beikou >= 1) return [{ name: '一杯口', fanshu: 2 }];
+                return [];
+            },
+            parts: [
+                {
+                    timing: TimingPoints.HULE_SETTLE,
+                    condition: function(context) {
+                        return context.seat === context.player
+                            && !!(context.hule && context.hule.hupai);
+                    },
+                    execute: function(context) {
+                        let hule = context.hule;
+                        /* 一杯口→2番，二杯口→5番 */
+                        if (hanOps.hasYaku(hule, '一杯口')) hanOps.setYakuHan(hule, '一杯口', 2);
+                        if (hanOps.hasYaku(hule, '二杯口')) hanOps.setYakuHan(hule, '二杯口', 5);
+                        /* 不复计三色同顺 */
+                        if (hanOps.hasYaku(hule, '一杯口') || hanOps.hasYaku(hule, '二杯口')) {
+                            hanOps.removeYaku(hule, '三色同顺');
+                        }
+                        return { executed: true };
+                    },
+                },
+            ],
+        },
+        1: {
+            /* ② 自摸新役种：门清2番（覆盖门前清自摸和），副露1番（食下役） */
+            timing: TimingPoints.HULE_SETTLE,
+            type: SkillType.PASSIVE,
+            effectType: EffectType.MODIFY_YAKU_VALUE,
+            condition: function(context) {
+                return context.seat === context.player
+                    && !!(context.hule && context.hule.hupai)
+                    && !context.rongpai;
+            },
+            execute: function(context) {
+                let hule = context.hule;
+                if (hanOps.hasYaku(hule, '门前清自摸和')) {
+                    /* 门清自摸：去除门前清自摸和（1番），添加自摸（2番） */
+                    hanOps.removeYaku(hule, '门前清自摸和');
+                    if (!hanOps.hasYaku(hule, '自摸')) {
+                        hule.hupai.push({ name: '自摸', fanshu: 2, type: 'yaku' });
+                        hule.fanshu += 2;
+                    }
+                } else {
+                    /* 副露自摸：自摸1番（食下役） */
+                    if (!hanOps.hasYaku(hule, '自摸')) {
+                        hule.hupai.push({ name: '自摸', fanshu: 1, type: 'yaku' });
+                        hule.fanshu += 1;
+                    }
+                }
+                return { executed: true };
+            },
+        },
+        2: {
+            /* ③ 舍牌前，若有玩家最后一张舍牌是宝牌或立直宣言牌，可以暗切 */
+            timing: TimingPoints.BEFORE_DISCARD,
+            type: SkillType.CONDITIONAL,
+            isOptional: true,
+            effectType: EffectType.HIDDEN_DISCARD,
+            condition: function(context) {
+                let game = context.game;
+                if (!game || context.player !== context.seat) return false;
+                let model = game._model;
+                let lastDiscard = context.lastDiscard;
+                if (!lastDiscard) return false;
+
+                for (let s = 0; s < 4; s++) {
+                    let t = lastDiscard[s];
+                    if (!t) continue;
+                    /* 红宝牌 */
+                    if (tileUtils.isRed5(t)) return true;
+                    /* 表宝牌/杠宝牌（不含里宝牌） */
+                    if (tileUtils.isDora(t, model.shan._baopai)) return true;
+                    /* 立直宣言牌：精确匹配宣言立直时打出的那张牌（非后续摸切） */
+                    if (game._riichiDeclarationTiles
+                        && game._riichiDeclarationTiles[s] === t) return true;
+                }
+                return false;
+            },
+            execute: function(context) {
+                context.game._extra_hidden_discard = true;
+                return { executed: true };
+            },
+            aiDecision: function(context) {
+                return true;
+            },
+        },
+    },
+
+    /* ===== 染谷真子 (Someya_Mako) ===== */
+    'Someya_Mako': {
+        0: {
+            /* ① 混一色仅需花色数不多于2 */
+            yakuExpander: function(context) {
+                let shoupai = context.shoupai;
+                let game = context.game;
+                let seat = context.seat;
+                if (!shoupai || !game) return [];
+
+                let model = game._model;
+                if (!model) return [];
+
+                /* 只有花牌种类恰好为2时才追加混一色
+                   0种 → 字一色, 1种 → 清一色或标准混一色, 3种以上 → 不满足 */
+                let handSuits = _countNumberSuits(shoupai);
+                if (handSuits !== 2) return [];
+
+                let stats = fanModifier.getMeldStats(model, seat);
+                let isMenzen = (stats.total - stats.ankan) === 0;
+
+                return [{ name: '混一色', fanshu: isMenzen ? 3 : 2 }];
+            },
+        },
+
+        1: {
+            /* ② 副露舍牌后，副露区满足染手条件可额外巡 */
+            timing: TimingPoints.AFTER_DISCARD,
+            type: SkillType.CONDITIONAL,
+            isOptional: true,
+            priority: 100,
+            condition: function(context) {
+                let game = context.game;
+                if (!game || context.player !== context.seat) return false;
+                /* 不在额外巡链中 */
+                if (game._extra_turn) return false;
+                if (typeof game._extra_chain_remaining === 'number' && game._extra_chain_remaining >= 0) return false;
+                /* 必须有副露（非暗杠） */
+                let seat = context.seat;
+                let stats = fanModifier.getMeldStats(game._model, seat);
+                if ((stats.total - stats.ankan) === 0) return false;
+                /* 副露区满足染手条件（数牌花色不超过1） */
+                let shoupai = game._model.shoupai[seat];
+                return _countMeldSuits(shoupai) <= 1;
+            },
+            execute: function(context) {
+                let game = context.game;
+                let seat = context.seat;
+                game._add_action_log('染谷真子 发动技能进行额外巡', seat);
+                extraTurn.start(game, seat, 1);
+                context.done();
+            },
+            aiDecision: function(context) {
+                return true;
+            },
+        },
+    },
+
+    /* ===== 竹井久 (Takei_Hisa) ===== */
+    'Takei_Hisa': {
+        0: {
+            /* ① 恶听：残听枚数总和 → 番数 */
+            timing: TimingPoints.CHECK_HULE,
+            type: SkillType.PASSIVE,
+            effectType: EffectType.MODIFY_YAKU_VALUE,
+            yakuExpander: function(context) {
+                let shoupai = context.shoupai;
+                let game = context.game;
+                let seat = context.seat;
+                if (!shoupai || !game) return [];
+
+                let model = game._model;
+                if (!model) return [];
+
+                /* 获取听牌列表（不含当前摸/荣牌） */
+                let hand13 = shoupai.clone();
+                let origZimo = shoupai._zimo;
+                if (!context.rongpai && origZimo && origZimo.length >= 2) {
+                    try { hand13.decrease(origZimo[0], +origZimo[1]); } catch(e) {}
+                }
+                hand13._zimo = null;
+                let ting = Majiang.Util.tingpai(hand13) || [];
+                if (ting.length === 0) return [];
+
+                let excludeTile = context.rongpai || origZimo;
+
+                /* 计算所有听牌的残枚数总和 */
+                let totalRemaining = 0;
+                for (let t of ting) {
+                    totalRemaining += _countRemaining(model, seat, t, excludeTile);
+                }
+
+                /* 1→4番, 2→3番, 3→2番, 4-5→1番 */
+                let han;
+                if (totalRemaining === 1) han = 4;
+                else if (totalRemaining === 2) han = 3;
+                else if (totalRemaining === 3) han = 2;
+                else if (totalRemaining >= 4 && totalRemaining <= 5) han = 1;
+                else return [];
+
+                return [{ name: '恶听', fanshu: han }];
+            },
+        },
+
+        1: {
+            /* ② 地狱听牌(残枚1)时可魔法和牌点数相同的牌 */
+            timing: TimingPoints.DECLARE_HULE,
+            type: SkillType.PASSIVE,
+            usageType: UsageType.ONCE_PER_HAND,
+            usageMax: 1,
+            effectType: EffectType.VIEW_AS_WIN_TILE,
+            huleExpander: function(context) {
+                let shoupai = context.shoupai;
+                let game = context.game;
+                let seat = context.seat;
+                if (!shoupai || !game) return [];
+
+                let model = game._model;
+                if (!model) return [];
+
+                /* 听牌列表 */
+                let hand13 = shoupai.clone();
+                let origZimo = shoupai._zimo;
+                if (!context.rongpai && origZimo && origZimo.length >= 2) {
+                    try { hand13.decrease(origZimo[0], +origZimo[1]); } catch(e) {}
+                }
+                hand13._zimo = null;
+                let ting = Majiang.Util.tingpai(hand13) || [];
+                if (ting.length === 0) return [];
+
+                let excludeTile = context.rongpai || origZimo;
+
+                /* 残枚数总和必须为 1 */
+                let totalRemaining = 0;
+                for (let t of ting) {
+                    totalRemaining += _countRemaining(model, seat, t, excludeTile);
+                }
+                if (totalRemaining !== 1) return [];
+
+                /* 收集听牌点数（字牌无点数不计） */
+                let pointValues = new Set();
+                for (let t of ting) {
+                    if (t[0] === 'z') continue;
+                    let n = parseInt(t[1]);
+                    if (isNaN(n) || n === 0) n = 5;
+                    pointValues.add(n);
+                }
+                if (pointValues.size === 0) return [];
+
+                /* 候选牌：所有同点数的数牌 */
+                let candidates = new Set();
+                for (let s of ['m', 'p', 's']) {
+                    for (let pv of pointValues) {
+                        candidates.add(s + pv);
+                    }
+                }
+
+                /* 移除听牌本身（正常和牌范围） */
+                for (let t of ting) {
+                    candidates.delete(t);
+                    if (t[1] === '0') candidates.delete(t[0] + '5');
+                    if (t[1] === '5') candidates.delete(t[0] + '0');
+                }
+
+                return Array.from(candidates);
+            },
+            condition: function(context) {
+                return context.seat === context.player;
+            },
+            execute: async function(context) {
+                if (!context.input || typeof context.input.askTileOptions !== 'function') return;
+
+                let shoupai = context.shoupai;
+                let menfeng = context.seat;
+                let input = context.input;
+
+                /* 听牌列表作为选项 */
+                let hand13 = shoupai.clone();
+                let origZimo = shoupai._zimo;
+                if (!context.rongpai && origZimo && origZimo.length >= 2) {
+                    try { hand13.decrease(origZimo[0], +origZimo[1]); } catch(e) {}
+                }
+                hand13._zimo = null;
+                let candidates = Majiang.Util.tingpai(hand13) || [];
+
+                if (candidates.length === 0) { context.done(); return; }
+
+                if (candidates.length === 1) {
+                    let chosenPai = candidates[0];
+                    if (context.rongpai) {
+                        let lunban = context.lunban;
+                        let suffix = '_+=-'[(4 + lunban - menfeng) % 4];
+                        context._overrideRongpai = chosenPai + suffix;
+                    } else {
+                        winTileOverrider.override(shoupai, chosenPai);
+                    }
+                    context._overridePai = chosenPai;
+                    context.done();
+                    return;
+                }
+
+                let chosenPai = await input.askTileOptions(candidates,
+                    '选择视为哪张牌和牌（恶听）',
+                    function() { return candidates[0]; });
+                if (!chosenPai) { context.done(); return; }
+
+                if (context.rongpai) {
+                    let lunban = context.lunban;
+                    let suffix = '_+=-'[(4 + lunban - menfeng) % 4];
+                    context._overrideRongpai = chosenPai + suffix;
+                } else {
+                    winTileOverrider.override(shoupai, chosenPai);
+                }
+                context._overridePai = chosenPai;
+                context.done();
+            },
+            aiDecision: function(context) {
+                return true;
+            },
+        },
+    },
+
+    /* ===== 泷见春 (Takimi_Haru) ===== */
+    'Takimi_Haru': {
+        0: {
+            /* ① 副露时可以暗切 */
+            timing: TimingPoints.DISCARD_SELECTED,
+            type: SkillType.CONDITIONAL,
+            isOptional: true,
+            effectType: EffectType.HIDDEN_DISCARD,
+            condition: function(context) {
+                let game = context.game;
+                if (!game || context.player !== context.seat) return false;
+                /* 有副露（非暗杠） */
+                let stats = fanModifier.getMeldStats(game._model, context.seat);
+                return (stats.total - stats.ankan) > 0;
+            },
+            execute: function(context) {
+                context.game._extra_hidden_discard = true;
+                return { executed: true };
+            },
+            aiDecision: function(context) {
+                return true;
+            },
+        },
+
+        1: {
+            /* ② 舍弃点数2或8的牌后，可以执行额外巡 */
+            timing: TimingPoints.AFTER_DISCARD,
+            type: SkillType.CONDITIONAL,
+            isOptional: true,
+            priority: 100,
+            condition: function(context) {
+                let game = context.game;
+                if (!game || context.player !== context.seat) return false;
+                /* 不在额外巡链中 */
+                if (game._extra_turn) return false;
+                if (typeof game._extra_chain_remaining === 'number' && game._extra_chain_remaining >= 0) return false;
+                /* 舍牌点数为 2 或 8 */
+                let dapai = context.dapai || '';
+                let base = dapai.replace(/\*$/, '');
+                if (!base || base.endsWith('_')) return false;
+                if (base[0] === 'z') return false;
+                let n = parseInt(base[1]);
+                return n === 2 || n === 8;
+            },
+            execute: function(context) {
+                let game = context.game;
+                let seat = context.seat;
+                game._add_action_log('泷见春 舍弃' + game._pai_name(context.dapai) + '后进行额外巡', seat);
+                extraTurn.start(game, seat, 1);
+                context.done();
+            },
+            aiDecision: function(context) {
+                return true;
+            },
+        },
+
+        2: {
+            /* ③ 中张：手牌全3-7数牌视为1番役，且可魔法和牌同点数牌 */
+            timing: TimingPoints.DECLARE_HULE,
+            type: SkillType.PASSIVE,
+            usageType: UsageType.ONCE_PER_HAND,
+            usageMax: 1,
+            effectType: EffectType.VIEW_AS_WIN_TILE,
+            yakuExpander: function(context) {
+                let shoupai = context.shoupai;
+                let game = context.game;
+                if (!shoupai || !game) return [];
+
+                /* 荣和时 shoupai 为 13 张不含荣牌 → 自摸时 shoupai 为 14 张含自摸牌
+                   _isAllChunchan 自然反映 ron/zimo 区分 */
+                if (!_isAllChunchan(shoupai)) return [];
+
+                return [{ name: '中张', fanshu: 1 }];
+            },
+            huleExpander: function(context) {
+                let shoupai = context.shoupai;
+                let game = context.game;
+                if (!shoupai || !game) return [];
+
+                if (!_isAllChunchan(shoupai)) return [];
+
+                /* 候选牌：手牌中出现的牌（0和5互为相同牌） */
+                let candidates = new Set();
+                for (let s of ['m', 'p', 's']) {
+                    let bp = shoupai._bingpai[s];
+                    if (!bp) continue;
+                    for (let n = 3; n <= 7; n++) {
+                        if ((bp[n] || 0) > 0) {
+                            candidates.add(s + n);
+                            if (n === 5) candidates.add(s + '0');
+                        }
+                    }
+                    if ((bp[0] || 0) > 0) { candidates.add(s + '5'); candidates.add(s + '0'); }
+                }
+                return Array.from(candidates);
+            },
+            condition: function(context) {
+                return context.seat === context.player;
+            },
+            execute: async function(context) {
+                if (!context.input || typeof context.input.askTileOptions !== 'function') return;
+
+                let shoupai = context.shoupai;
+                let menfeng = context.seat;
+                let input = context.input;
+
+                /* 听牌列表作为选项 */
+                let hand13 = shoupai.clone();
+                let origZimo = shoupai._zimo;
+                if (!context.rongpai && origZimo && origZimo.length >= 2) {
+                    try { hand13.decrease(origZimo[0], +origZimo[1]); } catch(e) {}
+                }
+                hand13._zimo = null;
+                let candidates = Majiang.Util.tingpai(hand13) || [];
+
+                if (candidates.length === 0) { context.done(); return; }
+
+                if (candidates.length === 1) {
+                    let chosenPai = candidates[0];
+                    if (context.rongpai) {
+                        let lunban = context.lunban;
+                        let suffix = '_+=-'[(4 + lunban - menfeng) % 4];
+                        context._overrideRongpai = chosenPai + suffix;
+                    } else {
+                        winTileOverrider.override(shoupai, chosenPai);
+                    }
+                    context._overridePai = chosenPai;
+                    context.done();
+                    return;
+                }
+
+                let chosenPai = await input.askTileOptions(candidates,
+                    '选择视为哪张牌和牌（中张）',
+                    function() { return candidates[0]; });
+                if (!chosenPai) { context.done(); return; }
+
+                if (context.rongpai) {
+                    let lunban = context.lunban;
+                    let suffix = '_+=-'[(4 + lunban - menfeng) % 4];
+                    context._overrideRongpai = chosenPai + suffix;
+                } else {
+                    winTileOverrider.override(shoupai, chosenPai);
+                }
+                context._overridePai = chosenPai;
+                context.done();
+            },
+            aiDecision: function(context) {
+                return true;
+            },
+        },
+    },
+
+    /* ===== 东横桃子 (Touyouko_Momoko) ===== */
+    'Touyouko_Momoko': {
+        0: {
+            /* ① 默听和牌时结算立直、一发、里宝 */
+            timing: TimingPoints.HULE_SETTLE,
+            type: SkillType.PASSIVE,
+            effectType: EffectType.MODIFY_YAKU_VALUE,
+            condition: function(context) {
+                if (context.seat !== context.player) return false;
+                if (!(context.hule && context.hule.hupai)) return false;
+                let game = context.game;
+                /* 未立直 */
+                if (game._lizhi[context.seat] !== 0) return false;
+                /* 门清 */
+                let stats = fanModifier.getMeldStats(game._model, context.seat);
+                return (stats.total - stats.ankan) === 0;
+            },
+            execute: function(context) {
+                let hule = context.hule;
+                let game = context.game;
+                let seat = context.seat;
+                let model = game._model;
+                let shoupai = context.shoupai;
+
+                /* 添加立直（1番） */
+                if (!hanOps.hasYaku(hule, '立直')) {
+                    hule.hupai.push({ name: '立直', fanshu: 1 });
+                    hule.fanshu += 1;
+                }
+                /* 添加一发（1番） */
+                if (!hanOps.hasYaku(hule, '一発')) {
+                    hule.hupai.push({ name: '一発', fanshu: 1 });
+                    hule.fanshu += 1;
+                }
+                /* 翻里宝牌 */
+                _addExtraUraDora(hule, model, shoupai, model.shan.baopai.length);
+
+                return { executed: true };
+            },
+        },
+
+        1: {
+            /* ② 第三排牌河（>12张，仅跳副露不跳暗切）或两家以上他人立直时可暗切 */
+            timing: TimingPoints.DISCARD_SELECTED,
+            type: SkillType.CONDITIONAL,
+            isOptional: true,
+            effectType: EffectType.HIDDEN_DISCARD,
+            condition: function(context) {
+                let game = context.game;
+                if (!game || context.player !== context.seat) return false;
+                let seat = context.seat;
+
+                /* 两家以上他人立直 */
+                let riichiCount = 0;
+                for (let l = 0; l < 4; l++) {
+                    if (l !== seat && game._lizhi && game._lizhi[l]) riichiCount++;
+                }
+                if (riichiCount >= 2) return true;
+
+                /* 牌河可见牌 >12（仅跳过被副露的牌，暗切牌计入） */
+                let he = game._model.he[seat];
+                if (!he || !he._pai) return false;
+                let count = 0;
+                for (let t of he._pai) {
+                    if (t.match(/[\+\=\-]$/)) continue; /* 被副露跳过 */
+                    count++;
+                }
+                return count > 12;
+            },
+            execute: function(context) {
+                context.game._extra_hidden_discard = true;
+                return { executed: true };
+            },
+            aiDecision: function(context) {
+                return true;
+            },
+        },
+    },
+
+    /* ===== 辻垣内智叶 (Tsujigaito_Satoha) ===== */
+    'Tsujigaito_Satoha': {
+        0: {
+            /* ① 观看牌山第一张，与手牌或牌河交换 */
+            type: SkillType.CONDITIONAL,
+            isOptional: true,
+            effectType: EffectType.SWAP_TILES,
+            parts: [
+                {
+                    /* 首巡舍牌前 */
+                    timing: TimingPoints.BEFORE_DISCARD,
+                    condition: function(context) {
+                        let game = context.game;
+                        if (!game || context.player !== context.seat) return false;
+                        return !!context.isFirstTurn;
+                    },
+                },
+                {
+                    /* 他家暗切时 */
+                    timing: TimingPoints.AFTER_DISCARD,
+                    condition: function(context) {
+                        if (!context.game || context.player === context.seat) return false;
+                        return !!context.game._dapaiHidden;
+                    },
+                },
+                {
+                    /* 他家副露时 */
+                    timing: TimingPoints.AFTER_FULOU,
+                    condition: function(context) {
+                        if (!context.game) return false;
+                        return context.player !== context.seat;
+                    },
+                },
+                {
+                    /* 他家宣言立直时 */
+                    timing: TimingPoints.DECLARE_RIICHI,
+                    condition: function(context) {
+                        if (!context.game) return false;
+                        return context.player !== context.seat;
+                    },
+                },
+            ],
+            execute: async function(context) {
+                let game = context.game;
+                let model = game._model;
+
+                /* 观看牌山第一张 */
+                let peeked = tileOps.peekFront(model, 1);
+                if (!peeked || peeked.length === 0) { context.done(); return; }
+                let wallTile = peeked[0];
+
+                game._add_action_log(
+                    '辻垣内智叶 观看牌山: ' + game._pai_name(wallTile),
+                    context.seat);
+
+                await _doWallSwap(context, wallTile);
+                context.done();
+            },
+            aiDecision: function(context) {
+                return true;
+            },
+        },
+    },
+
+    /* ===== 一姬 (Ichihime) ===== */
+    'Ichihime': {
+        0: {
+            /* ① 非额外巡舍出幺九牌后，可执行额外巡目 */
+            timing: TimingPoints.AFTER_DISCARD,
+            type: SkillType.CONDITIONAL,
+            isOptional: true,
+            priority: 100,
+            effectType: EffectType.EXTRA_TURN,
+            condition: function(context) {
+                let game = context.game;
+                if (!game || context.player !== context.seat) return false;
+                /* 不在额外巡链中 */
+                if (game._extra_turn) return false;
+                if (typeof game._extra_chain_remaining === 'number'
+                    && game._extra_chain_remaining >= 0) return false;
+                /* 舍牌为幺九牌（1/9 数牌或字牌） */
+                let dapai = context.dapai || '';
+                let base = dapai.replace(/\*$/, '');
+                if (!base || base.endsWith('_')) return false;
+                if (base[0] === 'z') return true;
+                let n = parseInt(base[1]);
+                return n === 1 || n === 9;
+            },
+            execute: function(context) {
+                let game = context.game;
+                let seat = context.seat;
+                game._add_action_log('一姬 舍弃幺九牌' + game._pai_name(context.dapai) + '后进行额外巡', seat);
+                extraTurn.start(game, seat, 1);
+                context.done();
+            },
+            aiDecision: function(context) {
+                return true;
+            },
+        },
+        1: {
+            /* ② 和牌役种包含断幺九→不计红宝牌和杠宝牌；不含断幺九→不计表宝牌和里宝牌 */
+            timing: TimingPoints.HULE_SETTLE,
+            type: SkillType.PASSIVE,
+            effectType: EffectType.MODIFY_YAKU_VALUE,
+            condition: function(context) {
+                return context.seat === context.player
+                    && !!(context.hule && context.hule.hupai);
+            },
+            execute: function(context) {
+                let hule = context.hule;
+                let game = context.game;
+                let shoupai = context.shoupai;
+                let rongpai = context.rongpai;
+                let model = game._model;
+
+                let allTiles = _getAllTilesWithMelds(shoupai, rongpai);
+                let d = _countDoraByType(allTiles, model);
+
+                if (hanOps.hasYaku(hule, '断幺九')) {
+                    /* 包含断幺九 → 不计红宝牌和杠宝牌 → 只计表宝牌和里宝牌 */
+                    hanOps.removeYaku(hule, '宝牌');
+                    hanOps.removeYaku(hule, '红宝牌');
+                    if (d.omote > 0) {
+                        hule.hupai.push({ name: '宝牌', fanshu: d.omote, type: 'dora' });
+                        hule.fanshu += d.omote;
+                    }
+                    /* 里宝牌保留 */
+                } else {
+                    /* 不含断幺九 → 不计表宝牌和里宝牌 → 只计杠宝牌和红宝牌 */
+                    hanOps.removeYaku(hule, '宝牌');
+                    hanOps.removeYaku(hule, '里宝牌');
+                    if (d.kan > 0) {
+                        hule.hupai.push({ name: '宝牌', fanshu: d.kan, type: 'dora' });
+                        hule.fanshu += d.kan;
+                    }
+                    /* 红宝牌保留 */
+                }
+
+                return { executed: true };
+            },
+        },
+    },
 };
 
 /**
@@ -3429,3 +4956,4 @@ class SkillRegistry {
 }
 
 module.exports = SkillRegistry;
+module.exports.SKILL_EXECUTE_MAP = SKILL_EXECUTE_MAP;
