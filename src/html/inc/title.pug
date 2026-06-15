@@ -1,0 +1,22 @@
+#title
+  h1
+    img(src="img/logo.png" alt="超能力麻将")
+  if page == 'autoplay'
+    div 自动对战
+  if page == 'netplay'
+    div 网络对战
+  .version ver. #{version}
+  .loading 加载数据中...
+  .start.hide(tabindex="0" role="button") 开始
+  if page == 'netplay'
+    .login.hide
+      form.local(method="POST" action="server/auth/")
+        input(name="name" placeholder="玩家名称")
+        input(name="passwd" value="*" type="hidden")
+        input(type="submit" value="注册")
+      form.hatena(method="POST" action="server/auth/hatena")
+        img(src="https://www.hatena.ne.jp/p/images/favicon.ico")
+        input(type="submit" value="Hatena注册")
+      form.google(method="POST" action="server/auth/google")
+        img(src="https://www.google.com/favicon.ico")
+        input(type="submit" value="Google注册")

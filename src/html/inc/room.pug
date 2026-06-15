@@ -1,0 +1,18 @@
+#room
+  h1
+    img(src="img/logo.png" alt="超能力麻将")
+    |  网络对战
+  .version ver. #{version}
+  
+  form
+    | 房间
+    input(name="room_no" value="" disabled)
+    ul.room
+      li.user
+        img(src="img/icon.png")
+        span.name
+        input.hide(type="button" name="quit" value="退出")
+    select(name="rule")
+    input(name="timer" placeholder="持牌时间")
+    input(type="submit" value="开始对局")
+    input.hide(type="button" name="bot" value="添加机器人")

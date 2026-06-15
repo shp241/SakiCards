@@ -1,0 +1,95 @@
+#file
+  h1
+    img(src="img/logo.png" alt="超能力麻将")
+    if page == 'paipu'
+      |  牌谱查看器
+    if page == 'netplay'
+      |  网络对战
+  .version ver. #{version}
+  
+  .file.hide
+
+    if page == 'index'
+      a.start 开始对局
+    if page == 'netplay'
+      .error.hide
+      .netplay
+        img(src="img/icon.png" title="guest")
+        span.name
+        form.room
+          input(name="room_no" placeholder="房间")
+          input(type="submit" value="进入")
+        form.room
+          input(type="submit" value="创建房间")
+        form.logout(method="POST" action="server/logout")
+          input(type="submit" value="退出登录")
+
+    if page == 'index' || page == 'netplay'
+      .button
+        a.stat
+          img(src="img/icon-dotlist.png")
+          | 牌谱统计
+        |
+        |
+        a.download
+          img(src="img/icon-download-alt.png")
+          | 保存牌谱
+
+    .list
+      .row
+        .button
+          a.replay
+            img(src="img/icon-play.png")
+            | 回放
+          |
+          |
+          a.edit
+            img(src="img/icon-edit.png")
+            | 编辑
+          |
+          |
+          a.download
+            img(src="img/icon-download-alt.png")
+            | 保存
+          |
+          |
+          a.delete
+            img(src="img/icon-trash.png")
+            | 删除
+          |
+          |
+          if page == 'paipu'
+            span.move
+              img(src="img/icon-resize-vertical.png")
+        .content
+          .title
+          .player
+          
+    if page == 'paipu'
+      .error.hide
+      .loading.hide
+        .blink 获取牌谱中......
+      label.upload
+        img(src="img/icon-upload-alt.png")
+        | 添加牌谱
+        input(type="file" multiple)
+      label.storage
+        input(name="storage" type="checkbox")
+        | 本地存储
+      .button
+        a.stat
+          img(src="img/icon-dotlist.png")
+          | 牌谱统计
+        |
+        |
+        a.edit
+          img(src="img/icon-edit.png")
+          | 创建牌谱
+        |
+        |
+        a.download
+          img(src="img/icon-download-alt.png")
+          | 保存牌谱
+      form.tenhou.hide
+        input(name="url" placeholder="天凤牌谱ID/URL")
+        input(type="image" src="img/icon-squaresearch.png" alt="搜索" align="top")

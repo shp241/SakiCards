@@ -1,0 +1,22 @@
+- var page = 'autoplay'
+
+doctype html
+html(lang="zh-CN")
+  
+  head
+    include ../inc/meta
+
+    include ../inc/ogp
+    +ogp('超能力麻将: 自动对战', 'AI玩家的无限麻将地狱', 
+          'https://kobalab.net/majiang/img/game.png')
+
+    include ../inc/style
+    include ../inc/script
+  
+  body.title
+    include ../inc/loaderr
+    include ../inc/title
+    include ../inc/loaddata
+
+    include ../inc/board
+    .version ver. #{version}

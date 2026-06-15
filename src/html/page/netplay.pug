@@ -1,0 +1,26 @@
+- var page = 'netplay'
+
+doctype html
+html(lang="zh-CN")
+  
+  head
+    include ../inc/meta
+
+    include ../inc/ogp
+    +ogp('超能力麻将: 网络对战', '基于WebSocket的麻将服务器', 
+          'https://kobalab.net/majiang/img/netplay.png')
+
+    include ../inc/style
+    script(src="server/socket.io/socket.io.js" defer)
+    include ../inc/script
+  
+  body.title
+    include ../inc/loaderr
+    include ../inc/title
+    include ../inc/loaddata
+
+    include ../inc/file
+    include ../inc/stat
+    include ../inc/room
+    include ../inc/board
+    .version ver. #{version}

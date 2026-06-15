@@ -1,0 +1,24 @@
+#space
+#board
+  .board
+    a.shan-back-btn(href="index.html") ← 返回
+    button.info-btn(aria-label="信息") 信息
+    .character-display(class="main")
+    .character-display(class="xiajia")
+    .character-display(class="duimian")
+    .character-display(class="shangjia")
+    include score
+    include button
+    include player
+    include dialog
+    include summary
+    include kaiju
+    .suspend.hide
+    include tenhou-dialog
+  include analyzer
+  include controller
+  
+  .download.hide
+    a
+      img(src="img/icon-download-alt.png")
+      | 牌譜保存

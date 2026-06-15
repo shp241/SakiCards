@@ -1,0 +1,4255 @@
+{
+  "title": "電脳麻将\n2026/6/9 21:16:46",
+  "player": [
+    "自己",
+    "下家",
+    "对家",
+    "上家"
+  ],
+  "qijia": 0,
+  "log": [
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 0,
+          "jushu": 0,
+          "changbang": 0,
+          "lizhibang": 0,
+          "defen": [
+            25000,
+            25000,
+            25000,
+            25000
+          ],
+          "baopai": "p1",
+          "shoupai": [
+            "m59p3677s10899z55",
+            "m1378p478s2466z27",
+            "m29p29s2299z25567",
+            "m4069p12358s37z17"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m9",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m3",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m9",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 0,
+          "m": "m999-"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m4_",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s0",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p8",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 0,
+          "m": "p678-"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p9_",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 2,
+          "m": "p999-"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m6*",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z4_",
+          "hidden": false
+        }
+      },
+      {
+        "pingju": {
+          "name": "荒牌平局",
+          "shoupai": [
+            "",
+            "m7788p444678s666",
+            "",
+            "m406p1123456s345*"
+          ],
+          "fenpei": [
+            -1500,
+            1500,
+            -1500,
+            1500
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 0,
+          "jushu": 1,
+          "changbang": 1,
+          "lizhibang": 1,
+          "defen": [
+            26500,
+            23500,
+            25500,
+            23500
+          ],
+          "baopai": "z3",
+          "shoupai": [
+            "m24p135899s57z337",
+            "m46p68s23347889z5",
+            "m3340589p11s127z5",
+            "m238p345s469z1234"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s2_"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p8",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m4*",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "hule": {
+          "l": 1,
+          "shoupai": "p567s122334789z4z4*",
+          "baojia": 3,
+          "fubaopai": [
+            "m1"
+          ],
+          "fu": 40,
+          "fanshu": 3,
+          "defen": 5200,
+          "hupai": [
+            {
+              "name": "立直",
+              "fanshu": 1
+            },
+            {
+              "name": "宝牌",
+              "fanshu": 2
+            }
+          ],
+          "fenpei": [
+            0,
+            7500,
+            0,
+            -5500
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 0,
+          "jushu": 2,
+          "changbang": 0,
+          "lizhibang": 0,
+          "defen": [
+            30000,
+            25500,
+            18000,
+            26500
+          ],
+          "baopai": "m7",
+          "shoupai": [
+            "m25789p26s3589z57",
+            "m136899p579s79z17",
+            "m12p2389s16899z23",
+            "m3789p4689s35z144"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m1",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p9*",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z5",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m0",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s9*",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s0_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p2_"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m3*",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m4_",
+          "hidden": false
+        }
+      },
+      {
+        "hule": {
+          "l": 1,
+          "shoupai": "m46699p220577s77m4*",
+          "baojia": 2,
+          "fubaopai": [
+            "m3"
+          ],
+          "fu": 25,
+          "fanshu": 7,
+          "defen": 12000,
+          "hupai": [
+            {
+              "name": "立直",
+              "fanshu": 1
+            },
+            {
+              "name": "一发",
+              "fanshu": 1
+            },
+            {
+              "name": "七对子",
+              "fanshu": 2
+            },
+            {
+              "name": "红宝牌",
+              "fanshu": 1
+            },
+            {
+              "name": "里宝牌",
+              "fanshu": 2
+            }
+          ],
+          "fenpei": [
+            0,
+            15000,
+            -12000,
+            0
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 0,
+          "jushu": 3,
+          "changbang": 0,
+          "lizhibang": 0,
+          "defen": [
+            39500,
+            5000,
+            25500,
+            30000
+          ],
+          "baopai": "m8",
+          "shoupai": [
+            "m34899p2s12679z56",
+            "m14479p59s0578z14",
+            "m305p167s23699z24",
+            "m1347p44s3459z236"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p1",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p9",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p0",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m6*",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m2_",
+          "hidden": false
+        }
+      },
+      {
+        "hule": {
+          "l": 3,
+          "shoupai": "m34777p44s345999m2*",
+          "baojia": 1,
+          "fubaopai": [
+            "s4"
+          ],
+          "fu": 50,
+          "fanshu": 3,
+          "defen": 6400,
+          "hupai": [
+            {
+              "name": "立直",
+              "fanshu": 1
+            },
+            {
+              "name": "一发",
+              "fanshu": 1
+            },
+            {
+              "name": "里宝牌",
+              "fanshu": 1
+            }
+          ],
+          "fenpei": [
+            0,
+            -6400,
+            0,
+            7400
+          ]
+        }
+      }
+    ]
+  ],
+  "action_log": [
+    [
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 9筒",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 中",
+        "seat": 1,
+        "ts": 1
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 中",
+        "seat": 2,
+        "ts": 2
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 中",
+        "seat": 3,
+        "ts": 3
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 1索",
+        "seat": 0,
+        "ts": 4
+      },
+      {
+        "text": "自己 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 5
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 8索",
+        "seat": 0,
+        "ts": 6
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 南",
+        "seat": 1,
+        "ts": 7
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 南",
+        "seat": 2,
+        "ts": 8
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 西",
+        "seat": 3,
+        "ts": 9
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 8索",
+        "seat": 0,
+        "ts": 10
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 西",
+        "seat": 1,
+        "ts": 11
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 發",
+        "seat": 2,
+        "ts": 12
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 13
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 2,
+        "ts": 14
+      },
+      {
+        "text": "对家 从自己的牌河中拿走了 9筒",
+        "seat": 2,
+        "ts": 15
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 暗切了",
+        "seat": 2,
+        "ts": 16
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 東",
+        "seat": 3,
+        "ts": 17
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 1万",
+        "seat": 0,
+        "ts": 18
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1万",
+        "seat": 1,
+        "ts": 19
+      },
+      {
+        "text": "下家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 20
+      },
+      {
+        "text": "下家 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 1,
+        "ts": 21
+      },
+      {
+        "text": "下家 从自己的牌河中拿走了 9筒",
+        "seat": 1,
+        "ts": 22
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 暗切了",
+        "seat": 1,
+        "ts": 23
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 2万",
+        "seat": 2,
+        "ts": 24
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9万",
+        "seat": 3,
+        "ts": 25
+      },
+      {
+        "text": "自己 用 9万9万 碰了 9万",
+        "seat": 0,
+        "ts": 26
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 5万",
+        "seat": 0,
+        "ts": 27
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 東",
+        "seat": 1,
+        "ts": 28
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 8筒",
+        "seat": 2,
+        "ts": 29
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 4万",
+        "seat": 3,
+        "ts": 30
+      },
+      {
+        "text": "上家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 3,
+        "ts": 31
+      },
+      {
+        "text": "上家 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 3,
+        "ts": 32
+      },
+      {
+        "text": "上家 从上家的牌河中拿走了 4万",
+        "seat": 3,
+        "ts": 33
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 暗切了",
+        "seat": 3,
+        "ts": 34
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 0索",
+        "seat": 0,
+        "ts": 35
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1万",
+        "seat": 1,
+        "ts": 36
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 1索",
+        "seat": 2,
+        "ts": 37
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8筒",
+        "seat": 3,
+        "ts": 38
+      },
+      {
+        "text": "自己 用 6筒7筒 吃了 8筒",
+        "seat": 0,
+        "ts": 39
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 7索",
+        "seat": 0,
+        "ts": 40
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 2索",
+        "seat": 1,
+        "ts": 41
+      },
+      {
+        "text": "下家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 42
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9筒",
+        "seat": 1,
+        "ts": 43
+      },
+      {
+        "text": "对家 用 9筒9筒 碰了 9筒",
+        "seat": 2,
+        "ts": 44
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 3万",
+        "seat": 2,
+        "ts": 45
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 7索",
+        "seat": 3,
+        "ts": 46
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 7筒",
+        "seat": 0,
+        "ts": 47
+      },
+      {
+        "text": "自己 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 48
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 8万",
+        "seat": 0,
+        "ts": 49
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1索",
+        "seat": 1,
+        "ts": 50
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 2万",
+        "seat": 2,
+        "ts": 51
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 發",
+        "seat": 3,
+        "ts": 52
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 8万",
+        "seat": 0,
+        "ts": 53
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8索",
+        "seat": 1,
+        "ts": 54
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 4万",
+        "seat": 2,
+        "ts": 55
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 北",
+        "seat": 3,
+        "ts": 56
+      },
+      {
+        "text": "上家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 3,
+        "ts": 57
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 6万 并立直！",
+        "seat": 3,
+        "ts": 58
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 白",
+        "seat": 0,
+        "ts": 59
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 3万",
+        "seat": 1,
+        "ts": 60
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 6万",
+        "seat": 2,
+        "ts": 61
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 62
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 中",
+        "seat": 2,
+        "ts": 63
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 3索",
+        "seat": 3,
+        "ts": 64
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 白",
+        "seat": 0,
+        "ts": 65
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8筒",
+        "seat": 1,
+        "ts": 66
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 發",
+        "seat": 2,
+        "ts": 67
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1万",
+        "seat": 3,
+        "ts": 68
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 4索",
+        "seat": 0,
+        "ts": 69
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 4索",
+        "seat": 1,
+        "ts": 70
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 西",
+        "seat": 2,
+        "ts": 71
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 3筒",
+        "seat": 3,
+        "ts": 72
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 3筒",
+        "seat": 0,
+        "ts": 73
+      },
+      {
+        "text": "自己 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 74
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 2筒",
+        "seat": 0,
+        "ts": 75
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 7索",
+        "seat": 1,
+        "ts": 76
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 2筒",
+        "seat": 2,
+        "ts": 77
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 78
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 西",
+        "seat": 2,
+        "ts": 79
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 7索",
+        "seat": 3,
+        "ts": 80
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 1索",
+        "seat": 0,
+        "ts": 81
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 4索",
+        "seat": 1,
+        "ts": 82
+      },
+      {
+        "text": "下家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 83
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 2筒",
+        "seat": 1,
+        "ts": 84
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 白",
+        "seat": 2,
+        "ts": 85
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8索",
+        "seat": 3,
+        "ts": 86
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 9索",
+        "seat": 0,
+        "ts": 87
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9筒",
+        "seat": 1,
+        "ts": 88
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 9筒",
+        "seat": 2,
+        "ts": 89
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 3索",
+        "seat": 3,
+        "ts": 90
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 9索",
+        "seat": 0,
+        "ts": 91
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 東",
+        "seat": 1,
+        "ts": 92
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 白",
+        "seat": 2,
+        "ts": 93
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 94
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 3筒",
+        "seat": 2,
+        "ts": 95
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 北",
+        "seat": 3,
+        "ts": 96
+      },
+      {
+        "text": "荒牌平局",
+        "seat": 3,
+        "ts": 97
+      }
+    ],
+    [
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 中",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 8索",
+        "seat": 1,
+        "ts": 1
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 白",
+        "seat": 2,
+        "ts": 2
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 西",
+        "seat": 3,
+        "ts": 3
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1万",
+        "seat": 0,
+        "ts": 4
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 中",
+        "seat": 1,
+        "ts": 5
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 7索",
+        "seat": 2,
+        "ts": 6
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 南",
+        "seat": 3,
+        "ts": 7
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 2索",
+        "seat": 0,
+        "ts": 8
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 白",
+        "seat": 1,
+        "ts": 9
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 10
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 1,
+        "ts": 11
+      },
+      {
+        "text": "对家 从下家的牌河中拿走了 2索",
+        "seat": 1,
+        "ts": 12
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 暗切了",
+        "seat": 1,
+        "ts": 13
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1索",
+        "seat": 2,
+        "ts": 14
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 發",
+        "seat": 3,
+        "ts": 15
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 發",
+        "seat": 0,
+        "ts": 16
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 6万",
+        "seat": 1,
+        "ts": 17
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 7筒",
+        "seat": 2,
+        "ts": 18
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 東",
+        "seat": 3,
+        "ts": 19
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 白",
+        "seat": 0,
+        "ts": 20
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 4万 并立直！",
+        "seat": 1,
+        "ts": 21
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 4万",
+        "seat": 2,
+        "ts": 22
+      },
+      {
+        "text": "上家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 23
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1万",
+        "seat": 2,
+        "ts": 24
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 8索",
+        "seat": 3,
+        "ts": 25
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 4万",
+        "seat": 0,
+        "ts": 26
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 中",
+        "seat": 1,
+        "ts": 27
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 東",
+        "seat": 2,
+        "ts": 28
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 北",
+        "seat": 3,
+        "ts": 29
+      },
+      {
+        "text": "对家 荣和了 自己！(5200点)",
+        "seat": 1,
+        "ts": 30
+      }
+    ],
+    [
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 中",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 中",
+        "seat": 1,
+        "ts": 1
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 南",
+        "seat": 2,
+        "ts": 2
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 東",
+        "seat": 3,
+        "ts": 3
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 2万",
+        "seat": 0,
+        "ts": 4
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 5
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 2万",
+        "seat": 0,
+        "ts": 6
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 南",
+        "seat": 1,
+        "ts": 7
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 西",
+        "seat": 2,
+        "ts": 8
+      },
+      {
+        "text": "自己 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 9
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 9筒",
+        "seat": 2,
+        "ts": 10
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 發",
+        "seat": 3,
+        "ts": 11
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 5万",
+        "seat": 0,
+        "ts": 12
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 東",
+        "seat": 1,
+        "ts": 13
+      },
+      {
+        "text": "上家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 14
+      },
+      {
+        "text": "上家 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 1,
+        "ts": 15
+      },
+      {
+        "text": "上家 从对家的牌河中拿走了 2万",
+        "seat": 1,
+        "ts": 16
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 暗切了",
+        "seat": 1,
+        "ts": 17
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 1万",
+        "seat": 2,
+        "ts": 18
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1万",
+        "seat": 3,
+        "ts": 19
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 2索",
+        "seat": 0,
+        "ts": 20
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9筒",
+        "seat": 1,
+        "ts": 21
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 2万",
+        "seat": 2,
+        "ts": 22
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 3万",
+        "seat": 3,
+        "ts": 23
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 東",
+        "seat": 0,
+        "ts": 24
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 2筒",
+        "seat": 1,
+        "ts": 25
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 8筒",
+        "seat": 2,
+        "ts": 26
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 5万",
+        "seat": 3,
+        "ts": 27
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 1筒",
+        "seat": 0,
+        "ts": 28
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 發",
+        "seat": 1,
+        "ts": 29
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 6索",
+        "seat": 2,
+        "ts": 30
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 2索",
+        "seat": 3,
+        "ts": 31
+      },
+      {
+        "text": "下家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 3,
+        "ts": 32
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9筒 并立直！",
+        "seat": 3,
+        "ts": 33
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 白",
+        "seat": 0,
+        "ts": 34
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 35
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 0,
+        "ts": 36
+      },
+      {
+        "text": "对家 从对家的牌河中拿走了 2索",
+        "seat": 0,
+        "ts": 37
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 暗切了",
+        "seat": 0,
+        "ts": 38
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9筒",
+        "seat": 1,
+        "ts": 39
+      },
+      {
+        "text": "上家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 40
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 白",
+        "seat": 1,
+        "ts": 41
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 0万",
+        "seat": 2,
+        "ts": 42
+      },
+      {
+        "text": "自己 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 43
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 6索",
+        "seat": 2,
+        "ts": 44
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 4索",
+        "seat": 3,
+        "ts": 45
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 9索",
+        "seat": 0,
+        "ts": 46
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8万",
+        "seat": 1,
+        "ts": 47
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 9索 并立直！",
+        "seat": 2,
+        "ts": 48
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 0索",
+        "seat": 3,
+        "ts": 49
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 5索",
+        "seat": 0,
+        "ts": 50
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9索",
+        "seat": 1,
+        "ts": 51
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 西",
+        "seat": 2,
+        "ts": 52
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 5筒",
+        "seat": 3,
+        "ts": 53
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 8索",
+        "seat": 0,
+        "ts": 54
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8索",
+        "seat": 1,
+        "ts": 55
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 3筒",
+        "seat": 2,
+        "ts": 56
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 西",
+        "seat": 3,
+        "ts": 57
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 8筒",
+        "seat": 0,
+        "ts": 58
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 6索",
+        "seat": 1,
+        "ts": 59
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 8筒",
+        "seat": 2,
+        "ts": 60
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1万",
+        "seat": 3,
+        "ts": 61
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 5索",
+        "seat": 0,
+        "ts": 62
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 2万",
+        "seat": 1,
+        "ts": 63
+      },
+      {
+        "text": "上家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 64
+      },
+      {
+        "text": "上家 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 1,
+        "ts": 65
+      },
+      {
+        "text": "上家 从上家的牌河中拿走了 2筒",
+        "seat": 1,
+        "ts": 66
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 3万 并立直！",
+        "seat": 1,
+        "ts": 67
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 4万",
+        "seat": 2,
+        "ts": 68
+      },
+      {
+        "text": "上家 荣和了 自己！(12000点)",
+        "seat": 1,
+        "ts": 69
+      }
+    ],
+    [
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 中",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 北",
+        "seat": 1,
+        "ts": 1
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 北",
+        "seat": 2,
+        "ts": 2
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 西",
+        "seat": 3,
+        "ts": 3
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 發",
+        "seat": 0,
+        "ts": 4
+      },
+      {
+        "text": "上家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 5
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 白",
+        "seat": 0,
+        "ts": 6
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 東",
+        "seat": 1,
+        "ts": 7
+      },
+      {
+        "text": "自己 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 8
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 9筒",
+        "seat": 1,
+        "ts": 9
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 南",
+        "seat": 2,
+        "ts": 10
+      },
+      {
+        "text": "下家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 11
+      },
+      {
+        "text": "下家 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 2,
+        "ts": 12
+      },
+      {
+        "text": "下家 从自己的牌河中拿走了 9筒",
+        "seat": 2,
+        "ts": 13
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 暗切了",
+        "seat": 2,
+        "ts": 14
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 南",
+        "seat": 3,
+        "ts": 15
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9索",
+        "seat": 0,
+        "ts": 16
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 1万",
+        "seat": 1,
+        "ts": 17
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 6索",
+        "seat": 2,
+        "ts": 18
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 東",
+        "seat": 3,
+        "ts": 19
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 東",
+        "seat": 0,
+        "ts": 20
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 3索",
+        "seat": 1,
+        "ts": 21
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 白",
+        "seat": 2,
+        "ts": 22
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 中",
+        "seat": 3,
+        "ts": 23
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 北",
+        "seat": 0,
+        "ts": 24
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 8筒",
+        "seat": 1,
+        "ts": 25
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 5万",
+        "seat": 2,
+        "ts": 26
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 發",
+        "seat": 3,
+        "ts": 27
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 3,
+        "ts": 28
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 3,
+        "ts": 29
+      },
+      {
+        "text": "对家 从上家的牌河中拿走了 9索",
+        "seat": 3,
+        "ts": 30
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 暗切了",
+        "seat": 3,
+        "ts": 31
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 0筒",
+        "seat": 0,
+        "ts": 32
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 8筒",
+        "seat": 1,
+        "ts": 33
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1筒",
+        "seat": 2,
+        "ts": 34
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 1万",
+        "seat": 3,
+        "ts": 35
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 3,
+        "ts": 36
+      },
+      {
+        "text": "对家 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 3,
+        "ts": 37
+      },
+      {
+        "text": "对家 从上家的牌河中拿走了 9索",
+        "seat": 3,
+        "ts": 38
+      },
+      {
+        "text": "爱丝琳·威夏尔特（对家） 打出了 6万 并立直！",
+        "seat": 3,
+        "ts": 39
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8万",
+        "seat": 0,
+        "ts": 40
+      },
+      {
+        "text": "爱丝琳·威夏尔特（自己） 打出了 2万",
+        "seat": 1,
+        "ts": 41
+      },
+      {
+        "text": "对家 荣和了 自己！(6400点)",
+        "seat": 3,
+        "ts": 42
+      }
+    ]
+  ],
+  "character": [
+    {
+      "id": "Aislinn_Wishart",
+      "name": "爱丝琳·威夏尔特",
+      "card": "Aislinn_Wishart.png",
+      "skills": [
+        "你的每排牌河限一次,你手切后可进行额外巡;",
+        "若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切"
+      ]
+    },
+    {
+      "id": "Aislinn_Wishart",
+      "name": "爱丝琳·威夏尔特",
+      "card": "Aislinn_Wishart.png",
+      "skills": [
+        "你的每排牌河限一次,你手切后可进行额外巡;",
+        "若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切"
+      ]
+    },
+    {
+      "id": "Aislinn_Wishart",
+      "name": "爱丝琳·威夏尔特",
+      "card": "Aislinn_Wishart.png",
+      "skills": [
+        "你的每排牌河限一次,你手切后可进行额外巡;",
+        "若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切"
+      ]
+    },
+    {
+      "id": "Aislinn_Wishart",
+      "name": "爱丝琳·威夏尔特",
+      "card": "Aislinn_Wishart.png",
+      "skills": [
+        "你的每排牌河限一次,你手切后可进行额外巡;",
+        "若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切"
+      ]
+    }
+  ],
+  "defen": [
+    -1400,
+    25500,
+    36400,
+    39500
+  ],
+  "point": [
+    "-51.4",
+    "-14.5",
+    "16.4",
+    "49.5"
+  ],
+  "rank": [
+    4,
+    3,
+    2,
+    1
+  ],
+  "_characters": [
+    {
+      "seat": 0,
+      "character": "Aislinn_Wishart"
+    },
+    {
+      "seat": 1,
+      "character": "Aislinn_Wishart"
+    },
+    {
+      "seat": 2,
+      "character": "Aislinn_Wishart"
+    },
+    {
+      "seat": 3,
+      "character": "Aislinn_Wishart"
+    }
+  ],
+  "_wall": {
+    "stacks": [
+      {
+        "top": "m8",
+        "bottom": "m9"
+      },
+      {
+        "top": "p3",
+        "bottom": "m2"
+      },
+      {
+        "top": "p8",
+        "bottom": "m1"
+      },
+      {
+        "top": "p7",
+        "bottom": "m1"
+      },
+      {
+        "top": "m6",
+        "bottom": "m2"
+      },
+      {
+        "top": "s2",
+        "bottom": "m8"
+      },
+      {
+        "top": "p7",
+        "bottom": "p2"
+      },
+      {
+        "top": "p3",
+        "bottom": "p6"
+      },
+      {
+        "top": "p4",
+        "bottom": "z3"
+      },
+      {
+        "top": "p6",
+        "bottom": "m5"
+      },
+      {
+        "top": "z1",
+        "bottom": "s4"
+      },
+      {
+        "top": "m8",
+        "bottom": "s4"
+      },
+      {
+        "top": "z6",
+        "bottom": "p1"
+      },
+      {
+        "top": "z4",
+        "bottom": "p2"
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": "s4",
+        "bottom": "z5"
+      },
+      {
+        "top": "p5",
+        "bottom": "z5"
+      },
+      {
+        "top": "z3",
+        "bottom": "z6"
+      },
+      {
+        "top": "s7",
+        "bottom": "m6"
+      },
+      {
+        "top": "z7",
+        "bottom": "s1"
+      },
+      {
+        "top": "s6",
+        "bottom": "z2"
+      },
+      {
+        "top": "s8",
+        "bottom": "s8"
+      },
+      {
+        "top": "p9",
+        "bottom": "s2"
+      },
+      {
+        "top": "m5",
+        "bottom": "z7"
+      },
+      {
+        "top": "s1",
+        "bottom": "m2"
+      },
+      {
+        "top": "z2",
+        "bottom": "s8"
+      },
+      {
+        "top": "p8",
+        "bottom": "s6"
+      },
+      {
+        "top": "p4",
+        "bottom": "s7"
+      },
+      {
+        "top": "z3",
+        "bottom": "m3"
+      }
+    ],
+    "cursor": 54,
+    "break": 14,
+    "dead_wall_start": 7,
+    "dora_flipped": 1,
+    "rinshan_drawn": 0,
+    "replenished": 0,
+    "haitei_moved": 0,
+    "dw_inserted": 0,
+    "weikaigang": false,
+    "half_consumed": false,
+    "closed": true,
+    "baopai": [
+      "m8"
+    ],
+    "fubaopai": [
+      "s4"
+    ]
+  }
+}

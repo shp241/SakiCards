@@ -1,0 +1,71 @@
+- var page = 'index'
+
+doctype html
+html(lang="zh-CN")
+  
+  head
+    include ../inc/meta
+
+    include ../inc/ogp
+    +ogp('超能力麻将', 'HTML5 + JavaScript 麻将应用', 
+          'https://kobalab.net/majiang/img/game.png')
+
+    include ../inc/style
+    include ../inc/script
+  
+  body.title.menu
+    include ../inc/loaderr
+    #main-menu.active
+      .menu-container
+        .menu-title
+          h1 天才麻将少女
+          .subtitle 超能力麻将 — 76名角色技能对战
+        .menu-grid
+          a.menu-card.start-game(href="javascript:void(0)" id="menu-start")
+            span.card-icon 🀄
+            span.card-name 开始对战
+            span.card-desc 人与AI对局
+          a.menu-card(href="autoplay.html")
+            span.card-icon 🤖
+            span.card-name 自动对战
+            span.card-desc AI自动观战
+          a.menu-card(href="netplay.html")
+            span.card-icon 🌐
+            span.card-name 网络对战
+            span.card-desc 在线联机对局
+          a.menu-card(href="rule.html")
+            span.card-icon ⚙
+            span.card-name 规则设置
+            span.card-desc 自定义游戏规则
+          a.menu-card(href="paipu.html")
+            span.card-icon 📜
+            span.card-name 牌谱
+            span.card-desc 查看对局记录
+          a.menu-card(href="paili.html")
+            span.card-icon 📊
+            span.card-name 牌理
+            span.card-desc 牌效分析工具
+          a.menu-card(href="hule.html")
+            span.card-icon 🧮
+            span.card-name 点数计算
+            span.card-desc 和牌点数计算器
+          a.menu-card(href="drill.html")
+            span.card-icon 🎯
+            span.card-name 练习
+            span.card-desc 牌效训练
+          a.menu-card(href="dapai.html")
+            span.card-icon 🤔
+            span.card-name 何切
+            span.card-desc 切牌选择题
+          a.menu-card(href="paiga.html")
+            span.card-icon 🖼
+            span.card-name 牌画
+            span.card-desc 牌面素材浏览
+        .version-info ver. #{version}
+    include ../inc/title
+    include ../inc/loaddata
+
+    include ../inc/file
+    include ../inc/stat
+    include ../inc/board
+    .version ver. #{version}

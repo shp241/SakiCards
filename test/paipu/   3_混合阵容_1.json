@@ -1,0 +1,10322 @@
+{
+  "title": "電脳麻将\n2026/6/9 21:56:49",
+  "player": [
+    "自己",
+    "下家",
+    "对家",
+    "上家"
+  ],
+  "qijia": 3,
+  "log": [
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 0,
+          "jushu": 0,
+          "changbang": 0,
+          "lizhibang": 0,
+          "defen": [
+            25000,
+            25000,
+            25000,
+            25000
+          ],
+          "baopai": "z1",
+          "shoupai": [
+            "m689p238s2z112447",
+            "m55789p189s1359z3",
+            "m347p57s4568z2667",
+            "m14667p6s4789z137"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z6_",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 2,
+          "m": "z666-"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p2",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 0,
+          "m": "z111-"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m2_",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 2,
+          "m": "m2-34"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p6",
+          "hidden": false
+        }
+      },
+      {
+        "hule": {
+          "l": 2,
+          "shoupai": "p57s406z22p6,z666-,m2-34",
+          "baojia": 3,
+          "fubaopai": null,
+          "fu": 30,
+          "fanshu": 4,
+          "defen": 7700,
+          "hupai": [
+            {
+              "name": "役牌 发",
+              "fanshu": 1
+            },
+            {
+              "name": "宝牌",
+              "fanshu": 2
+            },
+            {
+              "name": "红宝牌",
+              "fanshu": 1
+            }
+          ],
+          "fenpei": [
+            0,
+            0,
+            7700,
+            -7700
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 0,
+          "jushu": 1,
+          "changbang": 0,
+          "lizhibang": 0,
+          "defen": [
+            25000,
+            32700,
+            17300,
+            25000
+          ],
+          "baopai": "s4",
+          "shoupai": [
+            "p177888s2389z112",
+            "m1468p59s1406z137",
+            "m4589p679s179z245",
+            "m11233p24s445678"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 0,
+          "m": "z111+"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m9_"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s1",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 1,
+          "m": "z777-"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m1*",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p0_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "pingju": {
+          "name": "荒牌平局",
+          "shoupai": [
+            "",
+            "",
+            "",
+            "m123340p24s44567*"
+          ],
+          "fenpei": [
+            -1000,
+            -1000,
+            -1000,
+            3000
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 0,
+          "jushu": 2,
+          "changbang": 1,
+          "lizhibang": 1,
+          "defen": [
+            31700,
+            16300,
+            27000,
+            24000
+          ],
+          "baopai": "m6",
+          "shoupai": [
+            "m13468p569s139z45",
+            "m5p34779s4467889",
+            "m9p133467s209z245",
+            "m13459p16s345z366"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p9",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m9",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p3*",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "pingju": {
+          "name": "荒牌平局",
+          "shoupai": [
+            "",
+            "p234678s4467888*",
+            "",
+            ""
+          ],
+          "fenpei": [
+            -1000,
+            3000,
+            -1000,
+            -1000
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 0,
+          "jushu": 3,
+          "changbang": 2,
+          "lizhibang": 2,
+          "defen": [
+            18300,
+            26000,
+            23000,
+            30700
+          ],
+          "baopai": "z6",
+          "shoupai": [
+            "m3357p3s59z123446",
+            "p13589s1177z1355",
+            "m1406p2678s4677z6",
+            "m24688p22s14z1235"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z2",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m1*",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m7_"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m7_",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m5",
+          "hidden": false
+        }
+      },
+      {
+        "pingju": {
+          "name": "荒牌平局",
+          "shoupai": [
+            "",
+            "",
+            "m406p24678s45677*",
+            ""
+          ],
+          "fenpei": [
+            -1000,
+            -1000,
+            3000,
+            -1000
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 1,
+          "jushu": 0,
+          "changbang": 3,
+          "lizhibang": 3,
+          "defen": [
+            25000,
+            25000,
+            29700,
+            17300
+          ],
+          "baopai": "p7",
+          "shoupai": [
+            "m335678p35s479z17",
+            "m1067p1266s1366z6",
+            "m112p07899s235z46",
+            "m269p3457s12078z1"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m1*",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m4_"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m3",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p5*",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s3*",
+          "hidden": false
+        }
+      },
+      {
+        "hule": {
+          "l": 0,
+          "shoupai": "m34556788p345s24s3*",
+          "baojia": 1,
+          "fubaopai": [
+            "p1"
+          ],
+          "fu": 40,
+          "fanshu": 2,
+          "defen": 3900,
+          "hupai": [
+            {
+              "name": "立直",
+              "fanshu": 1
+            },
+            {
+              "name": "断幺九",
+              "fanshu": 1
+            }
+          ],
+          "fenpei": [
+            9800,
+            -4800,
+            0,
+            0
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 1,
+          "jushu": 0,
+          "changbang": 4,
+          "lizhibang": 0,
+          "defen": [
+            33800,
+            20200,
+            28700,
+            17300
+          ],
+          "baopai": "s4",
+          "shoupai": [
+            "m469p7s1689z13444",
+            "m478p1568s37z3566",
+            "m5p799s234669z577",
+            "m135p129s1468z227"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 2,
+          "m": "z777+"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z2_",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 3,
+          "m": "z222-"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 2,
+          "m": "p999+"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 1,
+          "m": "s789-"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m2_",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 3,
+          "m": "m12-3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s0_",
+          "hidden": false
+        }
+      },
+      {
+        "hule": {
+          "l": 2,
+          "shoupai": "p77s23446s0,z777+,p999+",
+          "baojia": 1,
+          "fubaopai": null,
+          "fu": 30,
+          "fanshu": 3,
+          "defen": 3900,
+          "hupai": [
+            {
+              "name": "役牌 中",
+              "fanshu": 1
+            },
+            {
+              "name": "宝牌",
+              "fanshu": 1
+            },
+            {
+              "name": "红宝牌",
+              "fanshu": 1
+            }
+          ],
+          "fenpei": [
+            0,
+            -5100,
+            5100,
+            0
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 1,
+          "jushu": 1,
+          "changbang": 0,
+          "lizhibang": 0,
+          "defen": [
+            15100,
+            33800,
+            17300,
+            33800
+          ],
+          "baopai": "m1",
+          "shoupai": [
+            "m4689p1239s4668z2",
+            "m16p147s23569z456",
+            "m222445p12s4677z1",
+            "m89p1405568s58z46"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p7",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s5*",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s5*"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s5",
+          "hidden": true
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s6",
+          "hidden": false
+        }
+      },
+      {
+        "pingju": {
+          "name": "荒牌平局",
+          "shoupai": [
+            "m34678p123s40699",
+            "",
+            "",
+            "m89p40556678s789*"
+          ],
+          "fenpei": [
+            1500,
+            -1500,
+            -1500,
+            1500
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 1,
+          "jushu": 1,
+          "changbang": 1,
+          "lizhibang": 1,
+          "defen": [
+            16600,
+            32300,
+            15800,
+            34300
+          ],
+          "baopai": "z2",
+          "shoupai": [
+            "m47p246688s489z24",
+            "m578p2348s358z267",
+            "m230p479s356z4567",
+            "m1p167s167789z145"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 1,
+          "m": "z666+"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "hule": {
+          "l": 1,
+          "shoupai": "m567p234s2305s1,z666+",
+          "baojia": 3,
+          "fubaopai": null,
+          "fu": 30,
+          "fanshu": 2,
+          "defen": 2000,
+          "hupai": [
+            {
+              "name": "役牌 发",
+              "fanshu": 1
+            },
+            {
+              "name": "红宝牌",
+              "fanshu": 1
+            }
+          ],
+          "fenpei": [
+            0,
+            3300,
+            0,
+            -2300
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 1,
+          "jushu": 2,
+          "changbang": 0,
+          "lizhibang": 0,
+          "defen": [
+            35600,
+            15800,
+            32000,
+            16600
+          ],
+          "baopai": "m7",
+          "shoupai": [
+            "m13p5679s344679z4",
+            "m44479p246s10z456",
+            "m668p2s22245568z7",
+            "m2235p357889s19z2"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p4",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 3,
+          "m": "p34-0"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s0",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 2,
+          "m": "s550-"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p8_",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 3,
+          "m": "p888+"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p2*",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s3_",
+          "hidden": false
+        }
+      },
+      {
+        "pingju": {
+          "name": "荒牌平局",
+          "shoupai": [
+            "",
+            "m444777999p46z55*",
+            "m6668s222234,s550-",
+            ""
+          ],
+          "fenpei": [
+            -1500,
+            1500,
+            1500,
+            -1500
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "qipai": {
+          "zhuangfeng": 1,
+          "jushu": 3,
+          "changbang": 1,
+          "lizhibang": 1,
+          "defen": [
+            16300,
+            33500,
+            15100,
+            34100
+          ],
+          "baopai": "s2",
+          "shoupai": [
+            "m110689p24s66z334",
+            "m22338p339s479z23",
+            "m67p135557s38z567",
+            "m3p4s1205789z2456"
+          ]
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z3",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "s9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z6",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z5",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 2,
+          "m": "z555+"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p1",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m3",
+          "hidden": false
+        }
+      },
+      {
+        "fulou": {
+          "l": 1,
+          "m": "m333="
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "m9",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "z7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s8",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m5"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "m5_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "p5",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "p8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "p8_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "m1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "m6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z4",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "p7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "p7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "m8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s7",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s8"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "z2",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p6"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p6_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "s3_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "z1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "z1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "s2"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "s2_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "p1"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "p1_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 2,
+          "p": "m7"
+        }
+      },
+      {
+        "dapai": {
+          "l": 2,
+          "p": "m7_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 3,
+          "p": "s9"
+        }
+      },
+      {
+        "dapai": {
+          "l": 3,
+          "p": "s9_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 0,
+          "p": "z4"
+        }
+      },
+      {
+        "dapai": {
+          "l": 0,
+          "p": "z4_",
+          "hidden": false
+        }
+      },
+      {
+        "zimo": {
+          "l": 1,
+          "p": "s3"
+        }
+      },
+      {
+        "dapai": {
+          "l": 1,
+          "p": "m8",
+          "hidden": false
+        }
+      },
+      {
+        "hule": {
+          "l": 2,
+          "shoupai": "m67p345567s33m8,z555+",
+          "baojia": 1,
+          "fubaopai": null,
+          "fu": 30,
+          "fanshu": 3,
+          "defen": 3900,
+          "hupai": [
+            {
+              "name": "役牌 白",
+              "fanshu": 1
+            },
+            {
+              "name": "宝牌",
+              "fanshu": 2
+            }
+          ],
+          "fenpei": [
+            0,
+            -4200,
+            5200,
+            0
+          ]
+        }
+      }
+    ]
+  ],
+  "action_log": [
+    [
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 中",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 8筒",
+        "seat": 1,
+        "ts": 1
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 2
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(8筒)到王牌中",
+        "seat": 1,
+        "ts": 3
+      },
+      {
+        "text": "天江衣（自己） 打出了 西",
+        "seat": 1,
+        "ts": 4
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 中",
+        "seat": 2,
+        "ts": 5
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 北",
+        "seat": 3,
+        "ts": 6
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 7
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(北)到王牌中",
+        "seat": 3,
+        "ts": 8
+      },
+      {
+        "text": "天江衣（对家） 打出了 中",
+        "seat": 3,
+        "ts": 9
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 南",
+        "seat": 0,
+        "ts": 10
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 11
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 2索",
+        "seat": 0,
+        "ts": 12
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 1,
+        "ts": 13
+      },
+      {
+        "text": "天江衣（自己） 打出了 發",
+        "seat": 1,
+        "ts": 14
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 用 發發 碰了 發",
+        "seat": 2,
+        "ts": 15
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8索",
+        "seat": 2,
+        "ts": 16
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 17
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 2,
+        "ts": 18
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 从爱丝琳·威夏尔特（上家）的牌河中拿走了 南",
+        "seat": 2,
+        "ts": 19
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 暗切了",
+        "seat": 2,
+        "ts": 20
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 0筒",
+        "seat": 3,
+        "ts": 21
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 22
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(0筒)到王牌中",
+        "seat": 3,
+        "ts": 23
+      },
+      {
+        "text": "天江衣（对家） 打出了 東",
+        "seat": 3,
+        "ts": 24
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 用 東東 碰了 東",
+        "seat": 0,
+        "ts": 25
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8筒",
+        "seat": 0,
+        "ts": 26
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 6万",
+        "seat": 1,
+        "ts": 27
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 28
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(6万)到王牌中",
+        "seat": 1,
+        "ts": 29
+      },
+      {
+        "text": "天江衣（自己） 打出了 9索",
+        "seat": 1,
+        "ts": 30
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 5索",
+        "seat": 2,
+        "ts": 31
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 7筒",
+        "seat": 3,
+        "ts": 32
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 33
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(7筒)到王牌中",
+        "seat": 3,
+        "ts": 34
+      },
+      {
+        "text": "天江衣（对家） 打出了 西",
+        "seat": 3,
+        "ts": 35
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 2索",
+        "seat": 0,
+        "ts": 36
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 8万",
+        "seat": 1,
+        "ts": 37
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 38
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(8万)到王牌中",
+        "seat": 1,
+        "ts": 39
+      },
+      {
+        "text": "天江衣（自己） 打出了 2万",
+        "seat": 1,
+        "ts": 40
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 副露了",
+        "seat": 2,
+        "ts": 41
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 7万",
+        "seat": 2,
+        "ts": 42
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 6筒",
+        "seat": 3,
+        "ts": 43
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 44
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(6筒)到王牌中",
+        "seat": 3,
+        "ts": 45
+      },
+      {
+        "text": "天江衣（对家） 打出了 6筒",
+        "seat": 3,
+        "ts": 46
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 荣和了 天江衣（对家）！(7700点)",
+        "seat": 2,
+        "ts": 47
+      }
+    ],
+    [
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 6索",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "天江衣（自己） 用 6筒 交换了 6索",
+        "seat": 0,
+        "ts": 1
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(6筒)到王牌中",
+        "seat": 0,
+        "ts": 2
+      },
+      {
+        "text": "天江衣（自己） 打出了 南",
+        "seat": 0,
+        "ts": 3
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 西",
+        "seat": 1,
+        "ts": 4
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 9筒",
+        "seat": 2,
+        "ts": 5
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 6
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(9筒)到王牌中",
+        "seat": 2,
+        "ts": 7
+      },
+      {
+        "text": "天江衣（对家） 打出了 南",
+        "seat": 2,
+        "ts": 8
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8索",
+        "seat": 3,
+        "ts": 9
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 3,
+        "ts": 10
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 5索",
+        "seat": 3,
+        "ts": 11
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 發",
+        "seat": 0,
+        "ts": 12
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 13
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(發)到王牌中",
+        "seat": 0,
+        "ts": 14
+      },
+      {
+        "text": "天江衣（自己） 打出了 9索",
+        "seat": 0,
+        "ts": 15
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 東",
+        "seat": 1,
+        "ts": 16
+      },
+      {
+        "text": "天江衣（自己） 用 東東 碰了 東",
+        "seat": 0,
+        "ts": 17
+      },
+      {
+        "text": "天江衣（自己） 打出了 1筒",
+        "seat": 0,
+        "ts": 18
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 西",
+        "seat": 1,
+        "ts": 19
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 2筒",
+        "seat": 2,
+        "ts": 20
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 21
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(2筒)到王牌中",
+        "seat": 2,
+        "ts": 22
+      },
+      {
+        "text": "天江衣（对家） 打出了 3筒",
+        "seat": 2,
+        "ts": 23
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 發",
+        "seat": 3,
+        "ts": 24
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 1筒",
+        "seat": 0,
+        "ts": 25
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 26
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(1筒)到王牌中",
+        "seat": 0,
+        "ts": 27
+      },
+      {
+        "text": "天江衣（自己） 打出了 9万",
+        "seat": 0,
+        "ts": 28
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1筒",
+        "seat": 1,
+        "ts": 29
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 30
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 1,
+        "ts": 31
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 从天江衣（自己）的牌河中拿走了 9万",
+        "seat": 1,
+        "ts": 32
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 暗切了",
+        "seat": 1,
+        "ts": 33
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 北",
+        "seat": 2,
+        "ts": 34
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 35
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(北)到王牌中",
+        "seat": 2,
+        "ts": 36
+      },
+      {
+        "text": "天江衣（对家） 打出了 北",
+        "seat": 2,
+        "ts": 37
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8万",
+        "seat": 3,
+        "ts": 38
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 0,
+        "ts": 39
+      },
+      {
+        "text": "天江衣（自己） 打出了 中",
+        "seat": 0,
+        "ts": 40
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 用 中中 碰了 中",
+        "seat": 1,
+        "ts": 41
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9筒",
+        "seat": 1,
+        "ts": 42
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 2筒",
+        "seat": 2,
+        "ts": 43
+      },
+      {
+        "text": "天江衣（对家） 用 2万 交换了 2筒",
+        "seat": 2,
+        "ts": 44
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(2万)到王牌中",
+        "seat": 2,
+        "ts": 45
+      },
+      {
+        "text": "天江衣（对家） 打出了 9筒",
+        "seat": 2,
+        "ts": 46
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 西",
+        "seat": 3,
+        "ts": 47
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 3索",
+        "seat": 0,
+        "ts": 48
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 49
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(3索)到王牌中",
+        "seat": 0,
+        "ts": 50
+      },
+      {
+        "text": "天江衣（自己） 打出了 9筒",
+        "seat": 0,
+        "ts": 51
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9万",
+        "seat": 1,
+        "ts": 52
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 白",
+        "seat": 2,
+        "ts": 53
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 54
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(白)到王牌中",
+        "seat": 2,
+        "ts": 55
+      },
+      {
+        "text": "天江衣（对家） 打出了 白",
+        "seat": 2,
+        "ts": 56
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1万 并立直！",
+        "seat": 3,
+        "ts": 57
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 0,
+        "ts": 58
+      },
+      {
+        "text": "天江衣（自己） 打出了 發",
+        "seat": 0,
+        "ts": 59
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1万",
+        "seat": 1,
+        "ts": 60
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 3索、5筒",
+        "seat": 2,
+        "ts": 61
+      },
+      {
+        "text": "天江衣（对家） 用 1索 交换了 3索",
+        "seat": 2,
+        "ts": 62
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(1索5筒)到王牌中",
+        "seat": 2,
+        "ts": 63
+      },
+      {
+        "text": "天江衣（对家） 打出了 8万",
+        "seat": 2,
+        "ts": 64
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 6万",
+        "seat": 3,
+        "ts": 65
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 3索、北",
+        "seat": 0,
+        "ts": 66
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 67
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(3索北)到王牌中",
+        "seat": 0,
+        "ts": 68
+      },
+      {
+        "text": "天江衣（自己） 打出了 8索",
+        "seat": 0,
+        "ts": 69
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 3万",
+        "seat": 1,
+        "ts": 70
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 71
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 中",
+        "seat": 1,
+        "ts": 72
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 6筒、8索",
+        "seat": 2,
+        "ts": 73
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 74
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(6筒8索)到王牌中",
+        "seat": 2,
+        "ts": 75
+      },
+      {
+        "text": "天江衣（对家） 打出了 3万",
+        "seat": 2,
+        "ts": 76
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9索",
+        "seat": 3,
+        "ts": 77
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 0,
+        "ts": 78
+      },
+      {
+        "text": "天江衣（自己） 打出了 東",
+        "seat": 0,
+        "ts": 79
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9万",
+        "seat": 1,
+        "ts": 80
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 2,
+        "ts": 81
+      },
+      {
+        "text": "天江衣（对家） 打出了 9万",
+        "seat": 2,
+        "ts": 82
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 0筒",
+        "seat": 3,
+        "ts": 83
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 1筒、西",
+        "seat": 0,
+        "ts": 84
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 85
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(1筒西)到王牌中",
+        "seat": 0,
+        "ts": 86
+      },
+      {
+        "text": "天江衣（自己） 打出了 8万",
+        "seat": 0,
+        "ts": 87
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 5筒",
+        "seat": 1,
+        "ts": 88
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 7索、9万",
+        "seat": 2,
+        "ts": 89
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 90
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(7索9万)到王牌中",
+        "seat": 2,
+        "ts": 91
+      },
+      {
+        "text": "天江衣（对家） 打出了 9索",
+        "seat": 2,
+        "ts": 92
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1索",
+        "seat": 3,
+        "ts": 93
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 5筒、4筒",
+        "seat": 0,
+        "ts": 94
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 95
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(5筒4筒)到王牌中",
+        "seat": 0,
+        "ts": 96
+      },
+      {
+        "text": "天江衣（自己） 打出了 8筒",
+        "seat": 0,
+        "ts": 97
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 6万",
+        "seat": 1,
+        "ts": 98
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 8索",
+        "seat": 2,
+        "ts": 99
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 100
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(8索)到王牌中",
+        "seat": 2,
+        "ts": 101
+      },
+      {
+        "text": "天江衣（对家） 打出了 1索",
+        "seat": 2,
+        "ts": 102
+      },
+      {
+        "text": "荒牌平局",
+        "seat": 2,
+        "ts": 103
+      }
+    ],
+    [
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 北",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 東",
+        "seat": 1,
+        "ts": 1
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 2
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(東)到王牌中",
+        "seat": 1,
+        "ts": 3
+      },
+      {
+        "text": "天江衣（对家） 打出了 7筒",
+        "seat": 1,
+        "ts": 4
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 北",
+        "seat": 2,
+        "ts": 5
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 7万",
+        "seat": 3,
+        "ts": 6
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 7
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(7万)到王牌中",
+        "seat": 3,
+        "ts": 8
+      },
+      {
+        "text": "天江衣（自己） 打出了 西",
+        "seat": 3,
+        "ts": 9
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 白",
+        "seat": 0,
+        "ts": 10
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 11
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 0,
+        "ts": 12
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 从天江衣（对家）的牌河中拿走了 7筒",
+        "seat": 0,
+        "ts": 13
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 暗切了",
+        "seat": 0,
+        "ts": 14
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 中",
+        "seat": 1,
+        "ts": 15
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 16
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(中)到王牌中",
+        "seat": 1,
+        "ts": 17
+      },
+      {
+        "text": "天江衣（对家） 打出了 8万",
+        "seat": 1,
+        "ts": 18
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 白",
+        "seat": 2,
+        "ts": 19
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 5索",
+        "seat": 3,
+        "ts": 20
+      },
+      {
+        "text": "天江衣（自己） 用 4索 交换了 5索",
+        "seat": 3,
+        "ts": 21
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(4索)到王牌中",
+        "seat": 3,
+        "ts": 22
+      },
+      {
+        "text": "天江衣（自己） 打出了 1索",
+        "seat": 3,
+        "ts": 23
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9索",
+        "seat": 0,
+        "ts": 24
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 3索",
+        "seat": 1,
+        "ts": 25
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 26
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(3索)到王牌中",
+        "seat": 1,
+        "ts": 27
+      },
+      {
+        "text": "天江衣（对家） 打出了 5万",
+        "seat": 1,
+        "ts": 28
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 南",
+        "seat": 2,
+        "ts": 29
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 南",
+        "seat": 3,
+        "ts": 30
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 31
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(南)到王牌中",
+        "seat": 3,
+        "ts": 32
+      },
+      {
+        "text": "天江衣（自己） 打出了 9筒",
+        "seat": 3,
+        "ts": 33
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 2筒",
+        "seat": 0,
+        "ts": 34
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 4筒",
+        "seat": 1,
+        "ts": 35
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 36
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(4筒)到王牌中",
+        "seat": 1,
+        "ts": 37
+      },
+      {
+        "text": "天江衣（对家） 打出了 9筒",
+        "seat": 1,
+        "ts": 38
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9索",
+        "seat": 2,
+        "ts": 39
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 40
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 2,
+        "ts": 41
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 从爱丝琳·威夏尔特（下家）的牌河中拿走了 2筒",
+        "seat": 2,
+        "ts": 42
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 暗切了",
+        "seat": 2,
+        "ts": 43
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 白",
+        "seat": 3,
+        "ts": 44
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 45
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(白)到王牌中",
+        "seat": 3,
+        "ts": 46
+      },
+      {
+        "text": "天江衣（自己） 打出了 1筒",
+        "seat": 3,
+        "ts": 47
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8万",
+        "seat": 0,
+        "ts": 48
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 4万",
+        "seat": 1,
+        "ts": 49
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 50
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(4万)到王牌中",
+        "seat": 1,
+        "ts": 51
+      },
+      {
+        "text": "天江衣（对家） 打出了 9索",
+        "seat": 1,
+        "ts": 52
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 南",
+        "seat": 2,
+        "ts": 53
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 8筒",
+        "seat": 3,
+        "ts": 54
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 55
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(8筒)到王牌中",
+        "seat": 3,
+        "ts": 56
+      },
+      {
+        "text": "天江衣（自己） 打出了 9万",
+        "seat": 3,
+        "ts": 57
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1万",
+        "seat": 0,
+        "ts": 58
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 7万",
+        "seat": 1,
+        "ts": 59
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 60
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(7万)到王牌中",
+        "seat": 1,
+        "ts": 61
+      },
+      {
+        "text": "天江衣（对家） 打出了 3筒 并立直！",
+        "seat": 1,
+        "ts": 62
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 3筒",
+        "seat": 2,
+        "ts": 63
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 64
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 中",
+        "seat": 2,
+        "ts": 65
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 3,
+        "ts": 66
+      },
+      {
+        "text": "天江衣（自己） 打出了 5万",
+        "seat": 3,
+        "ts": 67
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 7筒",
+        "seat": 0,
+        "ts": 68
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 69
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 北",
+        "seat": 0,
+        "ts": 70
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 5万、1万",
+        "seat": 1,
+        "ts": 71
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 72
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(5万1万)到王牌中",
+        "seat": 1,
+        "ts": 73
+      },
+      {
+        "text": "天江衣（对家） 打出了 7筒",
+        "seat": 1,
+        "ts": 74
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 3筒",
+        "seat": 2,
+        "ts": 75
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 中、6万",
+        "seat": 3,
+        "ts": 76
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 77
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(中6万)到王牌中",
+        "seat": 3,
+        "ts": 78
+      },
+      {
+        "text": "天江衣（自己） 打出了 西",
+        "seat": 3,
+        "ts": 79
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 6筒",
+        "seat": 0,
+        "ts": 80
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 1,
+        "ts": 81
+      },
+      {
+        "text": "天江衣（对家） 打出了 西",
+        "seat": 1,
+        "ts": 82
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8万",
+        "seat": 2,
+        "ts": 83
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 3,
+        "ts": 84
+      },
+      {
+        "text": "天江衣（自己） 打出了 6筒",
+        "seat": 3,
+        "ts": 85
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8万",
+        "seat": 0,
+        "ts": 86
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 發、7索",
+        "seat": 1,
+        "ts": 87
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 88
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(發7索)到王牌中",
+        "seat": 1,
+        "ts": 89
+      },
+      {
+        "text": "天江衣（对家） 打出了 2万",
+        "seat": 1,
+        "ts": 90
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 2万",
+        "seat": 2,
+        "ts": 91
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 1索、東",
+        "seat": 3,
+        "ts": 92
+      },
+      {
+        "text": "天江衣（自己） 用 1万 交换了 1索",
+        "seat": 3,
+        "ts": 93
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(1万東)到王牌中",
+        "seat": 3,
+        "ts": 94
+      },
+      {
+        "text": "天江衣（自己） 打出了 發",
+        "seat": 3,
+        "ts": 95
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 2万",
+        "seat": 0,
+        "ts": 96
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 南、6索",
+        "seat": 1,
+        "ts": 97
+      },
+      {
+        "text": "天江衣（对家） 用 9索 交换了 6索",
+        "seat": 1,
+        "ts": 98
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(南9索)到王牌中",
+        "seat": 1,
+        "ts": 99
+      },
+      {
+        "text": "天江衣（对家） 打出了 6索",
+        "seat": 1,
+        "ts": 100
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 6索",
+        "seat": 2,
+        "ts": 101
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 中、發",
+        "seat": 3,
+        "ts": 102
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 103
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(中發)到王牌中",
+        "seat": 3,
+        "ts": 104
+      },
+      {
+        "text": "天江衣（自己） 打出了 發",
+        "seat": 3,
+        "ts": 105
+      },
+      {
+        "text": "荒牌平局",
+        "seat": 3,
+        "ts": 106
+      }
+    ],
+    [
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 9索",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 1
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(9索)到王牌中",
+        "seat": 0,
+        "ts": 2
+      },
+      {
+        "text": "天江衣（对家） 打出了 1万",
+        "seat": 0,
+        "ts": 3
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 西",
+        "seat": 1,
+        "ts": 4
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 5
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 東",
+        "seat": 1,
+        "ts": 6
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 8索",
+        "seat": 2,
+        "ts": 7
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 8
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(8索)到王牌中",
+        "seat": 2,
+        "ts": 9
+      },
+      {
+        "text": "天江衣（自己） 打出了 發",
+        "seat": 2,
+        "ts": 10
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 西",
+        "seat": 3,
+        "ts": 11
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 3,
+        "ts": 12
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 3,
+        "ts": 13
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 从爱丝琳·威夏尔特（上家）的牌河中拿走了 東",
+        "seat": 3,
+        "ts": 14
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 暗切了",
+        "seat": 3,
+        "ts": 15
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 南",
+        "seat": 0,
+        "ts": 16
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 17
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(南)到王牌中",
+        "seat": 0,
+        "ts": 18
+      },
+      {
+        "text": "天江衣（对家） 打出了 西",
+        "seat": 0,
+        "ts": 19
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8万",
+        "seat": 1,
+        "ts": 20
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 6索",
+        "seat": 2,
+        "ts": 21
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 22
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(6索)到王牌中",
+        "seat": 2,
+        "ts": 23
+      },
+      {
+        "text": "天江衣（自己） 打出了 1万 并立直！",
+        "seat": 2,
+        "ts": 24
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 東",
+        "seat": 3,
+        "ts": 25
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 9万、9索",
+        "seat": 0,
+        "ts": 26
+      },
+      {
+        "text": "天江衣（对家） 用 9筒 交换了 9索",
+        "seat": 0,
+        "ts": 27
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(9万9筒)到王牌中",
+        "seat": 0,
+        "ts": 28
+      },
+      {
+        "text": "天江衣（对家） 打出了 發",
+        "seat": 0,
+        "ts": 29
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 白",
+        "seat": 1,
+        "ts": 30
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 1索、7万",
+        "seat": 2,
+        "ts": 31
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 32
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(1索7万)到王牌中",
+        "seat": 2,
+        "ts": 33
+      },
+      {
+        "text": "天江衣（自己） 打出了 4筒",
+        "seat": 2,
+        "ts": 34
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 東",
+        "seat": 3,
+        "ts": 35
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 1筒、0索",
+        "seat": 0,
+        "ts": 36
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 37
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(1筒0索)到王牌中",
+        "seat": 0,
+        "ts": 38
+      },
+      {
+        "text": "天江衣（对家） 打出了 東",
+        "seat": 0,
+        "ts": 39
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 白",
+        "seat": 1,
+        "ts": 40
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 3索、2索",
+        "seat": 2,
+        "ts": 41
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 42
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(3索2索)到王牌中",
+        "seat": 2,
+        "ts": 43
+      },
+      {
+        "text": "天江衣（自己） 打出了 4万",
+        "seat": 2,
+        "ts": 44
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 白",
+        "seat": 3,
+        "ts": 45
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 9万、1筒",
+        "seat": 0,
+        "ts": 46
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 47
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(9万1筒)到王牌中",
+        "seat": 0,
+        "ts": 48
+      },
+      {
+        "text": "天江衣（对家） 打出了 北",
+        "seat": 0,
+        "ts": 49
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 4万",
+        "seat": 1,
+        "ts": 50
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 4筒、7万",
+        "seat": 2,
+        "ts": 51
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 52
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(4筒7万)到王牌中",
+        "seat": 2,
+        "ts": 53
+      },
+      {
+        "text": "天江衣（自己） 打出了 2索",
+        "seat": 2,
+        "ts": 54
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 4万",
+        "seat": 3,
+        "ts": 55
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 中、1万",
+        "seat": 0,
+        "ts": 56
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 57
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(中1万)到王牌中",
+        "seat": 0,
+        "ts": 58
+      },
+      {
+        "text": "天江衣（对家） 打出了 北",
+        "seat": 0,
+        "ts": 59
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1筒",
+        "seat": 1,
+        "ts": 60
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 2筒、8筒",
+        "seat": 2,
+        "ts": 61
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 62
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(2筒8筒)到王牌中",
+        "seat": 2,
+        "ts": 63
+      },
+      {
+        "text": "天江衣（自己） 打出了 7筒",
+        "seat": 2,
+        "ts": 64
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 北",
+        "seat": 3,
+        "ts": 65
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 3万、白",
+        "seat": 0,
+        "ts": 66
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 67
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(3万白)到王牌中",
+        "seat": 0,
+        "ts": 68
+      },
+      {
+        "text": "天江衣（对家） 打出了 南",
+        "seat": 0,
+        "ts": 69
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 東",
+        "seat": 1,
+        "ts": 70
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 7万、2索",
+        "seat": 2,
+        "ts": 71
+      },
+      {
+        "text": "天江衣（自己） 用 5万 交换了 7万",
+        "seat": 2,
+        "ts": 72
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(5万2索)到王牌中",
+        "seat": 2,
+        "ts": 73
+      },
+      {
+        "text": "天江衣（自己） 打出了 7万",
+        "seat": 2,
+        "ts": 74
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 中",
+        "seat": 3,
+        "ts": 75
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 3,
+        "ts": 76
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 3,
+        "ts": 77
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 从天江衣（自己）的牌河中拿走了 7万",
+        "seat": 3,
+        "ts": 78
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 暗切了",
+        "seat": 3,
+        "ts": 79
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 北、4筒",
+        "seat": 0,
+        "ts": 80
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 81
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(北4筒)到王牌中",
+        "seat": 0,
+        "ts": 82
+      },
+      {
+        "text": "天江衣（对家） 打出了 7万",
+        "seat": 0,
+        "ts": 83
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8万",
+        "seat": 1,
+        "ts": 84
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 5筒、4索",
+        "seat": 2,
+        "ts": 85
+      },
+      {
+        "text": "天江衣（自己） 用 8索 交换了 4索",
+        "seat": 2,
+        "ts": 86
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(5筒8索)到王牌中",
+        "seat": 2,
+        "ts": 87
+      },
+      {
+        "text": "天江衣（自己） 打出了 4索",
+        "seat": 2,
+        "ts": 88
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 4索",
+        "seat": 3,
+        "ts": 89
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 6筒、9万",
+        "seat": 0,
+        "ts": 90
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 91
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(6筒9万)到王牌中",
+        "seat": 0,
+        "ts": 92
+      },
+      {
+        "text": "天江衣（对家） 打出了 2万",
+        "seat": 0,
+        "ts": 93
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 西",
+        "seat": 1,
+        "ts": 94
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 7筒、8索",
+        "seat": 2,
+        "ts": 95
+      },
+      {
+        "text": "天江衣（自己） 用 6筒 交换了 7筒",
+        "seat": 2,
+        "ts": 96
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(6筒8索)到王牌中",
+        "seat": 2,
+        "ts": 97
+      },
+      {
+        "text": "天江衣（自己） 打出了 7筒",
+        "seat": 2,
+        "ts": 98
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1万",
+        "seat": 3,
+        "ts": 99
+      },
+      {
+        "text": "天江衣（对家） 打出了 5万",
+        "seat": 0,
+        "ts": 100
+      },
+      {
+        "text": "荒牌平局",
+        "seat": 0,
+        "ts": 101
+      }
+    ],
+    [
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 中",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 1
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 東",
+        "seat": 0,
+        "ts": 2
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 5索",
+        "seat": 1,
+        "ts": 3
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 4
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(5索)到王牌中",
+        "seat": 1,
+        "ts": 5
+      },
+      {
+        "text": "天江衣（自己） 打出了 發",
+        "seat": 1,
+        "ts": 6
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 發",
+        "seat": 2,
+        "ts": 7
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 8
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 中",
+        "seat": 2,
+        "ts": 9
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 東",
+        "seat": 3,
+        "ts": 10
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 11
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(東)到王牌中",
+        "seat": 3,
+        "ts": 12
+      },
+      {
+        "text": "天江衣（对家） 打出了 東",
+        "seat": 3,
+        "ts": 13
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1索",
+        "seat": 0,
+        "ts": 14
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 東",
+        "seat": 1,
+        "ts": 15
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 16
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(東)到王牌中",
+        "seat": 1,
+        "ts": 17
+      },
+      {
+        "text": "天江衣（自己） 打出了 9筒",
+        "seat": 1,
+        "ts": 18
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9筒",
+        "seat": 2,
+        "ts": 19
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 北",
+        "seat": 3,
+        "ts": 20
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 21
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(北)到王牌中",
+        "seat": 3,
+        "ts": 22
+      },
+      {
+        "text": "天江衣（对家） 打出了 2万",
+        "seat": 3,
+        "ts": 23
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 中",
+        "seat": 0,
+        "ts": 24
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 9万",
+        "seat": 1,
+        "ts": 25
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 26
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(9万)到王牌中",
+        "seat": 1,
+        "ts": 27
+      },
+      {
+        "text": "天江衣（自己） 打出了 6索",
+        "seat": 1,
+        "ts": 28
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 西",
+        "seat": 2,
+        "ts": 29
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 2筒",
+        "seat": 3,
+        "ts": 30
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 31
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(2筒)到王牌中",
+        "seat": 3,
+        "ts": 32
+      },
+      {
+        "text": "天江衣（对家） 打出了 9万",
+        "seat": 3,
+        "ts": 33
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 南",
+        "seat": 0,
+        "ts": 34
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 3索",
+        "seat": 1,
+        "ts": 35
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 36
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(3索)到王牌中",
+        "seat": 1,
+        "ts": 37
+      },
+      {
+        "text": "天江衣（自己） 打出了 4万",
+        "seat": 1,
+        "ts": 38
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8筒",
+        "seat": 2,
+        "ts": 39
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 3,
+        "ts": 40
+      },
+      {
+        "text": "天江衣（对家） 打出了 白",
+        "seat": 3,
+        "ts": 41
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 白",
+        "seat": 0,
+        "ts": 42
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 8索",
+        "seat": 1,
+        "ts": 43
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 44
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(8索)到王牌中",
+        "seat": 1,
+        "ts": 45
+      },
+      {
+        "text": "天江衣（自己） 打出了 6索",
+        "seat": 1,
+        "ts": 46
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1筒",
+        "seat": 2,
+        "ts": 47
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 3,
+        "ts": 48
+      },
+      {
+        "text": "天江衣（对家） 打出了 南",
+        "seat": 3,
+        "ts": 49
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9索",
+        "seat": 0,
+        "ts": 50
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 4索",
+        "seat": 1,
+        "ts": 51
+      },
+      {
+        "text": "天江衣（自己） 用 8索 交换了 4索",
+        "seat": 1,
+        "ts": 52
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(8索)到王牌中",
+        "seat": 1,
+        "ts": 53
+      },
+      {
+        "text": "天江衣（自己） 打出了 6索",
+        "seat": 1,
+        "ts": 54
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 5索",
+        "seat": 2,
+        "ts": 55
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 56
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 2,
+        "ts": 57
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 从爱丝琳·威夏尔特（上家）的牌河中拿走了 1索",
+        "seat": 2,
+        "ts": 58
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1万 并立直！",
+        "seat": 2,
+        "ts": 59
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 3,
+        "ts": 60
+      },
+      {
+        "text": "天江衣（对家） 打出了 西",
+        "seat": 3,
+        "ts": 61
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 7索",
+        "seat": 0,
+        "ts": 62
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 63
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 0,
+        "ts": 64
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 从天江衣（自己）的牌河中拿走了 4万",
+        "seat": 0,
+        "ts": 65
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 暗切了",
+        "seat": 0,
+        "ts": 66
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 發、9索",
+        "seat": 1,
+        "ts": 67
+      },
+      {
+        "text": "天江衣（自己） 用 9索 交换了 9索",
+        "seat": 1,
+        "ts": 68
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(發9索)到王牌中",
+        "seat": 1,
+        "ts": 69
+      },
+      {
+        "text": "天江衣（自己） 打出了 9索",
+        "seat": 1,
+        "ts": 70
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8索",
+        "seat": 2,
+        "ts": 71
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 8筒、2筒",
+        "seat": 3,
+        "ts": 72
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 73
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(8筒2筒)到王牌中",
+        "seat": 3,
+        "ts": 74
+      },
+      {
+        "text": "天江衣（对家） 打出了 1万",
+        "seat": 3,
+        "ts": 75
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 5筒 并立直！",
+        "seat": 0,
+        "ts": 76
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 發、8筒",
+        "seat": 1,
+        "ts": 77
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 78
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(發8筒)到王牌中",
+        "seat": 1,
+        "ts": 79
+      },
+      {
+        "text": "天江衣（自己） 打出了 1索",
+        "seat": 1,
+        "ts": 80
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 白",
+        "seat": 2,
+        "ts": 81
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 8万、6万",
+        "seat": 3,
+        "ts": 82
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 83
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(8万6万)到王牌中",
+        "seat": 3,
+        "ts": 84
+      },
+      {
+        "text": "天江衣（对家） 打出了 5筒",
+        "seat": 3,
+        "ts": 85
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 北",
+        "seat": 0,
+        "ts": 86
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 9筒、1索",
+        "seat": 1,
+        "ts": 87
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 88
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(9筒1索)到王牌中",
+        "seat": 1,
+        "ts": 89
+      },
+      {
+        "text": "天江衣（自己） 打出了 3索 并立直！",
+        "seat": 1,
+        "ts": 90
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 荣和了 天江衣（自己）！(3900点)",
+        "seat": 0,
+        "ts": 91
+      }
+    ],
+    [
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 西",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 1
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 白",
+        "seat": 0,
+        "ts": 2
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 南",
+        "seat": 1,
+        "ts": 3
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 4
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(南)到王牌中",
+        "seat": 1,
+        "ts": 5
+      },
+      {
+        "text": "天江衣（自己） 打出了 西",
+        "seat": 1,
+        "ts": 6
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 白",
+        "seat": 2,
+        "ts": 7
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 1万",
+        "seat": 3,
+        "ts": 8
+      },
+      {
+        "text": "天江衣（对家） 用 8万 交换了 1万",
+        "seat": 3,
+        "ts": 9
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(8万)到王牌中",
+        "seat": 3,
+        "ts": 10
+      },
+      {
+        "text": "天江衣（对家） 打出了 中",
+        "seat": 3,
+        "ts": 11
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 用 中中 碰了 中",
+        "seat": 2,
+        "ts": 12
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9索",
+        "seat": 2,
+        "ts": 13
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 14
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 南",
+        "seat": 2,
+        "ts": 15
+      },
+      {
+        "text": "天江衣（对家） 用 南南 碰了 南",
+        "seat": 3,
+        "ts": 16
+      },
+      {
+        "text": "天江衣（对家） 打出了 1索",
+        "seat": 3,
+        "ts": 17
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 東",
+        "seat": 0,
+        "ts": 18
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 4筒",
+        "seat": 1,
+        "ts": 19
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 20
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(4筒)到王牌中",
+        "seat": 1,
+        "ts": 21
+      },
+      {
+        "text": "天江衣（自己） 打出了 白",
+        "seat": 1,
+        "ts": 22
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 4筒",
+        "seat": 2,
+        "ts": 23
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 7万",
+        "seat": 3,
+        "ts": 24
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 25
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(7万)到王牌中",
+        "seat": 3,
+        "ts": 26
+      },
+      {
+        "text": "天江衣（对家） 打出了 9筒",
+        "seat": 3,
+        "ts": 27
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 用 9筒9筒 碰了 9筒",
+        "seat": 2,
+        "ts": 28
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 5万",
+        "seat": 2,
+        "ts": 29
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 3,
+        "ts": 30
+      },
+      {
+        "text": "天江衣（对家） 打出了 中",
+        "seat": 3,
+        "ts": 31
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9索",
+        "seat": 0,
+        "ts": 32
+      },
+      {
+        "text": "天江衣（自己） 用 7索8索 吃了 9索",
+        "seat": 1,
+        "ts": 33
+      },
+      {
+        "text": "天江衣（自己） 打出了 1筒",
+        "seat": 1,
+        "ts": 34
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 4万",
+        "seat": 2,
+        "ts": 35
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 6万",
+        "seat": 3,
+        "ts": 36
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 37
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(6万)到王牌中",
+        "seat": 3,
+        "ts": 38
+      },
+      {
+        "text": "天江衣（对家） 打出了 4索",
+        "seat": 3,
+        "ts": 39
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9万",
+        "seat": 0,
+        "ts": 40
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 6万",
+        "seat": 1,
+        "ts": 41
+      },
+      {
+        "text": "天江衣（自己） 用 8万 交换了 6万",
+        "seat": 1,
+        "ts": 42
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(8万)到王牌中",
+        "seat": 1,
+        "ts": 43
+      },
+      {
+        "text": "天江衣（自己） 打出了 8筒",
+        "seat": 1,
+        "ts": 44
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 6索",
+        "seat": 2,
+        "ts": 45
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 東",
+        "seat": 3,
+        "ts": 46
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 47
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(東)到王牌中",
+        "seat": 3,
+        "ts": 48
+      },
+      {
+        "text": "天江衣（对家） 打出了 1筒",
+        "seat": 3,
+        "ts": 49
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 2索",
+        "seat": 0,
+        "ts": 50
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 2筒",
+        "seat": 1,
+        "ts": 51
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 52
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(2筒)到王牌中",
+        "seat": 1,
+        "ts": 53
+      },
+      {
+        "text": "天江衣（自己） 打出了 9万",
+        "seat": 1,
+        "ts": 54
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 3索",
+        "seat": 2,
+        "ts": 55
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 3万",
+        "seat": 3,
+        "ts": 56
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 57
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(3万)到王牌中",
+        "seat": 3,
+        "ts": 58
+      },
+      {
+        "text": "天江衣（对家） 打出了 1筒",
+        "seat": 3,
+        "ts": 59
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1索",
+        "seat": 0,
+        "ts": 60
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 發",
+        "seat": 1,
+        "ts": 61
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 62
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(發)到王牌中",
+        "seat": 1,
+        "ts": 63
+      },
+      {
+        "text": "天江衣（自己） 打出了 3索",
+        "seat": 1,
+        "ts": 64
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 2万",
+        "seat": 2,
+        "ts": 65
+      },
+      {
+        "text": "天江衣（对家） 副露了",
+        "seat": 3,
+        "ts": 66
+      },
+      {
+        "text": "天江衣（对家） 打出了 2筒",
+        "seat": 3,
+        "ts": 67
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1筒",
+        "seat": 0,
+        "ts": 68
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 9索",
+        "seat": 1,
+        "ts": 69
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 70
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(9索)到王牌中",
+        "seat": 1,
+        "ts": 71
+      },
+      {
+        "text": "天江衣（自己） 打出了 6筒",
+        "seat": 1,
+        "ts": 72
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 3筒",
+        "seat": 2,
+        "ts": 73
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 3,
+        "ts": 74
+      },
+      {
+        "text": "天江衣（对家） 打出了 東",
+        "seat": 3,
+        "ts": 75
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 2索",
+        "seat": 0,
+        "ts": 76
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 東",
+        "seat": 1,
+        "ts": 77
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 78
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(東)到王牌中",
+        "seat": 1,
+        "ts": 79
+      },
+      {
+        "text": "天江衣（自己） 打出了 3筒",
+        "seat": 1,
+        "ts": 80
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8筒",
+        "seat": 2,
+        "ts": 81
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 3筒",
+        "seat": 3,
+        "ts": 82
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 83
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(3筒)到王牌中",
+        "seat": 3,
+        "ts": 84
+      },
+      {
+        "text": "天江衣（对家） 打出了 6筒",
+        "seat": 3,
+        "ts": 85
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9索",
+        "seat": 0,
+        "ts": 86
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 3筒",
+        "seat": 1,
+        "ts": 87
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 88
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(3筒)到王牌中",
+        "seat": 1,
+        "ts": 89
+      },
+      {
+        "text": "天江衣（自己） 打出了 7索",
+        "seat": 1,
+        "ts": 90
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 5筒",
+        "seat": 2,
+        "ts": 91
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 9万",
+        "seat": 3,
+        "ts": 92
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 93
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(9万)到王牌中",
+        "seat": 3,
+        "ts": 94
+      },
+      {
+        "text": "天江衣（对家） 打出了 8万",
+        "seat": 3,
+        "ts": 95
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1万",
+        "seat": 0,
+        "ts": 96
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 97
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8索",
+        "seat": 0,
+        "ts": 98
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 發",
+        "seat": 1,
+        "ts": 99
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 100
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(發)到王牌中",
+        "seat": 1,
+        "ts": 101
+      },
+      {
+        "text": "天江衣（自己） 打出了 4筒",
+        "seat": 1,
+        "ts": 102
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 2万",
+        "seat": 2,
+        "ts": 103
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 北",
+        "seat": 3,
+        "ts": 104
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 105
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(北)到王牌中",
+        "seat": 3,
+        "ts": 106
+      },
+      {
+        "text": "天江衣（对家） 打出了 7万",
+        "seat": 3,
+        "ts": 107
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 5筒",
+        "seat": 0,
+        "ts": 108
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 8索",
+        "seat": 1,
+        "ts": 109
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 110
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(8索)到王牌中",
+        "seat": 1,
+        "ts": 111
+      },
+      {
+        "text": "天江衣（自己） 打出了 0索",
+        "seat": 1,
+        "ts": 112
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 荣和了 天江衣（自己）！(3900点)",
+        "seat": 2,
+        "ts": 113
+      }
+    ],
+    [
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 7筒",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 1
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(7筒)到王牌中",
+        "seat": 0,
+        "ts": 2
+      },
+      {
+        "text": "天江衣（自己） 打出了 南",
+        "seat": 0,
+        "ts": 3
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 4筒",
+        "seat": 1,
+        "ts": 4
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 5
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 1,
+        "ts": 6
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 从天江衣（自己）的牌河中拿走了 南",
+        "seat": 1,
+        "ts": 7
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 暗切了",
+        "seat": 1,
+        "ts": 8
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 南",
+        "seat": 2,
+        "ts": 9
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 10
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(南)到王牌中",
+        "seat": 2,
+        "ts": 11
+      },
+      {
+        "text": "天江衣（对家） 打出了 東",
+        "seat": 2,
+        "ts": 12
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 發",
+        "seat": 3,
+        "ts": 13
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 3,
+        "ts": 14
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 北",
+        "seat": 3,
+        "ts": 15
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 2索",
+        "seat": 0,
+        "ts": 16
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 17
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(2索)到王牌中",
+        "seat": 0,
+        "ts": 18
+      },
+      {
+        "text": "天江衣（自己） 打出了 9筒",
+        "seat": 0,
+        "ts": 19
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 6万",
+        "seat": 1,
+        "ts": 20
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 6筒",
+        "seat": 2,
+        "ts": 21
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 22
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(6筒)到王牌中",
+        "seat": 2,
+        "ts": 23
+      },
+      {
+        "text": "天江衣（对家） 打出了 1索",
+        "seat": 2,
+        "ts": 24
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1筒",
+        "seat": 3,
+        "ts": 25
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 7万",
+        "seat": 0,
+        "ts": 26
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 27
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(7万)到王牌中",
+        "seat": 0,
+        "ts": 28
+      },
+      {
+        "text": "天江衣（自己） 打出了 6筒",
+        "seat": 0,
+        "ts": 29
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 北",
+        "seat": 1,
+        "ts": 30
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 1索",
+        "seat": 2,
+        "ts": 31
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 32
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(1索)到王牌中",
+        "seat": 2,
+        "ts": 33
+      },
+      {
+        "text": "天江衣（对家） 打出了 1筒",
+        "seat": 2,
+        "ts": 34
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 5索 并立直！",
+        "seat": 3,
+        "ts": 35
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 8万、6万",
+        "seat": 0,
+        "ts": 36
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 37
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(8万6万)到王牌中",
+        "seat": 0,
+        "ts": 38
+      },
+      {
+        "text": "天江衣（自己） 打出了 9万",
+        "seat": 0,
+        "ts": 39
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1筒",
+        "seat": 1,
+        "ts": 40
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 2,
+        "ts": 41
+      },
+      {
+        "text": "天江衣（对家） 打出了 西",
+        "seat": 2,
+        "ts": 42
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 4索",
+        "seat": 3,
+        "ts": 43
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 白、東",
+        "seat": 0,
+        "ts": 44
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 45
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(白東)到王牌中",
+        "seat": 0,
+        "ts": 46
+      },
+      {
+        "text": "天江衣（自己） 打出了 9筒",
+        "seat": 0,
+        "ts": 47
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9万",
+        "seat": 1,
+        "ts": 48
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 4筒、北",
+        "seat": 2,
+        "ts": 49
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 50
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(4筒北)到王牌中",
+        "seat": 2,
+        "ts": 51
+      },
+      {
+        "text": "天江衣（对家） 打出了 7索",
+        "seat": 2,
+        "ts": 52
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 3筒",
+        "seat": 3,
+        "ts": 53
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 0,
+        "ts": 54
+      },
+      {
+        "text": "天江衣（自己） 打出了 中",
+        "seat": 0,
+        "ts": 55
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 3筒",
+        "seat": 1,
+        "ts": 56
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 1万、8筒",
+        "seat": 2,
+        "ts": 57
+      },
+      {
+        "text": "天江衣（对家） 用 9筒 交换了 8筒",
+        "seat": 2,
+        "ts": 58
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(1万9筒)到王牌中",
+        "seat": 2,
+        "ts": 59
+      },
+      {
+        "text": "天江衣（对家） 打出了 4索",
+        "seat": 2,
+        "ts": 60
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8索",
+        "seat": 3,
+        "ts": 61
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 0,
+        "ts": 62
+      },
+      {
+        "text": "天江衣（自己） 打出了 發",
+        "seat": 0,
+        "ts": 63
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 發",
+        "seat": 1,
+        "ts": 64
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 65
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·若场上的副露玩家数少于2,你进行额外巡时,可以从牌河摸牌并暗切」",
+        "seat": 1,
+        "ts": 66
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 从爱丝琳·威夏尔特（上家）的牌河中拿走了 5索",
+        "seat": 1,
+        "ts": 67
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 暗切了",
+        "seat": 1,
+        "ts": 68
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 8筒、3索",
+        "seat": 2,
+        "ts": 69
+      },
+      {
+        "text": "天江衣（对家） 用 2筒 交换了 8筒",
+        "seat": 2,
+        "ts": 70
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(2筒3索)到王牌中",
+        "seat": 2,
+        "ts": 71
+      },
+      {
+        "text": "天江衣（对家） 打出了 2索",
+        "seat": 2,
+        "ts": 72
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 7索",
+        "seat": 3,
+        "ts": 73
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 0,
+        "ts": 74
+      },
+      {
+        "text": "天江衣（自己） 打出了 中",
+        "seat": 0,
+        "ts": 75
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 5索",
+        "seat": 1,
+        "ts": 76
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 4索、7筒",
+        "seat": 2,
+        "ts": 77
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 78
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(4索7筒)到王牌中",
+        "seat": 2,
+        "ts": 79
+      },
+      {
+        "text": "天江衣（对家） 打出了 7索",
+        "seat": 2,
+        "ts": 80
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 西",
+        "seat": 3,
+        "ts": 81
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 5索、東",
+        "seat": 0,
+        "ts": 82
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 83
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(5索東)到王牌中",
+        "seat": 0,
+        "ts": 84
+      },
+      {
+        "text": "天江衣（自己） 打出了 8索",
+        "seat": 0,
+        "ts": 85
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 2索",
+        "seat": 1,
+        "ts": 86
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 2索、南",
+        "seat": 2,
+        "ts": 87
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 88
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(2索南)到王牌中",
+        "seat": 2,
+        "ts": 89
+      },
+      {
+        "text": "天江衣（对家） 打出了 2万",
+        "seat": 2,
+        "ts": 90
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 東",
+        "seat": 3,
+        "ts": 91
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 7万、3万",
+        "seat": 0,
+        "ts": 92
+      },
+      {
+        "text": "天江衣（自己） 用 5万 交换了 7万",
+        "seat": 0,
+        "ts": 93
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(5万3万)到王牌中",
+        "seat": 0,
+        "ts": 94
+      },
+      {
+        "text": "天江衣（自己） 打出了 6索",
+        "seat": 0,
+        "ts": 95
+      },
+      {
+        "text": "荒牌平局",
+        "seat": 0,
+        "ts": 96
+      }
+    ],
+    [
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 6筒",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 1
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(6筒)到王牌中",
+        "seat": 0,
+        "ts": 2
+      },
+      {
+        "text": "天江衣（自己） 打出了 南",
+        "seat": 0,
+        "ts": 3
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 南",
+        "seat": 1,
+        "ts": 4
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 9索",
+        "seat": 2,
+        "ts": 5
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 6
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(9索)到王牌中",
+        "seat": 2,
+        "ts": 7
+      },
+      {
+        "text": "天江衣（对家） 打出了 北",
+        "seat": 2,
+        "ts": 8
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 北",
+        "seat": 3,
+        "ts": 9
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 0,
+        "ts": 10
+      },
+      {
+        "text": "天江衣（自己） 打出了 北",
+        "seat": 0,
+        "ts": 11
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 中",
+        "seat": 1,
+        "ts": 12
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 13
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 西",
+        "seat": 1,
+        "ts": 14
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 3万",
+        "seat": 2,
+        "ts": 15
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 16
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(3万)到王牌中",
+        "seat": 2,
+        "ts": 17
+      },
+      {
+        "text": "天江衣（对家） 打出了 中",
+        "seat": 2,
+        "ts": 18
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 東",
+        "seat": 3,
+        "ts": 19
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 3,
+        "ts": 20
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 白",
+        "seat": 3,
+        "ts": 21
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 2索",
+        "seat": 0,
+        "ts": 22
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 23
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(2索)到王牌中",
+        "seat": 0,
+        "ts": 24
+      },
+      {
+        "text": "天江衣（自己） 打出了 東",
+        "seat": 0,
+        "ts": 25
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8索",
+        "seat": 1,
+        "ts": 26
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 3万",
+        "seat": 2,
+        "ts": 27
+      },
+      {
+        "text": "天江衣（对家） 用 1万 交换了 3万",
+        "seat": 2,
+        "ts": 28
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(1万)到王牌中",
+        "seat": 2,
+        "ts": 29
+      },
+      {
+        "text": "天江衣（对家） 打出了 白",
+        "seat": 2,
+        "ts": 30
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 東",
+        "seat": 3,
+        "ts": 31
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 5筒",
+        "seat": 0,
+        "ts": 32
+      },
+      {
+        "text": "天江衣（自己） 用 1筒 交换了 5筒",
+        "seat": 0,
+        "ts": 33
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(1筒)到王牌中",
+        "seat": 0,
+        "ts": 34
+      },
+      {
+        "text": "天江衣（自己） 打出了 2筒",
+        "seat": 0,
+        "ts": 35
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 2万",
+        "seat": 1,
+        "ts": 36
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 2,
+        "ts": 37
+      },
+      {
+        "text": "天江衣（对家） 打出了 中",
+        "seat": 2,
+        "ts": 38
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1筒",
+        "seat": 3,
+        "ts": 39
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 3索",
+        "seat": 0,
+        "ts": 40
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 41
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(3索)到王牌中",
+        "seat": 0,
+        "ts": 42
+      },
+      {
+        "text": "天江衣（自己） 打出了 4万",
+        "seat": 0,
+        "ts": 43
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8筒",
+        "seat": 1,
+        "ts": 44
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 北",
+        "seat": 2,
+        "ts": 45
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 46
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(北)到王牌中",
+        "seat": 2,
+        "ts": 47
+      },
+      {
+        "text": "天江衣（对家） 打出了 發",
+        "seat": 2,
+        "ts": 48
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 用 發發 碰了 發",
+        "seat": 1,
+        "ts": 49
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1筒",
+        "seat": 1,
+        "ts": 50
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 51
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8万",
+        "seat": 1,
+        "ts": 52
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 2筒",
+        "seat": 2,
+        "ts": 53
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 54
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(2筒)到王牌中",
+        "seat": 2,
+        "ts": 55
+      },
+      {
+        "text": "天江衣（对家） 打出了 9筒",
+        "seat": 2,
+        "ts": 56
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1索",
+        "seat": 3,
+        "ts": 57
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 荣和了 爱丝琳·威夏尔特（上家）！(2000点)",
+        "seat": 1,
+        "ts": 58
+      }
+    ],
+    [
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 北",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 1
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 東",
+        "seat": 0,
+        "ts": 2
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 1,
+        "ts": 3
+      },
+      {
+        "text": "天江衣（对家） 打出了 北",
+        "seat": 1,
+        "ts": 4
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 中",
+        "seat": 2,
+        "ts": 5
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 3筒",
+        "seat": 3,
+        "ts": 6
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 7
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(3筒)到王牌中",
+        "seat": 3,
+        "ts": 8
+      },
+      {
+        "text": "天江衣（自己） 打出了 南",
+        "seat": 3,
+        "ts": 9
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1万",
+        "seat": 0,
+        "ts": 10
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 9索",
+        "seat": 1,
+        "ts": 11
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 12
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(9索)到王牌中",
+        "seat": 1,
+        "ts": 13
+      },
+      {
+        "text": "天江衣（对家） 打出了 發",
+        "seat": 1,
+        "ts": 14
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8索",
+        "seat": 2,
+        "ts": 15
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 2,
+        "ts": 16
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 2筒",
+        "seat": 2,
+        "ts": 17
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 8万",
+        "seat": 3,
+        "ts": 18
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 19
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(8万)到王牌中",
+        "seat": 3,
+        "ts": 20
+      },
+      {
+        "text": "天江衣（自己） 打出了 9索",
+        "seat": 3,
+        "ts": 21
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9筒",
+        "seat": 0,
+        "ts": 22
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 7万",
+        "seat": 1,
+        "ts": 23
+      },
+      {
+        "text": "天江衣（对家） 用 7筒 交换了 7万",
+        "seat": 1,
+        "ts": 24
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(7筒)到王牌中",
+        "seat": 1,
+        "ts": 25
+      },
+      {
+        "text": "天江衣（对家） 打出了 1索",
+        "seat": 1,
+        "ts": 26
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 4筒",
+        "seat": 2,
+        "ts": 27
+      },
+      {
+        "text": "天江衣（自己） 副露了",
+        "seat": 3,
+        "ts": 28
+      },
+      {
+        "text": "天江衣（自己） 打出了 9筒",
+        "seat": 3,
+        "ts": 29
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 2筒",
+        "seat": 0,
+        "ts": 30
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 9万",
+        "seat": 1,
+        "ts": 31
+      },
+      {
+        "text": "天江衣（对家） 用 9筒 交换了 9万",
+        "seat": 1,
+        "ts": 32
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(9筒)到王牌中",
+        "seat": 1,
+        "ts": 33
+      },
+      {
+        "text": "天江衣（对家） 打出了 0索",
+        "seat": 1,
+        "ts": 34
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 用 5索5索 吃了 0索",
+        "seat": 2,
+        "ts": 35
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 6索",
+        "seat": 2,
+        "ts": 36
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 3,
+        "ts": 37
+      },
+      {
+        "text": "天江衣（自己） 打出了 南",
+        "seat": 3,
+        "ts": 38
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 中",
+        "seat": 0,
+        "ts": 39
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 1,
+        "ts": 40
+      },
+      {
+        "text": "天江衣（对家） 打出了 發",
+        "seat": 1,
+        "ts": 41
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 4筒",
+        "seat": 2,
+        "ts": 42
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 西",
+        "seat": 3,
+        "ts": 43
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 44
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(西)到王牌中",
+        "seat": 3,
+        "ts": 45
+      },
+      {
+        "text": "天江衣（自己） 打出了 1索",
+        "seat": 3,
+        "ts": 46
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8筒",
+        "seat": 0,
+        "ts": 47
+      },
+      {
+        "text": "天江衣（自己） 用 8筒8筒 碰了 8筒",
+        "seat": 3,
+        "ts": 48
+      },
+      {
+        "text": "天江衣（自己） 打出了 3万",
+        "seat": 3,
+        "ts": 49
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 中",
+        "seat": 0,
+        "ts": 50
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 1筒",
+        "seat": 1,
+        "ts": 51
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 52
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(1筒)到王牌中",
+        "seat": 1,
+        "ts": 53
+      },
+      {
+        "text": "天江衣（对家） 打出了 9索",
+        "seat": 1,
+        "ts": 54
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 7索",
+        "seat": 2,
+        "ts": 55
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 白",
+        "seat": 3,
+        "ts": 56
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 57
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(白)到王牌中",
+        "seat": 3,
+        "ts": 58
+      },
+      {
+        "text": "天江衣（自己） 打出了 2筒",
+        "seat": 3,
+        "ts": 59
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9万",
+        "seat": 0,
+        "ts": 60
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 61
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 6索",
+        "seat": 0,
+        "ts": 62
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 北",
+        "seat": 1,
+        "ts": 63
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 1,
+        "ts": 64
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(北)到王牌中",
+        "seat": 1,
+        "ts": 65
+      },
+      {
+        "text": "天江衣（对家） 打出了 2筒 并立直！",
+        "seat": 1,
+        "ts": 66
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 3索",
+        "seat": 2,
+        "ts": 67
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 3,
+        "ts": 68
+      },
+      {
+        "text": "天江衣（自己） 打出了 發",
+        "seat": 3,
+        "ts": 69
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 西",
+        "seat": 0,
+        "ts": 70
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 1筒、2万",
+        "seat": 1,
+        "ts": 71
+      },
+      {
+        "text": "天江衣（对家） 用 5万 交换了 2万",
+        "seat": 1,
+        "ts": 72
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌(1筒5万)到王牌中",
+        "seat": 1,
+        "ts": 73
+      },
+      {
+        "text": "天江衣（对家） 打出了 2万",
+        "seat": 1,
+        "ts": 74
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 白",
+        "seat": 2,
+        "ts": 75
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 3,
+        "ts": 76
+      },
+      {
+        "text": "天江衣（自己） 打出了 東",
+        "seat": 3,
+        "ts": 77
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 南",
+        "seat": 0,
+        "ts": 78
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 1,
+        "ts": 79
+      },
+      {
+        "text": "天江衣（对家） 打出了 東",
+        "seat": 1,
+        "ts": 80
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 7索",
+        "seat": 2,
+        "ts": 81
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 5筒、西",
+        "seat": 3,
+        "ts": 82
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 83
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(5筒西)到王牌中",
+        "seat": 3,
+        "ts": 84
+      },
+      {
+        "text": "天江衣（自己） 打出了 2万",
+        "seat": 3,
+        "ts": 85
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 1索",
+        "seat": 0,
+        "ts": 86
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了2张海底牌到王牌中",
+        "seat": 1,
+        "ts": 87
+      },
+      {
+        "text": "天江衣（对家） 打出了 東",
+        "seat": 1,
+        "ts": 88
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9筒",
+        "seat": 2,
+        "ts": 89
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾2张牌: 中、4筒",
+        "seat": 3,
+        "ts": 90
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 3,
+        "ts": 91
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了2张海底牌(中4筒)到王牌中",
+        "seat": 3,
+        "ts": 92
+      },
+      {
+        "text": "天江衣（自己） 打出了 2万",
+        "seat": 3,
+        "ts": 93
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 3索",
+        "seat": 0,
+        "ts": 94
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 0,
+        "ts": 95
+      },
+      {
+        "text": "天江衣（对家） 打出了 3索",
+        "seat": 1,
+        "ts": 96
+      },
+      {
+        "text": "荒牌平局",
+        "seat": 1,
+        "ts": 97
+      }
+    ],
+    [
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 9万",
+        "seat": 0,
+        "ts": 0
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 1
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(9万)到王牌中",
+        "seat": 0,
+        "ts": 2
+      },
+      {
+        "text": "天江衣（对家） 打出了 7筒",
+        "seat": 0,
+        "ts": 3
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 西",
+        "seat": 1,
+        "ts": 4
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 2,
+        "ts": 5
+      },
+      {
+        "text": "天江衣（自己） 打出了 中",
+        "seat": 2,
+        "ts": 6
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 東",
+        "seat": 3,
+        "ts": 7
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 0,
+        "ts": 8
+      },
+      {
+        "text": "天江衣（对家） 打出了 東",
+        "seat": 0,
+        "ts": 9
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 發",
+        "seat": 1,
+        "ts": 10
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 11
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9索",
+        "seat": 1,
+        "ts": 12
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 白",
+        "seat": 2,
+        "ts": 13
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 14
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(白)到王牌中",
+        "seat": 2,
+        "ts": 15
+      },
+      {
+        "text": "天江衣（自己） 打出了 發",
+        "seat": 2,
+        "ts": 16
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 白",
+        "seat": 3,
+        "ts": 17
+      },
+      {
+        "text": "天江衣（自己） 用 白白 碰了 白",
+        "seat": 2,
+        "ts": 18
+      },
+      {
+        "text": "天江衣（自己） 打出了 1筒",
+        "seat": 2,
+        "ts": 19
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 3万",
+        "seat": 3,
+        "ts": 20
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 用 3万3万 碰了 3万",
+        "seat": 1,
+        "ts": 21
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 9筒",
+        "seat": 1,
+        "ts": 22
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 2,
+        "ts": 23
+      },
+      {
+        "text": "天江衣（自己） 打出了 中",
+        "seat": 2,
+        "ts": 24
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9万",
+        "seat": 3,
+        "ts": 25
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 7索",
+        "seat": 0,
+        "ts": 26
+      },
+      {
+        "text": "天江衣（对家） 用 7索 交换了 7索",
+        "seat": 0,
+        "ts": 27
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(7索)到王牌中",
+        "seat": 0,
+        "ts": 28
+      },
+      {
+        "text": "天江衣（对家） 打出了 9万",
+        "seat": 0,
+        "ts": 29
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 中",
+        "seat": 1,
+        "ts": 30
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 6筒",
+        "seat": 2,
+        "ts": 31
+      },
+      {
+        "text": "天江衣（自己） 用 6筒 交换了 6筒",
+        "seat": 2,
+        "ts": 32
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(6筒)到王牌中",
+        "seat": 2,
+        "ts": 33
+      },
+      {
+        "text": "天江衣（自己） 打出了 8索",
+        "seat": 2,
+        "ts": 34
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 5万",
+        "seat": 3,
+        "ts": 35
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 2筒",
+        "seat": 0,
+        "ts": 36
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 37
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(2筒)到王牌中",
+        "seat": 0,
+        "ts": 38
+      },
+      {
+        "text": "天江衣（对家） 打出了 北",
+        "seat": 0,
+        "ts": 39
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1筒",
+        "seat": 1,
+        "ts": 40
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 2筒",
+        "seat": 2,
+        "ts": 41
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 42
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(2筒)到王牌中",
+        "seat": 2,
+        "ts": 43
+      },
+      {
+        "text": "天江衣（自己） 打出了 5筒",
+        "seat": 2,
+        "ts": 44
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 8筒",
+        "seat": 3,
+        "ts": 45
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 4万",
+        "seat": 0,
+        "ts": 46
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 47
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(4万)到王牌中",
+        "seat": 0,
+        "ts": 48
+      },
+      {
+        "text": "天江衣（对家） 打出了 8筒",
+        "seat": 0,
+        "ts": 49
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1万",
+        "seat": 1,
+        "ts": 50
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 7万",
+        "seat": 2,
+        "ts": 51
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 52
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(7万)到王牌中",
+        "seat": 2,
+        "ts": 53
+      },
+      {
+        "text": "天江衣（自己） 打出了 1索",
+        "seat": 2,
+        "ts": 54
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 北",
+        "seat": 3,
+        "ts": 55
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 3,
+        "ts": 56
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 7筒",
+        "seat": 3,
+        "ts": 57
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 9筒",
+        "seat": 0,
+        "ts": 58
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 59
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(9筒)到王牌中",
+        "seat": 0,
+        "ts": 60
+      },
+      {
+        "text": "天江衣（对家） 打出了 7索",
+        "seat": 0,
+        "ts": 61
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 南",
+        "seat": 1,
+        "ts": 62
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 发动了技能「爱丝琳·威夏尔特·你的每排牌河限一次,你手切后可进行额外巡;」",
+        "seat": 1,
+        "ts": 63
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 6筒",
+        "seat": 1,
+        "ts": 64
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 8索",
+        "seat": 2,
+        "ts": 65
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 66
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(8索)到王牌中",
+        "seat": 2,
+        "ts": 67
+      },
+      {
+        "text": "天江衣（自己） 打出了 3索",
+        "seat": 2,
+        "ts": 68
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 東",
+        "seat": 3,
+        "ts": 69
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 南",
+        "seat": 0,
+        "ts": 70
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 0,
+        "ts": 71
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌(南)到王牌中",
+        "seat": 0,
+        "ts": 72
+      },
+      {
+        "text": "天江衣（对家） 打出了 2索",
+        "seat": 0,
+        "ts": 73
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 1筒",
+        "seat": 1,
+        "ts": 74
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，公开了牌山末尾1张牌: 4万",
+        "seat": 2,
+        "ts": 75
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·④」，只展示不交换",
+        "seat": 2,
+        "ts": 76
+      },
+      {
+        "text": "天江衣（自己） 发动技能「天江衣·②」移动了1张海底牌(4万)到王牌中",
+        "seat": 2,
+        "ts": 77
+      },
+      {
+        "text": "天江衣（自己） 打出了 7万",
+        "seat": 2,
+        "ts": 78
+      },
+      {
+        "text": "爱丝琳·威夏尔特（下家） 打出了 9索",
+        "seat": 3,
+        "ts": 79
+      },
+      {
+        "text": "天江衣（对家） 发动技能「天江衣·②」移动了1张海底牌到王牌中",
+        "seat": 0,
+        "ts": 80
+      },
+      {
+        "text": "天江衣（对家） 打出了 北",
+        "seat": 0,
+        "ts": 81
+      },
+      {
+        "text": "爱丝琳·威夏尔特（上家） 打出了 8万",
+        "seat": 1,
+        "ts": 82
+      },
+      {
+        "text": "天江衣（自己） 荣和了 爱丝琳·威夏尔特（上家）！(3900点)",
+        "seat": 2,
+        "ts": 83
+      }
+    ]
+  ],
+  "character": [
+    null,
+    null,
+    null,
+    null
+  ],
+  "defen": [
+    20300,
+    34100,
+    16300,
+    29300
+  ],
+  "point": [
+    "-19.7",
+    "44.1",
+    "-33.7",
+    "9.3"
+  ],
+  "rank": [
+    3,
+    1,
+    4,
+    2
+  ],
+  "wall": {
+    "stacks": [
+      {
+        "top": "m4",
+        "bottom": "s5"
+      },
+      {
+        "top": "s8",
+        "bottom": "z2"
+      },
+      {
+        "top": "m7",
+        "bottom": "p9"
+      },
+      {
+        "top": "p2",
+        "bottom": "m4"
+      },
+      {
+        "top": "p6",
+        "bottom": "p2"
+      },
+      {
+        "top": "z4",
+        "bottom": "s7"
+      },
+      {
+        "top": "s4",
+        "bottom": "z5"
+      },
+      {
+        "top": "m9",
+        "bottom": "p8"
+      },
+      {
+        "top": "s5",
+        "bottom": "p6"
+      },
+      {
+        "top": "m2",
+        "bottom": "p9"
+      },
+      {
+        "top": "s9",
+        "bottom": "m5"
+      },
+      {
+        "top": "s2",
+        "bottom": "z3"
+      },
+      {
+        "top": "s2",
+        "bottom": "m9"
+      },
+      {
+        "top": "p7",
+        "bottom": "p1"
+      },
+      {
+        "top": "m5",
+        "bottom": "s1"
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": null,
+        "bottom": null
+      },
+      {
+        "top": "z2",
+        "bottom": "m3"
+      },
+      {
+        "top": "p0",
+        "bottom": "m4"
+      },
+      {
+        "top": "m6",
+        "bottom": "m2"
+      },
+      {
+        "top": "p9",
+        "bottom": "s4"
+      },
+      {
+        "top": "s4",
+        "bottom": "z7"
+      },
+      {
+        "top": "p4",
+        "bottom": "p2"
+      },
+      {
+        "top": "p8",
+        "bottom": "s1"
+      },
+      {
+        "top": "m1",
+        "bottom": "m8"
+      },
+      {
+        "top": "m4",
+        "bottom": "z1"
+      }
+    ],
+    "cursor": 59,
+    "break": 12,
+    "dead_wall_start": 0,
+    "dora_flipped": 1,
+    "rinshan_drawn": 0,
+    "replenished": 0,
+    "haitei_moved": 16,
+    "dw_inserted": 8,
+    "weikaigang": false,
+    "half_consumed": false,
+    "closed": true,
+    "baopai": [
+      "s2"
+    ],
+    "fubaopai": [
+      "m9"
+    ]
+  },
+  "_test_label": "混合阵容#1",
+  "_test_config": {
+    "charMode": "both",
+    "debug": false
+  },
+  "_timestamp": "2026-06-09T13:56:58.651Z",
+  "_seq": 3
+}

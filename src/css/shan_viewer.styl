@@ -1,0 +1,449 @@
+/* ── 牌山方框 ── */
+.shan-viewer-overlay
+    position: fixed
+    z-index: 9999
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: rgba(0, 0, 0, 0.6)
+    display: flex
+    align-items: center
+    justify-content: center
+    animation: sv-fade-in 0.15s ease
+
+@keyframes sv-fade-in
+    from { opacity: 0 }
+    to   { opacity: 1 }
+
+.shan-viewer-modal
+    background: #1a3a2a
+    border: 2px solid #4a8
+    border-radius: 8px
+    padding: 8px 12px 12px
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5)
+    position: relative
+
+.shan-viewer-close
+    position: absolute
+    top: 0
+    right: 6px
+    background: none
+    border: none
+    color: #aaa
+    font-size: 24px
+    cursor: pointer
+    line-height: 1
+    padding: 2px 4px
+    z-index: 2
+    &:hover
+        color: #fff
+
+.shan-viewer-title
+    color: #ccc
+    font-size: 14px
+    font-weight: bold
+    margin-bottom: 6px
+    text-align: center
+    letter-spacing: 1px
+
+/* ── 方框 Grid ── */
+.shan-wall
+    display: grid
+    grid-template-columns: auto 1fr auto
+    grid-template-rows:    auto 1fr auto
+    gap: 3px
+    justify-items: center
+    align-items: center
+
+.side-top
+    grid-column: 1 / -1
+    grid-row: 1
+
+.side-bottom
+    grid-column: 1 / -1
+    grid-row: 3
+
+.side-left
+    grid-column: 1
+    grid-row: 2
+
+.side-right
+    grid-column: 3
+    grid-row: 2
+
+/* ── 一边 17 墩 ── */
+.shan-side
+    display: flex
+    gap: 1px
+
+.side-top,
+.side-bottom
+    flex-direction: row
+
+.side-left,
+.side-right
+    flex-direction: column
+
+/* ── 一墩 ── */
+.shan-cell
+    display: inline-block
+    position: relative
+    width: 17px
+    height: 24px
+    border: 1px solid #2a4a2a
+    background: #0a1a0a
+    border-radius: 2px
+    overflow: hidden
+    line-height: 0
+    flex-shrink: 0
+
+    img.pai
+        width: 17px
+        height: 24px
+        display: block
+
+    /* 满墩不变 */
+    /* 空墩 */
+    &.empty
+        background: #111
+        border-color: #1a2a1a
+
+    /* 半墩：上半暗色 */
+    &.half
+        .pai
+            opacity: 0.5
+
+    /* 王牌框 */
+    &.dead-wall
+        border: 2px solid #f44
+        box-shadow: 0 0 3px rgba(255, 50, 50, 0.3)
+        z-index: 1
+
+    /* 游标高亮 */
+    &.cursor-full
+        border-color: #fd0
+        box-shadow: 0 0 5px rgba(255, 220, 0, 0.5)
+        z-index: 1
+    &.cursor-half
+        border-color: #fd0
+        box-shadow: 0 0 4px rgba(255, 220, 0, 0.4)
+        z-index: 1
+
+/* ── 四边旋转牌面 ── */
+.side-top .pai
+    transform: rotate(180deg)
+.side-right .pai
+    transform: rotate(270deg)
+.side-left .pai
+    transform: rotate(90deg)
+
+/* 左右侧 cell 匹配旋转后的牌尺寸（横牌：宽24×高17） */
+.side-left .shan-cell,
+.side-right .shan-cell
+    width: 24px
+    height: 17px
+
+    img.pai
+        position: absolute
+        width: 17px
+        height: 24px
+        top: 50%
+        left: 50%
+
+.side-left .shan-cell img.pai
+    transform: translate(-50%, -50%) rotate(90deg)
+.side-right .shan-cell img.pai
+    transform: translate(-50%, -50%) rotate(270deg)
+
+/* ── 图例 ── */
+.shan-viewer-legend
+    margin-top: 6px
+    text-align: center
+    font-size: 11px
+    color: #888
+
+    .leg-mark
+        margin: 0 4px
+        padding: 1px 6px
+        border-radius: 2px
+        background: #1a2a1a
+        border: 1px solid #2a4a2a
+        &.dw
+            border-color: #f44
+            color: #faa
+        &.cur
+            border-color: #fd0
+            color: #ffa
+
+/* ── 返回按钮 ── */
+.shan-back-btn
+    position: absolute
+    z-index: 10
+    background: rgba(0, 0, 0, 0.55)
+    border: 1px solid rgba(212, 168, 75, 0.35)
+    color: #d4a84b
+    font-size: 11px
+    font-family: menu-font
+    padding: 2px 8px
+    border-radius: 4px
+    cursor: pointer
+    text-decoration: none
+    &:hover
+        background: rgba(212, 168, 75, 0.15)
+        border-color: rgba(212, 168, 75, 0.6)
+        color: #f0d060
+
+/* ── 信息按钮 ── */
+.info-btn
+    position: absolute
+    z-index: 10
+    background: rgba(30, 60, 40, 0.85)
+    border: 1px solid #4a8
+    color: #afa
+    font-size: 14px
+    padding: 4px 10px
+    border-radius: 4px
+    cursor: pointer
+    letter-spacing: 1px
+    &:hover
+        background: rgba(50, 100, 60, 0.9)
+        color: #fff
+        border-color: #6b6
+
+/* ── 横屏 |=| 布局 ── */
+
+.shan-wall.landscape-layout
+    display: flex
+    flex-direction: row
+    align-items: flex-start
+    gap: 6px
+
+/* 牌山圈：标准四边 Grid，cell 缩小 */
+.shan-land-frame
+    flex-shrink: 0
+
+.shan-wall.landscape-layout .shan-land-frame .shan-wall
+    gap: 1px
+    .shan-cell
+        width: 10px
+        height: 14px
+        border-width: 1px
+        border-radius: 1px
+        img.pai
+            width: 10px
+            height: 14px
+    .shan-side
+        gap: 0px
+    /* 左右侧 cell 横牌 */
+    .side-left .shan-cell,
+    .side-right .shan-cell
+        width: 14px
+        height: 10px
+        img.pai
+            position: absolute
+            width: 10px
+            height: 14px
+            top: 50%
+            left: 50%
+    .side-left .shan-cell img.pai
+        transform: translate(-50%, -50%) rotate(90deg)
+    .side-right .shan-cell img.pai
+        transform: translate(-50%, -50%) rotate(270deg)
+
+/* 右侧信息区 */
+.shan-land-info
+    flex-shrink: 0
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    padding: 4px 8px
+    min-width: 60px
+
+.shan-land-count
+    font-family: text-font
+    font-size: 13px
+    color: #ddd
+    text-align: center
+    margin-bottom: 6px
+
+.shan-wall.landscape-layout
+    .shan-viewer-legend
+        margin-top: 2px
+        font-size: 10px
+
+/* ── 横屏按钮微调 ── */
+@media screen and (max-height: 500px)
+    .shan-back-btn
+        transform: translate(6px, 6px)
+        font-size: 10px
+        padding: 1px 6px
+    .info-btn
+        transform: translate(6px, 30px)
+        font-size: 12px
+        padding: 2px 6px
+    .info-panel-modal
+        padding: 4px 8px 6px
+    .info-panel-tab-title
+        font-size: 12px
+        margin-bottom: 3px
+
+/* ══════════════════════════════════════════════
+ *  信息面板
+ * ══════════════════════════════════════════════ */
+
+.info-panel-overlay
+    position: fixed
+    z-index: 9999
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: rgba(0, 0, 0, 0.6)
+    display: flex
+    align-items: center
+    justify-content: center
+    animation: sv-fade-in 0.15s ease
+
+.info-panel-modal
+    background: #1a3a2a
+    border: 2px solid #4a8
+    border-radius: 8px
+    padding: 8px 12px 12px
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5)
+    position: relative
+    max-height: 90vh
+    display: flex
+    flex-direction: column
+    min-width: 300px
+    max-width: 600px
+
+.info-panel-header
+    display: flex
+    align-items: center
+    justify-content: center
+    gap: 8px
+    padding-bottom: 6px
+    border-bottom: 1px solid #2a5a3a
+    margin-bottom: 8px
+    flex-shrink: 0
+
+.info-panel-nav
+    background: rgba(40, 100, 60, 0.6)
+    border: 1px solid #4a8
+    color: #afa
+    font-size: 14px
+    padding: 2px 8px
+    border-radius: 4px
+    cursor: pointer
+    line-height: 1
+    &:hover
+        background: rgba(60, 140, 80, 0.8)
+        color: #fff
+
+.info-panel-tab-title
+    color: #ccc
+    font-size: 14px
+    font-weight: bold
+    text-align: center
+    min-width: 80px
+    letter-spacing: 1px
+
+.info-panel-close
+    position: absolute
+    top: 2px
+    right: 8px
+    background: none
+    border: none
+    color: #aaa
+    font-size: 24px
+    cursor: pointer
+    line-height: 1
+    padding: 2px 4px
+    z-index: 2
+    &:hover
+        color: #fff
+
+.info-panel-content
+    overflow-y: auto
+    flex: 1
+    min-height: 0
+
+.info-panel-subtitle
+    color: #aaa
+    font-size: 13px
+    text-align: center
+    margin-bottom: 4px
+
+/* ── 日志 ── */
+.info-panel-log
+    max-height: 60vh
+    overflow-y: auto
+    font-size: 13px
+    line-height: 1.6
+
+.info-panel-round-title
+    color: #d4a84b
+    font-weight: bold
+    font-size: 14px
+    padding: 6px 0 2px
+    border-bottom: 1px solid #2a5a3a
+    margin: 8px 0 4px
+    &:first-child
+        margin-top: 0
+
+.info-panel-log-entry
+    color: #ccc
+    padding: 2px 4px
+    border-radius: 2px
+    &:nth-child(odd)
+        background: rgba(255, 255, 255, 0.03)
+
+.info-panel-log-text
+    word-break: break-all
+
+.info-panel-empty
+    color: #666
+    font-size: 14px
+    text-align: center
+    padding: 20px
+
+/* ── 简化牌山视图（联机模式） ── */
+.shan-simple-info
+    color: #ccc
+    font-size: 13px
+    line-height: 1.8
+
+.shan-simple-stats
+    div
+        padding: 2px 0
+
+.shan-simple-paishu
+    color: #ffd700
+    font-weight: bold
+    font-size: 14px
+
+.shan-simple-dora
+    display: flex
+    align-items: center
+    gap: 4px
+    flex-wrap: wrap
+
+.shan-simple-empty
+    color: #666
+    font-style: italic
+
+.shan-simple-scores
+    margin-top: 8px
+    padding-top: 8px
+    border-top: 1px solid #2a5a3a
+
+.shan-simple-scores-title
+    color: #d4a84b
+    font-weight: bold
+    margin-bottom: 4px
+
+.shan-simple-score-row
+    color: #aaa
+    padding: 1px 0

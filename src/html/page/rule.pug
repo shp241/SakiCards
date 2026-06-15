@@ -1,0 +1,21 @@
+- var page = 'rule'
+
+doctype html
+html(lang="zh-CN")
+
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+
+    include ../inc/ogp
+    +ogp('超能力麻将: 规则设置', '可以使用自定义规则进行对局')
+
+    include ../inc/style
+    include ../inc/script
+
+  body.rule
+    include ../inc/loaderr
+    include ../inc/navi
+    .version ver. #{version}
+
+    include ../inc/rule

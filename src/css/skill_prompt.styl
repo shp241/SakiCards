@@ -1,0 +1,154 @@
+/* 技能提示 UI 样式 */
+
+.skill-prompt-container
+    display: none
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -60%)
+    z-index: 100
+    text-align: center
+    width: auto
+    max-width: 680px
+
+    &.show
+        display: block
+
+    .skill-prompt-text
+        font-size: 20px
+        color: #fff
+        background: rgba(0, 0, 0, 0.35)
+        border-radius: 8px
+        padding: 8px 16px
+        margin-bottom: 8px
+        display: inline-block
+        text-shadow: 1px 1px 2px #000
+        pointer-events: none
+
+    .skill-prompt-buttons
+        button
+            font-size: 18px
+            padding: 6px 20px
+            margin: 0 8px
+            border: none
+            border-radius: 6px
+            cursor: pointer
+            color: #fff
+            text-shadow: 1px 1px 2px #000
+
+        .skill-prompt-yes
+            background: rgba(34, 139, 34, 0.85)
+
+        .skill-prompt-no
+            background: rgba(139, 34, 34, 0.85)
+
+/* 牌河/手牌选择高亮 */
+.pai.skill-selectable
+    cursor: pointer
+    opacity: 0.85
+
+    &:hover
+        opacity: 1
+        outline: 2px solid #ffd700
+        outline-offset: 2px
+        border-radius: 3px
+
+/* 覆盖 body.board > * { width: 800px } 对弹窗的影响 */
+body.board > .tile-popup-overlay
+    width: 100%
+    margin: 0
+
+.tile-popup-overlay
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background: rgba(0, 0, 0, 0.5)
+    z-index: 1000
+    display: flex
+    align-items: center
+    justify-content: center
+
+.tile-popup-modal
+    background: rgba(20, 20, 40, 0.95)
+    border: 2px solid #d4af37
+    border-radius: 12px
+    padding: 0
+    min-width: 200px
+    max-width: 360px
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5)
+
+.tile-popup-header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 8px 14px
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3)
+
+.tile-popup-title
+    font-size: 16px
+    color: #d4af37
+    font-weight: bold
+    text-shadow: 1px 1px 2px #000
+
+.tile-popup-close
+    background: none
+    border: none
+    color: #aaa
+    font-size: 20px
+    cursor: pointer
+    padding: 0 4px
+    line-height: 1
+    &:hover
+        color: #fff
+
+.tile-popup-body
+    padding: 12px 16px
+    text-align: center
+
+.tile-popup-tiles
+    display: flex
+    justify-content: center
+    gap: 2px
+    margin-bottom: 8px
+
+    .pai
+        display: inline-block
+        img
+            width: 28px
+            height: 39px
+
+.tile-popup-timer
+    font-size: 12px
+    color: #888
+
+/* 手牌多选高亮 */
+.pai-badge-wrap
+    position: relative
+    display: inline-block
+
+.hand-selected > .pai
+    box-shadow: inset 0 0 0 2px #4CAF50
+    border-radius: 2px
+
+.tile-sel-badge
+    position: absolute
+    top: -18px
+    left: 50%
+    transform: translateX(-50%)
+    font-size: 14px
+    color: #fff
+    background: rgba(76, 175, 80, 0.85)
+    border-radius: 50%
+    width: 18px
+    height: 18px
+    text-align: center
+    line-height: 18px
+    pointer-events: none
+    z-index: 5
+
+.skill-timeout
+    font-size: 16px
+    color: #ffd700
+    margin-left: 4px
