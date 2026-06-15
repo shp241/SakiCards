@@ -312,9 +312,36 @@ const Board = module.exports = class Board {
         /* 先出面板（役种区为空） */
         dialog.huleStart(hule);
 
+        /* 预处理：检测场风+自风配对（同一风同时是场风和自风 → 连风） */
+        let hupai = hule.hupai;
+        let windPairs = {};  // { '東': { idx: [firstIdx, secondIdx] }, ... }
+        for (let i = 0; i < hupai.length; i++) {
+            let m = hupai[i].name.match(/^(?:场风|自风)\s*(.)/);
+            if (m) {
+                let wind = m[1];
+                if (!windPairs[wind]) windPairs[wind] = { idx: [] };
+                windPairs[wind].idx.push(i);
+            }
+        }
+
         /* 逐条处理 */
-        for (let h of hule.hupai) {
-            let key = this._fanToVoiceKey(h.name, h.fanshu);
+        for (let i = 0; i < hupai.length; i++) {
+            let h = hupai[i];
+            let key;
+
+            /* 场风/自风配对检测：同风双役 → 第一条静音，第二条播放 double 版本 */
+            let wm = h.name.match(/^(?:场风|自风)\s*(.)/);
+            if (wm && windPairs[wm[1]] && windPairs[wm[1]].idx.length === 2) {
+                let pair = windPairs[wm[1]];
+                if (i === pair.idx[0]) {
+                    key = null;  // 第一条风只显示不念
+                } else {
+                    key = 'double' + Board.FANPAI_MAP[wm[1]];
+                }
+            } else {
+                key = this._fanToVoiceKey(h.name, h.fanshu);
+            }
+
             dialog.addFan(h.name, h.fanshu);
             try {
                 if (key) {
@@ -360,6 +387,11 @@ const Board = module.exports = class Board {
             fadeOut(this._view.say[l]);
             this._say[l] = null;
         }
+
+        if (this.sound_on) {
+            this._playPingjuVoice(pingju);
+        }
+
         let duration = 0;
         if (pingju.name.match(/^三家和/)) {
             duration = 400;
@@ -377,6 +409,38 @@ const Board = module.exports = class Board {
             }
             this._view.dialog.pingju(pingju);
         }, duration);
+    }
+
+    /* ── 流局语音播放 ── */
+    _playPingjuVoice(pingju) {
+
+        const PINGJU_VOICE_MAP = {
+            '九種九牌': 'jiuzhongjiupai',
+            '四風連打': 'sifenglianda',
+            '四家立直': 'sijializhi',
+            '四開槓':   'sigangliuju',
+            '三家和':   'sanjiahe',
+        };
+
+        let seat = this._model.seatToPlIdx.indexOf(this.viewpoint);
+
+        let key = PINGJU_VOICE_MAP[pingju.name];
+        if (key) {
+            this._voice[seat].playGameEnd(key);
+            return;
+        }
+
+        if (pingju.name === '流局满贯') {
+            this._voice[seat].playFan('liujumanguan');
+            return;
+        }
+
+        /* 荒牌平局 → 按主视角听牌/不听牌播放 */
+        if (pingju.shoupai[seat]) {
+            this._voice[seat].playGameEnd('tingpai');
+        } else {
+            this._voice[seat].playGameEnd('noting');
+        }
     }
 
     say(name, l) {

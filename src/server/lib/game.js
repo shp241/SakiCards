@@ -766,16 +766,25 @@ module.exports = class ServerGame extends Majiang.Game {
         this._model.character = character;
         this._paipu.character = character;
 
-        /* 分配 AI 语音 */
+        /* 分配语音：房主（plIdx=0）使用规则设定的语音，其他玩家/AI 避免重复 */
         const VOICE_CHAR_LIST = ['gongyongxiao', 'yiji', 'tianjiangyi', 'yuancunhe', 'gongyongzhao'];
         let voiceRule = this._rule['音声キャラ'];
+        let humanChar = voiceRule === 'none' ? null : voiceRule;
+
+        let available = VOICE_CHAR_LIST.filter(c => c !== humanChar);
+        for (let i = available.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [available[i], available[j]] = [available[j], available[i]];
+        }
+        let aiIdx = 0;
+
         for (let l = 0; l < 4; l++) {
             let id = this._plIdx(l);  // seat l → plIdx
-            if (l === 0) {
-                /* 房主使用规则设定的语音 */
-                this._voiceChars[id] = voiceRule === 'none' ? null : voiceRule;
+            if (id === 0) {
+                this._voiceChars[id] = humanChar;
             } else {
-                this._voiceChars[id] = VOICE_CHAR_LIST[Math.floor(Math.random() * VOICE_CHAR_LIST.length)];
+                this._voiceChars[id] = available[aiIdx % available.length];
+                aiIdx++;
             }
         }
 

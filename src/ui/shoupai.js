@@ -50,16 +50,23 @@ module.exports = class Shoupai {
             tiles.push('_');
         }
 
-        if (! this._open && marked.size > 0) {
-            /* 对手视角：标记牌（明牌，左侧）→ 剩余牌（暗牌，右侧） */
-            let markedTiles = tiles.filter(p => p != '_' && marked.has(p));
-            let unmarked    = tiles.filter(p => p == '_' || ! marked.has(p));
-            if (markedTiles.length > 0) {
-                let mc = $('<span class="marked-tiles">');
-                markedTiles.forEach(p => mc.append(this._pai(p)));
-                this._node.bingpai.append(mc);
+        if (! this._open) {
+            /* 对手视角 */
+            if (marked.size > 0) {
+                /* 有标记牌：标记牌（明牌，左侧）→ 剩余牌（暗牌，右侧） */
+                let markedTiles = tiles.filter(p => p != '_' && marked.has(p));
+                let unmarked    = tiles.filter(p => p == '_' || ! marked.has(p));
+                if (markedTiles.length > 0) {
+                    let mc = $('<span class="marked-tiles">');
+                    markedTiles.forEach(p => mc.append(this._pai(p)));
+                    this._node.bingpai.append(mc);
+                }
+                unmarked.forEach(p => this._node.bingpai.append(this._pai('_')));
             }
-            unmarked.forEach(p => this._node.bingpai.append(this._pai('_')));
+            else {
+                /* 无标记牌：全部暗牌 */
+                tiles.forEach(p => this._node.bingpai.append(this._pai('_')));
+            }
         }
         else {
             /* 自家视角：所有牌正面，被标记牌加 marked 类 */
@@ -70,10 +77,11 @@ module.exports = class Shoupai {
             });
         }
 
-        /* 自摸牌在最右侧 */
+        /* 自摸牌在最右侧，被标记的摸牌对对手也明牌 */
         if (zimo && zimo.length <= 2) {
-            let zimoEl = this._pai(this._open ? zimo : '_');
-            if (this._open && marked.has(zimo)) zimoEl.addClass('marked');
+            let zimomarked = marked.has(zimo);
+            let zimoEl = this._pai((this._open || zimomarked) ? zimo : '_');
+            if (zimomarked) zimoEl.addClass('marked');
             this._node.bingpai.append(
                     $('<span class="zimo">').append(zimoEl));
         }

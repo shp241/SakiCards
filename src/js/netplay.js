@@ -64,6 +64,8 @@ $(function(){
     let _$disconnectOverlay = null;
 
     function _showDisconnectOverlay() {
+        /* 起名界面不显示断线遮罩 */
+        if ($('#title .login').is(':visible')) return;
         if (_$disconnectOverlay) return;
         let overlay = $('<div>').addClass('disconnect-overlay');
         let box = $('<div>').addClass('disconnect-box');
@@ -397,12 +399,23 @@ $(function(){
 
         /* 语音角色 */
         if (kaiju.voice_char) {
-            /* 只在初次连接时为其他座位随机分配语音，重连时保留已设置的角色 */
-            let isFirstTime = voiceChars[0] === null;
-            voiceChars[0] = kaiju.voice_char === 'none' ? null : kaiju.voice_char;
+            /* 使用实际座位 myGameSeat（已在上面根据 qijia/jushu 计算） */
+            let isFirstTime = voiceChars[myGameSeat] === null;
+            voiceChars[myGameSeat] = kaiju.voice_char === 'none' ? null : kaiju.voice_char;
             if (isFirstTime) {
-                for (let i = 1; i < 4; i++) {
-                    voiceChars[i] = VOICE_CHAR_LIST[Math.floor(Math.random() * VOICE_CHAR_LIST.length)];
+                let humanChar = voiceChars[myGameSeat];
+                /* 排除玩家语音，剩余角色洗牌后依次分配给其他席位 */
+                let available = VOICE_CHAR_LIST.filter(c => c !== humanChar);
+                for (let i = available.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [available[i], available[j]] = [available[j], available[i]];
+                }
+                let aiIdx = 0;
+                for (let i = 0; i < 4; i++) {
+                    if (i !== myGameSeat) {
+                        voiceChars[i] = available[aiIdx % available.length];
+                        aiIdx++;
+                    }
                 }
             }
             boardView.setVoiceChars(voiceChars);

@@ -473,6 +473,8 @@ module.exports = class Game {
         this._skillForceRiichi = -1;
         /** 技能标记：牌河来源定位（追立摸牌时记录） */
         this._skillRiverSource = null;
+        /** 技能标记：涩谷尧深手切限制（不可切本巡摸入牌），{ seat } */
+        this._skillHandDiscard = null;
 
         /**
          * 各 seat 是否已立直（0=未立直/1=已立直）。
@@ -542,6 +544,8 @@ module.exports = class Game {
 
         /* 技能管理器：重置巡目限技能 */
         if (this._skillManager) this._skillManager.onTurnStart(lunban);
+        /* 清除手切限制（每巡重置） */
+        this._skillHandDiscard = null;
 
         /* 牌山见底 → 荒牌流局 */
         if (model.shan.paishu === 0) {
@@ -843,12 +847,41 @@ module.exports = class Game {
             this._add_action_log(pname + ' 副露了', this._ctx.currentSeat());
         }
 
+        /* 保存当前副露数据（技能回调中重新进入 action_fulou 时需要） */
+        let fulouSeat = this._ctx.currentSeat();
+        this._currentFulou = { l: fulouSeat, m: fulou };
+
+        /* 通用：BEFORE_DISCARD 可选技能（副露后舍牌前） */
+        let fulouSkillActions = null;
+        if (this._skillManager) {
+            let beforeActions = this._skillManager.getOptionalSkillDescriptions(
+                TimingPoints.BEFORE_DISCARD, fulouSeat,
+                {
+                    game: this, player: fulouSeat, seat: fulouSeat,
+                    tableCtx: this._ctx,
+                    turnId: this._turnId, turnOwner: this._turnOwner,
+                    turnType: this._turnType,
+                    roundId: this._roundIds[fulouSeat],
+                    firstTurn: this._isFirstTurn[fulouSeat],
+                    lastDiscard: this._lastDiscard,
+                    genbutsu: (s) => this.getGenbutsu(s),
+                    getSuji: (genbutsu) => this.getSuji(genbutsu),
+                }
+            );
+            if (beforeActions.length > 0) {
+                fulouSkillActions = beforeActions;
+            }
+        }
+
         let msg = [];
         for (let l = 0; l < 4; l++) {
             msg[l] = JSON.parse(JSON.stringify(paipu));
             /* 同步标记牌张 */
-            let fulouSeat = this._ctx.currentSeat();
             msg[l].fulou.markedTiles = model.shoupai[fulouSeat].markedTiles;
+            /* 副露玩家附加 BEFORE_DISCARD 技能按钮 */
+            if (l === fulouSeat && fulouSkillActions) {
+                msg[l].fulou.skillActions = fulouSkillActions;
+            }
         }
         this.call_players('fulou', msg);
 
@@ -1019,12 +1052,23 @@ module.exports = class Game {
             }
             /* 通用：BEFORE_DISCARD + DECLARE_HULE 可选技能 */
             if (l == lunban && this._skillManager) {
+                let skillCtx = {
+                    game: this, player: l, seat: l,
+                    tableCtx: this._ctx,
+                    turnId: this._turnId, turnOwner: this._turnOwner,
+                    turnType: this._turnType,
+                    roundId: this._roundIds[l],
+                    firstTurn: this._isFirstTurn[l],
+                    lastDiscard: this._lastDiscard,
+                    genbutsu: (s) => this.getGenbutsu(s),
+                    getSuji: (genbutsu) => this.getSuji(genbutsu),
+                };
                 let beforeActions = this._skillManager.getOptionalSkillDescriptions(
-                    TimingPoints.BEFORE_DISCARD, l, { game: this, player: l, tableCtx: this._ctx }
+                    TimingPoints.BEFORE_DISCARD, l, skillCtx
                 );
                 let huleActions = this._skillManager.getOptionalSkillDescriptions(
                     TimingPoints.DECLARE_HULE, l,
-                    { game: this, player: l, tableCtx: this._ctx, shoupai: model.shoupai[l] }
+                    Object.assign({}, skillCtx, { shoupai: model.shoupai[l] })
                 );
                 let allActions = [...beforeActions];
                 for (let a of huleActions) {
@@ -1583,12 +1627,23 @@ module.exports = class Game {
             }
             /* BEFORE_DISCARD + DECLARE_HULE 可选技能按钮 */
             if (l == lunban && this._skillManager) {
+                let skillCtx = {
+                    game: this, player: l, seat: l,
+                    tableCtx: this._ctx,
+                    turnId: this._turnId, turnOwner: this._turnOwner,
+                    turnType: this._turnType,
+                    roundId: this._roundIds[l],
+                    firstTurn: this._isFirstTurn[l],
+                    lastDiscard: this._lastDiscard,
+                    genbutsu: (s) => this.getGenbutsu(s),
+                    getSuji: (genbutsu) => this.getSuji(genbutsu),
+                };
                 let beforeActions = this._skillManager.getOptionalSkillDescriptions(
-                    TimingPoints.BEFORE_DISCARD, l, { game: this, player: l, tableCtx: this._ctx }
+                    TimingPoints.BEFORE_DISCARD, l, skillCtx
                 );
                 let huleActions = this._skillManager.getOptionalSkillDescriptions(
                     TimingPoints.DECLARE_HULE, l,
-                    { game: this, player: l, tableCtx: this._ctx, shoupai: model.shoupai[l] }
+                    Object.assign({}, skillCtx, { shoupai: model.shoupai[l] })
                 );
                 let allActions = [...beforeActions];
                 for (let a of huleActions) {
@@ -1851,7 +1906,7 @@ module.exports = class Game {
 
         this._isFirstTurn[menfeng] = false;  /* 和牌结束第一巡 */
 
-            /* 技能追加的额外里宝指示牌合并到 paipu（三副露/十二落抬等技能） */
+            /* 技能追加的额外里宝指示牌合并到 paipu */
             if (hule._extraUraDoraIndicators && hule._extraUraDoraIndicators.length > 0) {
                 if (!fubaopai) fubaopai = [];
                 fubaopai = [...fubaopai, ...hule._extraUraDoraIndicators];
@@ -2724,12 +2779,53 @@ module.exports = class Game {
     reply_fulou() {
 
         let model = this._model;
+        let lunban = model.lunban;
 
         if (this._gang) {
             return this.delay(()=>this.gangzimo(), 0);
         }
 
-        let reply = this.get_reply(this._ctx.currentSeat());
+        let reply = this.get_reply(lunban);
+
+        /* 通用：BEFORE_DISCARD 可选技能按钮触发（副露后舍牌前） */
+        if (reply.skillAction) {
+            let self = this;
+            let triggerResult = this._skill_trigger(TimingPoints.BEFORE_DISCARD, {
+                player: lunban,
+                turnId: this._turnId, turnOwner: this._turnOwner,
+                turnType: this._turnType,
+                roundId: this._roundIds[lunban],
+                firstTurn: this._isFirstTurn[lunban],
+                lastDiscard: this._lastDiscard,
+                genbutsu: (s) => this.getGenbutsu(s),
+                getSuji: (genbutsu) => this.getSuji(genbutsu),
+            });
+            if (triggerResult.actions && triggerResult.actions.length > 0) {
+                let action = triggerResult.actions.find(a => a.skill.id === reply.skillAction);
+                if (action) {
+                    this._executeOptionalSkill(action, {
+                        player: lunban, seat: action.seat,
+                    }, function() {
+                        /* 技能执行完毕，重新进入副露舍牌界面 */
+                        let player = self._players[self.seatToPlayerIdx(lunban)];
+                        if (player) {
+                            if (player._model && player._model.shoupai) {
+                                player._model.shoupai[lunban] = model.shoupai[lunban].clone();
+                            }
+                            let view = player._view || self._view;
+                            if (view) {
+                                view.redraw();
+                            }
+                            if (typeof player.action_fulou === 'function') {
+                                player.action_fulou(self._currentFulou);
+                            }
+                        }
+                    }, { skipConfirm: true });
+                    return;
+                }
+            }
+        }
+
         if (reply.dapai) {
             if (this.get_dapai().find(p => p == reply.dapai)) {
                 return this.delay(()=>this.dapai(reply.dapai), 0);
@@ -2805,7 +2901,14 @@ module.exports = class Game {
 
     get_dapai() {
         let model = this._model;
-        return Game.get_dapai(this._rule, model.shoupai[this._ctx.currentSeat()]);
+        let seat = this._ctx.currentSeat();
+        let dp = Game.get_dapai(this._rule, model.shoupai[seat]);
+        /* 涩谷尧深手切限制：过滤本巡摸入牌 */
+        if (this._skillHandDiscard && this._skillHandDiscard.seat === seat) {
+            let zimoTile = model.shoupai[seat]._zimo;
+            dp = dp.filter(p => p !== zimoTile && p !== zimoTile + '_');
+        }
+        return dp;
     }
 
     get_chi_mianzi(l) {

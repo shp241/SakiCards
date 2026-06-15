@@ -268,17 +268,21 @@ module.exports = class Player extends Majiang.Player {
 
     action_dapai(dapai) {
 
-        if (this.allow_no_daopai(this.shoupai)) {
-            this.set_button('daopai', ()=>this.callback());
+        let isLiuju = this.allow_no_daopai(this.shoupai);
+        if (isLiuju) {
+            this.set_button('tingpai', ()=>this.callback());
+            this.set_button('daopai', ()=>this.callback({daopai: '-'}));
         }
 
         if (dapai.l == this._menfeng) {
 
             if (! this._show_button) return this.callback();
 
-            setTimeout(()=>{
-                this.show_button(()=>this.callback({daopai: '-'}), { closeOnOutsideClick: true })
-            }, 500);
+            if (!isLiuju) {
+                setTimeout(()=>{
+                    this.show_button(()=>this.callback({daopai: '-'}), { closeOnOutsideClick: true })
+                }, 500);
+            }
             return;
         }
 
@@ -339,6 +343,22 @@ module.exports = class Player extends Majiang.Player {
     action_fulou(fulou) {
         if (fulou.l != this._menfeng) return this.callback();
         if (fulou.m.match(/^[mpsz]\d{4}/)) return this.callback();
+
+        /* 通用：BEFORE_DISCARD 可选技能按钮（副露后舍牌前） */
+        if (fulou.skillActions && fulou.skillActions.length > 0) {
+            let btnContainer = $(this._node.button);
+            for (let action of fulou.skillActions) {
+                let btnClass = 'skill_' + action.skillId;
+                if (!btnContainer.find('.' + btnClass).length) {
+                    btnContainer.append(
+                        $('<span>').addClass('button ' + btnClass)
+                            .text(action.label)
+                    );
+                }
+                this.set_button(btnClass,
+                    (() => this.callback({skillAction: action.skillId})));
+            }
+        }
 
         this.show_button(()=>this.select_dapai(), { closeOnOutsideClick: true });
     }

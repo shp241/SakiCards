@@ -67,16 +67,6 @@ const bgmPlayer = new Majiang.UI.BgmPlayer();
                                         pai, audio, game.model, rule);
         game.view = board;
 
-        /* AI 语音随机分配，0号座席使用规则中设定的语音 */
-        {
-            let voiceChars = [];
-            voiceChars[0] = rule['音声キャラ'] === 'none' ? null : rule['音声キャラ'];
-            for (let i = 1; i < 4; i++) {
-                voiceChars[i] = VOICE_CHAR_LIST[Math.floor(Math.random() * VOICE_CHAR_LIST.length)];
-            }
-            board.setVoiceChars(voiceChars);
-        }
-
         /* BGM 播放 */
         if (rule['BGM']) {
             bgmPlayer.setTrack(rule['BGM']);
@@ -107,7 +97,32 @@ const bgmPlayer = new Majiang.UI.BgmPlayer();
             'free': AssignmentMode.FREE
         };
 
-        function showCharacterSelector() {
+        /* 重新分配语音角色（根据当前 qijia/jushu 计算玩家实际座位） */
+    function reassignVoiceChars() {
+        let voiceChars = [];
+        let humanSeat = (4 - game._model.qijia - (game._model.jushu || 0) + 8) % 4;
+        let humanChar = rule['音声キャラ'] === 'none' ? null : rule['音声キャラ'];
+
+        /* 排除玩家语音，剩余角色洗牌后依次分配给 AI，避免重复 */
+        let available = VOICE_CHAR_LIST.filter(c => c !== humanChar);
+        for (let i = available.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [available[i], available[j]] = [available[j], available[i]];
+        }
+        let aiIndex = 0;
+
+        for (let l = 0; l < 4; l++) {
+            if (l === humanSeat) {
+                voiceChars[l] = humanChar;
+            } else {
+                voiceChars[l] = available[aiIndex % available.length];
+                aiIndex++;
+            }
+        }
+        board.setVoiceChars(voiceChars);
+    }
+
+    function showCharacterSelector() {
             let mode = modeMap[rule['角色分配方式']] || AssignmentMode.DRAW_4;
             /* 重置角色池，让玩家可以重新选择 */
             sm.getPool().resetForHand();
@@ -149,11 +164,18 @@ const bgmPlayer = new Majiang.UI.BgmPlayer();
 
         /* 先开牌配牌，然后暂停插入角色选择 */
         game.kaiju(qijia);
+
+        /* 分配语音：玩家（plIdx=0）使用规则设定的语音，AI 随机分配 */
+        reassignVoiceChars();
+
         game._view.paipu = game._paipu;
         game.pauseBeforeZimo(() => showCharacterSelector());
 
-        /* 设置每小局结束后重新选择角色 */
-        game.onHandStart(() => showCharacterSelector());
+        /* 设置每小局结束后重新选择角色和语音 */
+        game.onHandStart(() => {
+            reassignVoiceChars();
+            showCharacterSelector();
+        });
     }
 
     function end(paipu) {
