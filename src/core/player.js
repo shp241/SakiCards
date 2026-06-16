@@ -223,7 +223,7 @@ module.exports = class Player {
                 result = this._game.allow_hule(this._menfeng);
             }
         }
-        console.log('[debug] Player.allow_hule: hand=' + shoupaiStr
+        Majiang.Game._debugHule && console.log('[debug] Player.allow_hule: hand=' + shoupaiStr
             + ' p=' + p + ' hupai=' + hupai + ' neng_rong=' + this._neng_rong
             + ' xiangting=' + xiangtingVal + ' result=' + result);
         return result;

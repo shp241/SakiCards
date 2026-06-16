@@ -460,7 +460,7 @@ function _applyQipai(game, qipai, paipu) {
     for (let l = 0; l < 4; l++) {
         model.shoupai[l] = new Majiang.Shoupai();
         model.he[l] = new Majiang.He();
-        model.player_id[l] = (model.qijia + model.jushu + l) % 4;
+        model.seatToPlIdx[l] = (model.qijia + model.jushu + l) % 4;
     }
 
     if (qipai.shoupai) {
@@ -495,7 +495,7 @@ function _applyQipai(game, qipai, paipu) {
                 defen: qipai.defen,
                 baopai: qipai.baopai,
                 shoupai: qipai.shoupai,
-                id: model.player_id[l],
+                id: model.seatToPlIdx[l],
                 rule: game._rule,
             }
         };
@@ -625,7 +625,7 @@ function _applyOp(game, entry, opType) {
 
 function _syncPlayers(game, type, msgs) {
     for (let l = 0; l < 4; l++) {
-        let id = game._model.player_id[l];
+        let id = game._model.seatToPlIdx[l];
         game._players[id].action(msgs[l], () => {});
     }
     game._status = type;

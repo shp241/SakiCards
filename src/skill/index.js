@@ -155,18 +155,6 @@ class SkillManager {
 
         /* 创建角色牌区域 */
         this._setupCharacterZones(gameSeat, characterId);
-
-        /* 日志：输出座位、角色和持有的技能 */
-        let seatName = ['东', '南', '西', '北'][gameSeat];
-        let char = this._registry.getCharacter(characterId);
-        if (char) {
-            let skillList = char.skills.map(s => {
-                let typeTag = s.type === SkillType.PASSIVE ? '[被动]'
-                    : s.isOptional ? '[可选]' : '[自动]';
-                return `  ${typeTag} ${s.description}`;
-            }).join('\n');
-            console.log(`[技能] 座位${gameSeat}(${seatName}家): ${char.name} (${char.id})\n${skillList}`);
-        }
     }
 
     /**
@@ -516,8 +504,6 @@ class SkillManager {
         let effects = [];
         let modified = false;
 
-        let seatName = ['东', '南', '西', '北'];
-
         for (let match of matches) {
             let skill = match.skill;
             let part = match.part;
@@ -564,9 +550,6 @@ class SkillManager {
             if ((autoExec || effectiveType === SkillType.PASSIVE ||
                 (effectiveType === SkillType.CONDITIONAL && !skill.isOptional)) &&
                 !hasExpander) {
-                let desc = part && part.description
-                    ? part.description : skill.description;
-                console.log(`[技能] 时点「${timing}」 → 座位${match.seat}(${seatName[match.seat]}家) 自动执行: ${desc}`);
                 let result = this._executeAutoSkill(skill, match.seat, context, part);
                 effects.push(result);
                 if (result.modified) modified = true;
@@ -574,7 +557,6 @@ class SkillManager {
 
             /* 主动/可选条件触发：需要玩家确认（shouldAutoExecute 时跳过） */
             if (skill.isOptional && !autoExec) {
-                console.log(`[技能] 时点「${timing}」 → 座位${match.seat}(${seatName[match.seat]}家) 可选技能: ${skill.description}`);
                 actions.push({
                     seat: match.seat,          // 游戏席位 (0=东/1=南/2=西/3=北)
                     skill: skill,
@@ -604,9 +586,6 @@ class SkillManager {
             data,
             time: Date.now(),
         };
-        console.log('[DEBUG] recordTrigger: seat=' + seat + ' skill=' + skillIndex +
-            ' char=' + characterId +
-            ', turnTriggerLog=' + JSON.stringify(this._turnTriggerLog));
     }
 
     /**
@@ -619,21 +598,13 @@ class SkillManager {
     wasTriggered(seat, characterId, skillIndex) {
         let seatLog = this._turnTriggerLog[seat];
         if (!seatLog) {
-            console.log('[DEBUG] wasTriggered: seat=' + seat + ' skill=' + skillIndex +
-                ' → seatLog 不存在');
             return false;
         }
         let entry = seatLog[skillIndex];
         if (!entry) {
-            console.log('[DEBUG] wasTriggered: seat=' + seat + ' skill=' + skillIndex +
-                ' → entry 不存在, seatLog keys=' + JSON.stringify(Object.keys(seatLog)));
             return false;
         }
-        let result = entry.characterId === characterId;
-        console.log('[DEBUG] wasTriggered: seat=' + seat + ' skill=' + skillIndex +
-            ' → characterId=' + entry.characterId + ' vs ' + characterId +
-            ' → ' + result);
-        return result;
+        return entry.characterId === characterId;
     }
 
     /**
@@ -656,8 +627,6 @@ class SkillManager {
      * 清除本回合触发记录（每次新摸牌回合调用）
      */
     clearTurnRecords() {
-        console.log('[DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog=' +
-            JSON.stringify(this._turnTriggerLog));
         this._turnTriggerLog = {};
     }
 

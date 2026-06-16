@@ -31,10 +31,14 @@ module.exports = class He {
         if (! Majiang.Shoupai.valid_mianzi(m))      throw new Error(m);
         let p = m[0] + m.match(/\d(?=[\+\=\-])/), d = m.match(/[\+\=\-]/);
         if (! d)                                    throw new Error(m);
-        if (this._pai[this._pai.length - 1].slice(0,2) != p)
-                                                    throw new Error(m);
-        this._pai[this._pai.length - 1] += d;
-        return this;
+        /* 向前搜索匹配的牌（支持技能扩展器从牌河前面副露） */
+        for (let i = this._pai.length - 1; i >= 0; i--) {
+            if (this._pai[i].slice(0, 2) === p) {
+                this._pai[i] += d;
+                return this;
+            }
+        }
+        throw new Error(m);
     }
 
     find(p) {

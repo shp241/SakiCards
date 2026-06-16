@@ -351,10 +351,18 @@ module.exports = class Game {
     do_sync() {
 
         this._sync  = true;
+        this._stepCount = 0;
 
         this.kaiju();
 
         for (;;) {
+            this._stepCount++;
+            if (this._gameLog) this._gameLog('STATUS', this._status + ' #' + this._stepCount);
+            /* 安全阀：超过 100000 步判定为无限循环 */
+            if (this._stepCount > 100000) {
+                console.error('[FATAL] do_sync reached 100000 steps, aborting. last status: ' + this._status);
+                break;
+            }
             if      (this._status == 'kaiju')    this.reply_kaiju();
             else if (this._status == 'qipai')    this.reply_qipai();
             else if (this._status == 'zimo')     this.reply_zimo();
@@ -554,6 +562,8 @@ module.exports = class Game {
         if (this._skillManager) this._skillManager.onTurnStart(lunban);
         /* 清除手切限制（每巡重置） */
         this._skillHandDiscard = null;
+        /* 清除杠类型标记 */
+        this._kanType = null;
 
         /* 牌山见底 → 荒牌流局 */
         if (model.shan.paishu === 0) {
@@ -622,6 +632,9 @@ module.exports = class Game {
         let model = this._model;
         let lunban = model.lunban;
 
+        /* 兜底：若当前玩家手牌已被清空（如技能重评估时已和牌），跳过 */
+        if (!model.shoupai[lunban]) return;
+
         this._yifa[lunban] = 0;
 
         if (! model.shoupai[lunban].lizhi)
@@ -655,16 +668,17 @@ module.exports = class Game {
                 turnId: this._turnId, turnOwner: this._turnOwner,
                 turnType: this._turnType,
                 roundId: this._roundIds[lunban],
+                lastDiscard: this._lastDiscard,
             });
             let discActions = discResult.actions;
-            console.log('[DEBUG] dapai() DISCARD_SELECTED: discActions=' +
+            if (this._debugSkill) console.log('[DEBUG] dapai() DISCARD_SELECTED: discActions=' +
                 JSON.stringify(discActions?.map(a => a.skill?.id)) +
                 ', turnTriggerLog=' + JSON.stringify(this._skillManager?._turnTriggerLog));
             let isHuman = !this._canAutoDecideSkill(this._ctx.playerIndex(lunban));
             if (isHuman && discActions && discActions.length > 0) {
                 /* 需要人类确认 DISCARD_SELECTED 技能 → 暂停舍牌，
                  * 确认后重新进入 dapai()，届时跳过此钩子 */
-                console.log('[DEBUG] dapai() DISCARD_SELECTED: 人类需确认, discActions[0].skill.id=' +
+                this._debugSkill && console.log('[DEBUG] dapai() DISCARD_SELECTED: 人类需确认, discActions[0].skill.id=' +
                     discActions[0].skill.id);
                 this._discardSelectedDone = true;
                 this._beforeDiscardDone = true;
@@ -677,6 +691,13 @@ module.exports = class Game {
             }
         }
         this._discardSelectedDone = false;
+
+        /* 兜底：若打牌不在手牌中（技能已改变手牌），使用当前摸牌 */
+        let shoupai = model.shoupai[lunban];
+        let dapaiPai = dapai.replace(/[_*]$/, '');
+        if (shoupai._zimo !== dapai && shoupai.toString().indexOf(dapaiPai) < 0) {
+            dapai = shoupai._zimo;
+        }
 
         model.shoupai[lunban].dapai(dapai);
         let isHiddenDiscard = this._extra_hidden_discard;
@@ -802,12 +823,13 @@ module.exports = class Game {
         if (fulou.match(/^[mpsz]\d{4}/)) {
             this._gang = fulou;
             this._n_gang[this._ctx.currentSeat()]++;
+            this._kanType = 'daiminkan';
         }
 
         /* 巡目管理：副露/杠巡目开始 — 打断所有玩家同巡 */
         this._turnId++;
         this._turnOwner = this._ctx.currentSeat();
-        this._turnType = fulou.match(/^[mpsz]\d{4}/) ? TurnType.KAN : TurnType.FULOU;
+        this._turnType = fulou.match(/^[mpsz]\d{4}/) ? TurnType.KAN : TurnType.CHIPENG;
         this._roundIds = [0, 0, 0, 0];  /* 副露/杠重置所有玩家同巡 */
         this._roundIds[this._ctx.currentSeat()]++;
         this._lastDiscard = [null, null, null, null];  /* 中断巡目，清空舍牌记录 */
@@ -1498,8 +1520,8 @@ module.exports = class Game {
             self._skillManager.markBDSkillUsed(skill.id);
         }
 
-        /** 执行技能内部逻辑 */
-        async function doExecute() {
+        /** 执行技能内部逻辑（同步优先，异步兜底） */
+        function doExecute() {
             let input = self._buildSkillInput(skill, isAI);
             let _done = false;
             let fullContext = Object.assign(baseContext, {
@@ -1508,15 +1530,26 @@ module.exports = class Game {
                 done: function() {
                     if (_done) return;
                     _done = true;
-                    if (onComplete) onComplete();
+                    if (onComplete) {
+                        try { onComplete(); } catch(e) { console.error(e); }
+                    }
                 }
             });
 
-            /* 执行技能（支持 async），等待完成后若未 done 则触发 onComplete */
-            await skill.effect.execute(fullContext);
-
-            if (!_done && onComplete) {
-                onComplete();
+            let result = skill.effect.execute(fullContext);
+            if (result && typeof result.then === 'function') {
+                /* 异步技能：通过 .then 链完成时触发 onComplete */
+                result.then(function() {
+                    if (!_done && onComplete) onComplete();
+                }).catch(function(e) {
+                    console.error(e);
+                    if (!_done && onComplete) onComplete();
+                });
+            } else {
+                /* 同步技能：立即触发 onComplete */
+                if (!_done && onComplete) {
+                    onComplete();
+                }
             }
         }
 
@@ -1559,7 +1592,7 @@ module.exports = class Game {
      * @param {string} skillAction - 技能 ID 字符串（如 "Amae_Koromo_skill_3"）
      */
     _executeBeforeDiscardFromButton(skillAction) {
-        console.log('[DEBUG] _executeBeforeDiscardFromButton: skillAction=' + skillAction +
+        this._debugSkill && console.log('[DEBUG] _executeBeforeDiscardFromButton: skillAction=' + skillAction +
             ', turnTriggerLog=' + JSON.stringify(this._skillManager?._turnTriggerLog));
         let lunban = this._model.lunban;
         let triggerResult = this._skill_trigger(TimingPoints.BEFORE_DISCARD, {
@@ -1583,7 +1616,7 @@ module.exports = class Game {
                      * 仅当前玩家需要更新手牌中的摸牌（技能可能替换了它），
                      * 其他玩家看不到摸牌无需更新。
                      * 避免 call_players('zimo') 导致 local-shan paishu 冗余递减。 */
-                    console.log('[DEBUG] _executeBeforeDiscardFromButton 回调: 技能④执行完毕, turnTriggerLog=' +
+                    this._debugSkill && console.log('[DEBUG] _executeBeforeDiscardFromButton 回调: 技能④执行完毕, turnTriggerLog=' +
                         JSON.stringify(self._skillManager?._turnTriggerLog));
                     let model = self._model;
                     let newP = model.shoupai[lunban]._zimo;
@@ -1644,6 +1677,8 @@ module.exports = class Game {
         this._roundIds = [0, 0, 0, 0];
         this._roundIds[this._ctx.currentSeat()]++;
         this._lastDiscard = [null, null, null, null];  /* 中断巡目，清空舍牌记录 */
+        /* 标记杠类型：暗杠 vs 加杠 */
+        this._kanType = gang.match(/\d{4}$/) ? 'ankan' : 'kakan';
 
         /* 技能管理器：重置巡目限技能 */
         if (this._skillManager) this._skillManager.onTurnStart(this._ctx.currentSeat());
@@ -2535,10 +2570,18 @@ module.exports = class Game {
 
         let model = this._model;
         let lunban = model.lunban;
+        let isHuman = !this._canAutoDecideSkill(this._ctx.playerIndex(lunban));
 
+        /* ── AI 路径：先触发 BEFORE_DISCARD，全部技能执行完毕后再让 AI 算牌 ── */
+        if (!isHuman) {
+            this._aiReplyZimo(lunban);
+            return;
+        }
+
+        /* ── 人类路径：已通过 UI 选择打牌/和牌/杠牌 ── */
         /* 辅助：包装 dapai 调用，插入通用 BEFORE_DISCARD / DISCARD_SELECTED 处理 */
         let _doDapai = (dp) => {
-            console.log('[DEBUG] _doDapai 开始: dp=' + dp +
+            this._debugSkill && console.log('[DEBUG] _doDapai 开始: dp=' + dp +
                 ', turnTriggerLog=' + JSON.stringify(this._skillManager?._turnTriggerLog));
             /* 通用：触发 BEFORE_DISCARD 并收集可选技能动作 */
             let beforeResult = this._skill_trigger(TimingPoints.BEFORE_DISCARD, {
@@ -2557,11 +2600,12 @@ module.exports = class Game {
             this._beforeDiscardDone = true;
 
             let _doActualDapai = () => {
-                this._beforeDiscardDone = false;
+                /* 只重置 DISCARD_SELECTED，不重置 BEFORE_DISCARD（避免死循环） */
+                this._discardSelectedDone = false;
                 /* 技能可能要求重选打牌 */
                 let actualDp = this._skillRedapai != null ? this._skillRedapai : dp;
                 this._skillRedapai = null;
-                this.delay(() => this.dapai(actualDp), 0);
+                this.delay(() => this._safeDapai(actualDp), 0);
             };
 
             /* 通用：触发 DISCARD_SELECTED 并收集可选技能动作 */
@@ -2570,9 +2614,10 @@ module.exports = class Game {
                 turnId: this._turnId, turnOwner: this._turnOwner,
                 turnType: this._turnType,
                 roundId: this._roundIds[lunban],
+                lastDiscard: this._lastDiscard,
             });
             let hasDiscardActions = discardResult.actions && discardResult.actions.length > 0;
-            console.log('[DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=' + hasBeforeActions +
+            this._debugSkill && console.log('[DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=' + hasBeforeActions +
                 ', hasDiscardActions=' + hasDiscardActions +
                 ', discardActions=' + JSON.stringify(discardResult.actions?.map(a => a.skill?.id)) +
                 ', turnTriggerLog=' + JSON.stringify(this._skillManager?._turnTriggerLog));
@@ -2589,7 +2634,20 @@ module.exports = class Game {
                 /* 技能执行后手牌可能已变（天江衣④交换海底牌），
                  * AI 需要重新决定是否和牌、暗杠、或打哪张。 */
                 let _reEvaluateAI = () => {
+                    /* 防止重新评估引致的 _doActualDapai 重置 _beforeDiscardDone 造成 BEFORE_DISCARD 死循环 */
+                    this._beforeDiscardDone = true;
+                    try {
                     let shoupai = model.shoupai[lunban];
+                    if (!shoupai) { _doActualDapai(); return; }
+
+                    /* 验证打牌是否仍在手牌中（技能可能已修改手牌） */
+                    let _tileValid = (tile) => {
+                        if (!tile) return false;
+                        let clean = tile.replace(/[_*]$/, '');
+                        return shoupai._zimo === tile
+                            || shoupai.toString().indexOf(clean) >= 0;
+                    };
+
                     if (typeof this._players[lunban].action_zimo === 'function') {
                         let savedSync = this._sync;
                         this._sync = true;
@@ -2597,11 +2655,12 @@ module.exports = class Game {
                             { l: lunban, p: shoupai._zimo }, false);
                         this._sync = savedSync;
                         let newReply = this.get_reply(lunban);
+                        if (!newReply) { _doActualDapai(); return; }
                         if (newReply.hule) {
                             this.say('zimo', lunban);
                             return this.delay(() => this.hule(), 0);
                         } else if (newReply.gang
-                                && this.get_gang_mianzi().find(m => m == newReply.gang)) {
+                                && this.get_gang_mianzi(lunban).find(m => m == newReply.gang)) {
                             this.say('gang', lunban);
                             return this.delay(() => this.gang(newReply.gang), 0);
                         } else if (newReply.daopai) {
@@ -2610,23 +2669,32 @@ module.exports = class Game {
                                 l[lunban] = shoupai.toString();
                                 this.pingju('九種九牌', l);
                             }, 0);
-                        } else if (newReply.dapai) {
-                            this.delay(() => this.dapai(newReply.dapai), 0);
-                        } else {
+                        } else if (newReply.dapai && _tileValid(newReply.dapai)) {
+                            this.delay(() => this._safeDapai(newReply.dapai), 0);
+                        } else if (_tileValid(shoupai._zimo)) {
                             /* 兜底：打出摸到的牌 */
-                            this.delay(() => this.dapai(shoupai._zimo), 0);
+                            this.delay(() => this._safeDapai(shoupai._zimo), 0);
+                        } else {
+                            _doActualDapai();
                         }
                     } else {
                         /* 服务端 AI 无法直接重评估：技能可能改变了手牌，
                          * 检查 dp 是否仍有效，无效则兜底打出摸到的牌 */
                         let shoupai = model.shoupai[lunban];
-                        if (shoupai._zimo === dp || shoupai.toString().indexOf(dp.replace(/[_*]$/, '')) >= 0) {
+                        if (!shoupai) { _doActualDapai(); return; }
+                        if (_tileValid(dp)) {
                             _doActualDapai();
-                        } else {
+                        } else if (_tileValid(shoupai._zimo)) {
                             this._beforeDiscardDone = false;
                             this._skillRedapai = null;
-                            this.delay(() => this.dapai(shoupai._zimo), 0);
+                            this.delay(() => this._safeDapai(shoupai._zimo), 0);
+                        } else {
+                            _doActualDapai();
                         }
+                    }
+                    } catch (ex) {
+                        /* AI 重评估异常，兜底打出原牌 */
+                        _doActualDapai();
                     }
                 };
 
@@ -2635,17 +2703,18 @@ module.exports = class Game {
                      * BEFORE_DISCARD 技能（如天江衣④）执行完毕后，
                      * shouldAutoExecute 能检测到最新触发记录，
                      * 关联技能（如天江衣②）自动执行。 */
-                    console.log('[DEBUG] _afterBefore: 重新触发 DISCARD_SELECTED, turnTriggerLog=' +
+                    this._debugSkill && console.log('[DEBUG] _afterBefore: 重新触发 DISCARD_SELECTED, turnTriggerLog=' +
                         JSON.stringify(this._skillManager?._turnTriggerLog));
                     let freshDiscardResult = this._skill_trigger(TimingPoints.DISCARD_SELECTED, {
                         player: lunban, dapai: dp,
                         turnId: this._turnId, turnOwner: this._turnOwner,
                         turnType: this._turnType,
                         roundId: this._roundIds[lunban],
+                        lastDiscard: this._lastDiscard,
                     });
                     let freshDiscActions = freshDiscardResult.actions
                         && freshDiscardResult.actions.length > 0;
-                    console.log('[DEBUG] _afterBefore DISCARD_SELECTED 重新触发: freshDiscActions=' +
+                    this._debugSkill && console.log('[DEBUG] _afterBefore DISCARD_SELECTED 重新触发: freshDiscActions=' +
                         JSON.stringify(freshDiscardResult.actions?.map(a => a.skill?.id)));
                     if (freshDiscActions) {
                         this._executeOptionalSkill(freshDiscardResult.actions[0], {
@@ -2673,6 +2742,7 @@ module.exports = class Game {
         };
 
         let reply = this.get_reply(lunban);
+        if (!reply) return;
         if (reply.daopai) {
             if (this.allow_pingju()) {
                 let shoupai = ['','','',''];
@@ -2757,6 +2827,7 @@ module.exports = class Game {
             for (let i = 1; i < 4; i++) {
                 let l = (lunban + i) % 4;
                 let reply = this.get_reply(l);
+                if (!reply) continue;
                 if (reply.hule && this.allow_hule(l)) {
                     if (this._rule['最大同時和了数'] == 1  && this._hule.length)
                                                                         continue;
@@ -2810,7 +2881,7 @@ module.exports = class Game {
             let shoupai = ['','','',''];
             for (let l = 0; l < 4; l++) {
                 let reply = this.get_reply(l);
-                if (reply.daopai) shoupai[l] = reply.daopai;
+                if (reply && reply.daopai) shoupai[l] = reply.daopai;
             }
             return this.delay(()=>this.pingju('', shoupai), 0);
         }
@@ -2820,7 +2891,7 @@ module.exports = class Game {
             for (let i = 1; i < 4; i++) {
                 let l = (lunban + i) % 4;
                 let reply = this.get_reply(l);
-                if (reply.fulou) {
+                if (reply && reply.fulou) {
                     let m = reply.fulou.replace(/0/g,'5');
                     if (m.match(/^[mpsz](\d)\1\1\1/)) {
                         if (this.get_gang_mianzi(l).find(m => m == reply.fulou)) {
@@ -2839,7 +2910,7 @@ module.exports = class Game {
             for (let i = 1; i < 4; i++) {
                 let l = (lunban + i) % 4;
                 let reply = this.get_reply(l);
-                if (reply.fulou) {
+                if (reply && reply.fulou) {
                     if (this.get_chi_mianzi(l).find(m => m == reply.fulou)) {
                         this.say('chi', l);
                         return this.delay(()=>this.fulou(reply.fulou));
@@ -2899,6 +2970,166 @@ module.exports = class Game {
         }
     }
 
+    /**
+     * 同步 AI 玩家的 Board 手牌与游戏当前手牌。
+     * 在 BEFORE_DISCARD 技能修改手牌后调用，确保 AI 重评估基于最新手牌。
+     */
+    _syncAiBoardHand(seat) {
+        let model = this._model;
+        let playerIdx = this._ctx.playerIndex(seat);
+        let player = this._players[playerIdx];
+        if (!player || !player._model) return;
+        let gameHand = model.shoupai[seat];
+        if (gameHand) {
+            player._model.shoupai[seat] = gameHand.clone();
+        }
+    }
+
+    /**
+     * AI 专用：先触发并执行全部 BEFORE_DISCARD 技能，
+     * 完毕后 AI 再计算打牌（避免重评估）。
+     */
+    _aiReplyZimo(lunban) {
+        let model = this._model;
+        this._beforeDiscardDone = true;
+
+        let beforeResult = this._skill_trigger(TimingPoints.BEFORE_DISCARD, {
+            player: lunban, dapai: null,
+            turnId: this._turnId, turnOwner: this._turnOwner,
+            turnType: this._turnType,
+            roundId: this._roundIds[lunban],
+            firstTurn: this._isFirstTurn[lunban],
+            lastDiscard: this._lastDiscard,
+            genbutsu: (s) => this.getGenbutsu(s),
+            getSuji: (genbutsu) => this.getSuji(genbutsu),
+        });
+        let hasBeforeActions = beforeResult.actions && beforeResult.actions.length > 0;
+        this._debugSkill && console.log('[DEBUG] _aiReplyZimo: hasBeforeActions=' + hasBeforeActions +
+            ', beforeActions=' + JSON.stringify(beforeResult.actions?.map(a => a.skill?.id)));
+
+        if (hasBeforeActions) {
+            this._executeOptionalSkill(beforeResult.actions[0], {
+                player: lunban, seat: beforeResult.actions[0].seat,
+            }, () => {
+                this._aiDecideAfterBefore(lunban);
+            });
+            return;
+        }
+
+        this._aiDecideAfterBefore(lunban);
+    }
+
+    /**
+     * BEFORE_DISCARD 全部执行完毕，AI 计算打牌/和牌/杠牌，
+     * 然后走 DISCARD_SELECTED 完成舍牌。
+     * 若 BEFORE_DISCARD 技能修改了手牌（如天江衣④交换海底牌），
+     * 先同步 AI Board 状态再重跑 AI 决策，避免基于旧手牌判断。
+     */
+    _aiDecideAfterBefore(lunban) {
+        let model = this._model;
+
+        /* 同步 AI Board 手牌（BEFORE_DISCARD 技能可能已改变手牌） */
+        this._syncAiBoardHand(lunban);
+
+        /* 重新评估 AI 决策（基于技能修改后的最新手牌） */
+        let shoupai = model.shoupai[lunban];
+        if (shoupai) {
+            let playerIdx = this._ctx.playerIndex(lunban);
+            let player = this._players[playerIdx];
+            if (typeof player.action_zimo === 'function') {
+                let savedSync = this._sync;
+                this._sync = true;
+                try {
+                    player.action_zimo(
+                        { l: lunban, p: shoupai._zimo }, false);
+                } catch(e) {
+                    /* AI 重评估异常，忽略 */
+                }
+                this._sync = savedSync;
+            }
+        }
+
+        let reply = this.get_reply(lunban);
+        if (!reply) return;
+
+        if (reply.daopai) {
+            if (this.allow_pingju() && shoupai) {
+                let shoupaiArr = ['','','',''];
+                shoupaiArr[lunban] = shoupai.toString();
+                return this.delay(() => this.pingju('九種九牌', shoupaiArr), 0);
+            }
+        } else if (reply.hule) {
+            if (shoupai && this.allow_hule()) {
+                this.say('zimo', lunban);
+                return this.delay(() => this.hule());
+            }
+        } else if (reply.gang) {
+            if (shoupai && this.get_gang_mianzi(lunban).find(m => m == reply.gang)) {
+                this.say('gang', lunban);
+                return this.delay(() => this.gang(reply.gang));
+            }
+        } else if (reply.dapai) {
+            let dapai = reply.dapai.replace(/\*$/,'');
+            if (this._diyizimo) dapai = dapai.replace(/_$/,'');
+            let dapais = this.get_dapai();
+            if (dapais && dapais.find(p => p == dapai || p == dapai + '_')) {
+                if (reply.dapai.slice(-1) == '*' && this.allow_lizhi(dapai)) {
+                    this.say('lizhi', lunban);
+                }
+                this._doDapaiAi(lunban, dapai);
+                return;
+            }
+            /* 兜底：AI 选的牌不在可选列表中（技能改变了手牌），
+             * 尝试打出摸到的牌 */
+            if (shoupai && shoupai._zimo && dapais
+                && dapais.find(p => p == shoupai._zimo || p == shoupai._zimo + '_')) {
+                this._doDapaiAi(lunban, shoupai._zimo);
+                return;
+            }
+        }
+        /* 最终兜底：打出任意可打牌 */
+        if (shoupai && shoupai._zimo) {
+            this._doDapaiAi(lunban, shoupai._zimo);
+        }
+    }
+
+    /**
+     * AI 专用：处理 DISCARD_SELECTED 并执行最终舍牌。
+     * BEFORE_DISCARD 已在 _aiReplyZimo 中处理。
+     */
+    _doDapaiAi(lunban, dp) {
+        let model = this._model;
+        this._discardSelectedDone = true;
+
+        let discResult = this._skill_trigger(TimingPoints.DISCARD_SELECTED, {
+            player: lunban, dapai: dp,
+            turnId: this._turnId, turnOwner: this._turnOwner,
+            turnType: this._turnType,
+            roundId: this._roundIds[lunban],
+            lastDiscard: this._lastDiscard,
+        });
+        let discActions = discResult.actions;
+        let hasDiscActions = discActions && discActions.length > 0;
+        this._debugSkill && console.log('[DEBUG] _doDapaiAi DISCARD_SELECTED: discActions=' +
+            JSON.stringify(discActions?.map(a => a.skill?.id)) +
+            ', turnTriggerLog=' + JSON.stringify(this._skillManager?._turnTriggerLog));
+
+        let _doActualDapai = () => {
+            this._discardSelectedDone = false;
+            let actualDp = this._skillRedapai != null ? this._skillRedapai : dp;
+            this._skillRedapai = null;
+            this.delay(() => this._safeDapai(actualDp), 0);
+        };
+
+        if (hasDiscActions) {
+            this._executeOptionalSkill(discActions[0], {
+                player: lunban, dapai: dp, seat: discActions[0].seat,
+            }, _doActualDapai);
+        } else {
+            _doActualDapai();
+        }
+    }
+
     reply_fulou() {
 
         let model = this._model;
@@ -2909,6 +3140,7 @@ module.exports = class Game {
         }
 
         let reply = this.get_reply(lunban);
+        if (!reply) return;
 
         /* 通用：BEFORE_DISCARD 可选技能按钮触发（副露后舍牌前） */
         if (reply.skillAction) {
@@ -2951,12 +3183,54 @@ module.exports = class Game {
 
         if (reply.dapai) {
             if (this.get_dapai().find(p => p == reply.dapai)) {
-                return this.delay(()=>this.dapai(reply.dapai), 0);
+                return this.delay(() => this._safeDapai(reply.dapai), 0);
             }
         }
 
         let p = this.get_dapai().pop();
-        this.delay(()=>this.dapai(p), 0);
+        this.delay(() => this._safeDapai(p), 0);
+    }
+
+    /**
+     * 安全打牌：兜底处理 bingpai 不一致导致的异常。
+     * 技能操作可能使 shoupai 的 bingpai 与字符串表示不同步，
+     * 此方法在打牌失败时依次尝试 _zimo 和剩余有效手牌。
+     */
+    _safeDapai(dapai) {
+        try {
+            this.dapai(dapai);
+        } catch (e) {
+            let model = this._model;
+            let lunban = model.lunban;
+            let shoupai = model.shoupai[lunban];
+            if (!shoupai) return;
+            /* 尝试 _zimo */
+            if (shoupai._zimo && shoupai._zimo !== dapai) {
+                try { this.dapai(shoupai._zimo); return; } catch (e2) {}
+            }
+            /* 尝试 get_dapai 中任意合法牌 */
+            let dapais = this.get_dapai();
+            if (dapais && dapais.length > 0) {
+                for (let dp of dapais) {
+                    if (dp === dapai) continue;
+                    let cleanDp = dp.replace(/[_*]$/, '');
+                    try { this.dapai(cleanDp); return; } catch (e3) {}
+                }
+            }
+            /* 最终兜底：bingpai 已损坏，从手牌字符串重建 shoupai 后重试 */
+            try {
+                let paiStr = shoupai.toString();
+                let newShoupai = Majiang.Shoupai.fromString(paiStr);
+                /* 继承旧 shoupai 的关键状态 */
+                newShoupai._markedTiles = shoupai._markedTiles;
+                model.shoupai[lunban] = newShoupai;
+                /* 用新 shoupai 重试打牌 */
+                try { this.dapai(dapai); return; } catch (e4) {}
+                if (newShoupai._zimo) {
+                    try { this.dapai(newShoupai._zimo); return; } catch (e5) {}
+                }
+            } catch (eRebuild) {}
+        }
     }
 
     reply_gang() {
@@ -2971,7 +3245,7 @@ module.exports = class Game {
         for (let i = 1; i < 4; i++) {
             let l = (lunban + i) % 4;
             let reply = this.get_reply(l);
-            if (reply.hule && this.allow_hule(l)) {
+            if (reply && reply.hule && this.allow_hule(l)) {
                 if (this._rule['最大同時和了数'] == 1  && this._hule.length)
                                                                     continue;
                 this.say('rong', l);
@@ -3025,10 +3299,12 @@ module.exports = class Game {
     get_dapai() {
         let model = this._model;
         let seat = this._ctx.currentSeat();
-        let dp = Game.get_dapai(this._rule, model.shoupai[seat]);
+        let shoupai = model.shoupai[seat];
+        if (!shoupai) return [];
+        let dp = Game.get_dapai(this._rule, shoupai);
         /* 涩谷尧深手切限制：过滤本巡摸入牌 */
         if (this._skillHandDiscard && this._skillHandDiscard.seat === seat) {
-            let zimoTile = model.shoupai[seat]._zimo;
+            let zimoTile = shoupai._zimo;
             dp = dp.filter(p => p !== zimoTile && p !== zimoTile + '_');
         }
         return dp;
@@ -3039,9 +3315,10 @@ module.exports = class Game {
         let d = '_+=-'[(4 + this._ctx.currentSeat() - l) % 4];
         let result = Game.get_chi_mianzi(this._rule, model.shoupai[l],
                                           this._dapai + d, model.shan.paishu) || [];
-        if (result.length > 0 || !this._skillManager) return result;
 
-        /* 正常无吃牌面，尝试技能扩展 */
+        if (!this._skillManager) return result;
+
+        /* 技能扩展器：即使正常有结果也检查（如姊带丰音可选前面牌河的牌） */
         let expanders = this._skillManager.getChiExpanders(l, {
             shoupai: model.shoupai[l], game: this, player: l,
             dapai: this._dapai,
@@ -3049,15 +3326,18 @@ module.exports = class Game {
         });
         for (let exp of expanders) {
             for (let c of exp.candidates) {
+                if (c === this._dapai.replace(/\*$/, '')) continue;
                 let testResult = Game.get_chi_mianzi(this._rule, model.shoupai[l],
                                                      c + '-', model.shan.paishu);
                 if (testResult.length > 0) {
                     this._chiExpanderUsed = { skillId: exp.skillId, seat: l, candidate: c };
-                    return testResult;
+                    for (let m of testResult) {
+                        if (!result.includes(m)) result.push(m);
+                    }
                 }
             }
         }
-        return [];
+        return result;
     }
 
     get_peng_mianzi(l) {
@@ -3065,24 +3345,28 @@ module.exports = class Game {
         let d = '_+=-'[(4 + this._ctx.currentSeat() - l) % 4];
         let result = Game.get_peng_mianzi(this._rule, model.shoupai[l],
                                           this._dapai + d, model.shan.paishu) || [];
-        if (result.length > 0 || !this._skillManager) return result;
 
-        /* 正常无碰牌面，尝试技能扩展 */
+        if (!this._skillManager) return result;
+
+        /* 技能扩展器：即使正常有结果也检查 */
         let expanders = this._skillManager.getPonExpanders(l, {
             shoupai: model.shoupai[l], game: this, player: l,
             dapai: this._dapai,
         });
         for (let exp of expanders) {
             for (let c of exp.candidates) {
+                if (c === this._dapai.replace(/\*$/, '')) continue;
                 let testResult = Game.get_peng_mianzi(this._rule, model.shoupai[l],
                                                       c + d, model.shan.paishu);
                 if (testResult.length > 0) {
                     this._ponExpanderUsed = { skillId: exp.skillId, seat: l, candidate: c };
-                    return testResult;
+                    for (let m of testResult) {
+                        if (!result.includes(m)) result.push(m);
+                    }
                 }
             }
         }
-        return [];
+        return result;
     }
 
     get_gang_mianzi(l) {
@@ -3097,25 +3381,29 @@ module.exports = class Game {
             let result = Game.get_gang_mianzi(this._rule, model.shoupai[l],
                                               this._dapai + d, model.shan.paishu,
                                               this._n_gang.reduce((x, y)=> x + y)) || [];
-            if (result.length > 0 || !this._skillManager) return result;
 
-            /* 正常无杠牌面，尝试技能扩展（大明杠场景） */
+            if (!this._skillManager) return result;
+
+            /* 技能扩展器：即使正常有结果也检查 */
             let expanders = this._skillManager.getKanExpanders(l, {
                 shoupai: model.shoupai[l], game: this, player: l,
                 dapai: this._dapai,
             });
             for (let exp of expanders) {
                 for (let c of exp.candidates) {
+                    if (c === this._dapai.replace(/\*$/, '')) continue;
                     let testResult = Game.get_gang_mianzi(this._rule, model.shoupai[l],
                                                           c + d, model.shan.paishu,
                                                           this._n_gang.reduce((x, y)=> x + y));
                     if (testResult.length > 0) {
                         this._kanExpanderUsed = { skillId: exp.skillId, seat: l, candidate: c };
-                        return testResult;
+                        for (let m of testResult) {
+                            if (!result.includes(m)) result.push(m);
+                        }
                     }
                 }
             }
-            return [];
+            return result;
         }
     }
 
@@ -3175,6 +3463,10 @@ module.exports = class Game {
         if (l == null) {
             let seat = this._ctx.currentSeat();
             let shoupai = model.shoupai[seat];
+            if (!shoupai) {
+                console.log('[expander-debug] allow_hule(null): shoupai is null for seat=' + seat);
+                return false;
+            }
             console.log('[expander-debug] allow_hule(null) entry: seat=' + seat
                 + ' hand=' + shoupai.toString()
                 + ' hasSkillManager=' + !!this._skillManager
@@ -3520,15 +3812,16 @@ module.exports = class Game {
     static allow_hule(rule, shoupai, p, zhuangfeng, menfeng, hupai, neng_rong) {
 
         let shoupaiStr = shoupai.toString();
+        let dbg = Game._debugHule;
 
         if (p && ! neng_rong) {
-            console.log('[debug] Game.allow_hule: FAIL (neng_rong=false) hand=' + shoupaiStr + ' p=' + p);
+            dbg && console.log('[debug] Game.allow_hule: FAIL (neng_rong=false) hand=' + shoupaiStr + ' p=' + p);
             return false;
         }
 
         /* 舍弃隐藏牌和非法牌（如 _-）时不能和牌 */
         if (p && !Majiang.Shoupai.valid_pai(p)) {
-            console.log('[debug] Game.allow_hule: FAIL (invalid pai) hand=' + shoupaiStr + ' p=' + p);
+            dbg && console.log('[debug] Game.allow_hule: FAIL (invalid pai) hand=' + shoupaiStr + ' p=' + p);
             return false;
         }
 
@@ -3539,7 +3832,7 @@ module.exports = class Game {
         }
         let xt = Majiang.Util.xiangting(new_shoupai);
         if (xt != -1) {
-            console.log('[debug] Game.allow_hule: FAIL (xiangting=' + xt + ') hand=' + shoupaiStr + ' p=' + p + ' hupai=' + hupai);
+            dbg && console.log('[debug] Game.allow_hule: FAIL (xiangting=' + xt + ') hand=' + shoupaiStr + ' p=' + p + ' hupai=' + hupai);
             return false;
         }
 
@@ -3567,13 +3860,13 @@ module.exports = class Game {
         }
         for (let key of Object.keys(tileCount)) {
             if (tileCount[key] > 4) {
-                console.log('[debug] Game.allow_hule: FAIL (tileCount>4) ' + key + '=' + tileCount[key] + ' hand=' + shoupaiStr + ' p=' + p);
+                dbg && console.log('[debug] Game.allow_hule: FAIL (tileCount>4) ' + key + '=' + tileCount[key] + ' hand=' + shoupaiStr + ' p=' + p);
                 return false;
             }
         }
 
         if (hupai) {
-            console.log('[debug] Game.allow_hule: OK (hupai=true) hand=' + shoupaiStr + ' p=' + p);
+            dbg && console.log('[debug] Game.allow_hule: OK (hupai=true) hand=' + shoupaiStr + ' p=' + p);
             return true;
         }
 
@@ -3587,7 +3880,7 @@ module.exports = class Game {
         };
         let hule = Majiang.Util.hule(shoupai, p, param);
 
-        console.log('[debug] Game.allow_hule: hule check hand=' + shoupaiStr + ' p=' + p + ' hule.hupai=' + JSON.stringify(hule.hupai));
+        dbg && console.log('[debug] Game.allow_hule: hule check hand=' + shoupaiStr + ' p=' + p + ' hule.hupai=' + JSON.stringify(hule.hupai));
         return hule.hupai != null;
     }
 

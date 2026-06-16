@@ -1,1008 +1,853 @@
+ 
+ 
+ ObjectMultiplex - orphaned data for stream "app-init-liveness"
+ ObjectMultiplex - orphaned data for stream "app-init-liveness"
+ ObjectMultiplex - orphaned data for stream "background-liveness"
+ ObjectMultiplex - orphaned data for stream "background-liveness"
+ ObjectMultiplex - malformed chunk without name "[object Object]"
+ ObjectMultiplex - malformed chunk without name "[object Object]"
+ [game] set view called, view: true view._view: true view._view.shoupai: true
+ [tile-ops] setGame called, g: true
+ [expander-debug] Game.skillManager setter: value=true enabled=true
+ [tile-ops] setGame called, g: true
+ [debug] callback called: reply= undefined
+ [wall] zimo: tile=s2 paishu=121 cursor=16/68 haitei=9 dw=7 half=true wall[(_,m4)[p5,p4][p3,z5][m3,p7][p5,s7][p6,p5][z3,s9][s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m4 paishu=120 cursor=17/68 haitei=9 dw=7 half=false wall[(p5,p4)[p3,z5][m3,p7][p5,s7][p6,p5][z3,s9][s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p5 paishu=119 cursor=17/68 haitei=9 dw=7 half=true wall[(_,p4)[p3,z5][m3,p7][p5,s7][p6,p5][z3,s9][s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p4 paishu=118 cursor=18/68 haitei=9 dw=7 half=false wall[(p3,z5)[m3,p7][p5,s7][p6,p5][z3,s9][s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p3 paishu=117 cursor=18/68 haitei=9 dw=7 half=true wall[(_,z5)[m3,p7][p5,s7][p6,p5][z3,s9][s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z5 paishu=116 cursor=19/68 haitei=9 dw=7 half=false wall[(m3,p7)[p5,s7][p6,p5][z3,s9][s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m3 paishu=115 cursor=19/68 haitei=9 dw=7 half=true wall[(_,p7)[p5,s7][p6,p5][z3,s9][s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p7 paishu=114 cursor=20/68 haitei=9 dw=7 half=false wall[(p5,s7)[p6,p5][z3,s9][s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p5 paishu=113 cursor=20/68 haitei=9 dw=7 half=true wall[(_,s7)[p6,p5][z3,s9][s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=s7 paishu=112 cursor=21/68 haitei=9 dw=7 half=false wall[(p6,p5)[z3,s9][s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p6 paishu=111 cursor=21/68 haitei=9 dw=7 half=true wall[(_,p5)[z3,s9][s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p5 paishu=110 cursor=22/68 haitei=9 dw=7 half=false wall[(z3,s9)[s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z3 paishu=109 cursor=22/68 haitei=9 dw=7 half=true wall[(_,s9)[s3,s1][m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=s9 paishu=108 cursor=23/68 haitei=9 dw=7 half=false wall[(s3,s1)[m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=s3 paishu=107 cursor=23/68 haitei=9 dw=7 half=true wall[(_,s1)[m3,m2][p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=s1 paishu=106 cursor=24/68 haitei=9 dw=7 half=false wall[(m3,m2)[p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m3 paishu=105 cursor=24/68 haitei=9 dw=7 half=true wall[(_,m2)[p1,z5][m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m2 paishu=104 cursor=25/68 haitei=9 dw=7 half=false wall[(p1,z5)[m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p1 paishu=103 cursor=25/68 haitei=9 dw=7 half=true wall[(_,z5)[m6,p1][m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z5 paishu=102 cursor=26/68 haitei=9 dw=7 half=false wall[(m6,p1)[m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m6 paishu=101 cursor=26/68 haitei=9 dw=7 half=true wall[(_,p1)[m5,z2][s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p1 paishu=100 cursor=27/68 haitei=9 dw=7 half=false wall[(m5,z2)[s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m5 paishu=99 cursor=27/68 haitei=9 dw=7 half=true wall[(_,z2)[s6,p6][p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z2 paishu=98 cursor=28/68 haitei=9 dw=7 half=false wall[(s6,p6)[p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=s6 paishu=97 cursor=28/68 haitei=9 dw=7 half=true wall[(_,p6)[p7,m8][p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p6 paishu=96 cursor=29/68 haitei=9 dw=7 half=false wall[(p7,m8)[p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p7 paishu=95 cursor=29/68 haitei=9 dw=7 half=true wall[(_,m8)[p4,z4][s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m8 paishu=94 cursor=30/68 haitei=9 dw=7 half=false wall[(p4,z4)[s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p4 paishu=93 cursor=30/68 haitei=9 dw=7 half=true wall[(_,z4)[s9,m5][z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z4 paishu=92 cursor=31/68 haitei=9 dw=7 half=false wall[(s9,m5)[z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=s9 paishu=91 cursor=31/68 haitei=9 dw=7 half=true wall[(_,m5)[z4,m8][s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m5 paishu=90 cursor=32/68 haitei=9 dw=7 half=false wall[(z4,m8)[s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z4 paishu=89 cursor=32/68 haitei=9 dw=7 half=true wall[(_,m8)[s5,m7][z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m8 paishu=88 cursor=33/68 haitei=9 dw=7 half=false wall[(s5,m7)[z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=s5 paishu=87 cursor=33/68 haitei=9 dw=7 half=true wall[(_,m7)[z7,m6][z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m7 paishu=86 cursor=34/68 haitei=9 dw=7 half=false wall[(z7,m6)[z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z7 paishu=85 cursor=34/68 haitei=9 dw=7 half=true wall[(_,m6)[z1,m2][m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m6 paishu=84 cursor=35/68 haitei=9 dw=7 half=false wall[(z1,m2)[m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z1 paishu=83 cursor=35/68 haitei=9 dw=7 half=true wall[(_,m2)[m6,p9][s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m2 paishu=82 cursor=36/68 haitei=9 dw=7 half=false wall[(m6,p9)[s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=m6 paishu=81 cursor=36/68 haitei=9 dw=7 half=true wall[(_,p9)[s9,s6][z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p9 paishu=80 cursor=37/68 haitei=9 dw=7 half=false wall[(s9,s6)[z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=s9 paishu=79 cursor=37/68 haitei=9 dw=7 half=true wall[(_,s6)[z6,z1][z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=s6 paishu=78 cursor=38/68 haitei=9 dw=7 half=false wall[(z6,z1)[z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z6 paishu=77 cursor=38/68 haitei=9 dw=7 half=true wall[(_,z1)[z7,p6][p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z1 paishu=76 cursor=39/68 haitei=9 dw=7 half=false wall[(z7,p6)[p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z7 paishu=75 cursor=39/68 haitei=9 dw=7 half=true wall[(_,p6)[p8,z7][s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p6 paishu=74 cursor=40/68 haitei=9 dw=7 half=false wall[(p8,z7)[s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p8 paishu=73 cursor=40/68 haitei=9 dw=7 half=true wall[(_,z7)[s3,p3][m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=z7 paishu=72 cursor=41/68 haitei=9 dw=7 half=false wall[(s3,p3)[m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=s3 paishu=71 cursor=41/68 haitei=9 dw=7 half=true wall[(_,p3)[m7,s7][m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [wall] zimo: tile=p3 paishu=70 cursor=42/68 haitei=9 dw=7 half=false wall[(m7,s7)[m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [debug] callback called: reply= undefined
  This page uses Chrome's Built-In AI features (LanguageDetector)! We're always improving our models; please submit your feedback here: https://issues.chromium.org/issues/new?component=1583316
-resources/%E5%A4%B4%E5%83%8F/Test_Character.png:1  Failed to load resource: the server responded with a status of 404 (Not Found)
-resources/%E5%A4%B4%E5%83%8F/Test_Character.png:1  Failed to load resource: the server responded with a status of 404 (Not Found)
-resources/%E5%A4%B4%E5%83%8F/Test_Character.png:1  Failed to load resource: the server responded with a status of 404 (Not Found)
-resources/%E5%A4%B4%E5%83%8F/Test_Character.png:1  Failed to load resource: the server responded with a status of 404 (Not Found)
-resources/%E5%A4%B4%E5%83%8F/Test_Character.png:1  Failed to load resource: the server responded with a status of 404 (Not Found)
-resources/%E5%A4%B4%E5%83%8F/Test_Character.png:1  Failed to load resource: the server responded with a status of 404 (Not Found)
-resources/%E5%A4%B4%E5%83%8F/Test_Character.png:1  Failed to load resource: the server responded with a status of 404 (Not Found)
- [expander-debug] zimo expanders count=0 seat=1 hand=m1179p4589s1z1225p5
+:4615/resources/%E5%A4%B4%E5%83%8F/Test_Character.png:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+ [技能] 座位2(西家): 新子憧 (Atarashi_Ako)
+  [可选] 你副露舍牌前,可以用一张手牌交换牌河中花色或点数相同的一张牌;
+  [被动] 你和牌时,若有角色未完成第1/2排的牌河,向每人额外收取2000/1000点.
+:4615/resources/%E5%A4%B4%E5%83%8F/Test_Character.png:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+ [技能] 座位3(北家): 三寻木咏 (Mihirogi_Uta)
+  [被动] 你和牌具有1番役，番数小于6时无法和牌；
+  [被动] 你首巡舍牌前，可以摸3张牌作为备牌，和牌时，备牌包含以下牌型时，你追加番种（部分可复计）：宝牌（每张1番，全赤则视为役满），对子/顺子/刻子（2/3/4番）；
+  [被动] 你的巡目舍牌前，可以任意交换手牌与备牌
+:4615/resources/%E5%A4%B4%E5%83%8F/Test_Character.png:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+ [技能] 座位0(东家): 福路美穗子 (Fukuji_Mihoko)
+  [被动] 你第一次舍牌/完成第一/二排牌河时,可分别令一名其他玩家展示当前手牌并持续整局;
+  [被动] 你舍牌前,若有两名玩家最后一张明置牌相同,你可以暗切.
+:4615/resources/%E5%A4%B4%E5%83%8F/Test_Character.png:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+ [技能] 座位1(南家): 荒川憩 (Arakawa_Kei)
+  [被动] 你的巡目摸牌后,你可以扣置或还原一张手牌,首巡可额外扣置2张手牌,扣置的牌你可随时查看,不能舍出或参与副露,不会被技能明置;
+  [被动] 你和牌或流听时,每人需支付你200*X点,X=你扣置的手牌数+你听牌型的残枚数;
+  [被动] 别家和牌时,你扣置的手牌中每有一枚待牌,对应的和牌玩家需支付你1500点.
+ [CHAR-MAP] 单机-角色选择完成
+ ════════════════════════════════════════════════════════════
+ 基础参数: qijia=2 jushu=0 viewpoint=0
+ seatToPlIdx: [2,3,0,1]
+ 【 _activeCharacters 】直读（按 seat 索引）:
+ seat | 风位 | charId        | 角色名   | plIdx | 玩家    | 技能
+ ─────┼────┼───────────────┼───────┼───────┼───────┼───
+ 0    | 東家 | Fukuji_Mihoko | 福路美穗子 | 2     | AI-2  | 2 
+ 1    | 南家 | Arakawa_Kei   | 荒川憩   | 3     | AI-3  | 3 
+ 2    | 西家 | Atarashi_Ako  | 新子憧   | 0     | Human | 2 
+ 3    | 北家 | Mihirogi_Uta  | 三寻木咏  | 1     | AI-1  | 3 
+ 【 getAllCharacters() 】:
+ seat | 风位 | id            | name 
+ ─────┼────┼───────────────┼──────
+ 0    | 東  | Fukuji_Mihoko | 福路美穗子
+ 1    | 南  | Arakawa_Kei   | 荒川憩  
+ 2    | 西  | Atarashi_Ako  | 新子憧  
+ 3    | 北  | Mihirogi_Uta  | 三寻木咏 
+ 【 各方法查询 】:
+ seat | getCharacterId | getCharacter | skills | active
+ ─────┼────────────────┼──────────────┼────────┼───────
+ 0    | Fukuji_Mihoko  | 福路美穗子        | 2      | 2     
+ 1    | Arakawa_Kei    | 荒川憩          | 3      | 3     
+ 2    | Atarashi_Ako   | 新子憧          | 2      | 2     
+ 3    | Mihirogi_Uta   | 三寻木咏         | 3      | 3     
+ 【 humanSeat=2 UI 实际显示 】:
+ 显示    | seat | 风位 | 角色    | plIdx | 玩家   
+ ──────┼──────┼────┼───────┼───────┼──────
+ 自家(下) | 2    | 西  | 新子憧   | 0     | Human
+ 下家(右) | 3    | 北  | 三寻木咏  | 1     | AI-1 
+ 対面(上) | 0    | 東  | 福路美穗子 | 2     | AI-2 
+ 上家(左) | 1    | 南  | 荒川憩   | 3     | AI-3 
+ 【 getPlayerCharacters() 】:
+ player | character | id           
+ ───────┼───────────┼──────────────
+ 0      | 福路美穗子     | Fukuji_Mihoko
+ 1      | 荒川憩       | Arakawa_Kei  
+ 2      | 新子憧       | Atarashi_Ako 
+ 3      | 三寻木咏      | Mihirogi_Uta 
+ ════════════════════════════════════════════════════════════
+ [wall] zimo: tile=m7 paishu=69 cursor=42/68 haitei=9 dw=7 half=true wall[(_,s7)[m3,m5][s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
+ [expander-debug] allow_hule(null) entry: seat=0 hand=m34p3455567s27z35m7 hasSkillManager=true _zimo=m7
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m34p3455567s27z35m7 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=0 hand=m34p3455567s27z35m7
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=61
- [hand] zimo: menfeng=0 p= shoupai=m3455p244s134578 paishu=61
- [local-shan] zimo: p=p5 paishu=61
- [hand] zimo: menfeng=1 p=p5 shoupai=m1179p4589s1z1225p5 paishu=61
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1179p4589s1z1225p5 p=undefined hupai=false
- [debug] Player.allow_hule: hand=m1179p4589s1z1225p5 p=undefined hupai=false neng_rong=true xiangting=3 result=false
- [local-shan] zimo: p= paishu=61
- [hand] zimo: menfeng=2 p= shoupai=p1236s4779z11,m45-6 paishu=61
+ [local-shan] zimo: p=m7 paishu=69
+ [hand] zimo: menfeng=0 p=m7 shoupai=m34p3455567s27z35m7 paishu=69
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m34p3455567s27z35m7 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m34p3455567s27z35m7 p=undefined hupai=false neng_rong=true xiangting=3 result=false
+ [local-shan] zimo: p= paishu=69
+ [hand] zimo: menfeng=1 p= shoupai=m2356p116s1369z25 paishu=69
+ [local-shan] zimo: p= paishu=69
+ [hand] zimo: menfeng=2 p= shoupai=m56788p47s59z1447 paishu=69
  [debug] callback called: reply= undefined
- [local-shan] zimo: p= paishu=61
- [hand] zimo: menfeng=3 p= shoupai=m1p120s23569z3357 paishu=61
- [DEBUG] _doDapai 开始: dp=s1, turnTriggerLog={}
+ [local-shan] zimo: p= paishu=69
+ [hand] zimo: menfeng=3 p= shoupai=m26p3689s369z1677 paishu=69
+ [DEBUG] _doDapai 开始: dp=z3, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m3455p244s134578 p=s1+ hupai=false
- [expander-debug] rong: seat=0 p=s1+ cleanP=s1 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m2356p116s1369z25 p=z3- hupai=false
+ [expander-debug] rong: seat=1 p=z3- cleanP=z3 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11,m45-6 p=s1- hupai=false
- [expander-debug] rong: seat=2 p=s1- cleanP=s1 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m56788p47s59z1447 p=z3= hupai=false
+ [expander-debug] rong: seat=2 p=z3= cleanP=z3 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1p120s23569z3357 p=s1= hupai=false
- [expander-debug] rong: seat=3 p=s1= cleanP=s1 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=5) hand=m26p3689s369z1677 p=z3+ hupai=false
+ [expander-debug] rong: seat=3 p=z3+ cleanP=z3 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=1 p=s1 shoupai=m3455p244s134578 paishu=61
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m3455p244s134578 p=s1+ hupai=false
- [debug] Player.allow_hule: hand=m3455p244s134578 p=s1+ hupai=false neng_rong=true xiangting=2 result=false
- [hand] dapai: menfeng=1 dapai_l=1 p=s1 shoupai=m1179p45589z1225 paishu=61
- [hand] dapai: menfeng=2 dapai_l=1 p=s1 shoupai=p1236s4779z11,m45-6 paishu=61
- [debug] action_dapai: hand=p1236s4779z11,m45-6 opponent_discard=s1- paishu=61
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11,m45-6 p=s1- hupai=false
- [debug] Player.allow_hule: hand=p1236s4779z11,m45-6 p=s1- hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=0 dapai_l=0 p=z3 shoupai=m347p3455567s27z5 paishu=69
+ [hand] dapai: menfeng=1 dapai_l=0 p=z3 shoupai=m2356p116s1369z25 paishu=69
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m2356p116s1369z25 p=z3- hupai=false
+ [debug] Player.allow_hule: hand=m2356p116s1369z25 p=z3- hupai=false neng_rong=true xiangting=4 result=false
+ [hand] dapai: menfeng=2 dapai_l=0 p=z3 shoupai=m56788p47s59z1447 paishu=69
+ [debug] action_dapai: hand=m56788p47s59z1447 opponent_discard=z3= paishu=69
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m56788p47s59z1447 p=z3= hupai=false
+ [debug] Player.allow_hule: hand=m56788p47s59z1447 p=z3= hupai=false neng_rong=true xiangting=4 result=false
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=1 p=s1 shoupai=m1p120s23569z3357 paishu=61
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1p120s23569z3357 p=s1= hupai=false
- [debug] Player.allow_hule: hand=m1p120s23569z3357 p=s1= hupai=false neng_rong=true xiangting=4 result=false
- [wall] zimo: tile=p2 paishu=60 cursor=48/68 haitei=10 dw=7 half=false wall[(z1,m6)[s4,p9][s8,p3][m1,s4][s8,p9][z6,z7][s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=0 p=z3 shoupai=m26p3689s369z1677 paishu=69
+ [debug] Game.allow_hule: FAIL (xiangting=5) hand=m26p3689s369z1677 p=z3+ hupai=false
+ [debug] Player.allow_hule: hand=m26p3689s369z1677 p=z3+ hupai=false neng_rong=true xiangting=5 result=false
+ [wall] zimo: tile=s7 paishu=68 cursor=43/68 haitei=9 dw=7 half=false wall[(m3,m5)[s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=2 hand=p1236s4779z11p2,m45-6 hasSkillManager=true _zimo=p2
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11p2,m45-6 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=2 hand=p1236s4779z11p2,m45-6
+ [expander-debug] allow_hule(null) entry: seat=1 hand=m2356p116s1369z25s7 hasSkillManager=true _zimo=s7
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s1369z25s7 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=1 hand=m2356p116s1369z25s7
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=60
- [hand] zimo: menfeng=0 p= shoupai=m3455p244s134578 paishu=60
- [local-shan] zimo: p= paishu=60
- [hand] zimo: menfeng=1 p= shoupai=m1179p45589z1225 paishu=60
- [local-shan] zimo: p=p2 paishu=60
- [hand] zimo: menfeng=2 p=p2 shoupai=p1236s4779z11p2,m45-6 paishu=60
- [debug] action_zimo: zimo.p=p2 menfeng=2
- [debug] action_zimo: hand=p1236s4779z11p2,m45-6 paishu=60
- [debug] action_zimo: canHule=false gangzimo=false
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11p2,m45-6 p=null hupai=false
- [debug] Player.allow_hule: hand=p1236s4779z11p2,m45-6 p=null hupai=false neng_rong=true xiangting=2 result=false
- [debug] action_zimo: allow_hule result=false lizhi=false neng_rong=true
- [debug] select_dapai: dapai_list= Array(9) _node.dapai.length= 1 _node.dapai[0]= 
- [local-shan] zimo: p= paishu=60
- [hand] zimo: menfeng=3 p= shoupai=m1p120s23569z3357 paishu=60
- [debug] callback called: reply= {"dapai":"p2_"}
- [DEBUG] _doDapai 开始: dp=p2_, turnTriggerLog={}
- [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m3455p244s134578 p=p2_= hupai=false
- [expander-debug] rong: seat=0 p=p2_= cleanP=p2 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1179p45589z1225 p=p2_+ hupai=false
- [expander-debug] rong: seat=1 p=p2_+ cleanP=p2 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=4) hand=m1p120s23569z3357 p=p2_- hupai=false
- [expander-debug] rong: seat=3 p=p2_- cleanP=p2 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=2 p=p2_ shoupai=m3455p244s134578 paishu=60
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m3455p244s134578 p=p2= hupai=false
- [debug] Player.allow_hule: hand=m3455p244s134578 p=p2= hupai=false neng_rong=true xiangting=2 result=false
- [hand] dapai: menfeng=1 dapai_l=2 p=p2_ shoupai=m1179p45589z1225 paishu=60
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1179p45589z1225 p=p2+ hupai=false
- [debug] Player.allow_hule: hand=m1179p45589z1225 p=p2+ hupai=false neng_rong=true xiangting=3 result=false
- [hand] dapai: menfeng=2 dapai_l=2 p=p2_ shoupai=p1236s4779z11,m45-6 paishu=60
+ [local-shan] zimo: p= paishu=68
+ [hand] zimo: menfeng=0 p= shoupai=m347p3455567s27z5 paishu=68
+ [local-shan] zimo: p=s7 paishu=68
+ [hand] zimo: menfeng=1 p=s7 shoupai=m2356p116s1369z25s7 paishu=68
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s1369z25s7 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m2356p116s1369z25s7 p=undefined hupai=false neng_rong=true xiangting=3 result=false
+ [local-shan] zimo: p= paishu=68
+ [hand] zimo: menfeng=2 p= shoupai=m56788p47s59z1447 paishu=68
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=2 p=p2_ shoupai=m1p120s23569z3357 paishu=60
- [debug] Game.allow_hule: FAIL (xiangting=4) hand=m1p120s23569z3357 p=p2- hupai=false
- [debug] Player.allow_hule: hand=m1p120s23569z3357 p=p2- hupai=false neng_rong=true xiangting=4 result=false
- [wall] zimo: tile=z1 paishu=59 cursor=48/68 haitei=10 dw=7 half=true wall[(_,m6)[s4,p9][s8,p3][m1,s4][s8,p9][z6,z7][s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
- [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=3 hand=m1p120s23569z3357z1 hasSkillManager=true _zimo=z1
- [debug] Game.allow_hule: FAIL (xiangting=4) hand=m1p120s23569z3357z1 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=3 hand=m1p120s23569z3357z1
- [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=59
- [hand] zimo: menfeng=0 p= shoupai=m3455p244s134578 paishu=59
- [local-shan] zimo: p= paishu=59
- [hand] zimo: menfeng=1 p= shoupai=m1179p45589z1225 paishu=59
- [local-shan] zimo: p= paishu=59
- [hand] zimo: menfeng=2 p= shoupai=p1236s4779z11,m45-6 paishu=59
- [debug] callback called: reply= undefined
- [local-shan] zimo: p=z1 paishu=59
- [hand] zimo: menfeng=3 p=z1 shoupai=m1p120s23569z3357z1 paishu=59
- [debug] Game.allow_hule: FAIL (xiangting=4) hand=m1p120s23569z3357z1 p=undefined hupai=false
- [debug] Player.allow_hule: hand=m1p120s23569z3357z1 p=undefined hupai=false neng_rong=true xiangting=4 result=false
- [DEBUG] _doDapai 开始: dp=z1_, turnTriggerLog={}
- [技能] 时点「discard_selected」 → 座位3(北家) 可选技能: 每局限(X+1)次,你可以暗切(X为场上立直家的数量).
- [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=true, discardActions=["Haramura_Nodoka_skill_2"], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m3455p244s134578 p=z1_- hupai=false
- [expander-debug] rong: seat=0 p=z1_- cleanP=z1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m1179p45589z1225 p=z1_= hupai=false
- [expander-debug] rong: seat=1 p=z1_= cleanP=z1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1236s4779z11,m45-6 p=z1_+ hupai=false
- [expander-debug] rong: seat=2 p=z1_+ cleanP=z1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=3 p= shoupai=m3455p244s134578 paishu=59
- [hand] dapai: menfeng=1 dapai_l=3 p= shoupai=m1179p45589z1225 paishu=59
- [hand] dapai: menfeng=2 dapai_l=3 p= shoupai=p1236s4779z11,m45-6 paishu=59
- [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=3 p=z1_ shoupai=m1p120s23569z3357 paishu=59
- [wall] zimo: tile=m6 paishu=58 cursor=49/68 haitei=10 dw=7 half=false wall[(s4,p9)[s8,p3][m1,s4][s8,p9][z6,z7][s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
- [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=0 hand=m3455p244s134578m6 hasSkillManager=true _zimo=m6
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m3455p244s134578m6 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=0 hand=m3455p244s134578m6
- [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p=m6 paishu=58
- [hand] zimo: menfeng=0 p=m6 shoupai=m3455p244s134578m6 paishu=58
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m3455p244s134578m6 p=undefined hupai=false
- [debug] Player.allow_hule: hand=m3455p244s134578m6 p=undefined hupai=false neng_rong=true xiangting=1 result=false
- [local-shan] zimo: p= paishu=58
- [hand] zimo: menfeng=1 p= shoupai=m1179p45589z1225 paishu=58
- [local-shan] zimo: p= paishu=58
- [hand] zimo: menfeng=2 p= shoupai=p1236s4779z11,m45-6 paishu=58
- [debug] callback called: reply= undefined
- [local-shan] zimo: p= paishu=58
- [hand] zimo: menfeng=3 p= shoupai=m1p120s23569z3357 paishu=58
- [DEBUG] _doDapai 开始: dp=s1, turnTriggerLog={}
- [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1179p45589z1225 p=s1- hupai=false
- [expander-debug] rong: seat=1 p=s1- cleanP=s1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11,m45-6 p=s1= hupai=false
- [expander-debug] rong: seat=2 p=s1= cleanP=s1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1p120s23569z3357 p=s1+ hupai=false
- [expander-debug] rong: seat=3 p=s1+ cleanP=s1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=0 p=s1 shoupai=m34556p244s34578 paishu=58
- [hand] dapai: menfeng=1 dapai_l=0 p=s1 shoupai=m1179p45589z1225 paishu=58
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1179p45589z1225 p=s1- hupai=false
- [debug] Player.allow_hule: hand=m1179p45589z1225 p=s1- hupai=false neng_rong=true xiangting=3 result=false
- [hand] dapai: menfeng=2 dapai_l=0 p=s1 shoupai=p1236s4779z11,m45-6 paishu=58
- [debug] action_dapai: hand=p1236s4779z11,m45-6 opponent_discard=s1= paishu=58
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11,m45-6 p=s1= hupai=false
- [debug] Player.allow_hule: hand=p1236s4779z11,m45-6 p=s1= hupai=false neng_rong=true xiangting=2 result=false
- [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=0 p=s1 shoupai=m1p120s23569z3357 paishu=58
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1p120s23569z3357 p=s1+ hupai=false
- [debug] Player.allow_hule: hand=m1p120s23569z3357 p=s1+ hupai=false neng_rong=true xiangting=4 result=false
- [wall] zimo: tile=s4 paishu=57 cursor=49/68 haitei=10 dw=7 half=true wall[(_,p9)[s8,p3][m1,s4][s8,p9][z6,z7][s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
- [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=1 hand=m1179p45589z1225s4 hasSkillManager=true _zimo=s4
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1179p45589z1225s4 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=1 hand=m1179p45589z1225s4
- [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=57
- [hand] zimo: menfeng=0 p= shoupai=m34556p244s34578 paishu=57
- [local-shan] zimo: p=s4 paishu=57
- [hand] zimo: menfeng=1 p=s4 shoupai=m1179p45589z1225s4 paishu=57
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1179p45589z1225s4 p=undefined hupai=false
- [debug] Player.allow_hule: hand=m1179p45589z1225s4 p=undefined hupai=false neng_rong=true xiangting=3 result=false
- [local-shan] zimo: p= paishu=57
- [hand] zimo: menfeng=2 p= shoupai=p1236s4779z11,m45-6 paishu=57
- [debug] callback called: reply= undefined
- [local-shan] zimo: p= paishu=57
- [hand] zimo: menfeng=3 p= shoupai=m1p120s23569z3357 paishu=57
+ [local-shan] zimo: p= paishu=68
+ [hand] zimo: menfeng=3 p= shoupai=m26p3689s369z1677 paishu=68
  [DEBUG] _doDapai 开始: dp=z5, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=z5+ hupai=false
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s27z5 p=z5+ hupai=false
  [expander-debug] rong: seat=0 p=z5+ cleanP=z5 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11,m45-6 p=z5- hupai=false
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m56788p47s59z1447 p=z5- hupai=false
  [expander-debug] rong: seat=2 p=z5- cleanP=z5 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1p120s23569z3357 p=z5= hupai=false
+ [debug] Game.allow_hule: FAIL (xiangting=5) hand=m26p3689s369z1677 p=z5= hupai=false
  [expander-debug] rong: seat=3 p=z5= cleanP=z5 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=1 p=z5 shoupai=m34556p244s34578 paishu=57
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=z5+ hupai=false
- [debug] Player.allow_hule: hand=m34556p244s34578 p=z5+ hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=1 p=z5 shoupai=m1179p45589s4z122 paishu=57
- [hand] dapai: menfeng=2 dapai_l=1 p=z5 shoupai=p1236s4779z11,m45-6 paishu=57
- [debug] action_dapai: hand=p1236s4779z11,m45-6 opponent_discard=z5- paishu=57
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11,m45-6 p=z5- hupai=false
- [debug] Player.allow_hule: hand=p1236s4779z11,m45-6 p=z5- hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=0 dapai_l=1 p=z5 shoupai=m347p3455567s27z5 paishu=68
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s27z5 p=z5+ hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s27z5 p=z5+ hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=1 dapai_l=1 p=z5 shoupai=m2356p116s13679z2 paishu=68
+ [hand] dapai: menfeng=2 dapai_l=1 p=z5 shoupai=m56788p47s59z1447 paishu=68
+ [debug] action_dapai: hand=m56788p47s59z1447 opponent_discard=z5- paishu=68
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m56788p47s59z1447 p=z5- hupai=false
+ [debug] Player.allow_hule: hand=m56788p47s59z1447 p=z5- hupai=false neng_rong=true xiangting=4 result=false
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=1 p=z5 shoupai=m1p120s23569z3357 paishu=57
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1p120s23569z3357 p=z5= hupai=false
- [debug] Player.allow_hule: hand=m1p120s23569z3357 p=z5= hupai=false neng_rong=true xiangting=4 result=false
- [wall] zimo: tile=p9 paishu=56 cursor=50/68 haitei=10 dw=7 half=false wall[(s8,p3)[m1,s4][s8,p9][z6,z7][s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=1 p=z5 shoupai=m26p3689s369z1677 paishu=68
+ [debug] Game.allow_hule: FAIL (xiangting=5) hand=m26p3689s369z1677 p=z5= hupai=false
+ [debug] Player.allow_hule: hand=m26p3689s369z1677 p=z5= hupai=false neng_rong=true xiangting=5 result=false
+ [wall] zimo: tile=m3 paishu=67 cursor=43/68 haitei=9 dw=7 half=true wall[(_,m5)[s6,s4][z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=2 hand=p1236s4779z11p9,m45-6 hasSkillManager=true _zimo=p9
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11p9,m45-6 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=2 hand=p1236s4779z11p9,m45-6
+ [expander-debug] allow_hule(null) entry: seat=2 hand=m56788p47s59z1447m3 hasSkillManager=true _zimo=m3
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m56788p47s59z1447m3 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=2 hand=m56788p47s59z1447m3
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=56
- [hand] zimo: menfeng=0 p= shoupai=m34556p244s34578 paishu=56
- [local-shan] zimo: p= paishu=56
- [hand] zimo: menfeng=1 p= shoupai=m1179p45589s4z122 paishu=56
- [local-shan] zimo: p=p9 paishu=56
- [hand] zimo: menfeng=2 p=p9 shoupai=p1236s4779z11p9,m45-6 paishu=56
- [debug] action_zimo: zimo.p=p9 menfeng=2
- [debug] action_zimo: hand=p1236s4779z11p9,m45-6 paishu=56
+ [local-shan] zimo: p= paishu=67
+ [hand] zimo: menfeng=0 p= shoupai=m347p3455567s27z5 paishu=67
+ [local-shan] zimo: p= paishu=67
+ [hand] zimo: menfeng=1 p= shoupai=m2356p116s13679z2 paishu=67
+ [local-shan] zimo: p=m3 paishu=67
+ [hand] zimo: menfeng=2 p=m3 shoupai=m56788p47s59z1447m3 paishu=67
+ [debug] action_zimo: zimo.p=m3 menfeng=2
+ [debug] action_zimo: hand=m56788p47s59z1447m3 paishu=67
  [debug] action_zimo: canHule=false gangzimo=false
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11p9,m45-6 p=null hupai=false
- [debug] Player.allow_hule: hand=p1236s4779z11p9,m45-6 p=null hupai=false neng_rong=true xiangting=2 result=false
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m56788p47s59z1447m3 p=null hupai=false
+ [debug] Player.allow_hule: hand=m56788p47s59z1447m3 p=null hupai=false neng_rong=true xiangting=4 result=false
  [debug] action_zimo: allow_hule result=false lizhi=false neng_rong=true
- [debug] select_dapai: dapai_list= Array(9) _node.dapai.length= 1 _node.dapai[0]= 
- [local-shan] zimo: p= paishu=56
- [hand] zimo: menfeng=3 p= shoupai=m1p120s23569z3357 paishu=56
- [debug] callback called: reply= {"dapai":"p9_"}
- [DEBUG] _doDapai 开始: dp=p9_, turnTriggerLog={}
+ [debug] select_dapai: dapai_list= Array(12) _node.dapai.length= 1 _node.dapai[0]= 
+ [local-shan] zimo: p= paishu=67
+ [hand] zimo: menfeng=3 p= shoupai=m26p3689s369z1677 paishu=67
+ [debug] callback called: reply= {"dapai":"s9"}
+ [DEBUG] _doDapai 开始: dp=s9, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=p9_= hupai=false
- [expander-debug] rong: seat=0 p=p9_= cleanP=p9 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s27z5 p=s9= hupai=false
+ [expander-debug] rong: seat=0 p=s9= cleanP=s9 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m1179p45589s4z122 p=p9_+ hupai=false
- [expander-debug] rong: seat=1 p=p9_+ cleanP=p9 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s13679z2 p=s9+ hupai=false
+ [expander-debug] rong: seat=1 p=s9+ cleanP=s9 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=4) hand=m1p120s23569z3357 p=p9_- hupai=false
- [expander-debug] rong: seat=3 p=p9_- cleanP=p9 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m26p3689s369z1677 p=s9- hupai=false
+ [expander-debug] rong: seat=3 p=s9- cleanP=s9 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=2 p=p9_ shoupai=m34556p244s34578 paishu=56
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=p9= hupai=false
- [debug] Player.allow_hule: hand=m34556p244s34578 p=p9= hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=2 p=p9_ shoupai=m1179p45589s4z122 paishu=56
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m1179p45589s4z122 p=p9+ hupai=false
- [debug] Player.allow_hule: hand=m1179p45589s4z122 p=p9+ hupai=false neng_rong=true xiangting=3 result=false
- [hand] dapai: menfeng=2 dapai_l=2 p=p9_ shoupai=p1236s4779z11,m45-6 paishu=56
+ [hand] dapai: menfeng=0 dapai_l=2 p=s9 shoupai=m347p3455567s27z5 paishu=67
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s27z5 p=s9= hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s27z5 p=s9= hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=1 dapai_l=2 p=s9 shoupai=m2356p116s13679z2 paishu=67
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s13679z2 p=s9+ hupai=false
+ [debug] Player.allow_hule: hand=m2356p116s13679z2 p=s9+ hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=2 dapai_l=2 p=s9 shoupai=m356788p47s5z1447 paishu=67
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=2 p=p9_ shoupai=m1p120s23569z3357 paishu=56
- [debug] Game.allow_hule: FAIL (xiangting=4) hand=m1p120s23569z3357 p=p9- hupai=false
- [debug] Player.allow_hule: hand=m1p120s23569z3357 p=p9- hupai=false neng_rong=true xiangting=4 result=false
- [wall] zimo: tile=s8 paishu=55 cursor=50/68 haitei=10 dw=7 half=true wall[(_,p3)[m1,s4][s8,p9][z6,z7][s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=2 p=s9 shoupai=m26p3689s369z1677 paishu=67
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m26p3689s369z1677 p=s9- hupai=false
+ [debug] Player.allow_hule: hand=m26p3689s369z1677 p=s9- hupai=false neng_rong=true xiangting=5 result=false
+ [wall] zimo: tile=m5 paishu=66 cursor=44/68 haitei=9 dw=7 half=false wall[(s6,s4)[z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=3 hand=m1p120s23569z3357s8 hasSkillManager=true _zimo=s8
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1p120s23569z3357s8 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=3 hand=m1p120s23569z3357s8
+ [expander-debug] allow_hule(null) entry: seat=3 hand=m26p3689s369z1677m5 hasSkillManager=true _zimo=m5
+ [debug] Game.allow_hule: FAIL (xiangting=5) hand=m26p3689s369z1677m5 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=3 hand=m26p3689s369z1677m5
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=55
- [hand] zimo: menfeng=0 p= shoupai=m34556p244s34578 paishu=55
- [local-shan] zimo: p= paishu=55
- [hand] zimo: menfeng=1 p= shoupai=m1179p45589s4z122 paishu=55
- [local-shan] zimo: p= paishu=55
- [hand] zimo: menfeng=2 p= shoupai=p1236s4779z11,m45-6 paishu=55
+ [local-shan] zimo: p= paishu=66
+ [hand] zimo: menfeng=0 p= shoupai=m347p3455567s27z5 paishu=66
+ [local-shan] zimo: p= paishu=66
+ [hand] zimo: menfeng=1 p= shoupai=m2356p116s13679z2 paishu=66
+ [local-shan] zimo: p= paishu=66
+ [hand] zimo: menfeng=2 p= shoupai=m356788p47s5z1447 paishu=66
  [debug] callback called: reply= undefined
- [local-shan] zimo: p=s8 paishu=55
- [hand] zimo: menfeng=3 p=s8 shoupai=m1p120s23569z3357s8 paishu=55
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1p120s23569z3357s8 p=undefined hupai=false
- [debug] Player.allow_hule: hand=m1p120s23569z3357s8 p=undefined hupai=false neng_rong=true xiangting=3 result=false
- [DEBUG] _doDapai 开始: dp=m1, turnTriggerLog={}
+ [local-shan] zimo: p=m5 paishu=66
+ [hand] zimo: menfeng=3 p=m5 shoupai=m26p3689s369z1677m5 paishu=66
+ [debug] Game.allow_hule: FAIL (xiangting=5) hand=m26p3689s369z1677m5 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m26p3689s369z1677m5 p=undefined hupai=false neng_rong=true xiangting=5 result=false
+ [DEBUG] _doDapai 开始: dp=z6, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=m1- hupai=false
- [expander-debug] rong: seat=0 p=m1- cleanP=m1 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m347p3455567s27z5 p=z6- hupai=false
+ [expander-debug] rong: seat=0 p=z6- cleanP=z6 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m1179p45589s4z122 p=m1= hupai=false
- [expander-debug] rong: seat=1 p=m1= cleanP=m1 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s13679z2 p=z6= hupai=false
+ [expander-debug] rong: seat=1 p=z6= cleanP=z6 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11,m45-6 p=m1+ hupai=false
- [expander-debug] rong: seat=2 p=m1+ cleanP=m1 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p47s5z1447 p=z6+ hupai=false
+ [expander-debug] rong: seat=2 p=z6+ cleanP=z6 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=3 p=m1 shoupai=m34556p244s34578 paishu=55
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=m1- hupai=false
- [debug] Player.allow_hule: hand=m34556p244s34578 p=m1- hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=3 p=m1 shoupai=m1179p45589s4z122 paishu=55
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m1179p45589s4z122 p=m1= hupai=false
- [debug] Player.allow_hule: hand=m1179p45589s4z122 p=m1= hupai=false neng_rong=true xiangting=3 result=false
- [hand] dapai: menfeng=2 dapai_l=3 p=m1 shoupai=p1236s4779z11,m45-6 paishu=55
- [debug] action_dapai: hand=p1236s4779z11,m45-6 opponent_discard=m1+ paishu=55
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1236s4779z11,m45-6 p=m1+ hupai=false
- [debug] Player.allow_hule: hand=p1236s4779z11,m45-6 p=m1+ hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=0 dapai_l=3 p=z6 shoupai=m347p3455567s27z5 paishu=66
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m347p3455567s27z5 p=z6- hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s27z5 p=z6- hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=1 dapai_l=3 p=z6 shoupai=m2356p116s13679z2 paishu=66
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s13679z2 p=z6= hupai=false
+ [debug] Player.allow_hule: hand=m2356p116s13679z2 p=z6= hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=2 dapai_l=3 p=z6 shoupai=m356788p47s5z1447 paishu=66
+ [debug] action_dapai: hand=m356788p47s5z1447 opponent_discard=z6+ paishu=66
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p47s5z1447 p=z6+ hupai=false
+ [debug] Player.allow_hule: hand=m356788p47s5z1447 p=z6+ hupai=false neng_rong=true xiangting=4 result=false
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=3 p=m1 shoupai=p120s235689z3357 paishu=55
- [hand] fulou: menfeng=0 fulou_l=1 m=m111= shoupai=m34556p244s34578 paishu=55
- [hand] fulou: menfeng=1 fulou_l=1 m=m111= shoupai=m79p45589s4z122,m111=, paishu=55
- [hand] fulou: menfeng=2 fulou_l=1 m=m111= shoupai=p1236s4779z11,m45-6 paishu=55
- [debug] callback called: reply= undefined
- [hand] fulou: menfeng=3 fulou_l=1 m=m111= shoupai=p120s235689z3357 paishu=55
- [DEBUG] dapai() DISCARD_SELECTED: discActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=z1+ hupai=false
- [expander-debug] rong: seat=0 p=z1+ cleanP=z1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1236s4779z11,m45-6 p=z1- hupai=false
- [expander-debug] rong: seat=2 p=z1- cleanP=z1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=p120s235689z3357 p=z1= hupai=false
- [expander-debug] rong: seat=3 p=z1= cleanP=z1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=1 p=z1 shoupai=m34556p244s34578 paishu=55
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=z1+ hupai=false
- [debug] Player.allow_hule: hand=m34556p244s34578 p=z1+ hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=1 p=z1 shoupai=m79p45589s4z22,m111= paishu=55
- [hand] dapai: menfeng=2 dapai_l=1 p=z1 shoupai=p1236s4779z11,m45-6 paishu=55
- [debug] action_dapai: hand=p1236s4779z11,m45-6 opponent_discard=z1- paishu=55
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1236s4779z11,m45-6 p=z1- hupai=false
- [debug] Player.allow_hule: hand=p1236s4779z11,m45-6 p=z1- hupai=false neng_rong=true xiangting=2 result=false
- [hand] dapai: menfeng=3 dapai_l=1 p=z1 shoupai=p120s235689z3357 paishu=55
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=p120s235689z3357 p=z1= hupai=false
- [debug] Player.allow_hule: hand=p120s235689z3357 p=z1= hupai=false neng_rong=true xiangting=3 result=false
- [debug] callback called: reply= {"fulou":"z111-"}
- [hand] fulou: menfeng=0 fulou_l=2 m=z111- shoupai=m34556p244s34578 paishu=55
- [hand] fulou: menfeng=1 fulou_l=2 m=z111- shoupai=m79p45589s4z22,m111= paishu=55
- [hand] fulou: menfeng=2 fulou_l=2 m=z111- shoupai=p1236s4779,m45-6,z111-, paishu=55
- [debug] select_dapai: dapai_list= Array(7) _node.dapai.length= 1 _node.dapai[0]= 
- [hand] fulou: menfeng=3 fulou_l=2 m=z111- shoupai=p120s235689z3357 paishu=55
- [debug] callback called: reply= {"dapai":"p6"}
- [DEBUG] dapai() DISCARD_SELECTED: discActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=p6= hupai=false
- [expander-debug] rong: seat=0 p=p6= cleanP=p6 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p45589s4z22,m111= p=p6+ hupai=false
- [expander-debug] rong: seat=1 p=p6+ cleanP=p6 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=p120s235689z3357 p=p6- hupai=false
- [expander-debug] rong: seat=3 p=p6- cleanP=p6 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=2 p=p6 shoupai=m34556p244s34578 paishu=55
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=p6= hupai=false
- [debug] Player.allow_hule: hand=m34556p244s34578 p=p6= hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=2 p=p6 shoupai=m79p45589s4z22,m111= paishu=55
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p45589s4z22,m111= p=p6+ hupai=false
- [debug] Player.allow_hule: hand=m79p45589s4z22,m111= p=p6+ hupai=false neng_rong=true xiangting=2 result=false
- [hand] dapai: menfeng=2 dapai_l=2 p=p6 shoupai=p123s4779,m45-6,z111- paishu=55
- [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=2 p=p6 shoupai=p120s235689z3357 paishu=55
- [debug] Game.allow_hule: FAIL (xiangting=3) hand=p120s235689z3357 p=p6- hupai=false
- [debug] Player.allow_hule: hand=p120s235689z3357 p=p6- hupai=false neng_rong=true xiangting=3 result=false
- [wall] zimo: tile=p3 paishu=54 cursor=51/68 haitei=10 dw=7 half=false wall[(m1,s4)[s8,p9][z6,z7][s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=3 p=z6 shoupai=m256p3689s369z177 paishu=66
+ [wall] zimo: tile=s6 paishu=65 cursor=44/68 haitei=9 dw=7 half=true wall[(_,s4)[z3,z2][p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=3 hand=p120s235689z3357p3 hasSkillManager=true _zimo=p3
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p120s235689z3357p3 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=3 hand=p120s235689z3357p3
+ [expander-debug] allow_hule(null) entry: seat=0 hand=m347p3455567s27z5s6 hasSkillManager=true _zimo=s6
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s27z5s6 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=0 hand=m347p3455567s27z5s6
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=54
- [hand] zimo: menfeng=0 p= shoupai=m34556p244s34578 paishu=54
- [local-shan] zimo: p= paishu=54
- [hand] zimo: menfeng=1 p= shoupai=m79p45589s4z22,m111= paishu=54
- [local-shan] zimo: p= paishu=54
- [hand] zimo: menfeng=2 p= shoupai=p123s4779,m45-6,z111- paishu=54
+ [local-shan] zimo: p=s6 paishu=65
+ [hand] zimo: menfeng=0 p=s6 shoupai=m347p3455567s27z5s6 paishu=65
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s27z5s6 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s27z5s6 p=undefined hupai=false neng_rong=true xiangting=2 result=false
+ [local-shan] zimo: p= paishu=65
+ [hand] zimo: menfeng=1 p= shoupai=m2356p116s13679z2 paishu=65
+ [local-shan] zimo: p= paishu=65
+ [hand] zimo: menfeng=2 p= shoupai=m356788p47s5z1447 paishu=65
  [debug] callback called: reply= undefined
- [local-shan] zimo: p=p3 paishu=54
- [hand] zimo: menfeng=3 p=p3 shoupai=p120s235689z3357p3 paishu=54
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p120s235689z3357p3 p=undefined hupai=false
- [debug] Player.allow_hule: hand=p120s235689z3357p3 p=undefined hupai=false neng_rong=true xiangting=2 result=false
+ [local-shan] zimo: p= paishu=65
+ [hand] zimo: menfeng=3 p= shoupai=m256p3689s369z177 paishu=65
  [DEBUG] _doDapai 开始: dp=z5, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=z5- hupai=false
- [expander-debug] rong: seat=0 p=z5- cleanP=z5 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s13679z2 p=z5- hupai=false
+ [expander-debug] rong: seat=1 p=z5- cleanP=z5 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m79p45589s4z22,m111= p=z5= hupai=false
- [expander-debug] rong: seat=1 p=z5= cleanP=z5 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p47s5z1447 p=z5= hupai=false
+ [expander-debug] rong: seat=2 p=z5= cleanP=z5 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p123s4779,m45-6,z111- p=z5+ hupai=false
- [expander-debug] rong: seat=2 p=z5+ cleanP=z5 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=5) hand=m256p3689s369z177 p=z5+ hupai=false
+ [expander-debug] rong: seat=3 p=z5+ cleanP=z5 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=3 p=z5 shoupai=m34556p244s34578 paishu=54
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578 p=z5- hupai=false
- [debug] Player.allow_hule: hand=m34556p244s34578 p=z5- hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=3 p=z5 shoupai=m79p45589s4z22,m111= paishu=54
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m79p45589s4z22,m111= p=z5= hupai=false
- [debug] Player.allow_hule: hand=m79p45589s4z22,m111= p=z5= hupai=false neng_rong=true xiangting=2 result=false
- [hand] dapai: menfeng=2 dapai_l=3 p=z5 shoupai=p123s4779,m45-6,z111- paishu=54
- [debug] action_dapai: hand=p123s4779,m45-6,z111- opponent_discard=z5+ paishu=54
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p123s4779,m45-6,z111- p=z5+ hupai=false
- [debug] Player.allow_hule: hand=p123s4779,m45-6,z111- p=z5+ hupai=false neng_rong=true xiangting=1 result=false
+ [hand] dapai: menfeng=0 dapai_l=0 p=z5 shoupai=m347p3455567s267 paishu=65
+ [hand] dapai: menfeng=1 dapai_l=0 p=z5 shoupai=m2356p116s13679z2 paishu=65
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s13679z2 p=z5- hupai=false
+ [debug] Player.allow_hule: hand=m2356p116s13679z2 p=z5- hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=2 dapai_l=0 p=z5 shoupai=m356788p47s5z1447 paishu=65
+ [debug] action_dapai: hand=m356788p47s5z1447 opponent_discard=z5= paishu=65
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p47s5z1447 p=z5= hupai=false
+ [debug] Player.allow_hule: hand=m356788p47s5z1447 p=z5= hupai=false neng_rong=true xiangting=4 result=false
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=3 p=z5 shoupai=p1230s235689z337 paishu=54
- [wall] zimo: tile=m1 paishu=53 cursor=51/68 haitei=10 dw=7 half=true wall[(_,s4)[s8,p9][z6,z7][s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=0 p=z5 shoupai=m256p3689s369z177 paishu=65
+ [debug] Game.allow_hule: FAIL (xiangting=5) hand=m256p3689s369z177 p=z5+ hupai=false
+ [debug] Player.allow_hule: hand=m256p3689s369z177 p=z5+ hupai=false neng_rong=true xiangting=5 result=false
+ [wall] zimo: tile=s4 paishu=64 cursor=45/68 haitei=9 dw=7 half=false wall[(z3,z2)[p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=0 hand=m34556p244s34578m1 hasSkillManager=true _zimo=m1
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578m1 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=0 hand=m34556p244s34578m1
+ [expander-debug] allow_hule(null) entry: seat=1 hand=m2356p116s13679z2s4 hasSkillManager=true _zimo=s4
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s13679z2s4 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=1 hand=m2356p116s13679z2s4
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p=m1 paishu=53
- [hand] zimo: menfeng=0 p=m1 shoupai=m34556p244s34578m1 paishu=53
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m34556p244s34578m1 p=undefined hupai=false
- [debug] Player.allow_hule: hand=m34556p244s34578m1 p=undefined hupai=false neng_rong=true xiangting=1 result=false
- [local-shan] zimo: p= paishu=53
- [hand] zimo: menfeng=1 p= shoupai=m79p45589s4z22,m111= paishu=53
- [local-shan] zimo: p= paishu=53
- [hand] zimo: menfeng=2 p= shoupai=p123s4779,m45-6,z111- paishu=53
+ [local-shan] zimo: p= paishu=64
+ [hand] zimo: menfeng=0 p= shoupai=m347p3455567s267 paishu=64
+ [local-shan] zimo: p=s4 paishu=64
+ [hand] zimo: menfeng=1 p=s4 shoupai=m2356p116s13679z2s4 paishu=64
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s13679z2s4 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m2356p116s13679z2s4 p=undefined hupai=false neng_rong=true xiangting=3 result=false
+ [local-shan] zimo: p= paishu=64
+ [hand] zimo: menfeng=2 p= shoupai=m356788p47s5z1447 paishu=64
  [debug] callback called: reply= undefined
- [local-shan] zimo: p= paishu=53
- [hand] zimo: menfeng=3 p= shoupai=p1230s235689z337 paishu=53
- [DEBUG] _doDapai 开始: dp=p2, turnTriggerLog={}
+ [local-shan] zimo: p= paishu=64
+ [hand] zimo: menfeng=3 p= shoupai=m256p3689s369z177 paishu=64
+ [DEBUG] _doDapai 开始: dp=z2, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m79p45589s4z22,m111= p=p2- hupai=false
- [expander-debug] rong: seat=1 p=p2- cleanP=p2 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=z2+ hupai=false
+ [expander-debug] rong: seat=0 p=z2+ cleanP=z2 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p123s4779,m45-6,z111- p=p2= hupai=false
- [expander-debug] rong: seat=2 p=p2= cleanP=p2 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p47s5z1447 p=z2- hupai=false
+ [expander-debug] rong: seat=2 p=z2- cleanP=z2 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=p2+ hupai=false
- [expander-debug] rong: seat=3 p=p2+ cleanP=p2 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=5) hand=m256p3689s369z177 p=z2= hupai=false
+ [expander-debug] rong: seat=3 p=z2= cleanP=z2 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=0 p=p2 shoupai=m134556p44s34578 paishu=53
- [hand] dapai: menfeng=1 dapai_l=0 p=p2 shoupai=m79p45589s4z22,m111= paishu=53
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m79p45589s4z22,m111= p=p2- hupai=false
- [debug] Player.allow_hule: hand=m79p45589s4z22,m111= p=p2- hupai=false neng_rong=true xiangting=2 result=false
- [hand] dapai: menfeng=2 dapai_l=0 p=p2 shoupai=p123s4779,m45-6,z111- paishu=53
- [debug] action_dapai: hand=p123s4779,m45-6,z111- opponent_discard=p2= paishu=53
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p123s4779,m45-6,z111- p=p2= hupai=false
- [debug] Player.allow_hule: hand=p123s4779,m45-6,z111- p=p2= hupai=false neng_rong=true xiangting=1 result=false
+ [hand] dapai: menfeng=0 dapai_l=1 p=z2 shoupai=m347p3455567s267 paishu=64
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=z2+ hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267 p=z2+ hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=1 dapai_l=1 p=z2 shoupai=m2356p116s134679 paishu=64
+ [hand] dapai: menfeng=2 dapai_l=1 p=z2 shoupai=m356788p47s5z1447 paishu=64
+ [debug] action_dapai: hand=m356788p47s5z1447 opponent_discard=z2- paishu=64
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p47s5z1447 p=z2- hupai=false
+ [debug] Player.allow_hule: hand=m356788p47s5z1447 p=z2- hupai=false neng_rong=true xiangting=4 result=false
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=0 p=p2 shoupai=p1230s235689z337 paishu=53
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=p2+ hupai=false
- [debug] Player.allow_hule: hand=p1230s235689z337 p=p2+ hupai=false neng_rong=true xiangting=2 result=false
- [wall] zimo: tile=s4 paishu=52 cursor=52/68 haitei=10 dw=7 half=false wall[(s8,p9)[z6,z7][s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=1 p=z2 shoupai=m256p3689s369z177 paishu=64
+ [debug] Game.allow_hule: FAIL (xiangting=5) hand=m256p3689s369z177 p=z2= hupai=false
+ [debug] Player.allow_hule: hand=m256p3689s369z177 p=z2= hupai=false neng_rong=true xiangting=5 result=false
+ [wall] zimo: tile=z3 paishu=63 cursor=45/68 haitei=9 dw=7 half=true wall[(_,z2)[p4,m1][s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=1 hand=m79p45589s4z22s4,m111= hasSkillManager=true _zimo=s4
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m79p45589s4z22s4,m111= p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=1 hand=m79p45589s4z22s4,m111=
+ [expander-debug] allow_hule(null) entry: seat=2 hand=m356788p47s5z1447z3 hasSkillManager=true _zimo=z3
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p47s5z1447z3 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=2 hand=m356788p47s5z1447z3
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=52
- [hand] zimo: menfeng=0 p= shoupai=m134556p44s34578 paishu=52
- [local-shan] zimo: p=s4 paishu=52
- [hand] zimo: menfeng=1 p=s4 shoupai=m79p45589s4z22s4,m111= paishu=52
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=m79p45589s4z22s4,m111= p=undefined hupai=false
- [debug] Player.allow_hule: hand=m79p45589s4z22s4,m111= p=undefined hupai=false neng_rong=true xiangting=2 result=false
- [local-shan] zimo: p= paishu=52
- [hand] zimo: menfeng=2 p= shoupai=p123s4779,m45-6,z111- paishu=52
- [debug] callback called: reply= undefined
- [local-shan] zimo: p= paishu=52
- [hand] zimo: menfeng=3 p= shoupai=p1230s235689z337 paishu=52
- [DEBUG] _doDapai 开始: dp=p9, turnTriggerLog={}
- [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=p9+ hupai=false
- [expander-debug] rong: seat=0 p=p9+ cleanP=p9 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p123s4779,m45-6,z111- p=p9- hupai=false
- [expander-debug] rong: seat=2 p=p9- cleanP=p9 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=p9= hupai=false
- [expander-debug] rong: seat=3 p=p9= cleanP=p9 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=1 p=p9 shoupai=m134556p44s34578 paishu=52
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=p9+ hupai=false
- [debug] Player.allow_hule: hand=m134556p44s34578 p=p9+ hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=1 p=p9 shoupai=m79p4558s44z22,m111= paishu=52
- [hand] dapai: menfeng=2 dapai_l=1 p=p9 shoupai=p123s4779,m45-6,z111- paishu=52
- [debug] action_dapai: hand=p123s4779,m45-6,z111- opponent_discard=p9- paishu=52
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p123s4779,m45-6,z111- p=p9- hupai=false
- [debug] Player.allow_hule: hand=p123s4779,m45-6,z111- p=p9- hupai=false neng_rong=true xiangting=1 result=false
- [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=1 p=p9 shoupai=p1230s235689z337 paishu=52
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=p9= hupai=false
- [debug] Player.allow_hule: hand=p1230s235689z337 p=p9= hupai=false neng_rong=true xiangting=2 result=false
- [wall] zimo: tile=s8 paishu=51 cursor=52/68 haitei=10 dw=7 half=true wall[(_,p9)[z6,z7][s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
- [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=2 hand=p123s4779s8,m45-6,z111- hasSkillManager=true _zimo=s8
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s4779s8,m45-6,z111- p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=2 hand=p123s4779s8,m45-6,z111-
- [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=51
- [hand] zimo: menfeng=0 p= shoupai=m134556p44s34578 paishu=51
- [local-shan] zimo: p= paishu=51
- [hand] zimo: menfeng=1 p= shoupai=m79p4558s44z22,m111= paishu=51
- [local-shan] zimo: p=s8 paishu=51
- [hand] zimo: menfeng=2 p=s8 shoupai=p123s4779s8,m45-6,z111- paishu=51
- [debug] action_zimo: zimo.p=s8 menfeng=2
- [debug] action_zimo: hand=p123s4779s8,m45-6,z111- paishu=51
+ [local-shan] zimo: p= paishu=63
+ [hand] zimo: menfeng=0 p= shoupai=m347p3455567s267 paishu=63
+ [local-shan] zimo: p= paishu=63
+ [hand] zimo: menfeng=1 p= shoupai=m2356p116s134679 paishu=63
+ [local-shan] zimo: p=z3 paishu=63
+ [hand] zimo: menfeng=2 p=z3 shoupai=m356788p47s5z1447z3 paishu=63
+ [debug] action_zimo: zimo.p=z3 menfeng=2
+ [debug] action_zimo: hand=m356788p47s5z1447z3 paishu=63
  [debug] action_zimo: canHule=false gangzimo=false
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s4779s8,m45-6,z111- p=null hupai=false
- [debug] Player.allow_hule: hand=p123s4779s8,m45-6,z111- p=null hupai=false neng_rong=true xiangting=0 result=false
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p47s5z1447z3 p=null hupai=false
+ [debug] Player.allow_hule: hand=m356788p47s5z1447z3 p=null hupai=false neng_rong=true xiangting=4 result=false
  [debug] action_zimo: allow_hule result=false lizhi=false neng_rong=true
- [debug] select_dapai: dapai_list= Array(7) _node.dapai.length= 1 _node.dapai[0]= 
- [local-shan] zimo: p= paishu=51
- [hand] zimo: menfeng=3 p= shoupai=p1230s235689z337 paishu=51
- [debug] callback called: reply= {"dapai":"s4"}
- [DEBUG] _doDapai 开始: dp=s4, turnTriggerLog={}
+ [debug] select_dapai: dapai_list= Array(12) _node.dapai.length= 1 _node.dapai[0]= 
+ [local-shan] zimo: p= paishu=63
+ [hand] zimo: menfeng=3 p= shoupai=m256p3689s369z177 paishu=63
+ [debug] callback called: reply= {"dapai":"p7"}
+ [DEBUG] _doDapai 开始: dp=p7, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=s4= hupai=false
- [expander-debug] rong: seat=0 p=s4= cleanP=s4 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=p7= hupai=false
+ [expander-debug] rong: seat=0 p=p7= cleanP=p7 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p4558s44z22,m111= p=s4+ hupai=false
- [expander-debug] rong: seat=1 p=s4+ cleanP=s4 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s134679 p=p7+ hupai=false
+ [expander-debug] rong: seat=1 p=p7+ cleanP=p7 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s235689z337 p=s4- hupai=false
- [expander-debug] rong: seat=3 p=s4- cleanP=s4 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m256p3689s369z177 p=p7- hupai=false
+ [expander-debug] rong: seat=3 p=p7- cleanP=p7 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=2 p=s4 shoupai=m134556p44s34578 paishu=51
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=s4= hupai=false
- [debug] Player.allow_hule: hand=m134556p44s34578 p=s4= hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=2 p=s4 shoupai=m79p4558s44z22,m111= paishu=51
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p4558s44z22,m111= p=s4+ hupai=false
- [debug] Player.allow_hule: hand=m79p4558s44z22,m111= p=s4+ hupai=false neng_rong=true xiangting=2 result=false
- [hand] dapai: menfeng=2 dapai_l=2 p=s4 shoupai=p123s7789,m45-6,z111- paishu=51
+ [hand] dapai: menfeng=0 dapai_l=2 p=p7 shoupai=m347p3455567s267 paishu=63
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=p7= hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267 p=p7= hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=1 dapai_l=2 p=p7 shoupai=m2356p116s134679 paishu=63
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s134679 p=p7+ hupai=false
+ [debug] Player.allow_hule: hand=m2356p116s134679 p=p7+ hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=2 dapai_l=2 p=p7 shoupai=m356788p4s5z13447 paishu=63
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=2 p=s4 shoupai=p1230s235689z337 paishu=51
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s235689z337 p=s4- hupai=false
- [debug] Player.allow_hule: hand=p1230s235689z337 p=s4- hupai=false neng_rong=true xiangting=2 result=false
- [hand] fulou: menfeng=0 fulou_l=1 m=s444+ shoupai=m134556p44s34578 paishu=51
- [hand] fulou: menfeng=1 fulou_l=1 m=s444+ shoupai=m79p4558z22,m111=,s444+, paishu=51
- [hand] fulou: menfeng=2 fulou_l=1 m=s444+ shoupai=p123s7789,m45-6,z111- paishu=51
+ [hand] dapai: menfeng=3 dapai_l=2 p=p7 shoupai=m256p3689s369z177 paishu=63
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m256p3689s369z177 p=p7- hupai=false
+ [debug] Player.allow_hule: hand=m256p3689s369z177 p=p7- hupai=false neng_rong=true xiangting=5 result=false
+ [hand] fulou: menfeng=0 fulou_l=3 m=p67-8 shoupai=m347p3455567s267 paishu=63
+ [hand] fulou: menfeng=1 fulou_l=3 m=p67-8 shoupai=m2356p116s134679 paishu=63
+ [hand] fulou: menfeng=2 fulou_l=3 m=p67-8 shoupai=m356788p4s5z13447 paishu=63
  [debug] callback called: reply= undefined
- [hand] fulou: menfeng=3 fulou_l=1 m=s444+ shoupai=p1230s235689z337 paishu=51
+ [hand] fulou: menfeng=3 fulou_l=3 m=p67-8 shoupai=m256p39s369z177,p67-8, paishu=63
  [DEBUG] dapai() DISCARD_SELECTED: discActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=p8+ hupai=false
- [expander-debug] rong: seat=0 p=p8+ cleanP=p8 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=s9- hupai=false
+ [expander-debug] rong: seat=0 p=s9- cleanP=s9 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s7789,m45-6,z111- p=p8- hupai=false
- [expander-debug] rong: seat=2 p=p8- cleanP=p8 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s134679 p=s9= hupai=false
+ [expander-debug] rong: seat=1 p=s9= cleanP=s9 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=p8= hupai=false
- [expander-debug] rong: seat=3 p=p8= cleanP=p8 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p4s5z13447 p=s9+ hupai=false
+ [expander-debug] rong: seat=2 p=s9+ cleanP=s9 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=1 p=p8 shoupai=m134556p44s34578 paishu=51
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=p8+ hupai=false
- [debug] Player.allow_hule: hand=m134556p44s34578 p=p8+ hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=1 p=p8 shoupai=m79p455z22,m111=,s444+ paishu=51
- [hand] dapai: menfeng=2 dapai_l=1 p=p8 shoupai=p123s7789,m45-6,z111- paishu=51
- [debug] action_dapai: hand=p123s7789,m45-6,z111- opponent_discard=p8- paishu=51
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s7789,m45-6,z111- p=p8- hupai=false
- [debug] Player.allow_hule: hand=p123s7789,m45-6,z111- p=p8- hupai=false neng_rong=true xiangting=0 result=false
+ [hand] dapai: menfeng=0 dapai_l=3 p=s9 shoupai=m347p3455567s267 paishu=63
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=s9- hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267 p=s9- hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=1 dapai_l=3 p=s9 shoupai=m2356p116s134679 paishu=63
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s134679 p=s9= hupai=false
+ [debug] Player.allow_hule: hand=m2356p116s134679 p=s9= hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=2 dapai_l=3 p=s9 shoupai=m356788p4s5z13447 paishu=63
+ [debug] action_dapai: hand=m356788p4s5z13447 opponent_discard=s9+ paishu=63
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p4s5z13447 p=s9+ hupai=false
+ [debug] Player.allow_hule: hand=m356788p4s5z13447 p=s9+ hupai=false neng_rong=true xiangting=4 result=false
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=1 p=p8 shoupai=p1230s235689z337 paishu=51
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=p8= hupai=false
- [debug] Player.allow_hule: hand=p1230s235689z337 p=p8= hupai=false neng_rong=true xiangting=2 result=false
- [wall] zimo: tile=p9 paishu=50 cursor=53/68 haitei=10 dw=7 half=false wall[(z6,z7)[s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=3 p=s9 shoupai=m256p39s36z177,p67-8 paishu=63
+ [wall] zimo: tile=z2 paishu=62 cursor=46/68 haitei=9 dw=7 half=false wall[(p4,m1)[s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=2 hand=p123s7789p9,m45-6,z111- hasSkillManager=true _zimo=p9
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s7789p9,m45-6,z111- p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=2 hand=p123s7789p9,m45-6,z111-
+ [expander-debug] allow_hule(null) entry: seat=0 hand=m347p3455567s267z2 hasSkillManager=true _zimo=z2
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267z2 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=0 hand=m347p3455567s267z2
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=50
- [hand] zimo: menfeng=0 p= shoupai=m134556p44s34578 paishu=50
- [local-shan] zimo: p= paishu=50
- [hand] zimo: menfeng=1 p= shoupai=m79p455z22,m111=,s444+ paishu=50
- [local-shan] zimo: p=p9 paishu=50
- [hand] zimo: menfeng=2 p=p9 shoupai=p123s7789p9,m45-6,z111- paishu=50
- [debug] action_zimo: zimo.p=p9 menfeng=2
- [debug] action_zimo: hand=p123s7789p9,m45-6,z111- paishu=50
+ [local-shan] zimo: p=z2 paishu=62
+ [hand] zimo: menfeng=0 p=z2 shoupai=m347p3455567s267z2 paishu=62
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267z2 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267z2 p=undefined hupai=false neng_rong=true xiangting=2 result=false
+ [local-shan] zimo: p= paishu=62
+ [hand] zimo: menfeng=1 p= shoupai=m2356p116s134679 paishu=62
+ [local-shan] zimo: p= paishu=62
+ [hand] zimo: menfeng=2 p= shoupai=m356788p4s5z13447 paishu=62
+ [debug] callback called: reply= undefined
+ [local-shan] zimo: p= paishu=62
+ [hand] zimo: menfeng=3 p= shoupai=m256p39s36z177,p67-8 paishu=62
+ [DEBUG] _doDapai 开始: dp=z2_, turnTriggerLog={}
+ [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s134679 p=z2_- hupai=false
+ [expander-debug] rong: seat=1 p=z2_- cleanP=z2 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p4s5z13447 p=z2_= hupai=false
+ [expander-debug] rong: seat=2 p=z2_= cleanP=z2 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m256p39s36z177,p67-8 p=z2_+ hupai=false
+ [expander-debug] rong: seat=3 p=z2_+ cleanP=z2 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [hand] dapai: menfeng=0 dapai_l=0 p=z2_ shoupai=m347p3455567s267 paishu=62
+ [hand] dapai: menfeng=1 dapai_l=0 p=z2_ shoupai=m2356p116s134679 paishu=62
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s134679 p=z2- hupai=false
+ [debug] Player.allow_hule: hand=m2356p116s134679 p=z2- hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=2 dapai_l=0 p=z2_ shoupai=m356788p4s5z13447 paishu=62
+ [debug] action_dapai: hand=m356788p4s5z13447 opponent_discard=z2_= paishu=62
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p4s5z13447 p=z2_= hupai=false
+ [debug] Player.allow_hule: hand=m356788p4s5z13447 p=z2_= hupai=false neng_rong=true xiangting=4 result=false
+ [debug] callback called: reply= undefined
+ [hand] dapai: menfeng=3 dapai_l=0 p=z2_ shoupai=m256p39s36z177,p67-8 paishu=62
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m256p39s36z177,p67-8 p=z2+ hupai=false
+ [debug] Player.allow_hule: hand=m256p39s36z177,p67-8 p=z2+ hupai=false neng_rong=true xiangting=4 result=false
+ [wall] zimo: tile=p4 paishu=61 cursor=46/68 haitei=9 dw=7 half=true wall[(_,m1)[s8,z6][m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
+ [expander-debug] allow_hule(null) entry: seat=1 hand=m2356p116s134679p4 hasSkillManager=true _zimo=p4
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s134679p4 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=1 hand=m2356p116s134679p4
+ [expander-debug] zimo expander: no path succeeded
+ [local-shan] zimo: p= paishu=61
+ [hand] zimo: menfeng=0 p= shoupai=m347p3455567s267 paishu=61
+ [local-shan] zimo: p=p4 paishu=61
+ [hand] zimo: menfeng=1 p=p4 shoupai=m2356p116s134679p4 paishu=61
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p116s134679p4 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m2356p116s134679p4 p=undefined hupai=false neng_rong=true xiangting=3 result=false
+ [local-shan] zimo: p= paishu=61
+ [hand] zimo: menfeng=2 p= shoupai=m356788p4s5z13447 paishu=61
+ [debug] callback called: reply= undefined
+ [local-shan] zimo: p= paishu=61
+ [hand] zimo: menfeng=3 p= shoupai=m256p39s36z177,p67-8 paishu=61
+ [DEBUG] _doDapai 开始: dp=s9, turnTriggerLog={}
+ [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=s9+ hupai=false
+ [expander-debug] rong: seat=0 p=s9+ cleanP=s9 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p4s5z13447 p=s9- hupai=false
+ [expander-debug] rong: seat=2 p=s9- cleanP=s9 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m256p39s36z177,p67-8 p=s9= hupai=false
+ [expander-debug] rong: seat=3 p=s9= cleanP=s9 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [hand] dapai: menfeng=0 dapai_l=1 p=s9 shoupai=m347p3455567s267 paishu=61
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=s9+ hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267 p=s9+ hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=1 dapai_l=1 p=s9 shoupai=m2356p1146s13467 paishu=61
+ [hand] dapai: menfeng=2 dapai_l=1 p=s9 shoupai=m356788p4s5z13447 paishu=61
+ [debug] action_dapai: hand=m356788p4s5z13447 opponent_discard=s9- paishu=61
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m356788p4s5z13447 p=s9- hupai=false
+ [debug] Player.allow_hule: hand=m356788p4s5z13447 p=s9- hupai=false neng_rong=true xiangting=4 result=false
+ [debug] callback called: reply= undefined
+ [hand] dapai: menfeng=3 dapai_l=1 p=s9 shoupai=m256p39s36z177,p67-8 paishu=61
+ [debug] Game.allow_hule: FAIL (xiangting=4) hand=m256p39s36z177,p67-8 p=s9= hupai=false
+ [debug] Player.allow_hule: hand=m256p39s36z177,p67-8 p=s9= hupai=false neng_rong=true xiangting=4 result=false
+ [wall] zimo: tile=m1 paishu=60 cursor=47/68 haitei=9 dw=7 half=false wall[(s8,z6)[m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
+ [expander-debug] allow_hule(null) entry: seat=2 hand=m356788p4s5z13447m1 hasSkillManager=true _zimo=m1
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m356788p4s5z13447m1 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=2 hand=m356788p4s5z13447m1
+ [expander-debug] zimo expander: no path succeeded
+ [local-shan] zimo: p= paishu=60
+ [hand] zimo: menfeng=0 p= shoupai=m347p3455567s267 paishu=60
+ [local-shan] zimo: p= paishu=60
+ [hand] zimo: menfeng=1 p= shoupai=m2356p1146s13467 paishu=60
+ [local-shan] zimo: p=m1 paishu=60
+ [hand] zimo: menfeng=2 p=m1 shoupai=m356788p4s5z13447m1 paishu=60
+ [debug] action_zimo: zimo.p=m1 menfeng=2
+ [debug] action_zimo: hand=m356788p4s5z13447m1 paishu=60
  [debug] action_zimo: canHule=false gangzimo=false
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s7789p9,m45-6,z111- p=null hupai=false
- [debug] Player.allow_hule: hand=p123s7789p9,m45-6,z111- p=null hupai=false neng_rong=true xiangting=0 result=false
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m356788p4s5z13447m1 p=null hupai=false
+ [debug] Player.allow_hule: hand=m356788p4s5z13447m1 p=null hupai=false neng_rong=true xiangting=3 result=false
  [debug] action_zimo: allow_hule result=false lizhi=false neng_rong=true
- [debug] select_dapai: dapai_list= Array(7) _node.dapai.length= 1 _node.dapai[0]= 
- [local-shan] zimo: p= paishu=50
- [hand] zimo: menfeng=3 p= shoupai=p1230s235689z337 paishu=50
- [debug] callback called: reply= {"dapai":"p9_"}
- [DEBUG] _doDapai 开始: dp=p9_, turnTriggerLog={}
- [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=p9_= hupai=false
- [expander-debug] rong: seat=0 p=p9_= cleanP=p9 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p455z22,m111=,s444+ p=p9_+ hupai=false
- [expander-debug] rong: seat=1 p=p9_+ cleanP=p9 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=p9_- hupai=false
- [expander-debug] rong: seat=3 p=p9_- cleanP=p9 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=2 p=p9_ shoupai=m134556p44s34578 paishu=50
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=p9= hupai=false
- [debug] Player.allow_hule: hand=m134556p44s34578 p=p9= hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=2 p=p9_ shoupai=m79p455z22,m111=,s444+ paishu=50
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p455z22,m111=,s444+ p=p9+ hupai=false
- [debug] Player.allow_hule: hand=m79p455z22,m111=,s444+ p=p9+ hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=2 dapai_l=2 p=p9_ shoupai=p123s7789,m45-6,z111- paishu=50
- [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=2 p=p9_ shoupai=p1230s235689z337 paishu=50
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=p9- hupai=false
- [debug] Player.allow_hule: hand=p1230s235689z337 p=p9- hupai=false neng_rong=true xiangting=2 result=false
- [wall] zimo: tile=z6 paishu=49 cursor=53/68 haitei=10 dw=7 half=true wall[(_,z7)[s7,m3][m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
- [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=3 hand=p1230s235689z337z6 hasSkillManager=true _zimo=z6
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337z6 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=3 hand=p1230s235689z337z6
- [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=49
- [hand] zimo: menfeng=0 p= shoupai=m134556p44s34578 paishu=49
- [local-shan] zimo: p= paishu=49
- [hand] zimo: menfeng=1 p= shoupai=m79p455z22,m111=,s444+ paishu=49
- [local-shan] zimo: p= paishu=49
- [hand] zimo: menfeng=2 p= shoupai=p123s7789,m45-6,z111- paishu=49
- [debug] callback called: reply= undefined
- [local-shan] zimo: p=z6 paishu=49
- [hand] zimo: menfeng=3 p=z6 shoupai=p1230s235689z337z6 paishu=49
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337z6 p=undefined hupai=false
- [debug] Player.allow_hule: hand=p1230s235689z337z6 p=undefined hupai=false neng_rong=true xiangting=2 result=false
- [DEBUG] _doDapai 开始: dp=z6_, turnTriggerLog={}
- [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=z6_- hupai=false
- [expander-debug] rong: seat=0 p=z6_- cleanP=z6 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p455z22,m111=,s444+ p=z6_= hupai=false
- [expander-debug] rong: seat=1 p=z6_= cleanP=z6 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s7789,m45-6,z111- p=z6_+ hupai=false
- [expander-debug] rong: seat=2 p=z6_+ cleanP=z6 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=3 p=z6_ shoupai=m134556p44s34578 paishu=49
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=z6- hupai=false
- [debug] Player.allow_hule: hand=m134556p44s34578 p=z6- hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=3 p=z6_ shoupai=m79p455z22,m111=,s444+ paishu=49
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p455z22,m111=,s444+ p=z6= hupai=false
- [debug] Player.allow_hule: hand=m79p455z22,m111=,s444+ p=z6= hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=2 dapai_l=3 p=z6_ shoupai=p123s7789,m45-6,z111- paishu=49
- [debug] action_dapai: hand=p123s7789,m45-6,z111- opponent_discard=z6_+ paishu=49
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s7789,m45-6,z111- p=z6_+ hupai=false
- [debug] Player.allow_hule: hand=p123s7789,m45-6,z111- p=z6_+ hupai=false neng_rong=true xiangting=0 result=false
- [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=3 p=z6_ shoupai=p1230s235689z337 paishu=49
- [wall] zimo: tile=z7 paishu=48 cursor=54/68 haitei=10 dw=7 half=false wall[(s7,m3)[m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
- [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=0 hand=m134556p44s34578z7 hasSkillManager=true _zimo=z7
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578z7 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=0 hand=m134556p44s34578z7
- [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p=z7 paishu=48
- [hand] zimo: menfeng=0 p=z7 shoupai=m134556p44s34578z7 paishu=48
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578z7 p=undefined hupai=false
- [debug] Player.allow_hule: hand=m134556p44s34578z7 p=undefined hupai=false neng_rong=true xiangting=1 result=false
- [local-shan] zimo: p= paishu=48
- [hand] zimo: menfeng=1 p= shoupai=m79p455z22,m111=,s444+ paishu=48
- [local-shan] zimo: p= paishu=48
- [hand] zimo: menfeng=2 p= shoupai=p123s7789,m45-6,z111- paishu=48
- [debug] callback called: reply= undefined
- [local-shan] zimo: p= paishu=48
- [hand] zimo: menfeng=3 p= shoupai=p1230s235689z337 paishu=48
- [DEBUG] _doDapai 开始: dp=z7_, turnTriggerLog={}
- [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p455z22,m111=,s444+ p=z7_- hupai=false
- [expander-debug] rong: seat=1 p=z7_- cleanP=z7 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s7789,m45-6,z111- p=z7_= hupai=false
- [expander-debug] rong: seat=2 p=z7_= cleanP=z7 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=z7_+ hupai=false
- [expander-debug] rong: seat=3 p=z7_+ cleanP=z7 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=0 p=z7_ shoupai=m134556p44s34578 paishu=48
- [hand] dapai: menfeng=1 dapai_l=0 p=z7_ shoupai=m79p455z22,m111=,s444+ paishu=48
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p455z22,m111=,s444+ p=z7- hupai=false
- [debug] Player.allow_hule: hand=m79p455z22,m111=,s444+ p=z7- hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=2 dapai_l=0 p=z7_ shoupai=p123s7789,m45-6,z111- paishu=48
- [debug] action_dapai: hand=p123s7789,m45-6,z111- opponent_discard=z7_= paishu=48
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s7789,m45-6,z111- p=z7_= hupai=false
- [debug] Player.allow_hule: hand=p123s7789,m45-6,z111- p=z7_= hupai=false neng_rong=true xiangting=0 result=false
- [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=0 p=z7_ shoupai=p1230s235689z337 paishu=48
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=z7+ hupai=false
- [debug] Player.allow_hule: hand=p1230s235689z337 p=z7+ hupai=false neng_rong=true xiangting=2 result=false
- [wall] zimo: tile=s7 paishu=47 cursor=54/68 haitei=10 dw=7 half=true wall[(_,m3)[m8,p6][m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
- [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=1 hand=m79p455z22s7,m111=,s444+ hasSkillManager=true _zimo=s7
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p455z22s7,m111=,s444+ p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=1 hand=m79p455z22s7,m111=,s444+
- [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=47
- [hand] zimo: menfeng=0 p= shoupai=m134556p44s34578 paishu=47
- [local-shan] zimo: p=s7 paishu=47
- [hand] zimo: menfeng=1 p=s7 shoupai=m79p455z22s7,m111=,s444+ paishu=47
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p455z22s7,m111=,s444+ p=undefined hupai=false
- [debug] Player.allow_hule: hand=m79p455z22s7,m111=,s444+ p=undefined hupai=false neng_rong=true xiangting=1 result=false
- [local-shan] zimo: p= paishu=47
- [hand] zimo: menfeng=2 p= shoupai=p123s7789,m45-6,z111- paishu=47
- [debug] callback called: reply= undefined
- [local-shan] zimo: p= paishu=47
- [hand] zimo: menfeng=3 p= shoupai=p1230s235689z337 paishu=47
+ [debug] select_dapai: dapai_list= Array(12) _node.dapai.length= 1 _node.dapai[0]= 
+ [local-shan] zimo: p= paishu=60
+ [hand] zimo: menfeng=3 p= shoupai=m256p39s36z177,p67-8 paishu=60
+ [debug] callback called: reply= {"dapai":"p4"}
  [DEBUG] _doDapai 开始: dp=p4, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=p4+ hupai=false
- [expander-debug] rong: seat=0 p=p4+ cleanP=p4 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=p4= hupai=false
+ [expander-debug] rong: seat=0 p=p4= cleanP=p4 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s7789,m45-6,z111- p=p4- hupai=false
- [expander-debug] rong: seat=2 p=p4- cleanP=p4 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p1146s13467 p=p4+ hupai=false
+ [expander-debug] rong: seat=1 p=p4+ cleanP=p4 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=p4= hupai=false
- [expander-debug] rong: seat=3 p=p4= cleanP=p4 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m256p39s36z177,p67-8 p=p4- hupai=false
+ [expander-debug] rong: seat=3 p=p4- cleanP=p4 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=1 p=p4 shoupai=m134556p44s34578 paishu=47
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=p4+ hupai=false
- [debug] Player.allow_hule: hand=m134556p44s34578 p=p4+ hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=1 p=p4 shoupai=m79p55s7z22,m111=,s444+ paishu=47
- [hand] dapai: menfeng=2 dapai_l=1 p=p4 shoupai=p123s7789,m45-6,z111- paishu=47
- [debug] action_dapai: hand=p123s7789,m45-6,z111- opponent_discard=p4- paishu=47
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p123s7789,m45-6,z111- p=p4- hupai=false
- [debug] Player.allow_hule: hand=p123s7789,m45-6,z111- p=p4- hupai=false neng_rong=true xiangting=0 result=false
- [hand] dapai: menfeng=3 dapai_l=1 p=p4 shoupai=p1230s235689z337 paishu=47
- [debug] Game.allow_hule: FAIL (xiangting=2) hand=p1230s235689z337 p=p4= hupai=false
- [debug] Player.allow_hule: hand=p1230s235689z337 p=p4= hupai=false neng_rong=true xiangting=2 result=false
- [debug] callback called: reply= {"fulou":"p234-"}
- [hand] fulou: menfeng=0 fulou_l=2 m=p234- shoupai=m134556p44s34578 paishu=47
- [hand] fulou: menfeng=1 fulou_l=2 m=p234- shoupai=m79p55s7z22,m111=,s444+ paishu=47
- [hand] fulou: menfeng=2 fulou_l=2 m=p234- shoupai=p1s7789,m45-6,z111-,p234-, paishu=47
- [debug] select_dapai: dapai_list= Array(3) _node.dapai.length= 1 _node.dapai[0]= 
- [hand] fulou: menfeng=3 fulou_l=2 m=p234- shoupai=p1230s235689z337 paishu=47
- [debug] callback called: reply= {"dapai":"s7"}
- [DEBUG] dapai() DISCARD_SELECTED: discActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=s7= hupai=false
- [expander-debug] rong: seat=0 p=s7= cleanP=s7 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p55s7z22,m111=,s444+ p=s7+ hupai=false
- [expander-debug] rong: seat=1 p=s7+ cleanP=s7 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s235689z337 p=s7- hupai=false
- [expander-debug] rong: seat=3 p=s7- cleanP=s7 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=2 p=s7 shoupai=m134556p44s34578 paishu=47
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=s7= hupai=false
- [debug] Player.allow_hule: hand=m134556p44s34578 p=s7= hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=2 p=s7 shoupai=m79p55s7z22,m111=,s444+ paishu=47
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p55s7z22,m111=,s444+ p=s7+ hupai=false
- [debug] Player.allow_hule: hand=m79p55s7z22,m111=,s444+ p=s7+ hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=2 dapai_l=2 p=s7 shoupai=p1s789,m45-6,z111-,p234- paishu=47
+ [hand] dapai: menfeng=0 dapai_l=2 p=p4 shoupai=m347p3455567s267 paishu=60
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=p4= hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267 p=p4= hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=1 dapai_l=2 p=p4 shoupai=m2356p1146s13467 paishu=60
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p1146s13467 p=p4+ hupai=false
+ [debug] Player.allow_hule: hand=m2356p1146s13467 p=p4+ hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=2 dapai_l=2 p=p4 shoupai=m1356788s5z13447 paishu=60
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=2 p=s7 shoupai=p1230s235689z337 paishu=47
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s235689z337 p=s7- hupai=false
- [debug] Player.allow_hule: hand=p1230s235689z337 p=s7- hupai=false neng_rong=true xiangting=2 result=false
- [hand] fulou: menfeng=0 fulou_l=3 m=s7-89 shoupai=m134556p44s34578 paishu=47
- [hand] fulou: menfeng=1 fulou_l=3 m=s7-89 shoupai=m79p55s7z22,m111=,s444+ paishu=47
- [hand] fulou: menfeng=2 fulou_l=3 m=s7-89 shoupai=p1s789,m45-6,z111-,p234- paishu=47
- [debug] callback called: reply= undefined
- [hand] fulou: menfeng=3 fulou_l=3 m=s7-89 shoupai=p1230s2356z337,s7-89, paishu=47
- [DEBUG] dapai() DISCARD_SELECTED: discActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=z7- hupai=false
- [expander-debug] rong: seat=0 p=z7- cleanP=z7 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p55s7z22,m111=,s444+ p=z7= hupai=false
- [expander-debug] rong: seat=1 p=z7= cleanP=z7 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [expander-debug] yakuExpander(rong) found: seat=2 yaku=[{"name":"三副露","fanshu":1}]
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p1s789,m45-6,z111-,p234- p=z7+ hupai=false
- [expander-debug] rong: seat=2 p=z7+ cleanP=z7 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=3 p=z7 shoupai=m134556p44s34578 paishu=47
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578 p=z7- hupai=false
- [debug] Player.allow_hule: hand=m134556p44s34578 p=z7- hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=3 p=z7 shoupai=m79p55s7z22,m111=,s444+ paishu=47
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p55s7z22,m111=,s444+ p=z7= hupai=false
- [debug] Player.allow_hule: hand=m79p55s7z22,m111=,s444+ p=z7= hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=2 dapai_l=3 p=z7 shoupai=p1s789,m45-6,z111-,p234- paishu=47
- [debug] action_dapai: hand=p1s789,m45-6,z111-,p234- opponent_discard=z7+ paishu=47
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p1s789,m45-6,z111-,p234- p=z7+ hupai=false
- [debug] Player.allow_hule: hand=p1s789,m45-6,z111-,p234- p=z7+ hupai=false neng_rong=true xiangting=0 result=false
- [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=3 p=z7 shoupai=p1230s2356z33,s7-89 paishu=47
- [wall] zimo: tile=m3 paishu=46 cursor=55/68 haitei=10 dw=7 half=false wall[(m8,p6)[m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=2 p=p4 shoupai=m256p39s36z177,p67-8 paishu=60
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m256p39s36z177,p67-8 p=p4- hupai=false
+ [debug] Player.allow_hule: hand=m256p39s36z177,p67-8 p=p4- hupai=false neng_rong=true xiangting=4 result=false
+ [wall] zimo: tile=s8 paishu=59 cursor=47/68 haitei=9 dw=7 half=true wall[(_,z6)[m9,p9][p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=0 hand=m134556p44s34578m3 hasSkillManager=true _zimo=m3
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578m3 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=0 hand=m134556p44s34578m3
+ [expander-debug] allow_hule(null) entry: seat=3 hand=m256p39s36z177s8,p67-8 hasSkillManager=true _zimo=s8
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m256p39s36z177s8,p67-8 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=3 hand=m256p39s36z177s8,p67-8
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p=m3 paishu=46
- [hand] zimo: menfeng=0 p=m3 shoupai=m134556p44s34578m3 paishu=46
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m134556p44s34578m3 p=undefined hupai=false
- [debug] Player.allow_hule: hand=m134556p44s34578m3 p=undefined hupai=false neng_rong=true xiangting=1 result=false
- [local-shan] zimo: p= paishu=46
- [hand] zimo: menfeng=1 p= shoupai=m79p55s7z22,m111=,s444+ paishu=46
- [local-shan] zimo: p= paishu=46
- [hand] zimo: menfeng=2 p= shoupai=p1s789,m45-6,z111-,p234- paishu=46
+ [local-shan] zimo: p= paishu=59
+ [hand] zimo: menfeng=0 p= shoupai=m347p3455567s267 paishu=59
+ [local-shan] zimo: p= paishu=59
+ [hand] zimo: menfeng=1 p= shoupai=m2356p1146s13467 paishu=59
+ [local-shan] zimo: p= paishu=59
+ [hand] zimo: menfeng=2 p= shoupai=m1356788s5z13447 paishu=59
  [debug] callback called: reply= undefined
- [local-shan] zimo: p= paishu=46
- [hand] zimo: menfeng=3 p= shoupai=p1230s2356z33,s7-89 paishu=46
- [DEBUG] _doDapai 开始: dp=m1, turnTriggerLog={}
+ [local-shan] zimo: p=s8 paishu=59
+ [hand] zimo: menfeng=3 p=s8 shoupai=m256p39s36z177s8,p67-8 paishu=59
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m256p39s36z177s8,p67-8 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m256p39s36z177s8,p67-8 p=undefined hupai=false neng_rong=true xiangting=3 result=false
+ [DEBUG] _doDapai 开始: dp=z1, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p55s7z22,m111=,s444+ p=m1- hupai=false
- [expander-debug] rong: seat=1 p=m1- cleanP=m1 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=z1- hupai=false
+ [expander-debug] rong: seat=0 p=z1- cleanP=z1 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [expander-debug] yakuExpander(rong) found: seat=2 yaku=[{"name":"三副露","fanshu":1}]
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p1s789,m45-6,z111-,p234- p=m1= hupai=false
- [expander-debug] rong: seat=2 p=m1= cleanP=m1 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p1146s13467 p=z1= hupai=false
+ [expander-debug] rong: seat=1 p=z1= cleanP=z1 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s2356z33,s7-89 p=m1+ hupai=false
- [expander-debug] rong: seat=3 p=m1+ cleanP=m1 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m1356788s5z13447 p=z1+ hupai=false
+ [expander-debug] rong: seat=2 p=z1+ cleanP=z1 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=0 p=m1 shoupai=m334556p44s34578 paishu=46
- [hand] dapai: menfeng=1 dapai_l=0 p=m1 shoupai=m79p55s7z22,m111=,s444+ paishu=46
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m79p55s7z22,m111=,s444+ p=m1- hupai=false
- [debug] Player.allow_hule: hand=m79p55s7z22,m111=,s444+ p=m1- hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=2 dapai_l=0 p=m1 shoupai=p1s789,m45-6,z111-,p234- paishu=46
- [debug] action_dapai: hand=p1s789,m45-6,z111-,p234- opponent_discard=m1= paishu=46
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p1s789,m45-6,z111-,p234- p=m1= hupai=false
- [debug] Player.allow_hule: hand=p1s789,m45-6,z111-,p234- p=m1= hupai=false neng_rong=true xiangting=0 result=false
+ [hand] dapai: menfeng=0 dapai_l=3 p=z1 shoupai=m347p3455567s267 paishu=59
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=z1- hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267 p=z1- hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=1 dapai_l=3 p=z1 shoupai=m2356p1146s13467 paishu=59
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p1146s13467 p=z1= hupai=false
+ [debug] Player.allow_hule: hand=m2356p1146s13467 p=z1= hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=2 dapai_l=3 p=z1 shoupai=m1356788s5z13447 paishu=59
+ [debug] action_dapai: hand=m1356788s5z13447 opponent_discard=z1+ paishu=59
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m1356788s5z13447 p=z1+ hupai=false
+ [debug] Player.allow_hule: hand=m1356788s5z13447 p=z1+ hupai=false neng_rong=true xiangting=3 result=false
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=0 p=m1 shoupai=p1230s2356z33,s7-89 paishu=46
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s2356z33,s7-89 p=m1+ hupai=false
- [debug] Player.allow_hule: hand=p1230s2356z33,s7-89 p=m1+ hupai=false neng_rong=true xiangting=1 result=false
- [wall] zimo: tile=m8 paishu=45 cursor=55/68 haitei=10 dw=7 half=true wall[(_,p6)[m4,m7][p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=3 p=z1 shoupai=m256p39s368z77,p67-8 paishu=59
+ [wall] zimo: tile=z6 paishu=58 cursor=48/68 haitei=9 dw=7 half=false wall[(m9,p9)[p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=1 hand=m79p55s7z22m8,m111=,s444+ hasSkillManager=true _zimo=m8
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=m79p55s7z22m8,m111=,s444+ p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=1 hand=m79p55s7z22m8,m111=,s444+
+ [expander-debug] allow_hule(null) entry: seat=0 hand=m347p3455567s267z6 hasSkillManager=true _zimo=z6
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267z6 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=0 hand=m347p3455567s267z6
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=45
- [hand] zimo: menfeng=0 p= shoupai=m334556p44s34578 paishu=45
- [local-shan] zimo: p=m8 paishu=45
- [hand] zimo: menfeng=1 p=m8 shoupai=m79p55s7z22m8,m111=,s444+ paishu=45
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=m79p55s7z22m8,m111=,s444+ p=undefined hupai=false
- [debug] Player.allow_hule: hand=m79p55s7z22m8,m111=,s444+ p=undefined hupai=false neng_rong=true xiangting=0 result=false
- [local-shan] zimo: p= paishu=45
- [hand] zimo: menfeng=2 p= shoupai=p1s789,m45-6,z111-,p234- paishu=45
+ [local-shan] zimo: p=z6 paishu=58
+ [hand] zimo: menfeng=0 p=z6 shoupai=m347p3455567s267z6 paishu=58
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267z6 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267z6 p=undefined hupai=false neng_rong=true xiangting=2 result=false
+ [local-shan] zimo: p= paishu=58
+ [hand] zimo: menfeng=1 p= shoupai=m2356p1146s13467 paishu=58
+ [local-shan] zimo: p= paishu=58
+ [hand] zimo: menfeng=2 p= shoupai=m1356788s5z13447 paishu=58
  [debug] callback called: reply= undefined
- [local-shan] zimo: p= paishu=45
- [hand] zimo: menfeng=3 p= shoupai=p1230s2356z33,s7-89 paishu=45
- [DEBUG] _doDapai 开始: dp=s7, turnTriggerLog={}
+ [local-shan] zimo: p= paishu=58
+ [hand] zimo: menfeng=3 p= shoupai=m256p39s368z77,p67-8 paishu=58
+ [DEBUG] _doDapai 开始: dp=z6_, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m334556p44s34578 p=s7+ hupai=false
- [expander-debug] rong: seat=0 p=s7+ cleanP=s7 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p1146s13467 p=z6_- hupai=false
+ [expander-debug] rong: seat=1 p=z6_- cleanP=z6 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [expander-debug] yakuExpander(rong) found: seat=2 yaku=[{"name":"三副露","fanshu":1}]
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p1s789,m45-6,z111-,p234- p=s7- hupai=false
- [expander-debug] rong: seat=2 p=s7- cleanP=s7 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1356788s5z13447 p=z6_= hupai=false
+ [expander-debug] rong: seat=2 p=z6_= cleanP=z6 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p1230s2356z33,s7-89 p=s7= hupai=false
- [expander-debug] rong: seat=3 p=s7= cleanP=s7 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m256p39s368z77,p67-8 p=z6_+ hupai=false
+ [expander-debug] rong: seat=3 p=z6_+ cleanP=z6 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=1 p=s7 shoupai=m334556p44s34578 paishu=45
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m334556p44s34578 p=s7+ hupai=false
- [debug] Player.allow_hule: hand=m334556p44s34578 p=s7+ hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=1 p=s7 shoupai=m789p55z22,m111=,s444+ paishu=45
- [hand] dapai: menfeng=2 dapai_l=1 p=s7 shoupai=p1s789,m45-6,z111-,p234- paishu=45
- [debug] action_dapai: hand=p1s789,m45-6,z111-,p234- opponent_discard=s7- paishu=45
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p1s789,m45-6,z111-,p234- p=s7- hupai=false
- [debug] Player.allow_hule: hand=p1s789,m45-6,z111-,p234- p=s7- hupai=false neng_rong=true xiangting=0 result=false
- [hand] dapai: menfeng=3 dapai_l=1 p=s7 shoupai=p1230s2356z33,s7-89 paishu=45
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=p1230s2356z33,s7-89 p=s7= hupai=false
- [debug] Player.allow_hule: hand=p1230s2356z33,s7-89 p=s7= hupai=false neng_rong=true xiangting=1 result=false
- [debug] callback called: reply= {"fulou":"s7-89"}
- [hand] fulou: menfeng=0 fulou_l=2 m=s7-89 shoupai=m334556p44s34578 paishu=45
- [hand] fulou: menfeng=1 fulou_l=2 m=s7-89 shoupai=m789p55z22,m111=,s444+ paishu=45
- [hand] fulou: menfeng=2 fulou_l=2 m=s7-89 shoupai=p1s7,m45-6,z111-,p234-,s7-89, paishu=45
- [debug] select_dapai: dapai_list= Array(1) _node.dapai.length= 1 _node.dapai[0]= 
- [hand] fulou: menfeng=3 fulou_l=2 m=s7-89 shoupai=p1230s2356z33,s7-89 paishu=45
- [debug] callback called: reply= {"dapai":"p1"}
- [DEBUG] dapai() DISCARD_SELECTED: discActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m334556p44s34578 p=p1= hupai=false
- [expander-debug] rong: seat=0 p=p1= cleanP=p1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=m789p55z22,m111=,s444+ p=p1+ hupai=false
- [expander-debug] rong: seat=1 p=p1+ cleanP=p1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s2356z33,s7-89 p=p1- hupai=false
- [expander-debug] rong: seat=3 p=p1- cleanP=p1 expanders=0 expanderCandidates=
- [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=2 p=p1 shoupai=m334556p44s34578 paishu=45
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m334556p44s34578 p=p1= hupai=false
- [debug] Player.allow_hule: hand=m334556p44s34578 p=p1= hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=2 p=p1 shoupai=m789p55z22,m111=,s444+ paishu=45
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=m789p55z22,m111=,s444+ p=p1+ hupai=false
- [debug] Player.allow_hule: hand=m789p55z22,m111=,s444+ p=p1+ hupai=false neng_rong=true xiangting=0 result=false
- [hand] dapai: menfeng=2 dapai_l=2 p=p1 shoupai=s7,m45-6,z111-,p234-,s7-89 paishu=45
+ [hand] dapai: menfeng=0 dapai_l=0 p=z6_ shoupai=m347p3455567s267 paishu=58
+ [hand] dapai: menfeng=1 dapai_l=0 p=z6_ shoupai=m2356p1146s13467 paishu=58
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p1146s13467 p=z6- hupai=false
+ [debug] Player.allow_hule: hand=m2356p1146s13467 p=z6- hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=2 dapai_l=0 p=z6_ shoupai=m1356788s5z13447 paishu=58
+ [debug] action_dapai: hand=m1356788s5z13447 opponent_discard=z6_= paishu=58
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1356788s5z13447 p=z6_= hupai=false
+ [debug] Player.allow_hule: hand=m1356788s5z13447 p=z6_= hupai=false neng_rong=true xiangting=3 result=false
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=2 p=p1 shoupai=p1230s2356z33,s7-89 paishu=45
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s2356z33,s7-89 p=p1- hupai=false
- [debug] Player.allow_hule: hand=p1230s2356z33,s7-89 p=p1- hupai=false neng_rong=true xiangting=1 result=false
- [wall] zimo: tile=p6 paishu=44 cursor=56/68 haitei=10 dw=7 half=false wall[(m4,m7)[p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=0 p=z6_ shoupai=m256p39s368z77,p67-8 paishu=58
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m256p39s368z77,p67-8 p=z6+ hupai=false
+ [debug] Player.allow_hule: hand=m256p39s368z77,p67-8 p=z6+ hupai=false neng_rong=true xiangting=3 result=false
+ [wall] zimo: tile=m9 paishu=57 cursor=48/68 haitei=9 dw=7 half=true wall[(_,p9)[p2,s2][m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=3 hand=p1230s2356z33p6,s7-89 hasSkillManager=true _zimo=p6
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s2356z33p6,s7-89 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=3 hand=p1230s2356z33p6,s7-89
+ [expander-debug] allow_hule(null) entry: seat=1 hand=m2356p1146s13467m9 hasSkillManager=true _zimo=m9
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p1146s13467m9 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=1 hand=m2356p1146s13467m9
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=44
- [hand] zimo: menfeng=0 p= shoupai=m334556p44s34578 paishu=44
- [local-shan] zimo: p= paishu=44
- [hand] zimo: menfeng=1 p= shoupai=m789p55z22,m111=,s444+ paishu=44
- [local-shan] zimo: p= paishu=44
- [hand] zimo: menfeng=2 p= shoupai=s7,m45-6,z111-,p234-,s7-89 paishu=44
+ [local-shan] zimo: p= paishu=57
+ [hand] zimo: menfeng=0 p= shoupai=m347p3455567s267 paishu=57
+ [local-shan] zimo: p=m9 paishu=57
+ [hand] zimo: menfeng=1 p=m9 shoupai=m2356p1146s13467m9 paishu=57
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m2356p1146s13467m9 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m2356p1146s13467m9 p=undefined hupai=false neng_rong=true xiangting=3 result=false
+ [local-shan] zimo: p= paishu=57
+ [hand] zimo: menfeng=2 p= shoupai=m1356788s5z13447 paishu=57
  [debug] callback called: reply= undefined
- [local-shan] zimo: p=p6 paishu=44
- [hand] zimo: menfeng=3 p=p6 shoupai=p1230s2356z33p6,s7-89 paishu=44
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s2356z33p6,s7-89 p=undefined hupai=false
- [debug] Player.allow_hule: hand=p1230s2356z33p6,s7-89 p=undefined hupai=false neng_rong=true xiangting=1 result=false
- [DEBUG] _doDapai 开始: dp=p6_, turnTriggerLog={}
+ [local-shan] zimo: p= paishu=57
+ [hand] zimo: menfeng=3 p= shoupai=m256p39s368z77,p67-8 paishu=57
+ [DEBUG] _doDapai 开始: dp=s1, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m334556p44s34578 p=p6_- hupai=false
- [expander-debug] rong: seat=0 p=p6_- cleanP=p6 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=s1+ hupai=false
+ [expander-debug] rong: seat=0 p=s1+ cleanP=s1 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=m789p55z22,m111=,s444+ p=p6_= hupai=false
- [expander-debug] rong: seat=1 p=p6_= cleanP=p6 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1356788s5z13447 p=s1- hupai=false
+ [expander-debug] rong: seat=2 p=s1- cleanP=s1 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [expander-debug] yakuExpander(rong) found: seat=2 yaku=[{"name":"十二落抬","fanshu":2}]
- [debug] Game.allow_hule: FAIL (neng_rong=false) hand=s7,m45-6,z111-,p234-,s7-89 p=p6_+
- [expander-debug] rong: seat=2 p=p6_+ cleanP=p6 expanders=1 expanderCandidates=m7,p7,z7
- [expander-debug] rong: checking expander candidateSet=[m7,p7,z7] includes=false
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m256p39s368z77,p67-8 p=s1= hupai=false
+ [expander-debug] rong: seat=3 p=s1= cleanP=s1 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=3 p=p6_ shoupai=m334556p44s34578 paishu=44
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=m334556p44s34578 p=p6- hupai=false
- [debug] Player.allow_hule: hand=m334556p44s34578 p=p6- hupai=false neng_rong=true xiangting=1 result=false
- [hand] dapai: menfeng=1 dapai_l=3 p=p6_ shoupai=m789p55z22,m111=,s444+ paishu=44
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=m789p55z22,m111=,s444+ p=p6= hupai=false
- [debug] Player.allow_hule: hand=m789p55z22,m111=,s444+ p=p6= hupai=false neng_rong=true xiangting=0 result=false
- [hand] dapai: menfeng=2 dapai_l=3 p=p6_ shoupai=s7,m45-6,z111-,p234-,s7-89 paishu=44
- [debug] action_dapai: hand=s7,m45-6,z111-,p234-,s7-89 opponent_discard=p6_+ paishu=44
- [debug] Game.allow_hule: FAIL (neng_rong=false) hand=s7,m45-6,z111-,p234-,s7-89 p=p6_+
- [debug] Player.allow_hule: hand=s7,m45-6,z111-,p234-,s7-89 p=p6_+ hupai=false neng_rong=false xiangting=0 result=false
+ [hand] dapai: menfeng=0 dapai_l=1 p=s1 shoupai=m347p3455567s267 paishu=57
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=s1+ hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267 p=s1+ hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=1 dapai_l=1 p=s1 shoupai=m23569p1146s3467 paishu=57
+ [hand] dapai: menfeng=2 dapai_l=1 p=s1 shoupai=m1356788s5z13447 paishu=57
+ [debug] action_dapai: hand=m1356788s5z13447 opponent_discard=s1- paishu=57
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1356788s5z13447 p=s1- hupai=false
+ [debug] Player.allow_hule: hand=m1356788s5z13447 p=s1- hupai=false neng_rong=true xiangting=3 result=false
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=3 p=p6_ shoupai=p1230s2356z33,s7-89 paishu=44
- [wall] zimo: tile=m4 paishu=43 cursor=56/68 haitei=10 dw=7 half=true wall[(_,m7)[p7,s2][s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=1 p=s1 shoupai=m256p39s368z77,p67-8 paishu=57
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m256p39s368z77,p67-8 p=s1= hupai=false
+ [debug] Player.allow_hule: hand=m256p39s368z77,p67-8 p=s1= hupai=false neng_rong=true xiangting=3 result=false
+ [wall] zimo: tile=p9 paishu=56 cursor=49/68 haitei=9 dw=7 half=false wall[(p2,s2)[m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=0 hand=m334556p44s34578m4 hasSkillManager=true _zimo=m4
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=m334556p44s34578m4 p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=0 hand=m334556p44s34578m4
+ [expander-debug] allow_hule(null) entry: seat=2 hand=m1356788s5z13447p9 hasSkillManager=true _zimo=p9
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1356788s5z13447p9 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=2 hand=m1356788s5z13447p9
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p=m4 paishu=43
- [hand] zimo: menfeng=0 p=m4 shoupai=m334556p44s34578m4 paishu=43
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=m334556p44s34578m4 p=undefined hupai=false
- [debug] Player.allow_hule: hand=m334556p44s34578m4 p=undefined hupai=false neng_rong=true xiangting=0 result=false
- [local-shan] zimo: p= paishu=43
- [hand] zimo: menfeng=1 p= shoupai=m789p55z22,m111=,s444+ paishu=43
- [local-shan] zimo: p= paishu=43
- [hand] zimo: menfeng=2 p= shoupai=s7,m45-6,z111-,p234-,s7-89 paishu=43
- [debug] callback called: reply= undefined
- [local-shan] zimo: p= paishu=43
- [hand] zimo: menfeng=3 p= shoupai=p1230s2356z33,s7-89 paishu=43
- [DEBUG] _doDapai 开始: dp=m6*, turnTriggerLog={}
+ [local-shan] zimo: p= paishu=56
+ [hand] zimo: menfeng=0 p= shoupai=m347p3455567s267 paishu=56
+ [local-shan] zimo: p= paishu=56
+ [hand] zimo: menfeng=1 p= shoupai=m23569p1146s3467 paishu=56
+ [local-shan] zimo: p=p9 paishu=56
+ [hand] zimo: menfeng=2 p=p9 shoupai=m1356788s5z13447p9 paishu=56
+ [debug] action_zimo: zimo.p=p9 menfeng=2
+ [debug] action_zimo: hand=m1356788s5z13447p9 paishu=56
+ [debug] action_zimo: canHule=false gangzimo=false
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1356788s5z13447p9 p=null hupai=false
+ [debug] Player.allow_hule: hand=m1356788s5z13447p9 p=null hupai=false neng_rong=true xiangting=3 result=false
+ [debug] action_zimo: allow_hule result=false lizhi=false neng_rong=true
+ [debug] select_dapai: dapai_list= Array(12) _node.dapai.length= 1 _node.dapai[0]= 
+ [local-shan] zimo: p= paishu=56
+ [hand] zimo: menfeng=3 p= shoupai=m256p39s368z77,p67-8 paishu=56
+ [debug] callback called: reply= {"dapai":"z1"}
+ [DEBUG] _doDapai 开始: dp=z1, turnTriggerLog={}
  [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=m789p55z22,m111=,s444+ p=m6*- hupai=false
- [expander-debug] rong: seat=1 p=m6*- cleanP=m6 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=z1= hupai=false
+ [expander-debug] rong: seat=0 p=z1= cleanP=z1 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [expander-debug] yakuExpander(rong) found: seat=2 yaku=[{"name":"十二落抬","fanshu":2}]
- [debug] Game.allow_hule: FAIL (neng_rong=false) hand=s7,m45-6,z111-,p234-,s7-89 p=m6*=
- [expander-debug] rong: seat=2 p=m6*= cleanP=m6 expanders=1 expanderCandidates=m7,p7,z7
- [expander-debug] rong: checking expander candidateSet=[m7,p7,z7] includes=false
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m23569p1146s3467 p=z1+ hupai=false
+ [expander-debug] rong: seat=1 p=z1+ cleanP=z1 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s2356z33,s7-89 p=m6*+ hupai=false
- [expander-debug] rong: seat=3 p=m6*+ cleanP=m6 expanders=0 expanderCandidates=
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m256p39s368z77,p67-8 p=z1- hupai=false
+ [expander-debug] rong: seat=3 p=z1- cleanP=z1 expanders=0 expanderCandidates=
  [expander-debug] rong: no path succeeded
- [hand] dapai: menfeng=0 dapai_l=0 p=m6* shoupai=m334455p44s34578* paishu=43
- [hand] dapai: menfeng=1 dapai_l=0 p=m6* shoupai=m789p55z22,m111=,s444+ paishu=43
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=m789p55z22,m111=,s444+ p=m6- hupai=false
- [debug] Player.allow_hule: hand=m789p55z22,m111=,s444+ p=m6- hupai=false neng_rong=true xiangting=0 result=false
- [hand] dapai: menfeng=2 dapai_l=0 p=m6* shoupai=s7,m45-6,z111-,p234-,s7-89 paishu=43
- [debug] action_dapai: hand=s7,m45-6,z111-,p234-,s7-89 opponent_discard=m6*= paishu=43
- [debug] Game.allow_hule: FAIL (neng_rong=false) hand=s7,m45-6,z111-,p234-,s7-89 p=m6*=
- [debug] Player.allow_hule: hand=s7,m45-6,z111-,p234-,s7-89 p=m6*= hupai=false neng_rong=false xiangting=0 result=false
+ [hand] dapai: menfeng=0 dapai_l=2 p=z1 shoupai=m347p3455567s267 paishu=56
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=z1= hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267 p=z1= hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=1 dapai_l=2 p=z1 shoupai=m23569p1146s3467 paishu=56
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m23569p1146s3467 p=z1+ hupai=false
+ [debug] Player.allow_hule: hand=m23569p1146s3467 p=z1+ hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=2 dapai_l=2 p=z1 shoupai=m1356788p9s5z3447 paishu=56
  [debug] callback called: reply= undefined
- [hand] dapai: menfeng=3 dapai_l=0 p=m6* shoupai=p1230s2356z33,s7-89 paishu=43
- [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s2356z33,s7-89 p=m6+ hupai=false
- [debug] Player.allow_hule: hand=p1230s2356z33,s7-89 p=m6+ hupai=false neng_rong=true xiangting=1 result=false
- [wall] zimo: tile=m7 paishu=42 cursor=57/68 haitei=10 dw=7 half=false wall[(p7,s2)[s2,p8][m2,z7][m9,s2][p3,s5][z6,m3][s8,s0][p6,m2][m8,z4][p7,s6][m6,p6][z2,z2][s9,p5][z4,m9][s3,s9][p8,s1][s6,p7][p4,m0][m9,m8][z5,m4][p1,m2]] dead[宝5[z7,p1]宝4[m2,z3]宝3[p7,m7]宝2[s6,z5]宝1[m7,m6]岭2[m8,m3]岭1[s3,p3]]
+ [hand] dapai: menfeng=3 dapai_l=2 p=z1 shoupai=m256p39s368z77,p67-8 paishu=56
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m256p39s368z77,p67-8 p=z1- hupai=false
+ [debug] Player.allow_hule: hand=m256p39s368z77,p67-8 p=z1- hupai=false neng_rong=true xiangting=3 result=false
+ [wall] zimo: tile=p2 paishu=55 cursor=49/68 haitei=9 dw=7 half=true wall[(_,s2)[m4,s8][p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
  [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
- [expander-debug] allow_hule(null) entry: seat=1 hand=m789p55z22m7,m111=,s444+ hasSkillManager=true _zimo=m7
- [debug] Game.allow_hule: FAIL (xiangting=0) hand=m789p55z22m7,m111=,s444+ p=null hupai=false
- [expander-debug] zimo expanders count=0 seat=1 hand=m789p55z22m7,m111=,s444+
+ [expander-debug] allow_hule(null) entry: seat=3 hand=m256p39s368z77p2,p67-8 hasSkillManager=true _zimo=p2
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m256p39s368z77p2,p67-8 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=3 hand=m256p39s368z77p2,p67-8
  [expander-debug] zimo expander: no path succeeded
- [local-shan] zimo: p= paishu=42
- [hand] zimo: menfeng=0 p= shoupai=m334455p44s34578* paishu=42
- [local-shan] zimo: p=m7 paishu=42
- [hand] zimo: menfeng=1 p=m7 shoupai=m789p55z22m7,m111=,s444+ paishu=42
-game.js:3059 [debug] Game.allow_hule: FAIL (xiangting=0) hand=m789p55z22m7,m111=,s444+ p=undefined hupai=false
-player.js:226 [debug] Player.allow_hule: hand=m789p55z22m7,m111=,s444+ p=undefined hupai=false neng_rong=true xiangting=0 result=false
-board.js:17 [local-shan] zimo: p= paishu=42
-player.js:109 [hand] zimo: menfeng=2 p= shoupai=s7,m45-6,z111-,p234-,s7-89 paishu=42
+ [local-shan] zimo: p= paishu=55
+ [hand] zimo: menfeng=0 p= shoupai=m347p3455567s267 paishu=55
+ [local-shan] zimo: p= paishu=55
+ [hand] zimo: menfeng=1 p= shoupai=m23569p1146s3467 paishu=55
+ [local-shan] zimo: p= paishu=55
+ [hand] zimo: menfeng=2 p= shoupai=m1356788p9s5z3447 paishu=55
+ [debug] callback called: reply= undefined
+ [local-shan] zimo: p=p2 paishu=55
+ [hand] zimo: menfeng=3 p=p2 shoupai=m256p39s368z77p2,p67-8 paishu=55
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m256p39s368z77p2,p67-8 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m256p39s368z77p2,p67-8 p=undefined hupai=false neng_rong=true xiangting=2 result=false
+ [DEBUG] _doDapai 开始: dp=p9, turnTriggerLog={}
+ [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=p9- hupai=false
+ [expander-debug] rong: seat=0 p=p9- cleanP=p9 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m23569p1146s3467 p=p9= hupai=false
+ [expander-debug] rong: seat=1 p=p9= cleanP=p9 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m1356788p9s5z3447 p=p9+ hupai=false
+ [expander-debug] rong: seat=2 p=p9+ cleanP=p9 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [hand] dapai: menfeng=0 dapai_l=3 p=p9 shoupai=m347p3455567s267 paishu=55
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m347p3455567s267 p=p9- hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267 p=p9- hupai=false neng_rong=true xiangting=2 result=false
+ [hand] dapai: menfeng=1 dapai_l=3 p=p9 shoupai=m23569p1146s3467 paishu=55
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m23569p1146s3467 p=p9= hupai=false
+ [debug] Player.allow_hule: hand=m23569p1146s3467 p=p9= hupai=false neng_rong=true xiangting=3 result=false
+ [hand] dapai: menfeng=2 dapai_l=3 p=p9 shoupai=m1356788p9s5z3447 paishu=55
+ [debug] action_dapai: hand=m1356788p9s5z3447 opponent_discard=p9+ paishu=55
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m1356788p9s5z3447 p=p9+ hupai=false
+ [debug] Player.allow_hule: hand=m1356788p9s5z3447 p=p9+ hupai=false neng_rong=true xiangting=3 result=false
+ [debug] callback called: reply= undefined
+ [hand] dapai: menfeng=3 dapai_l=3 p=p9 shoupai=m256p23s368z77,p67-8 paishu=55
+ [wall] zimo: tile=s2 paishu=54 cursor=50/68 haitei=9 dw=7 half=false wall[(m4,s8)[p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+ [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
+ [expander-debug] allow_hule(null) entry: seat=0 hand=m347p3455567s267s2 hasSkillManager=true _zimo=s2
+ [debug] Game.allow_hule: FAIL (xiangting=1) hand=m347p3455567s267s2 p=null hupai=false
+ [expander-debug] zimo expanders count=0 seat=0 hand=m347p3455567s267s2
+ [expander-debug] zimo expander: no path succeeded
+ [local-shan] zimo: p=s2 paishu=54
+ [hand] zimo: menfeng=0 p=s2 shoupai=m347p3455567s267s2 paishu=54
+ [debug] Game.allow_hule: FAIL (xiangting=1) hand=m347p3455567s267s2 p=undefined hupai=false
+ [debug] Player.allow_hule: hand=m347p3455567s267s2 p=undefined hupai=false neng_rong=true xiangting=1 result=false
+ [local-shan] zimo: p= paishu=54
+ [hand] zimo: menfeng=1 p= shoupai=m23569p1146s3467 paishu=54
+ [local-shan] zimo: p= paishu=54
+ [hand] zimo: menfeng=2 p= shoupai=m1356788p9s5z3447 paishu=54
+ [debug] callback called: reply= undefined
+ [local-shan] zimo: p= paishu=54
+ [hand] zimo: menfeng=3 p= shoupai=m256p23s368z77,p67-8 paishu=54
+ [DEBUG] _doDapai 开始: dp=p5, turnTriggerLog={}
+ [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m23569p1146s3467 p=p5- hupai=false
+ [expander-debug] rong: seat=1 p=p5- cleanP=p5 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1356788p9s5z3447 p=p5= hupai=false
+ [expander-debug] rong: seat=2 p=p5= cleanP=p5 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [debug] Game.allow_hule: FAIL (xiangting=2) hand=m256p23s368z77,p67-8 p=p5+ hupai=false
+ [expander-debug] rong: seat=3 p=p5+ cleanP=p5 expanders=0 expanderCandidates=
+ [expander-debug] rong: no path succeeded
+ [hand] dapai: menfeng=0 dapai_l=0 p=p5 shoupai=m347p345567s2267 paishu=54
+ [hand] dapai: menfeng=1 dapai_l=0 p=p5 shoupai=m23569p1146s3467 paishu=54
+game.js:3316 [debug] Game.allow_hule: FAIL (xiangting=2) hand=m23569p1146s3467 p=p5- hupai=false
+player.js:226 [debug] Player.allow_hule: hand=m23569p1146s3467 p=p5- hupai=false neng_rong=true xiangting=3 result=false
+player.js:124 [hand] dapai: menfeng=2 dapai_l=0 p=p5 shoupai=m1356788p9s5z3447 paishu=54
+player.js:294 [debug] action_dapai: hand=m1356788p9s5z3447 opponent_discard=p5= paishu=54
+game.js:3316 [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1356788p9s5z3447 p=p5= hupai=false
+player.js:226 [debug] Player.allow_hule: hand=m1356788p9s5z3447 p=p5= hupai=false neng_rong=true xiangting=3 result=false
 player.js:54 [debug] callback called: reply= undefined
-board.js:17 [local-shan] zimo: p= paishu=42
-player.js:109 [hand] zimo: menfeng=3 p= shoupai=p1230s2356z33,s7-89 paishu=42
-game.js:2157 [DEBUG] _doDapai 开始: dp=m7_, turnTriggerLog={}
-game.js:2187 [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
-game.js:3059 [debug] Game.allow_hule: FAIL (xiangting=0) hand=m334455p44s34578* p=m7_+ hupai=true
-game.js:2858 [expander-debug] rong: seat=0 p=m7_+ cleanP=m7 expanders=0 expanderCandidates=
-game.js:2919 [expander-debug] rong: no path succeeded
-game.js:2838 [expander-debug] yakuExpander(rong) found: seat=2 yaku=[{"name":"十二落抬","fanshu":2}]
-game.js:3042 [debug] Game.allow_hule: FAIL (neng_rong=false) hand=s7,m45-6,z111-,p234-,s7-89 p=m7_-
-game.js:2858 [expander-debug] rong: seat=2 p=m7_- cleanP=m7 expanders=1 expanderCandidates=m7,p7,z7
-game.js:2863 [expander-debug] rong: checking expander candidateSet=[m7,p7,z7] includes=true
-game.js:2870 [expander-debug] rong: hand13=s7,m45-6,z111-,p234-,s7-89 ting=[s7]
-game.js:2874 [expander-debug] rong: trying ting tile=s7
-game.js:3042 [debug] Game.allow_hule: FAIL (neng_rong=false) hand=s7,m45-6,z111-,p234-,s7-89 p=s7-
-game.js:2905 [expander-debug] rong: tile=s7- hupai=false _check=false
-game.js:2913 [expander-debug] rong: ✅ yakuExpander fallback with tile=s7-
-game.js:3059 [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s2356z33,s7-89 p=m7_= hupai=false
-game.js:2858 [expander-debug] rong: seat=3 p=m7_= cleanP=m7 expanders=0 expanderCandidates=
-game.js:2919 [expander-debug] rong: no path succeeded
-player.js:124 [hand] dapai: menfeng=0 dapai_l=1 p=m7_ shoupai=m334455p44s34578* paishu=42
-game.js:3059 [debug] Game.allow_hule: FAIL (xiangting=0) hand=m334455p44s34578* p=m7+ hupai=true
-player.js:226 [debug] Player.allow_hule: hand=m334455p44s34578* p=m7+ hupai=true neng_rong=true xiangting=0 result=false
-player.js:124 [hand] dapai: menfeng=1 dapai_l=1 p=m7_ shoupai=m789p55z22,m111=,s444+ paishu=42
-player.js:124 [hand] dapai: menfeng=2 dapai_l=1 p=m7_ shoupai=s7,m45-6,z111-,p234-,s7-89 paishu=42
-player.js:294 [debug] action_dapai: hand=s7,m45-6,z111-,p234-,s7-89 opponent_discard=m7_- paishu=42
-game.js:3042 [debug] Game.allow_hule: FAIL (neng_rong=false) hand=s7,m45-6,z111-,p234-,s7-89 p=m7_-
-player.js:226 [debug] Player.allow_hule: hand=s7,m45-6,z111-,p234-,s7-89 p=m7_- hupai=false neng_rong=false xiangting=0 result=false
-player.js:124 [hand] dapai: menfeng=3 dapai_l=1 p=m7_ shoupai=p1230s2356z33,s7-89 paishu=42
-game.js:3059 [debug] Game.allow_hule: FAIL (xiangting=1) hand=p1230s2356z33,s7-89 p=m7= hupai=false
-player.js:226 [debug] Player.allow_hule: hand=p1230s2356z33,s7-89 p=m7= hupai=false neng_rong=true xiangting=1 result=false
-player.js:54 [debug] callback called: reply= {"hule":"-"}
-game.js:2838 [expander-debug] yakuExpander(rong) found: seat=2 yaku=[{"name":"十二落抬","fanshu":2}]
-game.js:3042 [debug] Game.allow_hule: FAIL (neng_rong=false) hand=s7,m45-6,z111-,p234-,s7-89 p=m7_-
-game.js:2858 [expander-debug] rong: seat=2 p=m7_- cleanP=m7 expanders=1 expanderCandidates=m7,p7,z7
-game.js:2863 [expander-debug] rong: checking expander candidateSet=[m7,p7,z7] includes=true
-game.js:2870 [expander-debug] rong: hand13=s7,m45-6,z111-,p234-,s7-89 ting=[s7]
-game.js:2874 [expander-debug] rong: trying ting tile=s7
-game.js:3042 [debug] Game.allow_hule: FAIL (neng_rong=false) hand=s7,m45-6,z111-,p234-,s7-89 p=s7-
-game.js:2905 [expander-debug] rong: tile=s7- hupai=false _check=false
-game.js:2913 [expander-debug] rong: ✅ yakuExpander fallback with tile=s7-
-index.js:569 [技能] 时点「declare_hule」 → 座位2(西家) 自动执行: 你追立或裸单骑时,荣和/自摸时可将与你听牌点数/花色或点数相同的牌视为你的和牌.
-game.js:1788 [expander-debug] hule(): _huleExpanderUsed={"skillId":"Anetai_Toyone_skill_3","seat":2} _genericHuleSelectionDone=false
-game.js:1796 [expander-debug] _huleExpanderUsed: skillId=Anetai_Toyone_skill_3 skill=true sealed=false hasExecute=true hasHuleExpander=true
-game.js:1813 [expander-debug] _huleExpanderUsed: isAI=false rongpai=m7- menfeng=2
-game.js:1579 [expander-debug] _continueHule: overrideRongpai="s7-" rongpai="m7-" finalRongpai="s7-" finalShoupai=s7,m45-6,z111-,p234-,s7-89
-game.js:1584 [expander-debug] _continueHule: hule={"hupai":[{"name":"场风 東","fanshu":1,"type":"yaku"}],"fu":30,"fanshu":1,"defen":1000,"fenpei":[0,-1000,2000,0]}
-game.js:1603 [yakuExpander] 合并虚拟役后 hupai=[{"name":"场风 東","fanshu":1,"type":"yaku"},{"name":"十二落抬","fanshu":2,"type":"yaku"}]
-index.js:569 [技能] 时点「hule_settle」 → 座位2(西家) 自动执行: 追立他家视为2番,你追立或三副露以上时铳点减半;
-game.js:1677 [hule-recalc] final defen=3900 fanshu=3 base=960 fenpei=[0,-3900,4900,0]
-index.js:569 [技能] 时点「fenpei_calculated」 → 座位2(西家) 自动执行: 追立他家视为2番,你追立或三副露以上时铳点减半;
+player.js:124 [hand] dapai: menfeng=3 dapai_l=0 p=p5 shoupai=m256p23s368z77,p67-8 paishu=54
+game.js:3316 [debug] Game.allow_hule: FAIL (xiangting=2) hand=m256p23s368z77,p67-8 p=p5+ hupai=false
+player.js:226 [debug] Player.allow_hule: hand=m256p23s368z77,p67-8 p=p5+ hupai=false neng_rong=true xiangting=2 result=false
+shan.js:292 [wall] zimo: tile=m4 paishu=53 cursor=50/68 haitei=9 dw=7 half=true wall[(_,s8)[p6,m1][m0,s3][s1,z5][m7,s6][s4,s7][z1,z3][s1,s4][z5,p3][m9,m7][s9,p2][p0,m9][p2,p9][s0,p1][p1,z1][s8,p7][m1,z3][p7,z2][m8,z6][z4,m4][p8,m9][m3,m1][m8,m6][m2,s3][s2,p8][s4,p2][p3,s5]] dead[宝5[s7,z4]宝4[p4,m4]宝3[s5,p9]宝2[s2,s1]宝1[z6,m2]岭2[s8,p8]岭1[z7,z2]]
+index.js:659 [DEBUG] clearTurnRecords 被调用, 之前的 turnTriggerLog={}
+game.js:2952 [expander-debug] allow_hule(null) entry: seat=1 hand=m23569p1146s3467m4 hasSkillManager=true _zimo=m4
+game.js:3316 [debug] Game.allow_hule: FAIL (xiangting=2) hand=m23569p1146s3467m4 p=null hupai=false
+game.js:2985 [expander-debug] zimo expanders count=0 seat=1 hand=m23569p1146s3467m4
+game.js:3069 [expander-debug] zimo expander: no path succeeded
+board.js:17 [local-shan] zimo: p= paishu=53
+player.js:109 [hand] zimo: menfeng=0 p= shoupai=m347p345567s2267 paishu=53
+board.js:17 [local-shan] zimo: p=m4 paishu=53
+player.js:109 [hand] zimo: menfeng=1 p=m4 shoupai=m23569p1146s3467m4 paishu=53
+game.js:3316 [debug] Game.allow_hule: FAIL (xiangting=2) hand=m23569p1146s3467m4 p=undefined hupai=false
+player.js:226 [debug] Player.allow_hule: hand=m23569p1146s3467m4 p=undefined hupai=false neng_rong=true xiangting=2 result=false
+board.js:17 [local-shan] zimo: p= paishu=53
+player.js:109 [hand] zimo: menfeng=2 p= shoupai=m1356788p9s5z3447 paishu=53
+player.js:54 [debug] callback called: reply= undefined
+board.js:17 [local-shan] zimo: p= paishu=53
+player.js:109 [hand] zimo: menfeng=3 p= shoupai=m256p23s368z77,p67-8 paishu=53
+game.js:2363 [DEBUG] _doDapai 开始: dp=m9, turnTriggerLog={}
+game.js:2397 [DEBUG] _doDapai DISCARD_SELECTED: hasBeforeActions=false, hasDiscardActions=false, discardActions=[], turnTriggerLog={}
+game.js:3316 [debug] Game.allow_hule: FAIL (xiangting=1) hand=m347p345567s2267 p=m9+ hupai=false
+game.js:3115 [expander-debug] rong: seat=0 p=m9+ cleanP=m9 expanders=0 expanderCandidates=
+game.js:3176 [expander-debug] rong: no path succeeded
+game.js:3316 [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1356788p9s5z3447 p=m9- hupai=false
+game.js:3115 [expander-debug] rong: seat=2 p=m9- cleanP=m9 expanders=0 expanderCandidates=
+game.js:3176 [expander-debug] rong: no path succeeded
+game.js:3316 [debug] Game.allow_hule: FAIL (xiangting=2) hand=m256p23s368z77,p67-8 p=m9= hupai=false
+game.js:3115 [expander-debug] rong: seat=3 p=m9= cleanP=m9 expanders=0 expanderCandidates=
+game.js:3176 [expander-debug] rong: no path succeeded
+player.js:124 [hand] dapai: menfeng=0 dapai_l=1 p=m9 shoupai=m347p345567s2267 paishu=53
+game.js:3316 [debug] Game.allow_hule: FAIL (xiangting=1) hand=m347p345567s2267 p=m9+ hupai=false
+player.js:226 [debug] Player.allow_hule: hand=m347p345567s2267 p=m9+ hupai=false neng_rong=true xiangting=1 result=false
+player.js:124 [hand] dapai: menfeng=1 dapai_l=1 p=m9 shoupai=m23456p1146s3467 paishu=53
+player.js:124 [hand] dapai: menfeng=2 dapai_l=1 p=m9 shoupai=m1356788p9s5z3447 paishu=53
+player.js:294 [debug] action_dapai: hand=m1356788p9s5z3447 opponent_discard=m9- paishu=53
+game.js:3316 [debug] Game.allow_hule: FAIL (xiangting=3) hand=m1356788p9s5z3447 p=m9- hupai=false
+player.js:226 [debug] Player.allow_hule: hand=m1356788p9s5z3447 p=m9- hupai=false neng_rong=true xiangting=3 result=false
+player.js:124 [hand] dapai: menfeng=3 dapai_l=1 p=m9 shoupai=m256p23s368z77,p67-8 paishu=53
+game.js:3316 [debug] Game.allow_hule: FAIL (xiangting=2) hand=m256p23s368z77,p67-8 p=m9= hupai=false
+player.js:226 [debug] Player.allow_hule: hand=m256p23s368z77,p67-8 p=m9= hupai=false neng_rong=true xiangting=2 result=false
+player.js:54 [debug] callback called: reply= {"fulou":"m789-"}
+player.js:143 [hand] fulou: menfeng=0 fulou_l=2 m=m789- shoupai=m347p345567s2267 paishu=53
+player.js:143 [hand] fulou: menfeng=1 fulou_l=2 m=m789- shoupai=m23456p1146s3467 paishu=53
+player.js:143 [hand] fulou: menfeng=2 fulou_l=2 m=m789- shoupai=m13568p9s5z3447,m789-, paishu=53
+player.js:123 [debug] select_dapai: dapai_list= Array(9) _node.dapai.length= 1 _node.dapai[0]= <div class=​"bingpai" aria-label=​"手牌">​…​</div>​
+player.js:143 [hand] fulou: menfeng=3 fulou_l=2 m=m789- shoupai=m256p23s368z77,p67-8 paishu=53

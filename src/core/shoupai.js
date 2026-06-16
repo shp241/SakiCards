@@ -180,7 +180,9 @@ module.exports = class Shoupai {
     }
 
     zimo(p, check = true) {
-        if (check && this._zimo)                    throw new Error([this, p]);
+        if (check && this._zimo) {
+            throw new Error([this, p]);
+        }
         if (p == '_') {
             this._bingpai._++;
             this._zimo = p;

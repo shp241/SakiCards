@@ -26,6 +26,8 @@
  */
 'use strict';
 
+const Shoupai = require('../core/shoupai');
+const { TurnType } = require('../skill/triggers');
 const hanOps = require('./han-ops');
 const tileUtils = require('./tile-utils');
 
@@ -50,25 +52,23 @@ function countMelds(model, seat, type) {
     let count = 0;
     for (let m of fulou) {
         if (typeof m !== 'string') continue;
-        let isKan = m.match(/[\-\+]\d.*[\-\+]\d.*[\-\+]\d.*[\-\+]\d/);
-        let isAnkan = m.match(/[\-\+]\d.*[\-\+]\d.*[\-\+]\d.*[\-\+]\d/);
-        let isChi = !isKan && !m.match(/(\d)\1\1/);
+        let meldType = Shoupai.fulouType(m);
 
         switch (type) {
             case 'chi':
-                if (isChi) count++;
+                if (meldType === 'chi') count++;
                 break;
             case 'pon':
-                if (!isKan && !isChi && !isAnkan) count++;
+                if (meldType === 'pon') count++;
                 break;
             case 'kan':
-                if (isKan || isAnkan) count++;
+                if (meldType === 'minkan' || meldType === 'ankan' || meldType === 'kakan') count++;
                 break;
             case 'ankan':
-                if (isAnkan) count++;
+                if (meldType === 'ankan') count++;
                 break;
             case 'daiminkan':
-                if (isKan && !isAnkan) count++;
+                if (meldType === 'minkan') count++;
                 break;
             default:
                 break;
@@ -93,40 +93,66 @@ function getMeldStats(model, seat) {
 
     for (let m of fulou) {
         if (typeof m !== 'string') continue;
-        // 检测杠子：4张同一数字出现在同一面子中
-        let digits = [];
-        let matchAll = m.match(/\d/g);
-        if (matchAll) digits = matchAll.map(Number);
+        let meldType = Shoupai.fulouType(m);
 
-        let isKan = false;
-        let isAnkan = false;
-        if (digits.length === 4) {
-            // 检查四张牌是否都相同（考虑0=红5）
-            let normalized = digits.map(d => d === 0 ? 5 : d);
-            if (normalized.every(d => d === normalized[0])) {
-                // 暗杠: 字符全部是 - 或全部是 +
-                let signs = m.match(/[\-\+]/g) || [];
-                if (signs.length === 4 && signs.every(s => s === signs[0])) {
-                    isAnkan = true;
-                }
-                isKan = true;
-            }
-        }
-
-        if (isKan) {
-            stats.kan++;
-            if (isAnkan) stats.ankan++;
-            else stats.daiminkan++;
-        } else if (digits.length === 3 && digits.every(d => (d === 0 ? 5 : d) === (digits[0] === 0 ? 5 : digits[0]))) {
-            // 刻子：3张相同
-            stats.pon++;
-        } else {
-            // 顺子
-            stats.chi++;
+        switch (meldType) {
+            case 'chi':
+                stats.chi++;
+                break;
+            case 'pon':
+                stats.pon++;
+                break;
+            case 'minkan':
+                stats.kan++;
+                stats.daiminkan++;
+                break;
+            case 'ankan':
+                stats.kan++;
+                stats.ankan++;
+                break;
+            case 'kakan':
+                stats.kan++;
+                stats.daiminkan++;
+                break;
+            default:
+                break;
         }
         stats.total++;
     }
     return stats;
+}
+
+/**
+ * 获取副露数（吃、碰、大明杠、加杠，排除暗杠）。
+ * 等价于 getMeldStats().total - getMeldStats().ankan。
+ *
+ * @param {Object} model — game._model
+ * @param {number} seat  — 席位 (0-3)
+ * @returns {number}
+ */
+function getFulouCount(model, seat) {
+    let stats = getMeldStats(model, seat);
+    return stats.total - stats.ankan;
+}
+
+/**
+ * 判断当前巡目是否为副露巡目（吃碰巡目 或 杠巡目中的大明杠）。
+ *
+ * 吃碰巡目（chipeng）和杠巡目（kan）中的大明杠均属于副露行为，
+ * 暗杠和加杠不属于副露巡目。
+ *
+ * @param {Object} context — 技能上下文，需含 turnType 和 game
+ * @returns {boolean}
+ */
+function isFulouTurn(context) {
+    if (!context) return false;
+    let turnType = context.turnType;
+    if (turnType === TurnType.CHIPENG) return true;
+    if (turnType === TurnType.KAN) {
+        let game = context.game;
+        if (game && game._kanType === 'daiminkan') return true;
+    }
+    return false;
 }
 
 /**
@@ -302,6 +328,8 @@ module.exports = {
     // 查询层
     countMelds,
     getMeldStats,
+    getFulouCount,
+    isFulouTurn,
     countHandTiles,
     countRiverTiles,
     countZoneTiles,

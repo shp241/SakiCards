@@ -63,6 +63,15 @@ function createShanFromData(rule, data) {
     const Majiang = require('../src/core/index');
     let shan = new Majiang.Shan(rule);
     deserializeShan(shan, data);
+    /* 重置关闭状态（回放时牌山必须是开放的） */
+    if (shan._closed) shan._closed = false;
+    /* 重置开杠状态 */
+    if (shan._weikaigang) shan._weikaigang = false;
+    /* 重置岭上摸牌计数 */
+    if (shan._rinshan_drawn > 0) shan._rinshan_drawn = 0;
+    /* 重置宝牌翻转计数（replay 时会通过 kaigang 操作重新设置） */
+    /* 重置半消耗状态 */
+    if (shan._half_consumed) shan._half_consumed = false;
     return shan;
 }
 

@@ -301,7 +301,7 @@ function _injectContinueDebugHooks(game) {
     /* 拦截 AI 决策 */
     let origReplyZimo = game.reply_zimo.bind(game);
     game.reply_zimo = function() {
-        let playerIdx = model.player_id ? model.player_id[model.lunban] : null;
+        let playerIdx = model.seatToPlIdx ? model.seatToPlIdx[model.lunban] : null;
         let player = playerIdx != null ? game._players[playerIdx] : null;
 
         if (player && typeof player.select_dapai === 'function') {
@@ -327,7 +327,7 @@ function _injectContinueDebugHooks(game) {
     let origAddActionLog = game._add_action_log.bind(game);
     game._add_action_log = function(text, seat) {
         if (text.includes('发动') || text.includes('技能')) {
-            let playerIdx = model.player_id ? model.player_id[seat] : seat;
+            let playerIdx = model.seatToPlIdx ? model.seatToPlIdx[seat] : seat;
             console.log('  [DEBUG:' + stepCount + '] 技能 P' + playerIdx + ' ' + text);
         }
         return origAddActionLog(text, seat);

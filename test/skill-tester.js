@@ -279,7 +279,7 @@ function testManual(args) {
     for (let l = 0; l < 4; l++) {
         model.shoupai[l] = new Majiang.Shoupai();
         model.he[l] = new Majiang.He();
-        model.player_id[l] = (model.qijia + model.jushu + l) % 4;
+        model.seatToPlIdx[l] = (model.qijia + model.jushu + l) % 4;
     }
 
     /* 发牌 */
@@ -303,8 +303,8 @@ function testManual(args) {
         shoupai: testHands,
     };
     for (let l = 0; l < 4; l++) {
-        game._players[model.player_id[l]].action({
-            qipai: Object.assign({}, qipai, { id: model.player_id[l], rule: game._rule }),
+        game._players[model.seatToPlIdx[l]].action({
+            qipai: Object.assign({}, qipai, { id: model.seatToPlIdx[l], rule: game._rule }),
         }, () => {});
     }
 
@@ -415,9 +415,9 @@ function testBatch(args) {
                 shoupai: [sc.hand, ...sc.otherHands],
             };
             for (let l = 0; l < 4; l++) {
-                model.player_id[l] = (model.qijia + model.jushu + l) % 4;
-                players[model.player_id[l]].action({
-                    qipai: Object.assign({}, qipai, { id: model.player_id[l] }),
+                model.seatToPlIdx[l] = (model.qijia + model.jushu + l) % 4;
+                players[model.seatToPlIdx[l]].action({
+                    qipai: Object.assign({}, qipai, { id: model.seatToPlIdx[l] }),
                 }, () => {});
             }
 

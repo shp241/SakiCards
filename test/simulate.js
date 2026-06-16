@@ -255,7 +255,7 @@ function runOneGame(charAssignments, testLabel) {
         /* ---- 技能触发日志 ---- */
         let origAddActionLog = game._add_action_log.bind(game);
         game._add_action_log = function(text, seat) {
-            let playerIdx = game._model.player_id[seat];
+            let playerIdx = game._model.seatToPlIdx[seat];
             let charId = sm.getCharacterId(playerIdx);
 
             /* 统计计数 */
@@ -416,7 +416,7 @@ function _injectDebugHooks(game, sm) {
     /* ---- reply_zimo 钩子：捕获 AI 打牌决策 ---- */
     let origReplyZimo = game.reply_zimo.bind(game);
     game.reply_zimo = function() {
-        let playerIdx = game._model.player_id[model.lunban];
+        let playerIdx = game._model.seatToPlIdx[model.lunban];
         let player = game._players[playerIdx];
 
         /* 拦截 AI select_dapai 来采集决策信息 */
@@ -448,7 +448,7 @@ function _injectDebugHooks(game, sm) {
     /* ---- reploy_fulou 钩子 ---- */
     let origReplyFulou = game.reply_fulou.bind(game);
     game.reply_fulou = function() {
-        let playerIdx = game._model.player_id[model.lunban];
+        let playerIdx = game._model.seatToPlIdx[model.lunban];
         if (CONFIG.debug) {
             debugLog(game, 'step', {
                 step: globalStepCounter,
