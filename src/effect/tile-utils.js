@@ -114,6 +114,37 @@ function matchSuits(pai, suits) {
 }
 
 /* ================================================================
+ * 牌河计数
+ * ================================================================ */
+
+/**
+ * 统计牌河中有效舍牌数。
+ * 不计被副露的牌（+/=/- 后缀），但计暗置的舍牌（_ 后缀）。
+ *
+ * @param {Object} he — 牌河对象（model.he[seat]）
+ * @returns {number} 有效舍牌数
+ */
+function countHePai(he) {
+    if (!he || !he._pai) return 0;
+    let count = 0;
+    for (let t of he._pai) {
+        if (t.match(/[\+\=\-]$/)) continue;
+        count++;
+    }
+    return count;
+}
+
+/**
+ * 根据牌河牌数计算当前牌河排数（每排 6 张）。
+ *
+ * @param {number} paiCount — 有效舍牌数
+ * @returns {number} 排号（1 起）
+ */
+function heRow(paiCount) {
+    return Math.ceil(paiCount / 6);
+}
+
+/* ================================================================
  * 宝牌
  * ================================================================ */
 
@@ -178,6 +209,8 @@ module.exports = {
     isEquivalent,
     matchNumbers,
     matchSuits,
+    countHePai,
+    heRow,
     doraOf,
     buildDoraSet,
     isDora,

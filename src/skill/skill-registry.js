@@ -16,7 +16,7 @@ const tileUtils = require('../effect/tile-utils');
 const pointPayment = require('../effect/point-payment');
 
 const { SkillType, UsageType, EffectType } = require('./skill-types');
-const { TimingPoints, TurnType } = require('./triggers');
+const { TimingPoints } = require('./triggers');
 
 /**
  * 从角色数据创建一个可执行的技能对象
@@ -443,9 +443,6 @@ async function _kunihiroSwap(context, game, seat, model, input, shoupai, spname)
     if (!handTile) { context.done(); return; }
 
     /* 阶段2：筛选牌河中花色或点数相同的数牌 */
-    let handSuit = handTile[0];
-    let handNum = tileUtils.numberOf(handTile);
-
     let matches = [], matchValues = [];
     let seatNames = ['自家', '下家', '对家', '上家'];
     for (let s = 0; s < 4; s++) {
@@ -457,8 +454,7 @@ async function _kunihiroSwap(context, game, seat, model, input, shoupai, spname)
             if (t === '_') continue;              /* 不计暗切 */
             let base = t.replace(/[_\*]$/, '');
             if (base[0] === 'z') continue;         /* 仅数牌 */
-            let tNum = tileUtils.numberOf(base);
-            if (base[0] !== handSuit && tNum !== handNum) continue;
+            if (!tileUtils.sameSuit(base, handTile) && !tileUtils.sameNumber(base, handTile)) continue;
 
             let relSeat = (s - seat + 4) % 4;
             let label = seatNames[relSeat] + '·' + game._pai_name(base);
@@ -517,10 +513,7 @@ async function _kunihiroSwap(context, game, seat, model, input, shoupai, spname)
  */
 function _getRiverFirstTile(he) {
     if (!he || he._pai.length === 0) return null;
-    let count = 0;
-    for (let t of he._pai) {
-        if (!t.match(/[\+\=\-]$/)) count++;
-    }
+    let count = tileUtils.countHePai(he);
     if (count === 0) return null;
     let rowStart = Math.floor((count - 1) / 6) * 6;
     for (let i = rowStart; i < he._pai.length; i++) {
@@ -855,9 +848,7 @@ function _countAllVisibleTiles(model, seat, suit, num, excludeTile) {
             if (t.match(/[\+\=\-]$/)) continue; /* 已被副露 */
             if (t.slice(-1) === '_') continue;   /* 暗切隐藏 */
             let pai = t.length >= 2 ? t.slice(0, 2) : t;
-            let pS = pai[0], pN = parseInt(pai[1]);
-            if (isNaN(pN) || pN === 0) pN = 5;
-            if (pS === suit && pN === num) count++;
+            if (tileUtils.suitOf(pai) === suit && tileUtils.numberOf(pai) === num) count++;
         }
     }
     /* 所有玩家副露（含暗杠） */
@@ -880,16 +871,12 @@ function _countAllVisibleTiles(model, seat, suit, num, excludeTile) {
         let sp = model.shoupai[i];
         if (!sp || !sp._markedTiles) continue;
         for (let mt of sp._markedTiles) {
-            let mS = mt[0], mN = parseInt(mt[1]);
-            if (isNaN(mN) || mN === 0) mN = 5;
-            if (mS === suit && mN === num) count++;
+            if (tileUtils.suitOf(mt) === suit && tileUtils.numberOf(mt) === num) count++;
         }
     }
     /* 不计入本次自摸/荣和的牌 */
     if (excludeTile) {
-        let exS = excludeTile[0], exN = parseInt(excludeTile[1]);
-        if (isNaN(exN) || exN === 0) exN = 5;
-        if (exS === suit && exN === num && count > 0) count--;
+        if (tileUtils.suitOf(excludeTile) === suit && tileUtils.numberOf(excludeTile) === num && count > 0) count--;
     }
     return count;
 }
@@ -899,8 +886,8 @@ function _countAllVisibleTiles(model, seat, suit, num, excludeTile) {
  * 4 - 自己手牌 - 全桌可见牌（牌河/副露/他人明牌），不计入本次自摸/荣和牌
  */
 function _countRemaining(model, seat, tile, excludeTile) {
-    let s = tile[0], n = parseInt(tile[1]);
-    if (isNaN(n) || n === 0) n = 5;
+    let s = tileUtils.suitOf(tile);
+    let n = tileUtils.numberOf(tile);
 
     let remaining = 4;
     /* 手牌 */
@@ -1093,11 +1080,8 @@ const SKILL_EXECUTE_MAP = {
                 let seat = context.seat;
                 let he = game._model.he[seat];
                 if (!he) return false;
-                let paiCount = 0;
-                for (let t of he._pai) {
-                    if (!t.match(/[\+\=\-]$/)) paiCount++;
-                }
-                let row = Math.ceil(paiCount / 6);
+                let paiCount = tileUtils.countHePai(he);
+                let row = tileUtils.heRow(paiCount);
                 let usedRows = game._skillManager
                     ? game._skillManager.getSkillData(seat, 'Aislinn_Wishart', 1)
                     : null;
@@ -1109,11 +1093,8 @@ const SKILL_EXECUTE_MAP = {
                 let seat = context.seat;
                 /* 记录当前排号已使用（不含被副露的牌） */
                 let he = game._model.he[seat];
-                let paiCount = 0;
-                for (let t of he._pai) {
-                    if (!t.match(/[\+\=\-]$/)) paiCount++;
-                }
-                let row = Math.ceil(paiCount / 6);
+                let paiCount = tileUtils.countHePai(he);
+                let row = tileUtils.heRow(paiCount);
                 let usedRows = game._skillManager
                     ? game._skillManager.getSkillData(seat, 'Aislinn_Wishart', 1)
                     : null;
@@ -1132,11 +1113,8 @@ const SKILL_EXECUTE_MAP = {
                 let model = game._model;
                 /* 统计非副露牌河长度和当前排位 */
                 let he = model.he[seat];
-                let heLen = 0;
-                for (let t of he._pai) {
-                    if (!t.match(/[\+\=\-]$/)) heLen++;
-                }
-                let row = Math.ceil(heLen / 6);
+                let heLen = tileUtils.countHePai(he);
+                let row = tileUtils.heRow(heLen);
                 let posInRow = ((heLen - 1) % 6) + 1;
                 /* 每排第6张必须发动 */
                 if (posInRow === 6) return true;
@@ -1342,21 +1320,14 @@ const SKILL_EXECUTE_MAP = {
             shouldAutoExecute: function(context) {
                 let game = context.game;
                 if (!game || !game._skillManager) {
-                    console.log('[DEBUG] 技能② shouldAutoExecute: game或_skillManager不存在');
                     return false;
                 }
                 /* 牌山不足时无法发动 */
                 let model = game._model;
                 if (!model || !model.shan || model.shan.paishu <= 0) {
-                    console.log('[DEBUG] 技能② shouldAutoExecute: 牌山不足 paishu=' +
-                        (model?.shan?.paishu));
                     return false;
                 }
                 let triggered = game._skillManager.wasTriggered(context.seat, 'Amae_Koromo', 4);
-                console.log('[DEBUG] 技能② shouldAutoExecute: seat=' + context.seat +
-                    ', wasTriggered(4)=' + triggered +
-                    ', paishu=' + model.shan.paishu +
-                    ', turnTriggerLog=' + JSON.stringify(game._skillManager._turnTriggerLog));
                 return triggered;
             },
             execute: async function(context) {
@@ -1475,8 +1446,6 @@ const SKILL_EXECUTE_MAP = {
                 /* 记录技能触发，确保技能②的 shouldAutoExecute
                  * 在异步间隙中也能检测到（qty 稍后更新） */
                 game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty: 0 });
-                console.log('[DEBUG] 技能④ execute: 初次 recordTrigger seat=' + seat +
-                    ', turnTriggerLog=' + JSON.stringify(game._skillManager._turnTriggerLog));
 
                 /* ── 1. 选择数量 ── */
                 let qty = 1;
@@ -1492,15 +1461,8 @@ const SKILL_EXECUTE_MAP = {
 
                 /* ── 2. 展示海底牌 ── */
                 /* ── 牌山日志：发动前 ── */
-                console.log('[skill④] 发动前 paishu=' + model.shan.paishu
-                    + ' cursor=' + model.shan._cursor + '/' + model.shan._stacks.length
-                    + ' haitei=' + model.shan._haitei + ' dw=' + model.shan._dw_count
-                    + ' half=' + model.shan._half_consumed
-                    + ' ' + model.shan._formatLivingWall()
-                    + ' ' + model.shan._formatDeadWall());
 
                 let peeked = tileOps.peekEnd(model, qty);
-                console.log('[skill④] peekEnd: 数量=' + qty + ' 展示=' + peeked.length + ' 张 [' + peeked.join(',') + ']');
                 let paiNames = peeked.map(p => game._pai_name(p)).join('、');
                 game._add_action_log(spname + ' 展示了海底牌：' + paiNames, seat);
                 input.showToast({ tiles: peeked, text: spname + ' 展示了海底牌：' + paiNames });
@@ -1511,9 +1473,6 @@ const SKILL_EXECUTE_MAP = {
                 /* 副露轮次无摸牌：展示后直接结束，不进行交换 */
                 if (!drawnPai || drawnPai.length < 2) {
                     game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
-                    console.log('[DEBUG] 技能④ execute(副露): 最终 recordTrigger seat=' + seat +
-                        ', qty=' + qty +
-                        ', turnTriggerLog=' + JSON.stringify(game._skillManager._turnTriggerLog));
                     context.done();
                     return;
                 }
@@ -1529,7 +1488,7 @@ const SKILL_EXECUTE_MAP = {
                         for (let wi = 0; wi < peeked.length; wi++) {
                             let w = peeked[wi];
                             if (w[0] === 'z') continue;
-                            if (h[0] === w[0] || h[1] === w[1]) {
+                            if (tileUtils.sameSuit(h, w) || tileUtils.sameNumber(h, w)) {
                                 pairs.push({ hand: h, wall: w, peekIdx: wi });
                             }
                         }
@@ -1623,15 +1582,12 @@ const SKILL_EXECUTE_MAP = {
 
                 } else {
                     /* 普通巡目：摸牌 ↔ 海底牌匹配 */
-                    let drawnSuit = drawnPai[0];
-                    let drawnNum = drawnPai[1];
-
                     let matches = [];
                     let matchPeekIdx = [];  // 平行数组，记录每张匹配牌在 peeked 中的位置
                     for (let i = 0; i < peeked.length; i++) {
                         let t = peeked[i];
                         if (t[0] === 'z') continue;
-                        if (t[0] === drawnSuit || t[1] === drawnNum) {
+                        if (tileUtils.sameSuit(t, drawnPai) || tileUtils.sameNumber(t, drawnPai)) {
                             matches.push(t);
                             matchPeekIdx.push(i);
                         }
@@ -1696,13 +1652,6 @@ const SKILL_EXECUTE_MAP = {
                 tileOps.swapWallEnd(model, swapIdx, drawnPai);
 
                 /* ── 牌山日志：交换后 ── */
-                console.log('[skill④] swapWallEnd: 换入=' + drawnPai + ' 换出=' + chosen + ' idx=' + swapIdx
-                    + ' paishu=' + model.shan.paishu
-                    + ' cursor=' + model.shan._cursor + '/' + model.shan._stacks.length
-                    + ' haitei=' + model.shan._haitei + ' dw=' + model.shan._dw_count
-                    + ' half=' + model.shan._half_consumed
-                    + ' ' + model.shan._formatLivingWall()
-                    + ' ' + model.shan._formatDeadWall());
 
                 game._add_action_log(spname + ' 将「' + game._pai_name(drawnPai)
                     + '」与海底「' + game._pai_name(chosen) + '」交换', seat);
@@ -1718,9 +1667,6 @@ const SKILL_EXECUTE_MAP = {
 
                 /* 设定技能②的移动数量，本巡自动发动 */
                 game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
-                console.log('[DEBUG] 技能④ execute(交换): 最终 recordTrigger seat=' + seat +
-                    ', qty=' + qty +
-                    ', turnTriggerLog=' + JSON.stringify(game._skillManager._turnTriggerLog));
                 context.done();
             },
             aiDecision: function(context) {
@@ -1925,6 +1871,8 @@ const SKILL_EXECUTE_MAP = {
                         let model = context.game._model;
                         let shoupai = context.shoupai;
 
+                        if (!shoupai) return { executed: true };
+
                         /* 表宝牌双向指示 */
                         let baopai = model.shan.baopai;
                         if (baopai && baopai.length > 0) {
@@ -2014,7 +1962,7 @@ const SKILL_EXECUTE_MAP = {
                 let model = game._model;
                 let seat = context.seat;
                 let n = tileUtils.numberOf(base);
-                let suit = base[0];
+                let suit = tileUtils.suitOf(base);
 
                 /* 跟切：与任意家牌河最后一张未被副露的牌相同 */
                 for (let l = 0; l < 4; l++) {
@@ -2026,7 +1974,7 @@ const SKILL_EXECUTE_MAP = {
                         if (p === '_') break;  /* 暗切记为不可见，无法跟切 */
                         if (p.slice(-1).match(/[\+\-\=]/)) continue;
                         /* 找到最后一张未被副露的牌 */
-                        if (p[0] === suit && tileUtils.numberOf(p) === n) return true;
+                        if (tileUtils.isEquivalent(p, base)) return true;
                         break; /* 只检查最后一张 */
                     }
                 }
@@ -2079,10 +2027,7 @@ const SKILL_EXECUTE_MAP = {
                 let he = model.he[seat];
                 if (!he) return false;
                 /* 计数牌河舍牌，不计被副露的（+/-/= 标记） */
-                let count = 0;
-                for (let t of he._pai) {
-                    if (!t.match(/[\+\=\-]$/)) count++;
-                }
+                let count = tileUtils.countHePai(he);
                 return count === 6 || count === 12;
             },
             execute: async function(context) {
@@ -2120,12 +2065,8 @@ const SKILL_EXECUTE_MAP = {
                 /* 检查是否存在能降低向听数的交换 */
                 let handTiles = [...new Set(_getHandTiles(shoupai))];
                 for (let handTile of handTiles) {
-                    let handSuit = handTile[0];
-                    let handNum = tileUtils.numberOf(handTile);
                     for (let riverTile of riverSet) {
-                        let rSuit = riverTile[0];
-                        let rNum = tileUtils.numberOf(riverTile);
-                        if (rSuit !== handSuit && rNum !== handNum) continue;
+                        if (!tileUtils.sameSuit(riverTile, handTile) && !tileUtils.sameNumber(riverTile, handTile)) continue;
                         let testShoupai = shoupai.clone();
                         tileOps.removeFromHand(testShoupai, handTile);
                         tileOps.addToHand(testShoupai, riverTile);
@@ -2195,12 +2136,8 @@ const SKILL_EXECUTE_MAP = {
                 /* 检查是否存在能降低向听数的交换 */
                 let handTiles = [...new Set(_getHandTiles(shoupai))];
                 for (let handTile of handTiles) {
-                    let handSuit = handTile[0];
-                    let handNum = tileUtils.numberOf(handTile);
                     for (let riverTile of riverSet) {
-                        let rSuit = riverTile[0];
-                        let rNum = tileUtils.numberOf(riverTile);
-                        if (rSuit !== handSuit && rNum !== handNum) continue;
+                        if (!tileUtils.sameSuit(riverTile, handTile) && !tileUtils.sameNumber(riverTile, handTile)) continue;
                         let testShoupai = shoupai.clone();
                         tileOps.removeFromHand(testShoupai, handTile);
                         tileOps.addToHand(testShoupai, riverTile);
@@ -2238,11 +2175,7 @@ const SKILL_EXECUTE_MAP = {
                 for (let s = 0; s < 4; s++) {
                     let he = model.he[s];
                     if (!he) return false;
-                    let count = 0;
-                    for (let t of he._pai) {
-                        if (!t.match(/[\+\=\-]$/)) count++;
-                    }
-                    if (count < 6) return false;
+                    if (tileUtils.countHePai(he) < 6) return false;
                 }
                 return true;
             },
@@ -2356,41 +2289,10 @@ const SKILL_EXECUTE_MAP = {
     /* ===== 测试角色 (Test_Character) ===== */
     'Test_Character': {
         0: {
-            /* 舍牌后,你可以执行1-5个额外巡目 */
-            timing: TimingPoints.AFTER_DISCARD,
+            /* 你舍牌时，可以暗置舍牌（AI默认发动） */
+            timing: TimingPoints.DISCARD_SELECTED,
             type: SkillType.CONDITIONAL,
             isOptional: true,
-            effectType: EffectType.EXTRA_TURN,
-            condition: function(context) {
-                let game = context.game;
-                if (!game || context.player !== context.seat) return false;
-                if (game._extra_turn) return false;
-                let model = game._model;
-                if (model.shan.paishu < 2) return false;
-                /* 额外巡链已经完成（或正在进行中），不再触发 */
-                if (typeof game._extra_chain_remaining === 'number' && game._extra_chain_remaining >= 0) return false;
-                return true;
-            },
-            execute: async function(context) {
-                let game = context.game;
-                let seat = context.seat;
-                let input = context.input;
-
-                let count = await input.askNumber(1, 5, '选择额外巡目数',
-                    () => Math.floor(Math.random() * 5) + 1);
-                if (count === null) { context.done(); return; }
-                extraTurn.start(game, seat, count);
-                context.done();
-            },
-            aiDecision: function(context) {
-                if (Math.random() < 0.5) return false;
-                return true;
-            },
-        },
-        1: {
-            /* 舍牌时,你必须暗置舍牌 */
-            timing: TimingPoints.DISCARD_SELECTED,
-            type: SkillType.PASSIVE,
             effectType: EffectType.HIDDEN_DISCARD,
             condition: function(context) {
                 let game = context.game;
@@ -2398,130 +2300,10 @@ const SKILL_EXECUTE_MAP = {
                 return true;
             },
             execute: function(context) {
-                let game = context.game;
-                game._extra_hidden_discard = true;
+                context.game._extra_hidden_discard = true;
                 return { executed: true };
             },
-        },
-        2: {
-            /* 舍牌前,你可以选择移除牌山首部或者牌山尾部的4张牌 */
-            timing: TimingPoints.BEFORE_DISCARD,
-            type: SkillType.CONDITIONAL,
-            isOptional: true,
-            usageType: UsageType.ONCE_PER_TURN,
-            usageMax: 1,
-            effectType: EffectType.SWAP_TILES,
-            priority: 300,
-            condition: function(context) {
-                let game = context.game;
-                if (!game || context.player !== context.seat) return false;
-                if (game._model.shan.paishu < 4) return false;
-                return true;
-            },
-            execute: async function(context) {
-                let game = context.game;
-                let model = game._model;
-                let input = context.input;
-
-                let choice = await input.askTextOptions(
-                    ['移除牌山首部4张牌', '移除牌山尾部4张牌'],
-                    ['front', 'end'],
-                    '选择移除位置',
-                    () => Math.random() < 0.5 ? 'front' : 'end');
-                if (!choice) { context.done(); return; }
-                if (choice === 'front') {
-                    tileOps.popFront(model, 4);
-                } else {
-                    tileOps.popEnd(model, 4);
-                }
-                context.done();
-            },
             aiDecision: function(context) {
-                if (Math.random() < 0.5) return false;
-                return true;
-            },
-        },
-        3: {
-            /* 你可以将任何字牌当作你的和牌
-             * Part A（huleExpander）：在 allow_hule() 判定时，将字牌加入候选和牌范围
-             * Part B（execute）：宣言和牌时，自动弹出字牌选择 UI（无需确认弹窗）
-             */
-            timing: TimingPoints.DECLARE_HULE,
-            type: SkillType.PASSIVE,
-            usageType: UsageType.ONCE_PER_HAND,
-            usageMax: 1,
-            effectType: EffectType.VIEW_AS_WIN_TILE,
-            /* 和牌资格扩展：返回可视为和牌的候选牌 */
-            huleExpander: function(context) {
-                let shoupai = context.shoupai;
-                if (!shoupai) return [];
-                return winTileOverrider.getCandidates(shoupai, context.game ? context.game._model : null, context.seat, {
-                    suitFilter: ['z'],
-                });
-            },
-            condition: function(context) {
-                let game = context.game;
-                if (!game) return false;
-                let shoupai = context.shoupai;
-                if (!shoupai) return false;
-                let model = game._model;
-                let candidates = winTileOverrider.getCandidates(shoupai, model, context.seat, {
-                    suitFilter: ['z'],
-                });
-                return candidates.length > 0;
-            },
-            execute: async function(context) {
-                /* 顶层 execute 已在 _huleExpanderUsed 路径被调用（带 input 桥接），
-                   此 auto-execute 路径无条件弹窗 → 跳过 */
-                if (!context.input || typeof context.input.askTileOptions !== 'function') return;
-
-                let game = context.game;
-                let shoupai = context.shoupai;
-                let menfeng = context.seat;
-                let input = context.input;
-
-                /* 计算13张手牌（去除摸牌）的听牌列表 */
-                let hand13 = shoupai.clone();
-                let origZimo = shoupai._zimo;
-                if (!context.rongpai && origZimo && origZimo.length <= 2) {
-                    try { hand13.decrease(origZimo[0], +origZimo[1]); } catch(e) {}
-                }
-                hand13._zimo = null;
-                let candidates = Majiang.Util.tingpai(hand13) || [];
-
-                if (candidates.length === 0) { context.done(); return; }
-
-                /* 只有一张听牌：直接选择，不弹 UI */
-                if (candidates.length === 1) {
-                    let chosenPai = candidates[0];
-                    if (context.rongpai) {
-                        let lunban = context.lunban;
-                        let suffix = '_+=-'[(4 + lunban - menfeng) % 4];
-                        context._overrideRongpai = chosenPai + suffix;
-                    } else {
-                        winTileOverrider.override(shoupai, chosenPai);
-                    }
-                    context._overridePai = chosenPai;
-                    context.done();
-                    return;
-                }
-
-                /* 多张听牌：弹出牌图片选择 UI */
-                let chosenPai = await input.askTileOptions(candidates, '选择视为哪张牌和牌',
-                    () => candidates[Math.floor(Math.random() * candidates.length)]);
-                if (!chosenPai) { context.done(); return; }
-                if (context.rongpai) {
-                    let lunban = context.lunban;
-                    let suffix = '_+=-'[(4 + lunban - menfeng) % 4];
-                    context._overrideRongpai = chosenPai + suffix;
-                } else {
-                    winTileOverrider.override(shoupai, chosenPai);
-                }
-                context._overridePai = chosenPai;
-                context.done();
-            },
-            aiDecision: function(context) {
-                if (Math.random() < 0.5) return false;
                 return true;
             },
         },
@@ -2645,10 +2427,7 @@ const SKILL_EXECUTE_MAP = {
                 if (xiangting <= 0) return true;
                 if (xiangting <= 1) return Math.random() < 0.7;
                 let he = game._model.he[seat];
-                let heLen = 0;
-                for (let t of he._pai) {
-                    if (!t.match(/[\+\=\-]$/)) heLen++;
-                }
+                let heLen = tileUtils.countHePai(he);
                 if (heLen <= 6) return Math.random() < 0.3;
                 return false;
             },
@@ -2798,8 +2577,7 @@ const SKILL_EXECUTE_MAP = {
                         }
 
                         /* 三副露 */
-                        let stats = fanModifier.getMeldStats(model, seat);
-                        let nonAnkanMelds = stats.total - stats.ankan;
+                        let nonAnkanMelds = fanModifier.getFulouCount(model, seat);
                         if (nonAnkanMelds >= 3) {
                             hanOps.setYakuHan(hule, '三副露', 1);
                         }
@@ -2821,8 +2599,7 @@ const SKILL_EXECUTE_MAP = {
                         let isChaseRiichi = game._skillManager
                             ? game._skillManager.getSkillData(seat, 'Anetai_Toyone', '_chaseRiichi')
                             : false;
-                        let stats = fanModifier.getMeldStats(game._model, seat);
-                        let nonAnkanMelds = stats.total - stats.ankan;
+                        let nonAnkanMelds = fanModifier.getFulouCount(game._model, seat);
                         if (context.wasRonned && (isChaseRiichi || nonAnkanMelds >= 3)) {
                             let oldPayment = hule.fenpei[seat];
                             pointPayment.multiplyPayment(hule.fenpei, seat, 0.5);
@@ -3184,31 +2961,8 @@ const SKILL_EXECUTE_MAP = {
             condition: function(context) {
                 let game = context.game;
                 if (!game || context.player !== context.seat) return false;
-                let turnType = context.turnType;
-                if (turnType === TurnType.FULOU) return true;
-                if (turnType !== TurnType.KAN) return false;
-                /* 杠巡目中仅大明杠可发动。
-                 * 暗杠 = 四张同数字且方向符全相同（全 - 或全 +）
-                 * 加杠 = 原有碰的面子加一张（格式：三张+方向符+一张）*/
-                let shoupai = game._model.shoupai[context.seat];
-                let fulou = shoupai && shoupai._fulou;
-                if (!fulou || fulou.length === 0) return false;
-                let lastMeld = fulou[fulou.length - 1];
-                if (typeof lastMeld !== 'string') return false;
-                /* 加杠 → false */
-                if (/^\w\d\w\d\w\d[\+\=\-]\d$/.test(lastMeld)) return false;
-                /* 暗杠 → false */
-                let digits = (lastMeld.match(/\d/g) || []).map(Number);
-                if (digits.length === 4) {
-                    let normalized = digits.map(function(d) { return d === 0 ? 5 : d; });
-                    if (normalized.every(function(d) { return d === normalized[0]; })) {
-                        let signs = lastMeld.match(/[\-\+]/g) || [];
-                        if (signs.length === 4 && signs.every(function(s) { return s === signs[0]; })) {
-                            return false;
-                        }
-                    }
-                }
-                return true;
+                /* 副露巡目：吃碰巡目 或 杠巡目中的大明杠 */
+                return fanModifier.isFulouTurn(context);
             },
             execute: async function(context) {
                 let game = context.game;
@@ -3238,8 +2992,8 @@ const SKILL_EXECUTE_MAP = {
                         /* 存在至少一张非字手牌与该河牌花色或点数相同 */
                         let ok = false;
                         for (let j = 0; j < handTiles.length; j++) {
-                            if (handTiles[j][0] === tileUtils.suitOf(base)
-                                || tileUtils.numberOf(handTiles[j]) === tileUtils.numberOf(base)) {
+                            if (tileUtils.sameSuit(handTiles[j], base)
+                                || tileUtils.sameNumber(handTiles[j], base)) {
                                 ok = true;
                                 break;
                             }
@@ -3289,13 +3043,12 @@ const SKILL_EXECUTE_MAP = {
                 if (!match) { context.done(); return; }
 
                 let riverPai = match.pai;
-                let riverSuit = riverPai[0], riverNum = tileUtils.numberOf(riverPai);
 
                 /* 阶段3：选择能与该河牌交换的手牌（手牌直接点击，仅1张自动跳过） */
                 let matchingHand = [];
                 for (let i = 0; i < handTiles.length; i++) {
                     let ht = handTiles[i];
-                    if (ht[0] === riverSuit || tileUtils.numberOf(ht) === riverNum) {
+                    if (tileUtils.sameSuit(ht, riverPai) || tileUtils.sameNumber(ht, riverPai)) {
                         matchingHand.push(ht);
                     }
                 }
@@ -3347,7 +3100,6 @@ const SKILL_EXECUTE_MAP = {
 
                 for (let i = 0; i < handTiles.length; i++) {
                     let handTile = handTiles[i];
-                    let handSuit = handTile[0], handNum = tileUtils.numberOf(handTile);
                     let handVal = _evalHandTileValue(handTile, shoupai, game, seat);
 
                     for (let s = 0; s < 4; s++) {
@@ -3357,8 +3109,8 @@ const SKILL_EXECUTE_MAP = {
                             let t = he._pai[j];
                             if (t.match(/[\+\=\-]$/)) continue;
                             let base = t.replace(/[_\*]$/, '');
-                            let ok = tileUtils.suitOf(base) === handSuit
-                                || tileUtils.numberOf(base) === handNum;
+                            let ok = tileUtils.sameSuit(base, handTile)
+                                || tileUtils.sameNumber(base, handTile);
                             if (ok && _evalTileValue(base, game, seat) > handVal) {
                                 return true;
                             }
@@ -3397,10 +3149,7 @@ const SKILL_EXECUTE_MAP = {
                 for (let s = 0; s < 4; s++) {
                     let he = model.he[s];
                     if (!he) { riverCounts.push(0); continue; }
-                    let count = 0;
-                    for (let j = 0; j < he._pai.length; j++) {
-                        if (!he._pai[j].match(/[\+\=\-]$/)) count++;
-                    }
+                    let count = tileUtils.countHePai(he);
                     /* 荣和的牌不计入完成牌河 */
                     if (isRon && s === ronnedSeat) {
                         count = Math.max(0, count - 1);
@@ -3837,10 +3586,7 @@ const SKILL_EXECUTE_MAP = {
                         let he = game._model.he[seat];
                         if (!he) return false;
                         /* 牌河排数（不计被副露的牌），减去当前舍牌 */
-                        let count = 0;
-                        for (let t of he._pai) {
-                            if (!t.match(/[\+\=\-]$/)) count++;
-                        }
+                        let count = tileUtils.countHePai(he);
                         let riverCount = count - 1;
                         if (riverCount !== 0 && riverCount !== 6 && riverCount !== 12) return false;
                         /* 手牌中存在未公开的牌 */
@@ -3983,6 +3729,8 @@ const SKILL_EXECUTE_MAP = {
                 let seat = context.seat;
                 let model = game._model;
 
+                if (!shoupai) return { executed: true };
+
                 let catCount = _countCategories(shoupai);
                 if (catCount < 3) return { executed: true };
 
@@ -3991,8 +3739,7 @@ const SKILL_EXECUTE_MAP = {
                 let han = catCount - 2; /* 3→1, 4→2, 5→3 */
 
                 /* 食下：有副露（非暗杠）则-1番 */
-                let stats = fanModifier.getMeldStats(model, seat);
-                let isMenzen = (stats.total - stats.ankan) === 0;
+                let isMenzen = fanModifier.getFulouCount(model, seat) === 0;
                 if (!isMenzen) han -= 1;
 
                 if (han > 0) {
@@ -4057,12 +3804,9 @@ const SKILL_EXECUTE_MAP = {
                 let chosen;
                 if (candidates.length === 1) {
                     chosen = candidates[0];
-                } else if (!input || typeof input.askHandTile !== 'function') {
-                    /* 无 UI 输入时取第一张 */
-                    chosen = candidates[0];
                 } else {
-                    chosen = await input.askHandTile(
-                        '选择一张靠张暗切并摸牌', () => candidates[0], candidates);
+                    /* 多张靠张时取第一张（靠张之间无策略差异，跳过 UI 交互以避免 sync 模式 await 卡死） */
+                    chosen = candidates[0];
                 }
                 if (!chosen) { context.done(); return; }
 
@@ -4071,11 +3815,21 @@ const SKILL_EXECUTE_MAP = {
                     '戒能良子 展示靠张「' + game._pai_name(chosen) + '」并暗切摸牌', seat);
 
                 /* 从手牌移除并暗切置入牌河 */
-                tileOps.removeFromHand(shoupai, chosen);
+                try {
+                    tileOps.removeFromHand(shoupai, chosen);
+                } catch(e) {
+                    context.done();
+                    return;
+                }
                 model.he[seat].dapai(chosen, true);
                 /* 摸1张牌 */
+                if (model.shan.paishu === 0) {
+                    context.done();
+                    return;
+                }
                 let newTile = model.shan.zimo();
-                shoupai.zimo(newTile);
+                shoupai.zimo(newTile, false);
+                shoupai._zimo = null;
                 if (game._view) game._view.redraw();
                 context.done();
             },
@@ -4175,8 +3929,8 @@ const SKILL_EXECUTE_MAP = {
             },
         },
         2: {
-            /* ③ 舍牌前，若有玩家最后一张舍牌是宝牌或立直宣言牌，可以暗切 */
-            timing: TimingPoints.BEFORE_DISCARD,
+            /* ③ 你舍牌时，若有玩家最后一张舍牌是宝牌或立直宣言牌，可以暗切 */
+            timing: TimingPoints.DISCARD_SELECTED,
             type: SkillType.CONDITIONAL,
             isOptional: true,
             effectType: EffectType.HIDDEN_DISCARD,
@@ -4228,8 +3982,7 @@ const SKILL_EXECUTE_MAP = {
                 let handSuits = _countNumberSuits(shoupai);
                 if (handSuits !== 2) return [];
 
-                let stats = fanModifier.getMeldStats(model, seat);
-                let isMenzen = (stats.total - stats.ankan) === 0;
+                let isMenzen = fanModifier.getFulouCount(model, seat) === 0;
 
                 return [{ name: '混一色', fanshu: isMenzen ? 3 : 2 }];
             },
@@ -4249,8 +4002,7 @@ const SKILL_EXECUTE_MAP = {
                 if (typeof game._extra_chain_remaining === 'number' && game._extra_chain_remaining >= 0) return false;
                 /* 必须有副露（非暗杠） */
                 let seat = context.seat;
-                let stats = fanModifier.getMeldStats(game._model, seat);
-                if ((stats.total - stats.ankan) === 0) return false;
+                if (fanModifier.getFulouCount(game._model, seat) === 0) return false;
                 /* 副露区满足染手条件（数牌花色不超过1） */
                 let shoupai = game._model.shoupai[seat];
                 return _countMeldSuits(shoupai) <= 1;
@@ -4444,8 +4196,7 @@ const SKILL_EXECUTE_MAP = {
                 let game = context.game;
                 if (!game || context.player !== context.seat) return false;
                 /* 有副露（非暗杠） */
-                let stats = fanModifier.getMeldStats(game._model, context.seat);
-                return (stats.total - stats.ankan) > 0;
+                return fanModifier.getFulouCount(game._model, context.seat) > 0;
             },
             execute: function(context) {
                 context.game._extra_hidden_discard = true;
@@ -4598,8 +4349,7 @@ const SKILL_EXECUTE_MAP = {
                 /* 未立直 */
                 if (game._lizhi[context.seat] !== 0) return false;
                 /* 门清 */
-                let stats = fanModifier.getMeldStats(game._model, context.seat);
-                return (stats.total - stats.ankan) === 0;
+                return fanModifier.getFulouCount(game._model, context.seat) === 0;
             },
             execute: function(context) {
                 let hule = context.hule;
@@ -4646,12 +4396,7 @@ const SKILL_EXECUTE_MAP = {
                 /* 牌河可见牌 >12（仅跳过被副露的牌，暗切牌计入） */
                 let he = game._model.he[seat];
                 if (!he || !he._pai) return false;
-                let count = 0;
-                for (let t of he._pai) {
-                    if (t.match(/[\+\=\-]$/)) continue; /* 被副露跳过 */
-                    count++;
-                }
-                return count > 12;
+                return tileUtils.countHePai(he) > 12;
             },
             execute: function(context) {
                 context.game._extra_hidden_discard = true;
@@ -4777,6 +4522,8 @@ const SKILL_EXECUTE_MAP = {
                 let shoupai = context.shoupai;
                 let rongpai = context.rongpai;
                 let model = game._model;
+
+                if (!shoupai) return { executed: true };
 
                 let allTiles = _getAllTilesWithMelds(shoupai, rongpai);
                 let d = _countDoraByType(allTiles, model);
