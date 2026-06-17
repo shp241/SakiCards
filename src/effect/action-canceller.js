@@ -16,6 +16,8 @@
  */
 'use strict';
 
+const meldParser = require('../core/meld-parser.js');
+
 /* ================================================================
  * 副露取消
  * ================================================================ */
@@ -36,14 +38,19 @@ function cancelLastFulou(model, seat) {
     if (!shoupai._fulou || shoupai._fulou.length === 0) return null;
 
     const mianzi = shoupai._fulou.pop();
-    const s = mianzi[0];
+    /* 同步移除 _fulouMeta */
+    if (shoupai._fulouMeta && shoupai._fulouMeta.length) {
+        shoupai._fulouMeta.pop();
+    }
 
-    /* 解析 mianzi 中的牌数字，归还手牌 */
-    const digits = mianzi.match(/\d/g);
-    if (digits) {
-        for (const d of digits) {
+    /* 解析 mianzi 中的牌，归还手牌（兼容新旧格式） */
+    const meta = meldParser.parseMianzi(mianzi);
+    if (meta && meta.tiles) {
+        for (const tile of meta.tiles) {
+            const s = tile[0];
+            const n = +tile[1] || 5;
             shoupai._bingpai[s] = shoupai._bingpai[s] || [];
-            shoupai._bingpai[s][+d] = (shoupai._bingpai[s][+d] || 0) + 1;
+            shoupai._bingpai[s][n] = (shoupai._bingpai[s][n] || 0) + 1;
         }
     }
 

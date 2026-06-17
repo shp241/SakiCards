@@ -65,9 +65,10 @@ function submit() {
 
     let rongpai;
     if ($('input[name="zimo"]:checked').val() == 0) {
-        if (shoupai._zimo) {
-            rongpai = shoupai._zimo + '=';
-            shoupai.dapai(shoupai._zimo);
+        let zimoTile = Majiang.HandTiles.fromShoupai(shoupai).zimoTile;
+        if (zimoTile) {
+            rongpai = zimoTile.toString() + '=';
+            shoupai.dapai(zimoTile.toString());
         }
     }
 
@@ -78,8 +79,8 @@ function submit() {
                                .prop('disabled', true);
         $('input[name="tianhu"]').prop('checked', false);
     }
-    if (! shoupai._fulou
-            .find(m=>m.replace(/0/g,'5').match(/^[mpsz](\d)\1\1.*\1.*$/)))
+    let melds = Majiang.ShoupaiView.fromShoupai(shoupai).melds;
+    if (! melds.some(m => ['minkan','kakan','ankan'].includes(m.type)))
     {
         $('input[name="lingshang"]').prop('checked', false);
     }

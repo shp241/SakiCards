@@ -8,6 +8,37 @@ const Majiang = {
     rule: require('./rule')
 };
 
+const meldParser = require('./meld-parser.js');
+
+function toOldFormat(m) {
+    if (!meldParser.isNewFormat(m)) return m;
+    let meta = meldParser.parseMianzi(m);
+    if (!meta) return m;
+
+    let { type, tiles, fromSeat } = meta;
+    let suit = tiles[0][0];
+    let dir  = fromSeat != null ? ({ 0: '+', 1: '=', 2: '-' })[fromSeat] : '';
+
+    if (type === 'chi') {
+        let nums = tiles.map(t => t[1]).sort();
+        return suit + nums.join('') + dir;
+    } else if (type === 'pon') {
+        let num = tiles[0][1];
+        return suit + num.repeat(3) + dir;
+    } else if (type === 'minkan') {
+        let num = tiles[0][1];
+        return suit + num.repeat(4) + dir;
+    } else if (type === 'kakan') {
+        let num = tiles[0][1];
+        return suit + num.repeat(3) + dir + num;
+    } else if (type === 'ankan') {
+        let num = tiles[0][1];
+        return suit + num.repeat(4);
+    }
+
+    return m;
+}
+
 function mianzi(s, bingpai, n = 1) {
 
     if (n > 9) return [[]];
@@ -57,7 +88,7 @@ function mianzi_all(shoupai) {
         zipai.push('z'+n+n+n);
     }
 
-    let fulou = shoupai._fulou.map(m => m.replace(/0/g,'5'));
+    let fulou = shoupai._fulou.map(m => toOldFormat(m).replace(/0/g,'5'));
 
     return shupai_all.map(shupai => shupai.concat(zipai).concat(fulou));
 }

@@ -35,7 +35,6 @@ module.exports = class He {
                 lizhi = true;
                 this._node.chouma.removeClass('hide');
             }
-            if (p.match(/[\+\=\-]/)) continue;
 
             let pai;
             if (this._he._hidden && this._he._hidden[i]) {

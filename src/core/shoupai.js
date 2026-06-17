@@ -3,6 +3,8 @@
  */
 "use strict";
 
+const meldParser = require('./meld-parser.js');
+
 module.exports = class Shoupai {
 
     static valid_pai(p) {
@@ -10,24 +12,9 @@ module.exports = class Shoupai {
     }
 
     static valid_mianzi(m) {
-
-        if (m.match(/^z.*[089]/)) return;
-        let h = m.replace(/0/g,'5');
-        if (h.match(/^[mpsz](\d)\1\1[\+\=\-]\1?$/)) {
-            return m.replace(/([mps])05/,'$1'+'50');
-        }
-        else if (h.match(/^[mpsz](\d)\1\1\1[\+\=\-]?$/)) {
-            return m[0]+m.match(/\d(?![\+\=\-])/g).sort().reverse().join('')
-                       +(m.match(/\d[\+\=\-]$/)||[''])[0];
-        }
-        else if (h.match(/^[mps]\d+\-\d*$/)) {
-            let hongpai = m.match(/0/);
-            let nn = h.match(/\d/g).sort();
-            if (nn.length != 3)                               return;
-            if (+nn[0] + 1 != +nn[1] || +nn[1] + 1 != +nn[2]) return;
-            h = h[0]+h.match(/\d[\+\=\-]?/g).sort().join('');
-            return hongpai ? h.replace(/5/,'0') : h;
-        }
+        // 委托到 meld-parser：支持新旧两种格式，返回规范化新格式
+        let meta = meldParser.parseMianzi(m);
+        return meta ? meldParser.toMianziString(meta) : undefined;
     }
 
     constructor(qipai = []) {
@@ -79,14 +66,17 @@ module.exports = class Shoupai {
         let last;
         for (let m of fulou) {
             if (! m) { shoupai._zimo = last; break }
-            m = Shoupai.valid_mianzi(m);
-            if (m) {
-                shoupai._fulou.push(m);
+            let parsed = meldParser.parseMianzi(m);
+            if (parsed) {
+                let newMianzi = meldParser.toMianziString(parsed);
+                shoupai._fulou.push(newMianzi);
                 shoupai._fulouMeta.push({
-                    type:  Shoupai.fulouType(m),
-                    tiles: Shoupai.fulouTiles(m)
+                    type:  parsed.type,
+                    tiles: parsed.tiles,
+                    fromSeat: parsed.fromSeat,
+                    calledTileIndex: parsed.calledTileIndex,
                 });
-                last = m;
+                last = newMianzi;
             }
         }
 
@@ -141,7 +131,10 @@ module.exports = class Shoupai {
             z: this._bingpai.z.concat(),
         };
         shoupai._fulou     = this._fulou.concat();
-        shoupai._fulouMeta = this._fulouMeta.map(m => ({ type: m.type, tiles: m.tiles.concat() }));
+        shoupai._fulouMeta = this._fulouMeta.map(m => ({
+            type: m.type, tiles: m.tiles.concat(),
+            fromSeat: m.fromSeat, calledTileIndex: m.calledTileIndex,
+        }));
         shoupai._zimo      = this._zimo;
         shoupai._lizhi     = this._lizhi;
         shoupai._markedTiles = new Set(this._markedTiles);
@@ -159,7 +152,10 @@ module.exports = class Shoupai {
             z: shoupai._bingpai.z.concat(),
         };
         this._fulou     = shoupai._fulou.concat();
-        this._fulouMeta = shoupai._fulouMeta.map(m => ({ type: m.type, tiles: m.tiles.concat() }));
+        this._fulouMeta = shoupai._fulouMeta.map(m => ({
+            type: m.type, tiles: m.tiles.concat(),
+            fromSeat: m.fromSeat, calledTileIndex: m.calledTileIndex,
+        }));
         this._zimo      = shoupai._zimo;
         this._lizhi     = shoupai._lizhi;
         this._markedTiles = new Set(shoupai._markedTiles);
@@ -170,7 +166,14 @@ module.exports = class Shoupai {
     decrease(s, n) {
         let bingpai = this._bingpai[s]; n = + n;
         if (bingpai[n] == 0 || n == 5 && bingpai[0] == bingpai[5]) {
-            if (this._bingpai._ == 0)               throw new Error([this,s+n]);
+            if (this._bingpai._ == 0) {
+                if (n == 5 && bingpai[0] > 0) {
+                    bingpai[0]--;
+                    bingpai[5]--;
+                    return;
+                }
+                throw new Error([this,s+n]);
+            }
             this._bingpai._--;
         }
         else {
@@ -220,80 +223,83 @@ module.exports = class Shoupai {
 
     fulou(m, check = true) {
         if (check && this._zimo)                    throw new Error([this, m]);
-        if (m != Shoupai.valid_mianzi(m))           throw new Error(m);
-        if (m.match(/\d{4}$/))                      throw new Error([this, m]);
-        if (m.match(/\d{3}[\+\=\-]\d$/))            throw new Error([this, m]);
-        let s = m[0];
-        for (let n of m.match(/\d(?![\+\=\-])/g)) {
+        let meta = meldParser.parseMianzi(m);
+        if (!meta)                                  throw new Error(m);
+        m = meldParser.toMianziString(meta);  // 规范化
+        if (meta.type === 'ankan' || meta.type === 'kakan')
+                                                    throw new Error([this, m]);
+        for (let i = 0; i < meta.tiles.length; i++) {
+            if (i === meta.calledTileIndex) continue;  // 被叫牌来自对手，不在手牌中
+            let tile = meta.tiles[i];
+            let s = tile[0], n = +tile[1] || 5;
             this.decrease(s, n);
-            this._markedTiles.delete(s + n);  /* 副露消耗的牌自动取消标记 */
+            this._markedTiles.delete(s + n);
         }
         this._fulou.push(m);
         this._fulouMeta.push({
-            type:  Shoupai.fulouType(m),
-            tiles: Shoupai.fulouTiles(m)
+            type:  meta.type,
+            tiles: meta.tiles,
+            fromSeat: meta.fromSeat,
+            calledTileIndex: meta.calledTileIndex,
         });
-        if (! m.match(/\d{4}/)) this._zimo = m;
+        if (meta.type !== 'ankan') this._zimo = m;
         return this;
     }
 
     gang(m, check = true) {
         if (check && ! this._zimo)                  throw new Error([this, m]);
         if (check && this._zimo.length > 2)         throw new Error([this, m]);
-        if (m != Shoupai.valid_mianzi(m))           throw new Error(m);
-        let s = m[0];
-        if (m.match(/\d{4}$/)) {
-            for (let n of m.match(/\d/g)) {
+        let meta = meldParser.parseMianzi(m);
+        if (!meta)                                  throw new Error(m);
+        m = meldParser.toMianziString(meta);  // 规范化
+
+        if (meta.type === 'ankan') {
+            for (let tile of meta.tiles) {
+                let s = tile[0], n = +tile[1] || 5;
                 this.decrease(s, n);
-                this._markedTiles.delete(s + n);  /* 杠消耗的牌自动取消标记 */
+                this._markedTiles.delete(s + n);
             }
             this._fulou.push(m);
             this._fulouMeta.push({
                 type:  'ankan',
-                tiles: Shoupai.fulouTiles(m)
+                tiles: meta.tiles,
+                fromSeat: null,
+                calledTileIndex: null,
             });
         }
-        else if (m.match(/\d{3}[\+\=\-]\d$/)) {
-            let m1 = m.slice(0,5);
-            let i = this._fulou.findIndex(m2 => m1 == m2);
+        else if (meta.type === 'kakan') {
+            // 找到对应的碰/明杠条目
+            let i = this._fulou.findIndex(m2 => {
+                let meta2 = meldParser.parseMianzi(m2);
+                // 前三张是原副露的牌
+                if (!meta2) return false;
+                return meta2.tiles[0] === meta.tiles[0]
+                    && meta2.tiles[1] === meta.tiles[1]
+                    && meta2.tiles[2] === meta.tiles[2];
+            });
             if (i < 0)                              throw new Error([this, m]);
             this._fulou[i] = m;
             this._fulouMeta[i] = {
                 type:  'kakan',
-                tiles: Shoupai.fulouTiles(m)
+                tiles: meta.tiles,
+                fromSeat: meta.fromSeat,
+                calledTileIndex: meta.calledTileIndex,
             };
-            this.decrease(s, m.slice(-1));
-            this._markedTiles.delete(s + m.slice(-1));  /* 加杠消耗的牌自动取消标记 */
+            let lastTile = meta.tiles[meta.tiles.length - 1];
+            this.decrease(lastTile[0], +lastTile[1] || 5);
+            this._markedTiles.delete(lastTile[0] + (+lastTile[1] || 5));
         }
         else                                        throw new Error([this, m]);
         this._zimo = null;
         return this;
     }
 
-    /**
-     * 从 mianzi 字符串推导副露类型
-     * @param {string} m — mianzi 字符串
-     * @returns {string} "chi"|"pon"|"minkan"|"kakan"|"ankan"
-     */
     static fulouType(m) {
-        let h = m.replace(/0/g, '5');
-        if (h.match(/^[mpsz](\d)\1\1\1$/))               return 'ankan';
-        if (h.match(/^[mpsz](\d)\1\1\1[\+\=\-]?$/))       return 'minkan';
-        if (h.match(/^[mpsz](\d)\1\1[\+\=\-]\d$/))        return 'kakan';
-        if (h.match(/^[mpsz](\d)\1\1[\+\=\-]$/))          return 'pon';
-        if (h.match(/^[mps]\d+\-\d*$/))                    return 'chi';
-        return null;
+        return meldParser.fulouType(m);
     }
 
-    /**
-     * 从 mianzi 字符串提取组成该副露的牌张列表
-     * @param {string} m — mianzi 字符串
-     * @returns {string[]} 牌张字符串数组
-     */
     static fulouTiles(m) {
-        let s = m[0];
-        let digits = m.match(/\d(?![\+\=\-])/g) || [];
-        return digits.map(d => s + d);
+        return meldParser.fulouTiles(m);
     }
 
     /**
@@ -327,7 +333,15 @@ module.exports = class Shoupai {
     }
 
     get menqian() {
-        return this._fulou.filter(m=>m.match(/[\+\=\-]/)).length == 0;
+        for (let meta of this._fulouMeta) {
+            if (meta.fromSeat != null) return false;
+        }
+        return true;
+    }
+
+    /** 副露元数据数组（与 _fulou 一一对应） */
+    get meldMetas() {
+        return this._fulouMeta;
     }
 
     get lizhi() { return this._lizhi }
@@ -338,13 +352,17 @@ module.exports = class Shoupai {
 
         let deny = {};
         if (check && this._zimo.length > 2) {
-            let m = this._zimo;
-            let s = m[0];
-            let n = + m.match(/\d(?=[\+\=\-])/) || 5;
-            deny[s+n] = true;
-            if (! m.replace(/0/,'5').match(/^[mpsz](\d)\1\1/)) {
-                if (n < 7 && m.match(/^[mps]\d\-\d\d$/)) deny[s+(n+3)] = true;
-                if (3 < n && m.match(/^[mps]\d\d\d\-$/)) deny[s+(n-3)] = true;
+            // 副露巡目：解析 _zimo（新格式 mianzi）获取被叫牌
+            let meta = meldParser.parseMianzi(this._zimo);
+            if (meta && meta.calledTileIndex != null) {
+                let calledTile = meta.tiles[meta.calledTileIndex];
+                let s = calledTile[0];
+                let n = +calledTile[1] || 5;
+                deny[s+n] = true;
+                if (meta.type === 'chi') {
+                    if (meta.calledTileIndex === 0 && n < 7)      deny[s+(n+3)] = true;
+                    if (meta.calledTileIndex === 2 && 3 < n)       deny[s+(n-3)] = true;
+                }
             }
         }
 
@@ -382,34 +400,67 @@ module.exports = class Shoupai {
         if (this._lizhi) return mianzi;
 
         let bingpai = this._bingpai[s];
+
+        let callDigit = p[1];  // '0' or '5' or normal
+
+        // 模式1：被叫牌在末尾（sXXN-），n 是被叫牌点数
         if (3 <= n && bingpai[n-2] > 0 && bingpai[n-1] > 0) {
             if (! check
                 || (3 < n ? bingpai[n-3] : 0) + bingpai[n]
                         < 14 - (this._fulou.length + 1) * 3)
             {
-                if (n-2 == 5 && bingpai[0] > 0) mianzi.push(s+'067-');
-                if (n-1 == 5 && bingpai[0] > 0) mianzi.push(s+'406-');
-                if (n-2 != 5 && n-1 != 5 || bingpai[0] < bingpai[5])
-                                            mianzi.push(s+(n-2)+(n-1)+(p[1]+d));
+                let t0 = s + (n-2), t1 = s + (n-1), t2 = s + callDigit;
+                if (n-2 == 5 && bingpai[0] > 0) {
+                    let meta = {type:'chi', tiles:[s+'0',t1,t2], fromSeat:2, calledTileIndex:2};
+                    mianzi.push(meldParser.toMianziString(meta));
+                }
+                if (n-1 == 5 && bingpai[0] > 0) {
+                    let meta = {type:'chi', tiles:[t0,s+'0',t2], fromSeat:2, calledTileIndex:2};
+                    mianzi.push(meldParser.toMianziString(meta));
+                }
+                if (n-2 != 5 && n-1 != 5 || bingpai[0] < bingpai[5]) {
+                    let meta = {type:'chi', tiles:[t0,t1,t2], fromSeat:2, calledTileIndex:2};
+                    mianzi.push(meldParser.toMianziString(meta));
+                }
             }
         }
+        // 模式2：被叫牌在中间（sXN-X），n 是被叫牌点数
         if (2 <= n && n <= 8 && bingpai[n-1] > 0 && bingpai[n+1] > 0) {
             if (! check || bingpai[n] < 14 - (this._fulou.length + 1) * 3) {
-                if (n-1 == 5 && bingpai[0] > 0) mianzi.push(s+'06-7');
-                if (n+1 == 5 && bingpai[0] > 0) mianzi.push(s+'34-0');
-                if (n-1 != 5 && n+1 != 5 || bingpai[0] < bingpai[5])
-                                            mianzi.push(s+(n-1)+(p[1]+d)+(n+1));
+                let t0 = s + (n-1), t1 = s + callDigit, t2 = s + (n+1);
+                if (n-1 == 5 && bingpai[0] > 0) {
+                    let meta = {type:'chi', tiles:[s+'0',t1,t2], fromSeat:2, calledTileIndex:1};
+                    mianzi.push(meldParser.toMianziString(meta));
+                }
+                if (n+1 == 5 && bingpai[0] > 0) {
+                    let meta = {type:'chi', tiles:[t0,t1,s+'0'], fromSeat:2, calledTileIndex:1};
+                    mianzi.push(meldParser.toMianziString(meta));
+                }
+                if (n-1 != 5 && n+1 != 5 || bingpai[0] < bingpai[5]) {
+                    let meta = {type:'chi', tiles:[t0,t1,t2], fromSeat:2, calledTileIndex:1};
+                    mianzi.push(meldParser.toMianziString(meta));
+                }
             }
         }
+        // 模式3：被叫牌在开头（sN-XX），n 是被叫牌点数
         if (n <= 7 && bingpai[n+1] > 0 && bingpai[n+2] > 0) {
             if (! check
                 ||  bingpai[n] + (n < 7 ? bingpai[n+3] : 0)
                         < 14 - (this._fulou.length + 1) * 3)
             {
-                if (n+1 == 5 && bingpai[0] > 0) mianzi.push(s+'4-06');
-                if (n+2 == 5 && bingpai[0] > 0) mianzi.push(s+'3-40');
-                if (n+1 != 5 && n+2 != 5 || bingpai[0] < bingpai[5])
-                                            mianzi.push(s+(p[1]+d)+(n+1)+(n+2));
+                let t0 = s + callDigit, t1 = s + (n+1), t2 = s + (n+2);
+                if (n+1 == 5 && bingpai[0] > 0) {
+                    let meta = {type:'chi', tiles:[t0,s+'0',t2], fromSeat:2, calledTileIndex:0};
+                    mianzi.push(meldParser.toMianziString(meta));
+                }
+                if (n+2 == 5 && bingpai[0] > 0) {
+                    let meta = {type:'chi', tiles:[t0,t1,s+'0'], fromSeat:2, calledTileIndex:0};
+                    mianzi.push(meldParser.toMianziString(meta));
+                }
+                if (n+1 != 5 && n+2 != 5 || bingpai[0] < bingpai[5]) {
+                    let meta = {type:'chi', tiles:[t0,t1,t2], fromSeat:2, calledTileIndex:0};
+                    mianzi.push(meldParser.toMianziString(meta));
+                }
             }
         }
         return mianzi;
@@ -426,12 +477,24 @@ module.exports = class Shoupai {
         if (this._lizhi) return mianzi;
 
         let bingpai = this._bingpai[s];
+        let callDigit = p[1];
+        let dir = d[0];
+        let fromSeat = dir === '+' ? 0 : dir === '=' ? 1 : 2;
+
         if (bingpai[n] >= 2) {
-            if (n == 5 && bingpai[0] >= 2)  mianzi.push(s+'00'+p[1]+d);
-            if (n == 5 && bingpai[0] >= 1 && bingpai[5] - bingpai[0] >=1)
-                                            mianzi.push(s+'50'+p[1]+d);
-            if (n != 5 || bingpai[5] - bingpai[0] >=2)
-                                            mianzi.push(s+n+n+p[1]+d);
+            if (n == 5 && bingpai[0] >= 2) {
+                let meta = {type:'pon', tiles:[s+'0',s+'0',s+callDigit], fromSeat, calledTileIndex:2};
+                mianzi.push(meldParser.toMianziString(meta));
+            }
+            if (n == 5 && bingpai[0] >= 1 && bingpai[5] - bingpai[0] >= 1) {
+                let meta = {type:'pon', tiles:[s+'0',s+'5',s+callDigit], fromSeat, calledTileIndex:2};
+                mianzi.push(meldParser.toMianziString(meta));
+            }
+            if (n != 5 || bingpai[5] - bingpai[0] >= 2) {
+                let tile = s + (n == 5 ? '5' : n);
+                let meta = {type:'pon', tiles:[tile,tile,s+callDigit], fromSeat, calledTileIndex:2};
+                mianzi.push(meldParser.toMianziString(meta));
+            }
         }
         return mianzi;
     }
@@ -440,6 +503,7 @@ module.exports = class Shoupai {
 
         let mianzi = [];
         if (p) {
+            // 大明杠（叫的杠）
             if (this._zimo) return null;
             if (! Shoupai.valid_pai(p))                 throw new Error(p);
 
@@ -449,32 +513,65 @@ module.exports = class Shoupai {
 
             let bingpai = this._bingpai[s];
             if (bingpai[n] == 3) {
-                if (n == 5) mianzi = [ s + '5'.repeat(3 - bingpai[0])
-                                         + '0'.repeat(bingpai[0]) + p[1]+d ];
-                else        mianzi = [ s+n+n+n+n+d ];
+                let dir = d[0];
+                let fromSeat = dir === '+' ? 0 : dir === '=' ? 1 : 2;
+                let callDigit = p[1];
+                let tiles = [];
+                if (n == 5) {
+                    let redCount = bingpai[0];
+                    for (let i = 0; i < 3 - redCount; i++) tiles.push(s + '5');
+                    for (let i = 0; i < redCount; i++)     tiles.push(s + '0');
+                    tiles.push(s + callDigit);
+                } else {
+                    tiles = [s+n, s+n, s+n, s+callDigit];
+                }
+                let meta = {type: 'minkan', tiles, fromSeat, calledTileIndex: 3};
+                mianzi.push(meldParser.toMianziString(meta));
             }
         }
         else {
+            // 暗杠 / 加杠
             if (! this._zimo) return null;
             if (this._zimo.length > 2) return null;
-            let p = this._zimo.replace(/0/,'5');
+            let zimoPai = this._zimo.replace(/0/,'5');
 
             for (let s of ['m','p','s','z']) {
                 let bingpai = this._bingpai[s];
                 for (let n = 1; n < bingpai.length; n++) {
                     if (bingpai[n] == 0) continue;
                     if (bingpai[n] == 4) {
-                        if (this._lizhi && s+n != p) continue;
-                        if (n == 5) mianzi.push(s + '5'.repeat(4 - bingpai[0])
-                                                  + '0'.repeat(bingpai[0]));
-                        else        mianzi.push(s+n+n+n+n);
+                        // 暗杠
+                        if (this._lizhi && s+n != zimoPai) continue;
+                        let tiles = [];
+                        if (n == 5) {
+                            let redCount = bingpai[0];
+                            for (let i = 0; i < 4 - redCount; i++) tiles.push(s + '5');
+                            for (let i = 0; i < redCount; i++)     tiles.push(s + '0');
+                        } else {
+                            tiles = [s+n, s+n, s+n, s+n];
+                        }
+                        let meta = {type: 'ankan', tiles, fromSeat: null, calledTileIndex: null};
+                        mianzi.push(meldParser.toMianziString(meta));
                     }
                     else {
+                        // 加杠：查找已有的碰
                         if (this._lizhi) continue;
                         for (let m of this._fulou) {
-                            if (m.replace(/0/g,'5').slice(0,4) == s+n+n+n) {
-                                if (n == 5 && bingpai[0] > 0) mianzi.push(m+0);
-                                else                          mianzi.push(m+n);
+                            let meta2 = meldParser.parseMianzi(m);
+                            if (!meta2) continue;
+                            let firstThree = meta2.tiles.slice(0, 3)
+                                .map(t => t.replace(/0/g, '5'));
+                            if (firstThree.every(t => t === s+n)) {
+                                let newTile = s + (n == 5 && bingpai[0] > 0
+                                    ? '0' : String(n));
+                                let newTiles = meta2.tiles.concat([newTile]);
+                                let meta = {
+                                    type: 'kakan',
+                                    tiles: newTiles,
+                                    fromSeat: meta2.fromSeat,
+                                    calledTileIndex: meta2.calledTileIndex
+                                };
+                                mianzi.push(meldParser.toMianziString(meta));
                             }
                         }
                     }

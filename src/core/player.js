@@ -12,6 +12,8 @@ const Majiang = {
                            require('./hule'))
 };
 
+const meldParser = require('./meld-parser.js');
+
 module.exports = class Player {
 
     constructor() {
@@ -158,9 +160,12 @@ module.exports = class Player {
         if (this._callback) this.action_gang(gang);
 
         this._diyizimo = false;
-        if (gang.l != this._menfeng && ! gang.m.match(/^[mpsz]\d{4}$/)) {
-            let s = gang.m[0], n = +gang.m.slice(-1)||5;
-            if (this.hulepai.find(p=> p == s+n)) this._neng_rong = false;
+        if (gang.l != this._menfeng) {
+            let gangMeta = meldParser.parseMianzi(gang.m);
+            if (gangMeta.type !== 'ankan') {
+                let tile = gangMeta.tiles[gangMeta.calledTileIndex];
+                if (this.hulepai.find(p=> p == tile)) this._neng_rong = false;
+            }
         }
     }
 

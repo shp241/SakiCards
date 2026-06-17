@@ -128,7 +128,7 @@ function countHePai(he) {
     if (!he || !he._pai) return 0;
     let count = 0;
     for (let t of he._pai) {
-        if (t.match(/[\+\=\-]$/)) continue;
+        if (t === '_') continue;
         count++;
     }
     return count;

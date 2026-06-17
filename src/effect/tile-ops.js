@@ -1038,26 +1038,12 @@ function removeFromHand(shoupai, tile) {
  * @param {string} tile    — 要添加的牌，如 'm1'、'p0'
  */
 function addToHand(shoupai, tile) {
-    try {
-        shoupai.zimo(tile, false);
-    } catch (e) {
-        /* 技能操作可能导致 bingpai 计数不一致（如已有4张同牌），
-         * 降级兜底：从手牌字符串重建 shoupai 后重试 */
-        try {
-            let Majiang = { Shoupai: require('../core/shoupai') };
-            let paiStr = shoupai.toString();
-            let newShoupai = Majiang.Shoupai.fromString(paiStr);
-            newShoupai._markedTiles = shoupai._markedTiles;
-            shoupai._bingpai = newShoupai._bingpai;
-            shoupai._fulou = newShoupai._fulou;
-            shoupai._fulouMeta = newShoupai._fulouMeta;
-            shoupai._zimo = newShoupai._zimo;
-            shoupai._lizhi = newShoupai._lizhi;
-            shoupai.zimo(tile, false);
-        } catch (e2) {
-            /* 仍失败则放弃此操作 */
-        }
-    }
+    const s = tile[0];
+    const n = +tile[1];
+    if (!shoupai._bingpai[s]) return;
+    if (shoupai._bingpai[s][n] >= 4) return;
+    shoupai._bingpai[s][n]++;
+    if (s !== 'z' && n === 0) shoupai._bingpai[s][5]++;
     _refreshHandUI(shoupai);
 }
 
@@ -1069,8 +1055,11 @@ function addToHand(shoupai, tile) {
  * @param {string} inTile  — 要添加的牌
  */
 function swapInHand(shoupai, outTile, inTile) {
+    /* 交换出的是自摸牌时，inTile 作为新自摸牌 */
+    let outIsZimo = (outTile === shoupai._zimo);
     removeFromHand(shoupai, outTile);
     addToHand(shoupai, inTile);
+    if (outIsZimo) shoupai._zimo = inTile;
 }
 
 /* ================================================================

@@ -5,6 +5,9 @@
 
 const Majiang = require('@kobalab/majiang-core');
 const SuanPai = require('./suanpai');
+const ShoupaiView = require('../core/shoupai-view.js');
+const { HandTiles } = require('../core/hand-tile.js');
+const meldParser = require('../core/meld-parser.js');
 
 const width = [8, 8*4, 8*4*2];
 
@@ -129,6 +132,8 @@ module.exports = class Player extends Majiang.Player {
         let model = this._model;
 
         return Object.assign({}, context, {
+            seat: this._menfeng,
+            model: this._model,
             xiangting: Majiang.Util.xiangting(this.shoupai),
             heLen: this._countHeLen(seat),
             fulouCount: this._countFulouPlayers(),
@@ -200,9 +205,8 @@ module.exports = class Player extends Majiang.Player {
         for (let p of allPai) {
             /* 检查手牌是否已有4张该牌，避免 zimo 时抛异常 */
             let s = p[0], n = +p[1];
-            let bingpai = shoupai._bingpai[s];
-            if (bingpai[n] >= 4) continue;
-            if (n === 0 && bingpai[5] >= 4) continue;
+            let ht = HandTiles.fromShoupai(shoupai);
+            if (ht.countOf(s, n) >= 4) continue;
             let s2 = shoupai.clone().zimo(p);
             if (Majiang.Util.xiangting(s2) === -1) {
                 count++;
@@ -229,7 +233,7 @@ module.exports = class Player extends Majiang.Player {
         if (!he || !he._pai) return 0;
         let len = 0;
         for (let p of he._pai) {
-            if (!p.match(/[\+\=\-]/)) len++;
+            if (p !== '_') len++;
         }
         return len;
     }
@@ -239,7 +243,8 @@ module.exports = class Player extends Majiang.Player {
         let model = this._model;
         let count = 0;
         for (let l = 0; l < 4; l++) {
-            if (model.shoupai[l]._fulou && model.shoupai[l]._fulou.length > 0) {
+            let view = ShoupaiView.fromShoupai(model.shoupai[l]);
+            if (view.melds.length > 0) {
                 count++;
             }
         }
@@ -255,7 +260,7 @@ module.exports = class Player extends Majiang.Player {
             if (!he || !he._pai) continue;
             for (let i = 0; i < he._pai.length; i++) {
                 let p = he._pai[i];
-                if (p.match(/[\+\=\-]/)) continue;
+                if (p === '_') continue;
                 if (he._hidden && he._hidden[i]) continue;
                 tiles.push({ seat: l, index: i, pai: p });
             }
@@ -579,26 +584,32 @@ module.exports = class Player extends Majiang.Player {
         }
         function xiangting_fanpai(shoupai, zhuangfeng, menfeng, suanpai) {
             let n_fanpai = 0, back;
+            let ht = HandTiles.fromShoupai(shoupai);
+            let view = ShoupaiView.fromShoupai(shoupai);
             for (let n of [ zhuangfeng + 1, menfeng + 1, 5, 6, 7 ]) {
-                if      (shoupai._bingpai.z[n] >= 3) n_fanpai++;
-                else if (shoupai._bingpai.z[n] == 2
+                let cntZ = ht.countOf('z', n);
+                if      (cntZ >= 3) n_fanpai++;
+                else if (cntZ == 2
                          && suanpai._paishu.z[n])    back = 'z'+n+n+n+'+';
-                for (let m of shoupai._fulou) {
-                    if (m[0] == 'z' && m[1] == n) n_fanpai++;
+                for (let m of view.melds) {
+                    if (m.tiles[0][0] == 'z' && +m.tiles[0][1] == n) n_fanpai++;
                 }
             }
             if (n_fanpai) return Majiang.Util.xiangting(shoupai);
             if (back) {
                 let new_shoupai = shoupai.clone();
                 new_shoupai.fulou(back, false);
-                new_shoupai._zimo = null;
+                let htNew = HandTiles.fromShoupai(new_shoupai);
+                htNew.clearZimo();
+                htNew.syncTo(new_shoupai);
                 return Majiang.Util.xiangting(new_shoupai) + 1;
             }
             return Infinity;
         }
         function xiangting_duanyao(shoupai, rule) {
             if (! rule['クイタンあり'] && ! shoupai.menqian) return Infinity;
-            if (shoupai._fulou.find(m=>m.match(/^z|[19]/))) return Infinity;
+            let view = ShoupaiView.fromShoupai(shoupai);
+            if (view.melds.some(m => m.tiles.some(t => t[0] === 'z' || t[1] === '1' || t[1] === '9'))) return Infinity;
             let new_shoupai = shoupai.clone();
             for (let s of ['m','p','s']) {
                 new_shoupai._bingpai[s][1] = 0;
@@ -608,23 +619,25 @@ module.exports = class Player extends Majiang.Player {
             return Majiang.Util.xiangting(new_shoupai);
         }
         function xiangting_duidui(shoupai) {
-            if (shoupai._fulou.map(m=>m.replace(/0/,'5'))
-                              .find(m=>! m.match(/^[mpsz](\d)\1\1/)))
+            let view = ShoupaiView.fromShoupai(shoupai);
+            if (view.melds.some(m => m.type === 'chi'))
                                                             return Infinity;
-            let n_kezi = shoupai._fulou.length, n_duizi = 0;
+            let n_kezi = view.melds.length, n_duizi = 0;
+            let ht = HandTiles.fromShoupai(shoupai);
             for (let s of ['m','p','s','z']) {
-                let bingpai = shoupai._bingpai[s];
-                for (let n = 1; n < bingpai.length; n++) {
-                    if      (bingpai[n] >= 3) n_kezi++;
-                    else if (bingpai[n] == 2) n_duizi++;
+                let maxN = s === 'z' ? 7 : 9;
+                for (let n = 1; n <= maxN; n++) {
+                    let cnt = ht.countOf(s, n);
+                    if      (cnt >= 3) n_kezi++;
+                    else if (cnt == 2) n_duizi++;
                 }
             }
             if (n_kezi + n_duizi > 5) n_duizi = 5 - n_kezi;
             return 8 - n_kezi * 2 - n_duizi;
         }
         function xiangting_yise(shoupai,suit) {
-            const regexp = new RegExp(`^[z${suit}]`);
-            if (shoupai._fulou.find(m=>! m.match(regexp))) return Infinity;
+            let view = ShoupaiView.fromShoupai(shoupai);
+            if (view.melds.some(m => m.tiles[0][0] !== 'z' && m.tiles[0][0] !== suit)) return Infinity;
             let new_shoupai = shoupai.clone();
             for (let s of ['m','p','s']) {
                 if (s != suit) new_shoupai._bingpai[s] = [0,0,0,0,0,0,0,0,0,0];
@@ -693,8 +706,22 @@ module.exports = class Player extends Majiang.Player {
         };
         let hule = Majiang.Util.hule(shoupai, rongpai, param);
 
-        this._defen_cache[paistr] = hule.defen;
-        return hule.defen;
+        /* hule 可能返回 undefined（_zimo 为副露面字时 hule_mianzi 返回空，
+         * 或手牌状态异常时）。尝试用面字中的被叫牌作为荣和牌重新计算。 */
+        if (!hule && shoupai._zimo && shoupai._zimo.length > 2) {
+            let meta = meldParser.parseMianzi(shoupai._zimo);
+            if (meta && meta.calledTileIndex != null) {
+                let calledTile = meta.tiles[meta.calledTileIndex];
+                let dir = meta.fromSeat != null ? ['','+','=','-'][meta.fromSeat] : '+';
+                let rongpai2 = calledTile + dir;
+                let clone = shoupai.clone();
+                clone._zimo = null;
+                hule = Majiang.Util.hule(clone, rongpai2, param);
+            }
+        }
+
+        this._defen_cache[paistr] = hule ? hule.defen : 0;
+        return this._defen_cache[paistr];
     }
 
     eval_shoupai(shoupai, paishu, back) {

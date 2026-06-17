@@ -10,6 +10,7 @@ const { hide, show, fadeIn }         = require('./fadein');
 const { setSelector, clearSelector } = require('./selector');
 
 const mianzi = require('./mianzi');
+const meldParser = require('../core/meld-parser.js');
 
 /** 面子上报数组去重 */
 function uniqueMianzi(arr) {
@@ -98,10 +99,14 @@ module.exports = class Player extends Majiang.Player {
         this.clear_button();
         this._node.mianzi.empty();
         for (let m of mianzi) {
-            let msg = m.match(/\d/g).length == 4 ? {gang: m} : {fulou: m}
+            let meta = meldParser.parseMianzi(m);
+            let isGang = meta && (meta.type === 'ankan'
+                               || meta.type === 'minkan'
+                               || meta.type === 'kakan');
+            let msg = isGang ? {gang: m} : {fulou: m};
             if (! this._default_reply) this._default_reply = msg;
             this._node.mianzi.append(
-                    this._mianzi(m, true)
+                    this._mianzi(m, meta)
                         .on('click.mianzi',()=>this.callback(msg)));
         }
         show(this._node.mianzi.width($(this._node.dapai).width()));
@@ -342,7 +347,7 @@ module.exports = class Player extends Majiang.Player {
 
     action_fulou(fulou) {
         if (fulou.l != this._menfeng) return this.callback();
-        if (fulou.m.match(/^[mpsz]\d{4}/)) return this.callback();
+        if (meldParser.parseMianzi(fulou.m)?.type === 'kakan') return this.callback();
 
         /* 通用：BEFORE_DISCARD 可选技能按钮（副露后舍牌前） */
         if (fulou.skillActions && fulou.skillActions.length > 0) {
@@ -365,7 +370,7 @@ module.exports = class Player extends Majiang.Player {
 
     action_gang(gang) {
         if (gang.l == this._menfeng) return this.callback();
-        if (gang.m.match(/^[mpsz]\d{4}$/)) return this.callback();
+        if (meldParser.parseMianzi(gang.m)?.type === 'ankan') return this.callback();
 
         let d = ['','+','=','-'][(4 + this._model.lunban - this._menfeng) % 4];
         let p = gang.m[0] + gang.m.slice(-1) + d;

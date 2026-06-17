@@ -125,9 +125,12 @@ function parse_fragment(hash) {
             = hash.split('/');
     let shoupai = Majiang.Shoupai.fromString(paistr);
     let rongpai;
-    if (zimo != '1' && shoupai._zimo) {
-        rongpai = shoupai._zimo + '=';
-        shoupai.dapai(shoupai._zimo);
+    if (zimo != '1') {
+        let zimoTile = Majiang.HandTiles.fromShoupai(shoupai).zimoTile;
+        if (zimoTile) {
+            rongpai = zimoTile.toString() + '=';
+            shoupai.dapai(zimoTile.toString());
+        }
     }
     if (lizhi == '1') {
         shoupai._lizhi = true;

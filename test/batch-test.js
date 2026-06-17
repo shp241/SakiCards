@@ -33,6 +33,7 @@ const AI = require('@kobalab/majiang-ai');
 const characters = require('../src/skill/characters_skills');
 const { SkillManager } = require('../src/skill/index');
 const { SKILL_EXECUTE_MAP } = require('../src/skill/skill-registry');
+const { SkillType } = require('../src/skill/skill-types');
 const { serializeShan } = require('./shan-serialize');
 
 /* ================================================================
@@ -56,6 +57,8 @@ const CONFIG = {
     onlyChars: args.chars ? args.chars.split(',').map(s => s.trim()).filter(Boolean) : null,
     /* --skip=id1,id2,... 跳过指定角色 */
     skipChars: args.skip ? args.skip.split(',').map(s => s.trim()).filter(Boolean) : [],
+    /* --lineup=char1,char2,char3,char4 自定义4人对局阵容 */
+    lineup: args.lineup ? args.lineup.split(',').map(s => s.trim()).filter(Boolean) : null,
     /* --log=dir: 指定日志目录，默认自动输出到 test/logs/；--no-log 关闭 */
     logDir: args.noLog ? null : (typeof args.log === 'string' ? args.log : path.join(__dirname, 'logs')),
     /* --timeout=<秒>: 单局超时（默认 300 秒） */
@@ -77,6 +80,10 @@ const IMPLEMENTED_IDS = new Set(Object.keys(SKILL_EXECUTE_MAP));
 
 /** 待测角色列表（仅包含有实现的角色） */
 function buildTestList() {
+    /* --lineup 阵容模式：只测第一个角色（主力），其余为陪跑 */
+    if (CONFIG.lineup && CONFIG.lineup.length > 0) {
+        return [{ id: CONFIG.lineup[0], name: charNameById(CONFIG.lineup[0]) }];
+    }
     let list = [];
     for (let c of characters) {
         if (EXCLUDE_IDS.has(c.id)) continue;
@@ -116,11 +123,25 @@ const stats = {
 /** 全局技能发动计数（跨所有对局） */
 const skillActivations = {}; // { charId: { 'skill_desc': count, ... } }
 
-/** 获取角色预定义技能描述列表 */
+/** 判断技能是否为 PASSIVE 类型（被动/自动执行技能不显示未触发） */
+function isPassiveSkill(charId, skillIndex) {
+    let charSkills = SKILL_EXECUTE_MAP[charId];
+    if (!charSkills) return false;
+    let skillDef = charSkills[skillIndex];
+    if (!skillDef) return false;
+    /* type 未显式定义时默认为 PASSIVE */
+    if (!skillDef.type || skillDef.type === SkillType.PASSIVE) return true;
+    if (skillDef.type === SkillType.CONDITIONAL && skillDef.isOptional === false) return true;
+    return false;
+}
+
+/** 获取角色非 PASSIVE 技能描述列表（被动技能持续生效，不会产生触发日志） */
 function getExpectedSkills(charId) {
     let c = characters.find(c => c.id === charId);
     if (!c || !c.skills) return [];
-    return c.skills.map(s => s.replace(/;+$/, '').trim());
+    return c.skills
+        .map(s => s.replace(/;+$/, '').trim())
+        .filter((desc, idx) => !isPassiveSkill(charId, idx));
 }
 
 /* ================================================================
@@ -213,10 +234,11 @@ function runOneGame(charId, gameIdx) {
 
         let sm = new SkillManager({ characters, rule });
 
-        /* 4 人同角色 */
+        /* 设置座位角色：--lineup 自定义阵容，否则 4 人同角色 */
         for (let i = 0; i < 4; i++) {
-            sm._activeCharacters[i] = charId;
-            sm._activatePassiveSkills(i, charId);
+            let cid = CONFIG.lineup ? CONFIG.lineup[i] : charId;
+            sm._activeCharacters[i] = cid;
+            sm._activatePassiveSkills(i, cid);
         }
 
         /* ---- 静默运行（压制游戏引擎自身的日志输出） ---- */
@@ -235,8 +257,10 @@ function runOneGame(charId, gameIdx) {
         }
         let origAddActionLog = game._add_action_log.bind(game);
         game._add_action_log = function(text, seat) {
-            /* 匹配 "发动了技能「角色名·技能描述」" */
-            let m = text.match(/发动了技能「(.+?)·(.+?)」/);
+            /* 匹配 "发动了技能「角色名·技能描述」"
+             * 注意：角色名可能包含 ·（如"爱丝琳·威夏尔特"），
+             * 用贪婪匹配 (.+) 确保捕获完整角色名，用 (.+?) 捕获技能描述 */
+            let m = text.match(/发动了技能「(.+)·(.+?)」/);
             if (m) {
                 let desc = m[2].replace(/;+$/, '').trim();
                 skillActivations[charId][desc] = (skillActivations[charId][desc] || 0) + 1;

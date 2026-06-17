@@ -7,6 +7,7 @@ const $ = require('jquery');
 const Majiang = require('@kobalab/majiang-core');
 
 const Shoupai = require('./shoupai');
+const meldParser = require('../core/meld-parser.js');
 
 const { hide, show, fadeIn, fadeOut } = require('./fadein');
 const flipInput = require('./flip');
@@ -87,10 +88,18 @@ function moda_accessor(root, pai) {
             if (Majiang.Shoupai.valid_pai(val)
                 || Majiang.Shoupai.valid_mianzi(val))
             {
-                $('.pai', moda(t, l, md)).append(
-                        pai(val.replace(/^([mpsz])\d{3}[+\=\-](\d)$/, '$1$2')
-                               .replace(/^([mpsz]).*(\d)[\+\=\-].*$/, '$1$2')
-                               .replace(/^([mpsz]\d).*$/, '$1')));
+                let displayTile;
+                let meta = meldParser.parseMianzi(val);
+                if (meta) {
+                    displayTile = meta.calledTileIndex != null
+                        ? meta.tiles[meta.calledTileIndex]
+                        : meta.tiles[0];
+                } else {
+                    displayTile = val.replace(/^([mpsz])\d{3}[+\=\-](\d)$/, '$1$2')
+                                   .replace(/^([mpsz]).*(\d)[\+\=\-].*$/, '$1$2')
+                                   .replace(/^([mpsz]\d).*$/, '$1');
+                }
+                $('.pai', moda(t, l, md)).append(pai(displayTile));
                 $('.text', moda(t, l, md)).text(text);
             }
             else {
@@ -686,10 +695,19 @@ module.exports = class PaipuEditor {
             else if (data.fulou) {
                 t++;
                 let text;
-                let m = data.fulou.m.replace(/0/,'5');
-                if      (m.match(/(\d)\1\1\1/)) text = 'カン';　
-                else if (m.match(/(\d)\1\1/))   text = 'ポン';
-                else                            text = 'チー';
+                let meta = meldParser.parseMianzi(data.fulou.m);
+                if (meta) {
+                    if      (meta.type === 'minkan'
+                          || meta.type === 'ankan'
+                          || meta.type === 'kakan') text = 'カン';
+                    else if (meta.type === 'pon')   text = 'ポン';
+                    else                            text = 'チー';
+                } else {
+                    let m = data.fulou.m.replace(/0/,'5');
+                    if      (m.match(/(\d)\1\1\1/)) text = 'カン';
+                    else if (m.match(/(\d)\1\1/))   text = 'ポン';
+                    else                            text = 'チー';
+                }
                 l  = data.fulou.l;
                 md = 'm';
                 moda(t, l, md, data.fulou.m, text, error);
@@ -831,7 +849,7 @@ module.exports = class PaipuEditor {
                     else {
                         mo = Majiang.Shoupai.valid_mianzi(mo) || mo;
                         log.push({ fulou: { l: l, m: mo } });
-                        if (mo.match(/\d{3}.*\d/)) gang = true;
+                        if (meldParser.parseMianzi(mo)?.type === 'minkan') gang = true;
                     }
                     if (weikaigang.length) kaigang();
                 }

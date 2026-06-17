@@ -26,7 +26,6 @@
  */
 'use strict';
 
-const Shoupai = require('../core/shoupai');
 const { TurnType } = require('../skill/triggers');
 const hanOps = require('./han-ops');
 const tileUtils = require('./tile-utils');
@@ -46,13 +45,12 @@ const tileUtils = require('./tile-utils');
 function countMelds(model, seat, type) {
     if (!model || !model.shoupai || !model.shoupai[seat]) return 0;
     let shoupai = model.shoupai[seat];
-    let fulou = shoupai._fulou;
-    if (!fulou || fulou.length === 0) return 0;
+    let metas = shoupai.meldMetas;
+    if (!metas || metas.length === 0) return 0;
 
     let count = 0;
-    for (let m of fulou) {
-        if (typeof m !== 'string') continue;
-        let meldType = Shoupai.fulouType(m);
+    for (let meta of metas) {
+        let meldType = meta.type;
 
         switch (type) {
             case 'chi':
@@ -88,14 +86,11 @@ function getMeldStats(model, seat) {
     let stats = { chi: 0, pon: 0, kan: 0, ankan: 0, daiminkan: 0, total: 0 };
     if (!model || !model.shoupai || !model.shoupai[seat]) return stats;
     let shoupai = model.shoupai[seat];
-    let fulou = shoupai._fulou;
-    if (!fulou || fulou.length === 0) return stats;
+    let metas = shoupai.meldMetas;
+    if (!metas || metas.length === 0) return stats;
 
-    for (let m of fulou) {
-        if (typeof m !== 'string') continue;
-        let meldType = Shoupai.fulouType(m);
-
-        switch (meldType) {
+    for (let meta of metas) {
+        switch (meta.type) {
             case 'chi':
                 stats.chi++;
                 break;
@@ -197,8 +192,8 @@ function countRiverTiles(model, seat, filter) {
     let he = model.he[seat];
     let count = 0;
     for (let t of he._pai) {
-        // 跳过被副露的牌（有方向后缀）和暗牌
-        if (t.match(/[\+\=\-]$/)) continue;
+        // 跳过暗牌
+        if (t === '_') continue;
         if (t.slice(-1) === '_') continue;
         let pai = t.length >= 2 ? t.slice(0, 2) : t;
         if (filter(pai)) count++;

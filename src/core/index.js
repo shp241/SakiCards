@@ -17,5 +17,7 @@ module.exports = {
     Game:    require('./game'),
     Player:  require('./player'),
     Util:    Object.assign(require('./xiangting'),
-                           require('./hule'))
+                           require('./hule')),
+    ShoupaiView: require('./shoupai-view'),
+    HandTiles: require('./hand-tile').HandTiles,
 }

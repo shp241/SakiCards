@@ -4,6 +4,7 @@
 "use strict";
 
 const Majiang = require('@kobalab/majiang-core');
+const meldParser = require('../core/meld-parser.js');
 
 class Paishu {
 
@@ -103,16 +104,28 @@ module.exports = class SuanPai {
 
     fulou(fulou) {
         if (fulou.l != this._menfeng) {
-            let s = fulou.m[0];
-            for (let n of fulou.m.match(/\d(?![\+\=\-])/g)) {
-                this.decrease(s+n);
+            let meta = meldParser.parseMianzi(fulou.m);
+            if (meta) {
+                for (let i = 0; i < meta.tiles.length; i++) {
+                    if (i === meta.calledTileIndex) continue;
+                    let tile = meta.tiles[i];
+                    this.decrease(tile[0] + (+tile[1] || 5));
+                }
             }
         }
     }
 
     gang(gang) {
         if (gang.l != this._menfeng) {
-            if (gang.m.match(/^[mpsz]\d{4}$/)) {
+            let meta = meldParser.parseMianzi(gang.m);
+            if (meta) {
+                for (let i = 0; i < meta.tiles.length; i++) {
+                    if (i === meta.calledTileIndex) continue;
+                    let tile = meta.tiles[i];
+                    this.decrease(tile[0] + (+tile[1] || 5));
+                }
+            }
+            else if (gang.m.match(/^[mpsz]\d{4}$/)) {
                 let s = gang.m[0];
                 for (let n of gang.m.match(/\d/g)) {
                     this.decrease(s+n);

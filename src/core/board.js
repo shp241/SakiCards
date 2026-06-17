@@ -87,9 +87,7 @@ module.exports = class Board {
     zimo(zimo) {
         this.lizhi();
         this.lunban = zimo.l;
-        /* 服务端提供了完整手牌（技能可能已修改手牌），直接更新。
-         * shan.zimo 仍需调用以正确递减 paishu，
-         * 但 shoupai.zimo 不调用（完整手牌已含摸牌）。
+        /* 服务端提供了完整手牌（技能可能已修改手牌），同步更新。
          * 注意：不能替换整个 Shoupai 对象（UI 持有原对象引用），
          * 必须复制 _bingpai / _zimo 到现有对象上。 */
         let shoupai = this.shoupai[zimo.l];
@@ -103,8 +101,16 @@ module.exports = class Board {
             }
             shoupai._zimo = updated._zimo;
             shoupai._fulou     = updated._fulou.concat();
-            shoupai._fulouMeta = updated._fulouMeta.map(m => ({ type: m.type, tiles: m.tiles.concat() }));
-            this.shan.zimo(zimo.p);
+            shoupai._fulouMeta = updated._fulouMeta.map(m => ({
+                type: m.type, tiles: m.tiles.concat(),
+                fromSeat: m.fromSeat, calledTileIndex: m.calledTileIndex
+            }));
+            /* fromString 可能已正确识别 _zimo（短字符串），此时 bingpai 已含该牌，
+             * 不应再次 zimo()；仅当 _zimo 为 null 或副露面字时，需补充摸牌。 */
+            let pai = this.shan.zimo(zimo.p);
+            if (!shoupai._zimo || shoupai._zimo.length > 2) {
+                shoupai.zimo(pai, false);
+            }
         }
         else {
             /* 如果手牌已有 _zimo（如技能 restart 重复发送 zimo），先移除旧牌 */

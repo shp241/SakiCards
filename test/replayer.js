@@ -26,6 +26,7 @@
 const fs = require('fs');
 const path = require('path');
 const { restoreGame, buildScenario, continueFromState } = require('./game-restorer');
+const ShoupaiView = require('../src/core/shoupai-view.js');
 
 /* ===== 命令行参数 ===== */
 const args = {};
@@ -237,7 +238,7 @@ function _printInspect(game, model, paipu) {
         }
         console.log('  牌河: ' + (he ? he._pai.join(' ') : '?')
             + ' (' + (he ? he._pai.length : 0) + '张)');
-        console.log('  副露: ' + (shoupai && shoupai._fulou ? shoupai._fulou.length : 0));
+        console.log('  副露: ' + (shoupai ? ShoupaiView.fromShoupai(shoupai).melds.length : 0));
 
         /* 技能信息 */
         if (game._skillManager) {

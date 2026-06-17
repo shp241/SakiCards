@@ -220,9 +220,11 @@ class SkillManager {
             if (skill.usage.type !== 'unlimited' && skill.usage.current >= skill.usage.max) continue;
             /* 本巡已发动过的 BEFORE_DISCARD 技能不再显示 */
             if (timing === TimingPoints.BEFORE_DISCARD && this._bdUsedThisTurn[skill.id]) continue;
-            if (skill.trigger.condition) {
+            /* 检查条件：优先 part.condition，其次 trigger.condition */
+            let condFn = (match.part && match.part.condition) || skill.trigger.condition;
+            if (condFn) {
                 let condCtx = Object.assign({}, context, { seat: match.seat });
-                if (!skill.trigger.condition(condCtx)) continue;
+                if (!condFn(condCtx)) continue;
             }
             let circleNums = ['', '①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧'];
             let charSkills = this.getCharacterSkills(match.seat);
@@ -499,6 +501,9 @@ class SkillManager {
         let matches = this._registry.querySkills(
             player, timing, this._activeCharacters, stp
         );
+        
+        if (timing === 'before_draw') {
+        }
 
         let actions = [];
         let effects = [];
@@ -560,6 +565,7 @@ class SkillManager {
                 actions.push({
                     seat: match.seat,          // 游戏席位 (0=东/1=南/2=西/3=北)
                     skill: skill,
+                    part: part || null,        // 子技能（parts），用于 aiDecision/execute
                     type: 'prompt',
                     message: skill.description,
                     timing: timing,
@@ -712,7 +718,7 @@ class SkillManager {
         /* 执行效果 */
         /* 若 this._game 未设置，回退到 context.game（调用者可手动传入游戏引用） */
         let gameRef = this._game || context.game;
-        if (skill.effect.execute) {
+        if (skill.effect && skill.effect.execute) {
                 let execCtx = { ...context, game: gameRef };
             let result = skill.effect.execute(execCtx, choice);
             return result;
