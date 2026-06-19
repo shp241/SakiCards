@@ -58,6 +58,8 @@ $(function(){
         myGameSeat = 0;
     /** 技能提示 UI 组件引用（联机模式复用单人版 SkillPrompt） */
     let skillPromptUI = null;
+    /** 交换界面 UI 组件引用（联机模式复用单人版 ExchangePrompt） */
+    let exchangePromptUI = null;
     /** 语音角色缓存，重连时保留已选择的语音 */
     let voiceChars = [null, null, null, null];
     /** 断线重连相关 */
@@ -217,6 +219,9 @@ $(function(){
         /* 初始化技能提示 UI（联机复用单人版 SkillPrompt） */
         skillPromptUI = new Majiang.UI.SkillPrompt($('#board'), pai);
 
+        /* 初始化交换界面 UI（联机复用单人版 ExchangePrompt） */
+        exchangePromptUI = new Majiang.UI.ExchangePrompt($('#board'), pai);
+
         const gameCtl = new Majiang.UI.GameCtl($('#board'), 'Majiang.pref',
                                                 null, player, player._view);
         gameCtl._view.no_player_name = false;
@@ -285,6 +290,11 @@ $(function(){
             /* ---- 技能交互提示 ---- */
             else if (msg.skill_prompt) {
                 _showSkillPrompt(msg.skill_prompt);
+            }
+
+            /* ---- 交换界面提示 ---- */
+            else if (msg.exchange_prompt) {
+                _showExchangePrompt(msg.exchange_prompt);
             }
 
             /* ---- 技能阶段间手牌同步（服务器已定向发送，直接处理） ---- */
@@ -376,6 +386,7 @@ $(function(){
     function _dismissAllOverlays() {
         $('.netplay-skill-prompt-overlay').remove();
         if (skillPromptUI) skillPromptUI.clear();
+        if (exchangePromptUI) exchangePromptUI.clear();
         /* 角色选择弹窗由倒计时自行管理，不强制关闭 */
     }
 
@@ -676,6 +687,56 @@ $(function(){
             default:
                 /* 向后兼容旧版自定义类型 */
                 _showLegacySkillPrompt(data);
+                break;
+        }
+    }
+
+    /* ================================================================
+     *  交换界面提示 — 委托给 ExchangePrompt UI
+     *  服务端通过 MultiplayerExchangePrompt 发送统一协议，
+     *  客户端直接调用 ExchangePrompt 方法，无需自定义 HTML。
+     * ================================================================ */
+
+    function _showExchangePrompt(data) {
+        /* data: { promptType, promptId, offerTiles, source,
+                   allowSourceSwitch, swapCount, condition,
+                   description, timeout } */
+
+        console.log(`[netplay] _showExchangePrompt promptId=${data.promptId} type=${data.promptType}`);
+
+        if (!exchangePromptUI) {
+            console.log('[netplay] _showExchangePrompt: exchangePromptUI is null!');
+            return;
+        }
+
+        let promptType = data.promptType;
+        let emitReply = (reply) => {
+            reply = reply || {};
+            reply.promptId = data.promptId;
+            sock.emit('SKILL_REPLY_' + data.promptId, reply);
+        };
+
+        switch (promptType) {
+
+            case 'exchange':
+                exchangePromptUI.showExchange({
+                    offerTiles: data.offerTiles || [],
+                    source: data.source || 'hand',
+                    allowSourceSwitch: data.allowSourceSwitch !== false,
+                    swapCount: data.swapCount || 1,
+                    condition: data.condition || 'none',
+                    description: data.description || '',
+                }, (swapPairs) => {
+                    if (swapPairs && swapPairs.length > 0) {
+                        emitReply({ swapPairs: swapPairs });
+                    } else {
+                        emitReply({ swapPairs: [] });
+                    }
+                });
+                break;
+
+            case 'clear':
+                exchangePromptUI.clear();
                 break;
         }
     }

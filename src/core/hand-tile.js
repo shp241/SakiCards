@@ -72,7 +72,7 @@ class HandTiles {
     static fromShoupai(shoupai) {
         let ht = new HandTiles();
         ht._lizhi = shoupai._lizhi;
-        ht._markedTiles = new Set(shoupai._markedTiles || []);
+        ht._markedTiles = new Set(shoupai._markedTiles ? shoupai._markedTiles.keys() : []);
 
         let zimoStr = shoupai._zimo;
         let isFulouTurn = zimoStr && zimoStr.length > 2;

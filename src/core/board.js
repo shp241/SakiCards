@@ -18,6 +18,15 @@ class Shan {
     kaigang(baopai) { this.baopai.push(baopai);      }
 }
 
+/* 将 markedTiles 数组反序列化为 Map（含重复计数） */
+function _arrayToMarkedMap(arr) {
+    let m = new Map();
+    for (let t of arr) {
+        m.set(t, (m.get(t) || 0) + 1);
+    }
+    return m;
+}
+
 module.exports = class Board {
 
     constructor(kaiju) {
@@ -121,7 +130,13 @@ module.exports = class Board {
         }
         /* 同步标记牌张 */
         if (zimo.markedTiles) {
-            shoupai._markedTiles = new Set(zimo.markedTiles);
+            shoupai._markedTiles = _arrayToMarkedMap(zimo.markedTiles);
+        }
+        if (zimo.hiddenTiles) {
+            shoupai._hiddenTiles = _arrayToMarkedMap(zimo.hiddenTiles);
+        }
+        if (zimo.lockedTiles) {
+            shoupai._lockedTiles = _arrayToMarkedMap(zimo.lockedTiles);
         }
     }
 
@@ -132,7 +147,13 @@ module.exports = class Board {
         this.he[dapai.l].dapai(p, dapai.hidden);
         this._lizhi = p != '_' && p.slice(-1) == '*';
         if (dapai.markedTiles) {
-            this.shoupai[dapai.l]._markedTiles = new Set(dapai.markedTiles);
+            this.shoupai[dapai.l]._markedTiles = _arrayToMarkedMap(dapai.markedTiles);
+        }
+        if (dapai.hiddenTiles) {
+            this.shoupai[dapai.l]._hiddenTiles = _arrayToMarkedMap(dapai.hiddenTiles);
+        }
+        if (dapai.lockedTiles) {
+            this.shoupai[dapai.l]._lockedTiles = _arrayToMarkedMap(dapai.lockedTiles);
         }
     }
 
@@ -142,7 +163,13 @@ module.exports = class Board {
         this.lunban = fulou.l;
         this.shoupai[fulou.l].fulou(fulou.m, false);
         if (fulou.markedTiles) {
-            this.shoupai[fulou.l]._markedTiles = new Set(fulou.markedTiles);
+            this.shoupai[fulou.l]._markedTiles = _arrayToMarkedMap(fulou.markedTiles);
+        }
+        if (fulou.hiddenTiles) {
+            this.shoupai[fulou.l]._hiddenTiles = _arrayToMarkedMap(fulou.hiddenTiles);
+        }
+        if (fulou.lockedTiles) {
+            this.shoupai[fulou.l]._lockedTiles = _arrayToMarkedMap(fulou.lockedTiles);
         }
     }
 
@@ -150,7 +177,13 @@ module.exports = class Board {
         this.lunban = gang.l;
         this.shoupai[gang.l].gang(gang.m, false);
         if (gang.markedTiles) {
-            this.shoupai[gang.l]._markedTiles = new Set(gang.markedTiles);
+            this.shoupai[gang.l]._markedTiles = _arrayToMarkedMap(gang.markedTiles);
+        }
+        if (gang.hiddenTiles) {
+            this.shoupai[gang.l]._hiddenTiles = _arrayToMarkedMap(gang.hiddenTiles);
+        }
+        if (gang.lockedTiles) {
+            this.shoupai[gang.l]._lockedTiles = _arrayToMarkedMap(gang.lockedTiles);
         }
     }
 

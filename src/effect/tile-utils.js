@@ -56,22 +56,26 @@ function isEqual(a, b) {
 }
 
 /**
- * 花色相同。
+ * 花色相同（有字牌参与时恒为 false，字牌无花色概念）。
  * @param {string} a
  * @param {string} b
  * @returns {boolean}
  */
 function sameSuit(a, b) {
+    if (!a || !b) return false;
+    if (a[0] === 'z' || b[0] === 'z') return false;
     return a[0] === b[0];
 }
 
 /**
- * 点数相同（红5 视为 5）。
+ * 点数相同（有字牌参与时恒为 false，字牌编号不视作点数）。
  * @param {string} a
  * @param {string} b
  * @returns {boolean}
  */
 function sameNumber(a, b) {
+    if (!a || !b) return false;
+    if (a[0] === 'z' || b[0] === 'z') return false;
     return numberOf(a) === numberOf(b);
 }
 

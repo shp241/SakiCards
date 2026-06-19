@@ -460,10 +460,32 @@ module.exports = class Player extends Majiang.Player {
 
     select_dapai(info) {
 
+        /* 防御：get_dapai() 在 _zimo 为 null 时返回 null */
+        let dapaiList = this.get_dapai(this.shoupai);
+        if (!dapaiList) {
+            console.warn('[WARN] select_dapai: get_dapai returned null, shoupai=' + this.shoupai);
+            /* 从手牌中取一张兜底 */
+            let fallback = null;
+            for (let s of ['m','p','s','z']) {
+                let bp = this.shoupai._bingpai[s];
+                if (!bp) continue;
+                let maxN = s === 'z' ? 7 : 9;
+                for (let n = 1; n <= maxN; n++) {
+                    if (bp[n] > 0) {
+                        fallback = s + n;
+                        break;
+                    }
+                }
+                if (fallback) break;
+            }
+            if (!fallback && this.shoupai._bingpai._ > 0) fallback = '_';
+            return fallback || undefined;
+        }
+
         let anquan, min = Infinity;
         const weixian = this._suanpai.suan_weixian_all(this.shoupai._bingpai);
         if (weixian) {
-            for (let p of this.get_dapai(this.shoupai)) {
+            for (let p of dapaiList) {
                 if (weixian(p) < min) {
                     min = weixian(p);
                     anquan = p;
@@ -476,7 +498,7 @@ module.exports = class Player extends Majiang.Player {
         let paishu = this._suanpai.get_paishu();
         const paijia = this._suanpai.make_paijia(this.shoupai);
         const cmp = (a, b)=> paijia(a) - paijia(b);
-        for (let p of this.get_dapai(this.shoupai).reverse().sort(cmp)) {
+        for (let p of dapaiList.reverse().sort(cmp)) {
             if (! dapai) dapai = p;
             let shoupai = this.shoupai.clone().dapai(p);
             if (n_xiangting > 2 && this.xiangting(shoupai) > n_xiangting ||

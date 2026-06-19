@@ -599,34 +599,53 @@ function get_post_hupai(shoupai, rongpai, baopai, fubaopai) {
     let suitstr = paistr.match(/[mpsz][^mpsz,]*/g);
 
     let n_baopai = 0;
+    /* 宝牌计算日志 */
+    let baopaiLog = { indicators: [], dora: [], matchedTiles: [] };
     for (let p of baopai) {
+        let indicator = p;
         p = Majiang.Shan.zhenbaopai(p);
+        baopaiLog.indicators.push(indicator);
+        baopaiLog.dora.push(p);
         const regexp = new RegExp(p[1],'g');
         for (let m of suitstr) {
             if (m[0] != p[0]) continue;
             m = m.replace(/0/,'5');
             let nn = m.match(regexp);
-            if (nn) n_baopai += nn.length;
+            if (nn && nn.length > 0) {
+                baopaiLog.matchedTiles.push(p + '×' + nn.length + '(from ' + m + ')');
+                n_baopai += nn.length;
+            }
         }
     }
+    console.log('[dora-log] 宝牌: 指示牌=' + JSON.stringify(baopaiLog.indicators) + ' 宝牌=' + JSON.stringify(baopaiLog.dora) + ' 手牌匹配=' + JSON.stringify(baopaiLog.matchedTiles) + ' 合计=' + n_baopai);
     if (n_baopai) post_hupai.push({ name: '宝牌', fanshu: n_baopai, type: 'dora' });
 
     let n_hongpai = 0;
     let nn = paistr.match(/0/g);
     if (nn) n_hongpai = nn.length;
+    console.log('[dora-log] 红宝牌: 赤五数=' + n_hongpai);
     if (n_hongpai) post_hupai.push({ name: '红宝牌', fanshu: n_hongpai, type: 'dora' });
 
     let n_fubaopai = 0;
+    /* 里宝牌计算日志 */
+    let fubaopaiLog = { indicators: [], uraDora: [], matchedTiles: [] };
     for (let p of fubaopai || []) {
+        let indicator = p;
         p = Majiang.Shan.zhenbaopai(p);
+        fubaopaiLog.indicators.push(indicator);
+        fubaopaiLog.uraDora.push(p);
         const regexp = new RegExp(p[1],'g');
         for (let m of suitstr) {
             if (m[0] != p[0]) continue;
             m = m.replace(/0/,'5');
             let nn = m.match(regexp);
-            if (nn) n_fubaopai += nn.length;
+            if (nn && nn.length > 0) {
+                fubaopaiLog.matchedTiles.push(p + '×' + nn.length + '(from ' + m + ')');
+                n_fubaopai += nn.length;
+            }
         }
     }
+    console.log('[dora-log] 里宝牌: 指示牌=' + JSON.stringify(fubaopaiLog.indicators) + ' 里宝牌=' + JSON.stringify(fubaopaiLog.uraDora) + ' 手牌匹配=' + JSON.stringify(fubaopaiLog.matchedTiles) + ' 合计=' + n_fubaopai);
     if (n_fubaopai) post_hupai.push({ name: '里宝牌', fanshu: n_fubaopai, type: 'dora' });
 
     return post_hupai;

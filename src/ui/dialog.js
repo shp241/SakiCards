@@ -41,6 +41,12 @@ module.exports = class HuleDialog {
         if (hule.fubaopai) {
             show($('.shan.fubaopai', this._node.hule));
             this._model.shan._fubaopai = [...hule.fubaopai];
+            /* 直接填充里宝牌牌面（Shan widget 无法找到 .shan.fubaopai 内的元素） */
+            let fubaopaiNode = $('.shan.fubaopai .fubaopai', this._node.hule);
+            fubaopaiNode.empty();
+            for (let i = 0; i < 5; i++) {
+                fubaopaiNode.append(this._pai((hule.fubaopai[i] || '_')));
+            }
         }
         else               hide($('.shan.fubaopai', this._node.hule));
 
@@ -105,6 +111,12 @@ module.exports = class HuleDialog {
         if (hule.fubaopai) {
             show($('.shan.fubaopai', this._node.hule));
             this._model.shan._fubaopai = [...hule.fubaopai];
+            /* 直接填充里宝牌牌面（Shan widget 无法找到 .shan.fubaopai 内的元素） */
+            let fubaopaiNode = $('.shan.fubaopai .fubaopai', this._node.hule);
+            fubaopaiNode.empty();
+            for (let i = 0; i < 5; i++) {
+                fubaopaiNode.append(this._pai((hule.fubaopai[i] || '_')));
+            }
         }
         else               hide($('.shan.fubaopai', this._node.hule));
 

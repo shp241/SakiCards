@@ -437,83 +437,77 @@ function _addExtraUraDora(hule, model, shoupai, count) {
  * @param {string} spname - 玩家显示名
  */
 async function _kunihiroSwap(context, game, seat, model, input, shoupai, spname) {
-    /* 阶段1：选择手牌 */
-    let handTiles = _getHandTiles(shoupai);
-    if (handTiles.length === 0) { context.done(); return; }
+    const CLASS_TO_OFFSET = { main: 0, xiajia: 1, duimian: 2, shangjia: 3 };
+    const OFFSET_TO_CLASS = ['main', 'xiajia', 'duimian', 'shangjia'];
 
-    /* AI 选价值最低的牌 */
-    let aiHand = [...handTiles].sort((a, b) =>
-        _evalHandTileValue(a, shoupai, game, seat) -
-        _evalHandTileValue(b, shoupai, game, seat)
-    )[0];
-
-    let handTile;
-    if (handTiles.length === 1) {
-        handTile = handTiles[0];
-    } else {
-        handTile = await input.askHandTile('选择一张手牌交换', () => aiHand, handTiles);
-    }
-    if (!handTile) { context.done(); return; }
-
-    /* 阶段2：筛选牌河中花色或点数相同的数牌 */
-    let matches = [], matchValues = [];
-    let seatNames = ['自家', '下家', '对家', '上家'];
-    for (let s = 0; s < 4; s++) {
-        let he = model.he[s];
-        if (!he) continue;
-        for (let i = 0; i < he._pai.length; i++) {
-            let t = he._pai[i];
-            if (t === '_') continue;              /* 不计暗切 */
-            let base = t.replace(/[_\*]$/, '');
-            if (base[0] === 'z') continue;         /* 仅数牌 */
-            if (!tileUtils.sameSuit(base, handTile) && !tileUtils.sameNumber(base, handTile)) continue;
-
-            let relSeat = (s - seat + 4) % 4;
-            let label = seatNames[relSeat] + '·' + game._pai_name(base);
-            matches.push({ pai: base, seat: s, index: i, label: label });
-            matchValues.push(s + ':' + i);
+    /* ── ExchangePrompt（人类/AI 统一路径） ── */
+    let pairs = await input.askExchange({
+        swapCount: 1,
+        condition: 'suit_or_number',
+        pairing: 'hand_river',
+        description: '选择手牌与牌河中的数牌交换',
+    }, () => {
+        /* AI 默认：选能最大程度降低向听数的交换对 */
+        let currentShanten = Majiang.Util.xiangting(shoupai);
+        let handTiles = [...new Set(_getHandTiles(shoupai))].filter(t => t[0] !== 'z');
+        if (handTiles.length === 0) return null;
+        let bestHand = null, bestRiver = null, bestRiverSeat = -1, bestRiverIdx = -1, bestShanten = 99;
+        for (let handTile of handTiles) {
+            for (let s = 0; s < 4; s++) {
+                let he = model.he[s];
+                if (!he) continue;
+                for (let i = 0; i < he._pai.length; i++) {
+                    if (he._pai[i] === '_') continue;
+                    let base = he._pai[i].replace(/[_\*]$/, '');
+                    if (base[0] === 'z') continue;
+                    if (!tileUtils.sameSuit(handTile, base) && !tileUtils.sameNumber(handTile, base)) continue;
+                    let test = shoupai.clone();
+                    tileOps.removeFromHand(test, handTile);
+                    tileOps.addToHand(test, base);
+                    let st = Majiang.Util.xiangting(test);
+                    if (st < bestShanten) {
+                        bestShanten = st;
+                        bestHand = handTile;
+                        bestRiver = base;
+                        bestRiverSeat = s;
+                        bestRiverIdx = i;
+                    }
+                }
+            }
         }
-    }
-
-    if (matches.length === 0) { context.done(); return; }
-
-    /* 阶段3：选择牌河牌 */
-    let choice;
-    if (matches.length === 1) {
-        choice = matchValues[0];
-    } else {
-        let selected = await input.askRiverTile(
-            '选择牌河中花色或点数匹配的数牌',
-            function() {
-                return { pai: matches[0].pai, seat: matches[0].seat, index: matches[0].index };
-            },
-            matchValues);
-        if (!selected) { context.done(); return; }
-        choice = selected.seat + ':' + selected.index;
-    }
-    if (!choice) { context.done(); return; }
-
-    let parts = choice.split(':');
-    let targetSeat = parseInt(parts[0]), targetIdx = parseInt(parts[1]);
-    let match = null;
-    for (let i = 0; i < matches.length; i++) {
-        if (matches[i].seat === targetSeat && matches[i].index === targetIdx) {
-            match = matches[i];
-            break;
+        if (!bestHand || bestShanten >= currentShanten) return null;
+        let riverClass = OFFSET_TO_CLASS[(bestRiverSeat - seat + 4) % 4];
+        return [{ a: { tile: bestHand, player: 'hand', idx: -1 }, b: { tile: bestRiver, player: riverClass, idx: bestRiverIdx } }];
+    });
+    if (pairs && pairs.length > 0) {
+        let p = pairs[0];
+        /* 区分手牌和牌河 */
+        let handTile, riverSeat, riverIdx;
+        if (p.a.player === 'hand') {
+            handTile = p.a.tile;
+            riverSeat = (seat + (CLASS_TO_OFFSET[p.b.player] || 0)) % 4;
+            riverIdx = p.b.idx;
+        } else {
+            handTile = p.b.tile;
+            riverSeat = (seat + (CLASS_TO_OFFSET[p.a.player] || 0)) % 4;
+            riverIdx = p.a.idx;
         }
+        /* 验证：仅数牌 */
+        if (handTile[0] === 'z') { context.done(); return; }
+        let riverTile = model.he[riverSeat]._pai[riverIdx];
+        if (!riverTile || riverTile === '_' || riverTile[0] === 'z') { context.done(); return; }
+        let riverBase = riverTile.replace(/[_\*]$/, '');
+        /* 执行交换 */
+        model.he[riverSeat]._pai[riverIdx] = handTile + '_';
+        tileOps.swapInHand(shoupai, handTile, riverBase);
+        game._add_action_log(spname + ' 将「' + game._pai_name(handTile)
+            + '」与牌河「' + game._pai_name(riverBase) + '」交换', seat);
+        if (game._view) game._view.redraw();
+        context.done();
+        return;
     }
-    if (!match) { context.done(); return; }
 
-    /* 阶段4：执行交换（swapInHand 自动处理 _zimo） */
-    model.he[targetSeat]._pai[targetIdx] = handTile + '_';
-    tileOps.swapInHand(shoupai, handTile, match.pai);
-
-    game._add_action_log(spname + ' 将手牌「' + game._pai_name(handTile)
-        + '」与' + match.label + '交换', seat);
-
-    /* 刷新手牌和牌河视图 */
-    if (game._view) game._view.redraw();
-
+    /* askExchange 未返回有效交换，技能取消 */
     context.done();
 }
 
@@ -879,7 +873,7 @@ function _countAllVisibleTiles(model, seat, suit, num, excludeTile) {
         if (i === seat) continue;
         let sp = model.shoupai[i];
         if (!sp || !sp._markedTiles) continue;
-        for (let mt of sp._markedTiles) {
+        for (let mt of sp._markedTiles.keys()) {
             if (tileUtils.suitOf(mt) === suit && tileUtils.numberOf(mt) === num) count++;
         }
     }
@@ -954,127 +948,215 @@ async function _doWallSwap(context, wallTile) {
     let model = game._model;
     let shoupai = model.shoupai[seat];
     let input = context.input;
-
-    /* 收集手牌选项 */
-    let handTiles = _getAllHandTiles(shoupai);
-
-    /* 收集牌河选项（所有玩家可见牌河牌） */
-    let riverEntries = []; /* { tile, seat, index } */
-    for (let l = 0; l < 4; l++) {
-        let he = model.he[l];
-        if (!he || !he._pai) continue;
-        for (let i = 0; i < he._pai.length; i++) {
-            let t = he._pai[i];
-            let base = t.length >= 2 ? t.slice(0, 2) : t;
-            riverEntries.push({ tile: base, seat: l, index: i });
-        }
-    }
-
     let wallName = game._pai_name(wallTile);
-    let wallVal = _evalHandTileValue(wallTile, shoupai, game, seat);
 
-    /* 构建可用选项（手牌/牌河为空时隐藏对应选项） */
-    let optionLabels = [];
-    let optionValues = [];
-    if (handTiles.length > 0) {
-        optionLabels.push('选手牌');
-        optionValues.push('hand');
-    }
-    if (riverEntries.length > 0) {
-        optionLabels.push('选牌河');
-        optionValues.push('river');
-    }
-    optionLabels.push('取消');
-    optionValues.push('cancel');
+    /* ---- 人类/AI 统一路径：使用 ExchangePrompt ---- */
+    let pairs = await input.askExchange({
+        offerTiles: [wallTile],
+        source: 'both',
+        swapCount: 1,
+        condition: 'none',
+        allowSourceSwitch: false,
+        cancellable: true,
+        description: '牌山第一张: ' + wallName,
+    }, () => {
+        /* ── AI 逻辑 ── */
+        const OFFSET_TO_CLASS = ['main', 'xiajia', 'duimian', 'shangjia'];
+        let currentShanten = Majiang.Util.xiangting(shoupai);
 
-    /* 统一通过 ask* 方法处理（AI 走 aiPicker，真人走 UI） */
-    let choice = await input.askTextOptions(
-        optionLabels, optionValues,
-        '牌山第一张: ' + wallName + '，选择交换方式',
-        function() {
-            if (wallVal > 0 && handTiles.length > 0) return 'hand';
-            if (riverEntries.length > 0) return 'river';
-            return 'cancel';
-        });
+        /* ① 判断 wallTile 是否能降低向听数 */
+        let testWall = shoupai.clone();
+        tileOps.addToHand(testWall, wallTile);
+        let wallShanten = Majiang.Util.xiangting(testWall);
 
-    if (!choice || choice === 'cancel') return { executed: true, cancelled: true };
+        if (wallShanten < currentShanten) {
+            /* 能降低→选手牌最没用的牌与之交换 */
+            let allHandTiles = _getHandTiles(shoupai);
+            if (allHandTiles.length === 0) return null;
+            let worst = allHandTiles[0], worstVal = _evalHandTileValue(allHandTiles[0], shoupai, game, seat);
+            for (let i = 1; i < allHandTiles.length; i++) {
+                let v = _evalHandTileValue(allHandTiles[i], shoupai, game, seat);
+                if (v < worstVal) { worstVal = v; worst = allHandTiles[i]; }
+            }
+            return [{ offerTile: wallTile, offerIdx: 0, sideTile: worst, sidePlayer: 'hand', sideIdx: -1 }];
+        }
 
-    if (choice === 'hand') {
-        if (handTiles.length === 0) return { executed: true, cancelled: true };
-        let chosen = await input.askHandTile(
-            '选择手牌与「' + wallName + '」交换',
-            function() {
-                let sorted = [...handTiles];
-                sorted.sort(function(a, b) {
-                    return _evalHandTileValue(a, shoupai, game, seat) - _evalHandTileValue(b, shoupai, game, seat);
-                });
-                return sorted[0];
-            },
-            handTiles);
-        if (!chosen) return { executed: true, cancelled: true };
-        
-        tileOps.popFront(model, 1);
-        /* 直接交换手牌与牌山牌，不走摸牌流程 */
-        tileOps.swapInHand(shoupai, chosen, wallTile);
-        tileOps.pushEnd(model, [chosen]);
-        game._add_action_log('辻垣内智叶 手牌交换: ' + game._pai_name(chosen) + ' ↔ ' + wallName, seat);
-        if (game._view) game._view.redraw();
-        return { executed: true };
-    } else {
-        /* choice === 'river' */
-        if (riverEntries.length === 0) return { executed: true, cancelled: true };
-        let nextSeat = (model.lunban + 1) % 4;
-        let chosen = await input.askRiverTile(
-            '选择牌河牌与「' + wallName + '」交换',
-            function() {
-                if (nextSeat === seat) {
-                    let sorted = [...riverEntries];
-                    sorted.sort(function(a, b) {
-                        return _evalTileValue(b.tile, game, seat) - _evalTileValue(a.tile, game, seat);
-                    });
-                    return sorted[0].seat + ':' + sorted[0].index;
-                } else {
-                    let otherRiver = [];
-                    for (let e of riverEntries) {
-                        if (e.seat !== seat) otherRiver.push(e);
+        /* ② wallTile 无法降低向听数 */
+        let nextPlayer = (game._turnOwner + 1) % 4;
+        if (nextPlayer === seat) {
+            /* 下巡是自己：从牌河中寻找能降低向听数的牌，选最优 */
+            let bestTile = null, bestSeat = -1, bestIdx = -1, bestShanten = 99;
+            for (let s = 0; s < 4; s++) {
+                let he = model.he[s];
+                if (!he) continue;
+                for (let i = 0; i < he._pai.length; i++) {
+                    if (he._pai[i] === '_') continue;
+                    let base = he._pai[i].replace(/[_\*]$/, '');
+                    let test = shoupai.clone();
+                    tileOps.addToHand(test, base);
+                    let st = Majiang.Util.xiangting(test);
+                    if (st < bestShanten) {
+                        bestShanten = st;
+                        bestTile = base;
+                        bestSeat = s;
+                        bestIdx = i;
                     }
-                    if (otherRiver.length === 0) return null;
-                    otherRiver.sort(function(a, b) {
-                        let aZ = a.tile[0] === 'z' ? -100 : 0;
-                        let bZ = b.tile[0] === 'z' ? -100 : 0;
-                        return (aZ + _evalTileValue(a.tile, game, seat)) - (bZ + _evalTileValue(b.tile, game, seat));
-                    });
-                    return otherRiver[0].seat + ':' + otherRiver[0].index;
                 }
-            },
-            riverEntries.map(function(e) { return e.seat + ':' + e.index; }));
-        if (!chosen) return { executed: true, cancelled: true };
-        
-        /* chosen 格式兼容：真人 UI 返回 {pai, seat, index} 对象，AI 返回 "seat:index" 字符串 */
-        let s, idx;
-        if (typeof chosen === 'object' && chosen !== null && 'seat' in chosen) {
-            s = chosen.seat;
-            idx = chosen.index;
-        } else {
-            let parts = String(chosen).split(':');
-            s = parseInt(parts[0]);
-            idx = parseInt(parts[1]);
+            }
+            if (bestTile && bestShanten < currentShanten) {
+                let riverClass = OFFSET_TO_CLASS[(bestSeat - seat + 4) % 4];
+                return [{ offerTile: wallTile, offerIdx: 0, sideTile: bestTile, sidePlayer: riverClass, sideIdx: bestIdx }];
+            }
+            return null;  /* 没有可用牌，取消 */
         }
-        /* 防御性校验 */
-        if (isNaN(s) || isNaN(idx) || s < 0 || s > 3 || !model.he[s] || !model.he[s]._pai) {
-            return { executed: true, cancelled: true };
+
+        /* 下巡不是自己：从下巡玩家牌河中找价值最低的牌给他 */
+        let worstTile = null, worstIdx = -1, worstSeat = -1, worstVal = Infinity;
+        /* 先找下巡玩家 */
+        let heTarget = model.he[nextPlayer];
+        if (heTarget) {
+            for (let i = 0; i < heTarget._pai.length; i++) {
+                if (heTarget._pai[i] === '_') continue;
+                let base = heTarget._pai[i].replace(/[_\*]$/, '');
+                let v = _evalTileValue(base, game, seat);
+                if (v < worstVal) { worstVal = v; worstTile = base; worstSeat = nextPlayer; worstIdx = i; }
+            }
         }
-        let tile = model.he[s]._pai[idx];
-        if (!tile) return { executed: true, cancelled: true };
-        let base = tile.replace(/[_\*]$/, '');
-        tileOps.popFront(model, 1);
-        model.he[s]._pai[idx] = wallTile;
-        tileOps.pushEnd(model, [base]);
+        /* 下巡玩家没有→从其他家找 */
+        if (!worstTile) {
+            for (let s = 0; s < 4; s++) {
+                if (s === nextPlayer) continue;
+                let he = model.he[s];
+                if (!he) continue;
+                for (let i = 0; i < he._pai.length; i++) {
+                    if (he._pai[i] === '_') continue;
+                    let base = he._pai[i].replace(/[_\*]$/, '');
+                    let v = _evalTileValue(base, game, seat);
+                    if (v < worstVal) { worstVal = v; worstTile = base; worstSeat = s; worstIdx = i; }
+                }
+            }
+        }
+        if (worstTile) {
+            let riverClass = OFFSET_TO_CLASS[(worstSeat - seat + 4) % 4];
+            return [{ offerTile: wallTile, offerIdx: 0, sideTile: worstTile, sidePlayer: riverClass, sideIdx: worstIdx }];
+        }
+        return null;  /* 都没有，取消 */
+    });
+
+    if (pairs && pairs.length > 0) {
+        let p = pairs[0]; /* { offerTile, sideTile, sidePlayer, sideIdx } */
+        /* 牌山顶放上被换出的牌，被换入的 wallTile 放入手牌/牌河 */
+        tileOps.swapWallFront(model, 0, p.sideTile);
+        tileOps.exchangeWallSwap(model, seat, wallTile, p);
+        let loc = p.sidePlayer === 'hand' ? '手牌' : '牌河';
+        game._add_action_log('辻垣内智叶 ' + loc + '交换: ' + game._pai_name(p.sideTile) + ' ↔ ' + wallName, seat);
         if (game._recalculateFuriten) game._recalculateFuriten();
-        game._add_action_log('辻垣内智叶 牌河交换: ' + game._pai_name(base) + ' ↔ ' + wallName, seat);
         if (game._view) game._view.redraw();
         return { executed: true };
     }
+
+    /* askExchange 未返回有效交换，技能取消 */
+    return { executed: true, cancelled: true };
+}
+
+/* ===== 南浦数绘 (Nanpo_Kazue) 共用执行体 ===== */
+/* 摸2张→选2张放回王牌尾部→选1张作摸牌+立直振听重置 */
+async function _executeNanpoKazue(context) {
+    let game = context.game;
+    let model = game._model;
+    let seat = context.seat;
+    let input = context.input;
+    let shoupai = model.shoupai[seat];
+    if (!shoupai) { context.done(); return; }
+    let spname = game._playerDisplayName(game._ctx.playerIndex(seat));
+
+    /* 保存原始摸牌（回退时需恢复） */
+    let origZimo = shoupai._zimo;
+
+    /* 阶段1：摸2张牌 */
+    let drawn = tileOps.popFront(model, 2);
+    for (let t of drawn) {
+        tileOps.addToHand(shoupai, t);
+    }
+    game._add_action_log(spname + ' 发动技能，摸了2张牌', seat);
+
+    /* 阶段2：选择2张手牌放回王牌尾部 */
+    let handTiles = _getHandTiles(shoupai);
+    let aiWorst = [...handTiles].sort((a, b) =>
+        _evalHandTileValue(a, shoupai, game, seat) -
+        _evalHandTileValue(b, shoupai, game, seat)
+    ).slice(0, 2);
+
+    let selected = await input.pickHandTiles(2,
+        '选2张手牌放回王牌尾部',
+        () => aiWorst,
+        handTiles,
+        { confirmText: '确定', noCancel: true, hideCount: true });
+
+    if (!selected || selected.length < 2) {
+        /* 取消或选牌不足，回退摸牌操作 */
+        for (let t of drawn) {
+            tileOps.removeFromHand(shoupai, t);
+        }
+        tileOps.pushFront(model, drawn.slice());
+        /* 恢复原始摸牌 */
+        if (origZimo && origZimo.length >= 2) {
+            shoupai._zimo = origZimo;
+        } else if (!shoupai._zimo || shoupai._zimo.length < 2) {
+            let allTiles = _getHandTiles(shoupai);
+            if (allTiles.length > 0) {
+                shoupai._zimo = allTiles[Math.floor(Math.random() * allTiles.length)];
+            }
+        }
+        context.done();
+        return;
+    }
+
+    /* 移除手牌，放入王牌尾部 */
+    for (let t of selected) {
+        tileOps.removeFromHand(shoupai, t);
+    }
+    /* 将两张牌逐张放入王牌尾部（处理半墩填充） */
+    for (let t of selected) {
+        tileOps.pushDeadWall(model, [t]);
+    }
+
+    game._add_action_log(spname + ' 将' + selected.length + '张牌放回王牌尾部', seat);
+
+    /* 阶段3：选择1张牌作为本巡摸牌 */
+    let handAfter = _getHandTiles(shoupai);
+    if (handAfter.length > 0) {
+        /* AI：选择价值最高的牌 */
+        let aiBest = [...handAfter].sort((a, b) =>
+            _evalHandTileValue(b, shoupai, game, seat) -
+            _evalHandTileValue(a, shoupai, game, seat)
+        )[0];
+
+        let zimoPick = await input.askHandTile(
+            '选择一张牌作为摸牌',
+            () => aiBest,
+            handAfter);
+
+        if (zimoPick) {
+            shoupai._zimo = zimoPick;
+        } else if (!shoupai._zimo || shoupai._zimo.length < 2) {
+            /* 兜底：随机选一张 */
+            shoupai._zimo = handAfter[Math.floor(Math.random() * handAfter.length)];
+        }
+    }
+
+    /* 若立直，解除立直振听 */
+    if (game._lizhi[seat]) {
+        game._neng_rong[seat] = true;
+        game._add_action_log(spname + ' 解除了立直振听', seat);
+    }
+
+    /* 刷新手牌 UI */
+    if (game._view && game._view.shoupai && game._view.shoupai[seat]) {
+        game._view.shoupai[seat].redraw();
+    }
+
+    context.done();
 }
 
 const SKILL_EXECUTE_MAP = {
@@ -1167,8 +1249,9 @@ const SKILL_EXECUTE_MAP = {
             condition: function(context) {
                 let game = context.game;
                 if (!game) return false;
-                /* 仅在额外巡中触发 */
+                /* 仅技能持有者自己的额外巡触发 */
                 if (!context.isExtraTurn) return false;
+                if (context.player !== context.seat) return false;
                 /* 场上副露玩家数 < 2 */
                 let model = game._model;
                 if (!model || !model.shoupai) return false;
@@ -1182,8 +1265,10 @@ const SKILL_EXECUTE_MAP = {
                 return true;
             },
             execute: function(context) {
-                /* 效果由 _handleBeforeDrawSkillAction 统一处理（确认/牌河选牌/暗切标记） */
-                return { executed: true };
+                /* 标记本巡舍牌为暗切 */
+                if (context.game) {
+                    context.game._extra_hidden_discard = true;
+                }
             },
             aiDecision: function(context) {
                 let riverTiles = context.riverTiles || [];
@@ -1348,7 +1433,7 @@ const SKILL_EXECUTE_MAP = {
                 if (!model || !model.shan || model.shan.paishu <= 0) {
                     return false;
                 }
-                let triggered = game._skillManager.wasTriggered(context.seat, 'Amae_Koromo', 4);
+                let triggered = game._skillManager.wasTriggered(context.seat, 'Amae_Koromo', 3);
                 return triggered;
             },
             execute: async function(context) {
@@ -1359,7 +1444,7 @@ const SKILL_EXECUTE_MAP = {
 
                 /* 从触发记录中获取技能④选择的移动数量 */
                 let triggerData = game._skillManager
-                    ? game._skillManager.getTriggerData(seat, 'Amae_Koromo', 4)
+                    ? game._skillManager.getTriggerData(seat, 'Amae_Koromo', 3)
                     : null;
                 let qty = triggerData?.qty > 0 ? triggerData.qty : 0;
                 if (qty <= 0) {
@@ -1458,30 +1543,31 @@ const SKILL_EXECUTE_MAP = {
                 let seat = context.seat;
                 let input = context.input;
 
+                console.debug('[SRV] Amae_Koromo_skill_3 execute START seat=' + seat + ' paishu=' + (model.shan?.paishu));
+
                 let spname = game._playerDisplayName(game._ctx.playerIndex(seat));
                 let shoupai = model.shoupai[seat];
                 /* condition 保证了 _zimo 存在且非空 */
                 let drawnPai = shoupai._zimo;
                 let isDealerFirst = game._diyizimo && seat === 0;
-
-                /* 记录技能触发，确保技能②的 shouldAutoExecute
-                 * 在异步间隙中也能检测到（qty 稍后更新） */
-                game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty: 0 });
+                let chosenIdx;
 
                 /* ── 1. 选择数量 ── */
                 let qty = 1;
                 if (_isKoromoSkill3Active(game, seat) && model.shan.paishu > 1) {
+                    console.debug('[SRV] Amae_Koromo_skill_3 before askTextOptions');
                     let choice = await input.askTextOptions(
                         ['移动 1 张', '移动 2 张'], ['1', '2'],
                         '选择移动数量', () => model.shan.paishu === 2 ? '1' : '2');
-                    if (!choice) { context.done(); return; }
+                    console.debug('[SRV] Amae_Koromo_skill_3 after askTextOptions choice=' + choice);
+                    if (!choice) { console.debug('[SRV] Amae_Koromo_skill_3 DONE (no choice)'); context.done(); return; }
                     qty = parseInt(choice);
                 }
                 qty = Math.min(qty, model.shan.paishu);
-                if (qty <= 0) { context.done(); return; }
+                if (qty <= 0) { console.debug('[SRV] Amae_Koromo_skill_3 DONE (qty<=0)'); context.done(); return; }
 
                 /* ── 2. 展示海底牌 ── */
-                /* ── 牌山日志：发动前 ── */
+                console.debug('[SRV] Amae_Koromo_skill_3 before showToast qty=' + qty);
 
                 let peeked = tileOps.peekEnd(model, qty);
                 let paiNames = peeked.map(p => game._pai_name(p)).join('、');
@@ -1489,11 +1575,14 @@ const SKILL_EXECUTE_MAP = {
                 input.showToast({ tiles: peeked, text: spname + ' 展示了海底牌：' + paiNames });
 
                 /* 等待 2 秒，确保所有玩家看清海底牌展示后再进行交换决策 */
+                console.debug('[SRV] Amae_Koromo_skill_3 before 2s wait');
                 await new Promise(resolve => setTimeout(resolve, 2000));
+                console.debug('[SRV] Amae_Koromo_skill_3 after 2s wait');
 
                 /* 副露轮次无摸牌：展示后直接结束，不进行交换 */
                 if (!drawnPai || drawnPai.length < 2) {
-                    game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
+                    console.debug('[SRV] Amae_Koromo_skill_3 DONE (no drawnPai)');
+                    game._skillManager.recordTrigger(seat, 'Amae_Koromo', 3, { qty });
                     context.done();
                     return;
                 }
@@ -1516,7 +1605,7 @@ const SKILL_EXECUTE_MAP = {
                     }
 
                     if (pairs.length === 0) {
-                        game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
+                        game._skillManager.recordTrigger(seat, 'Amae_Koromo', 3, { qty });
                         context.done();
                         return;
                     }
@@ -1539,60 +1628,52 @@ const SKILL_EXECUTE_MAP = {
                         if (val < lowestHandVal) lowestHandVal = val;
                     }
                     if (!wallCandidates.some(w => _evalTileValue(w, game, seat) > lowestHandVal)) {
-                        game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
+                        game._skillManager.recordTrigger(seat, 'Amae_Koromo', 3, { qty });
                         context.done();
                         return;
                     }
 
-                    /* 3a. 选择海底牌（即确认交换，只可选能换的牌） */
+                    /* 3a. 选择海底牌和手牌 */
                     let chosenWall;
                     let chosenWallPeekIdx;
-                    if (wallCandidates.length === 1) {
-                        chosenWall = wallCandidates[0];
-                        chosenWallPeekIdx = wallCandidatePeekIdx[0];
-                    } else {
-                        chosenWall = await input.askTileOptions(wallCandidates,
-                            '庄家首巡·选择一张海底牌进行交换',
-                            () => {
-                                let best = wallCandidates[0];
-                                let bestVal = _evalTileValue(best, game, seat);
-                                for (let i = 1; i < wallCandidates.length; i++) {
-                                    let val = _evalTileValue(wallCandidates[i], game, seat);
-                                    if (val > bestVal) { bestVal = val; best = wallCandidates[i]; }
-                                }
-                                return best;
-                            }, true);
-                        if (chosenWall) {
-                            chosenWallPeekIdx = wallCandidatePeekIdx[wallCandidates.indexOf(chosenWall)];
-                        }
-                    }
-                    if (!chosenWall) {
-                        game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
-                        context.done();
-                        return;
-                    }
-
-                    /* 3b. 选择与该海底牌交换的手牌（直接点击手牌） */
-                    let handOptions = pairs.filter(p => p.wall === chosenWall).map(p => p.hand);
                     let chosenHand;
-                    if (handOptions.length === 1) {
-                        chosenHand = handOptions[0];
+                    let epPairs = await input.askExchange({
+                        offerTiles: wallCandidates,
+                        source: 'hand',
+                        swapCount: 1,
+                        condition: 'none',
+                        allowSourceSwitch: false,
+                        cancellable: true,
+                        description: '庄家首巡·选择海底牌和手牌交换',
+                    }, () => {
+                        /* ── AI 默认：选价值最高的海底牌，再选手牌中价值最低的匹配牌 ── */
+                        let bestIdx = 0;
+                        let bestVal = _evalTileValue(wallCandidates[0], game, seat);
+                        for (let i = 1; i < wallCandidates.length; i++) {
+                            let v = _evalTileValue(wallCandidates[i], game, seat);
+                            if (v > bestVal) { bestVal = v; bestIdx = i; }
+                        }
+                        let hOptions = pairs.filter(p => p.wall === wallCandidates[bestIdx]).map(p => p.hand);
+                        if (hOptions.length === 0 || (hOptions.length === 1 && hOptions[0][0] === 'z')) return null;
+                        let worstIdx = 0;
+                        let worstVal = _evalHandTileValue(hOptions[0], shoupai, game, seat);
+                        for (let i = 1; i < hOptions.length; i++) {
+                            let v = _evalHandTileValue(hOptions[i], shoupai, game, seat);
+                            if (v < worstVal) { worstVal = v; worstIdx = i; }
+                        }
+                        return [{ offerTile: wallCandidates[bestIdx], offerIdx: wallCandidatePeekIdx[bestIdx], sideTile: hOptions[worstIdx], sidePlayer: 'hand', sideIdx: -1 }];
+                    });
+                    if (epPairs && epPairs.length > 0) {
+                        let ep = epPairs[0];
+                        chosenWall   = ep.offerTile;
+                        chosenWallPeekIdx = ep.offerIdx;
+                        chosenHand   = ep.sideTile;
+                        let handOptions = pairs.filter(p => p.wall === chosenWall).map(p => p.hand);
+                        if (handOptions.indexOf(chosenHand) < 0 || chosenHand[0] === 'z') {
+                            context.done(); return;
+                        }
                     } else {
-                        chosenHand = await input.askHandTile(
-                            '选择与「' + game._pai_name(chosenWall) + '」交换的手牌',
-                            () => {
-                                let worst = handOptions[0];
-                                let worstVal = _evalHandTileValue(worst, shoupai, game, seat);
-                                for (let i = 1; i < handOptions.length; i++) {
-                                    let val = _evalHandTileValue(handOptions[i], shoupai, game, seat);
-                                    if (val < worstVal) { worstVal = val; worst = handOptions[i]; }
-                                }
-                                return worst;
-                            },
-                            handOptions);
-                    }
-                    if (!chosenHand) {
-                        game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
+                        game._skillManager.recordTrigger(seat, 'Amae_Koromo', 3, { qty });
                         context.done();
                         return;
                     }
@@ -1603,6 +1684,7 @@ const SKILL_EXECUTE_MAP = {
 
                 } else {
                     /* 普通巡目：摸牌 ↔ 海底牌匹配 */
+                    console.debug('[SRV] Amae_Koromo_skill_3 non-dealer matching drawnPai=' + drawnPai + ' peeked=' + JSON.stringify(peeked));
                     let matches = [];
                     let matchPeekIdx = [];  // 平行数组，记录每张匹配牌在 peeked 中的位置
                     for (let i = 0; i < peeked.length; i++) {
@@ -1615,49 +1697,53 @@ const SKILL_EXECUTE_MAP = {
                     }
 
                     if (matches.length === 0) {
-                        game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
+                        console.debug('[SRV] Amae_Koromo_skill_3 DONE (no matches)');
+                        game._skillManager.recordTrigger(seat, 'Amae_Koromo', 3, { qty });
                         context.done();
                         return;
                     }
 
                     /* 3. 确认 / 选择交换牌（先匹配再问，只可选能换的牌） */
-                    var chosenIdx;
-                    if (matches.length === 1) {
-                        let wantsSwap = await input.askConfirm(
-                            '是否用「' + game._pai_name(drawnPai) + '」交换「'
-                                + game._pai_name(matches[0]) + '」？',
-                            () => true);
-                        if (!wantsSwap) {
-                            game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
-                            context.done();
-                            return;
+                    /* 普通巡目只允许用当前摸牌交换，不允许选其他手牌或牌河牌 */
+                    let epPairs = await input.askExchange({
+                        offerTiles: matches,
+                        source: 'hand',
+                        swapCount: 1,
+                        condition: 'none',
+                        allowSourceSwitch: false,
+                        cancellable: true,
+                        tileFilter: (tile, type) => {
+                            if (type === 'hand') return tile === drawnPai;
+                            return false; /* 禁止选牌河 */
+                        },
+                        description: '选择海底牌与「' + game._pai_name(drawnPai) + '」交换',
+                    }, () => {
+                        /* ── AI 默认：有匹配则选价值最高的海底牌 ── */
+                        let best = matches[0];
+                        let bestVal = _evalTileValue(best, game, seat);
+                        for (let i = 1; i < matches.length; i++) {
+                            let v = _evalTileValue(matches[i], game, seat);
+                            if (v > bestVal) { bestVal = v; best = matches[i]; }
                         }
-                        chosen = matches[0];
-                        chosenIdx = matchPeekIdx[0];
+                        return [{ offerTile: best, offerIdx: matchPeekIdx[matches.indexOf(best)], sideTile: drawnPai, sidePlayer: 'hand', sideIdx: -1 }];
+                    });
+                    if (epPairs && epPairs.length > 0) {
+                        let ep = epPairs[0];
+                        if (ep.sideTile !== drawnPai) { context.done(); return; }
+                        chosen = ep.offerTile;
+                        chosenIdx = ep.offerIdx;
+                        if (chosenIdx == null) { context.done(); return; }
                     } else {
-                        chosen = await input.askTileOptions(matches,
-                            '选择一张牌与「' + game._pai_name(drawnPai) + '」交换',
-                            () => {
-                                let best = matches[0];
-                                let bestVal = _evalTileValue(best, game, seat);
-                                for (let i = 1; i < matches.length; i++) {
-                                    let val = _evalTileValue(matches[i], game, seat);
-                                    if (val > bestVal) { bestVal = val; best = matches[i]; }
-                                }
-                                return best;
-                            }, true);
-                        if (!chosen) {
-                            game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
-                            context.done();
-                            return;
-                        }
-                        chosenIdx = matchPeekIdx[matches.indexOf(chosen)];
+                        game._skillManager.recordTrigger(seat, 'Amae_Koromo', 3, { qty });
+                        context.done();
+                        return;
                     }
                 }
 
                 /* ── 4. 执行交换：摸牌 ↔ 海底牌（原地替换，不移动其他牌） ── */
                 if (chosenIdx == null || chosenIdx < 0) {
-                    game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
+                    console.debug('[SRV] Amae_Koromo_skill_3 DONE (bad chosenIdx)');
+                    game._skillManager.recordTrigger(seat, 'Amae_Koromo', 3, { qty });
                     context.done();
                     return;
                 }
@@ -1673,7 +1759,6 @@ const SKILL_EXECUTE_MAP = {
                 tileOps.swapWallEnd(model, swapIdx, drawnPai);
 
                 /* ── 牌山日志：交换后 ── */
-
                 game._add_action_log(spname + ' 将「' + game._pai_name(drawnPai)
                     + '」与海底「' + game._pai_name(chosen) + '」交换', seat);
 
@@ -1687,7 +1772,8 @@ const SKILL_EXECUTE_MAP = {
                 });
 
                 /* 设定技能②的移动数量，本巡自动发动 */
-                game._skillManager.recordTrigger(seat, 'Amae_Koromo', 4, { qty });
+                game._skillManager.recordTrigger(seat, 'Amae_Koromo', 3, { qty });
+                console.debug('[SRV] Amae_Koromo_skill_3 DONE (context.done)');
                 context.done();
             },
             aiDecision: function(context) {
@@ -1741,12 +1827,12 @@ const SKILL_EXECUTE_MAP = {
     /* ===== 片冈优希 (Kataoka_Yuuki) ===== */
     'Kataoka_Yuuki': {
         0: {
-            /* ① 首巡舍牌前，两轮将至多两张手牌放海底并摸牌，之后可选交换手牌与摸牌 */
+            /* ① 首巡舍牌前，将至多2张手牌放海底并摸牌，每回合可发动两次 */
             timing: TimingPoints.BEFORE_DISCARD,
             type: SkillType.CONDITIONAL,
             isOptional: true,
-            usageType: UsageType.ONCE_PER_GAME,
-            usageMax: 1,
+            usageType: UsageType.ONCE_PER_TURN,
+            usageMax: 2,
             condition: function(context) {
                 let game = context.game;
                 if (!game || context.player !== context.seat) return false;
@@ -1783,8 +1869,13 @@ const SKILL_EXECUTE_MAP = {
                         }
                         tileOps.removeFromHand(shoupai, t);
                     }
-                    /* 放入海底（完整1墩） */
-                    tileOps.pushEnd(model, selected.slice());
+                    /* 洗混选中的牌再放入海底（保证玩家无法通过手牌顺序操纵海底） */
+                    let shuffled = [...selected];
+                    for (let i = shuffled.length - 1; i > 0; i--) {
+                        let j = Math.floor(Math.random() * (i + 1));
+                        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                    }
+                    tileOps.pushEnd(model, shuffled);
                     /* 摸等量牌 */
                     let drawn = tileOps.popFront(model, selected.length);
                     for (let t of drawn) {
@@ -1803,45 +1894,26 @@ const SKILL_EXECUTE_MAP = {
                     return drawn;
                 }
 
-                /* —— 阶段1 —— */
+                /* 选择要放到海底的牌 */
                 let xiangting = Majiang.Util.xiangting(shoupai);
-                let tiles1 = _getHandTiles(shoupai);
+                let tiles = _getHandTiles(shoupai);
 
-                let sel1 = await input.pickHandTilesRange(0, 2,
+                let sel = await input.pickHandTilesRange(0, 2,
                     '选牌放到海底，点手牌选择后点确定，点取消跳过',
                     () => {
                         let aiCnt = (xiangting === 1) ? 1 : (xiangting >= 2 ? 2 : 0);
-                        if (tiles1.length === 0) return [];
-                        return aiTopWorstTiles(aiCnt, tiles1);
+                        if (tiles.length === 0) return [];
+                        return aiTopWorstTiles(aiCnt, tiles);
                     },
-                    tiles1);
+                    tiles);
 
-                if (sel1 && sel1.length > 0) {
-                    let drawn1 = doHaiteiSwap(sel1);
-                    game._add_action_log(spname + ' 将' + sel1.length + '张牌放到海底，摸了'
-                        + drawn1.length + '张牌', seat);
+                if (sel && sel.length > 0) {
+                    let drawn = doHaiteiSwap(sel);
+                    game._add_action_log(spname + ' 将' + sel.length + '张牌放到海底，摸了'
+                        + drawn.length + '张牌', seat);
                 }
 
-                /* —— 阶段2 —— */
-                xiangting = Majiang.Util.xiangting(shoupai);
-                let tiles2 = _getHandTiles(shoupai);
-
-                let sel2 = await input.pickHandTilesRange(0, 2,
-                    '再次选牌放到海底，点手牌选择后点确定，点取消跳过',
-                    () => {
-                        let aiCnt = (xiangting >= 2) ? 2 : (xiangting === 1 ? 1 : 0);
-                        if (tiles2.length === 0) return [];
-                        return aiTopWorstTiles(aiCnt, tiles2);
-                    },
-                    tiles2);
-
-                if (sel2 && sel2.length > 0) {
-                    let drawn2 = doHaiteiSwap(sel2);
-                    game._add_action_log(spname + ' 将' + sel2.length + '张牌放到海底，摸了'
-                        + drawn2.length + '张牌', seat);
-                }
-
-                /* —— 阶段3：选择一张牌作为摸牌 —— */
+                /* 选择一张牌作为摸牌 */
                 if (origZimo && origZimo.length >= 2) {
                     let tiles3 = _getHandTiles(shoupai);
                     if (tiles3.length > 0) {
@@ -1898,15 +1970,16 @@ const SKILL_EXECUTE_MAP = {
                         /* 表宝牌双向指示 */
                         let baopai = model.shan.baopai;
                         if (baopai && baopai.length > 0) {
-                            let reverseIndicators = baopai
+                            let reverseDora = baopai
                                 .filter(x => x)
                                 .map(bp => _reverseDoraOf(bp));
-                            if (reverseIndicators.length > 0) {
-                                let doraSet = tileUtils.buildDoraSet(reverseIndicators);
+                            if (reverseDora.length > 0) {
+                                let doraSet = new Set(reverseDora.filter(x => x));
                                 let extraDoraCount = fanModifier.countHandTiles(shoupai, function(pai) {
                                     let normalized = (pai[1] === '0') ? pai[0] + '5' : pai;
                                     return doraSet.has(normalized);
                                 });
+                                console.log('[dora-log 白望] 逆向表宝牌: 指示牌=' + JSON.stringify(baopai.filter(x=>x)) + ' 逆向宝牌=' + JSON.stringify([...doraSet]) + ' 手牌=' + shoupai.toString() + ' 命中=' + extraDoraCount);
                                 if (extraDoraCount > 0) {
                                     let found = false;
                                     for (let i = 0; i < hule.hupai.length; i++) {
@@ -1929,15 +2002,16 @@ const SKILL_EXECUTE_MAP = {
                         if (shoupai.lizhi) {
                             let fubaopai = model.shan.fubaopai;
                             if (fubaopai && fubaopai.length > 0) {
-                                let reverseUraIndicators = fubaopai
+                                let reverseUraDora = fubaopai
                                     .filter(x => x)
                                     .map(bp => _reverseDoraOf(bp));
-                                if (reverseUraIndicators.length > 0) {
-                                    let uraDoraSet = tileUtils.buildDoraSet(reverseUraIndicators);
+                                if (reverseUraDora.length > 0) {
+                                    let uraDoraSet = new Set(reverseUraDora.filter(x => x));
                                     let extraUraCount = fanModifier.countHandTiles(shoupai, function(pai) {
                                         let normalized = (pai[1] === '0') ? pai[0] + '5' : pai;
                                         return uraDoraSet.has(normalized);
                                     });
+                                    console.log('[dora-log 白望] 逆向里宝牌: 指示牌=' + JSON.stringify(fubaopai.filter(x=>x)) + ' 逆向里宝牌=' + JSON.stringify([...uraDoraSet]) + ' 手牌=' + shoupai.toString() + ' 命中=' + extraUraCount);
                                     if (extraUraCount > 0) {
                                         let found = false;
                                         for (let i = 0; i < hule.hupai.length; i++) {
@@ -1978,26 +2052,30 @@ const SKILL_EXECUTE_MAP = {
                 let dapai = context.dapai || '';
                 if (!dapai) return false;
                 let base = dapai.replace(/\*$/, '');
-                /* 必须是数牌 */
-                if (base[0] === 'z' || base[0] === '_') return false;
+                if (base[0] === '_') return false;
 
                 let model = game._model;
                 let seat = context.seat;
                 let n = tileUtils.numberOf(base);
                 let suit = tileUtils.suitOf(base);
 
-                /* 跟切：与任意家牌河最后一张未被副露的牌相同 */
-                for (let l = 0; l < 4; l++) {
-                    if (l === seat) continue;
-                    let he = model.he[l];
-                    if (!he) continue;
-                    for (let i = he._pai.length - 1; i >= 0; i--) {
-                        let p = he._pai[i];
-                        if (p === '_') break;  /* 暗切记为不可见，无法跟切 */
-                        if (p.slice(-1).match(/[\+\-\=]/)) continue;
-                        /* 找到最后一张未被副露的牌 */
-                        if (tileUtils.isEquivalent(p, base)) return true;
-                        break; /* 只检查最后一张 */
+                /* 跟切（仅数牌）：与任意家牌河最后一张未被副露的牌相同 */
+                if (suit !== 'z') {
+                    for (let l = 0; l < 4; l++) {
+                        if (l === seat) continue;
+                        let he = model.he[l];
+                        if (!he) continue;
+                        for (let i = he._pai.length - 1; i >= 0; i--) {
+                            let p = he._pai[i];
+                            if (p === '_') break;  /* 暗切记为不可见，无法跟切 */
+                            if (p.slice(-1).match(/[\+\-\=]/)) continue;
+                            /* 找到最后一张未被副露的牌 */
+                            if (tileUtils.isEquivalent(p, base)) {
+                                console.log('[shirabi-log] 跟切匹配: seat=' + seat + ' 手牌=' + base + ' 跟切家=' + l + ' 牌=' + p);
+                                return true;
+                            }
+                            break; /* 只检查最后一张 */
+                        }
                     }
                 }
 
@@ -2006,10 +2084,17 @@ const SKILL_EXECUTE_MAP = {
                     if (l === seat) continue;
                     if (!game._lizhi[l]) continue;
                     let genbutsu = game.getGenbutsu(l);
-                    let genbutsuSet = new Set(genbutsu);
-                    if (genbutsuSet.has(suit + n)) return true;
+                    /* 排除自己刚刚打出的这张（现物列表最后一张） */
+                    let genbutsuCheck = genbutsu.slice(0, -1);
+                    if (genbutsuCheck.includes(suit + n)) {
+                        console.log('[shirabi-log] 现物匹配: seat=' + seat + ' 手牌=' + base + ' 立直家=' + l + ' 现物列表=' + JSON.stringify(genbutsu));
+                        return true;
+                    }
                     let suji = game.getSuji(genbutsu);
-                    if (suji.includes(suit + n)) return true;
+                    if (suji.includes(suit + n)) {
+                        console.log('[shirabi-log] 筋牌匹配: seat=' + seat + ' 手牌=' + base + ' 立直家=' + l + ' 现物列表=' + JSON.stringify(genbutsu) + ' 筋牌列表=' + JSON.stringify(suji));
+                        return true;
+                    }
                 }
 
                 return false;
@@ -2169,28 +2254,36 @@ const SKILL_EXECUTE_MAP = {
         },
     },
 
-    /* ===== 南浦数绘 (Nanpo_Kazue) ===== */
     'Nanpo_Kazue': {
         0: {
-            /* ① 摸2张牌，选2张手牌放回王牌尾部，再选1张作为本巡摸牌，若立直则解除振听 */
+            /* ① 你舍弃第一张牌前，可再摸两张牌并将两张牌置入王牌尾部 */
             timing: TimingPoints.BEFORE_DISCARD,
             type: SkillType.CONDITIONAL,
             isOptional: true,
             usageType: UsageType.ONCE_PER_GAME,
-            usageMax: 2,
+            usageMax: 1,
             condition: function(context) {
                 let game = context.game;
                 if (!game || context.player !== context.seat) return false;
-                /* 首巡可以发动 */
-                if (game._diyizimo) return true;
-                /* 技能②存在且所有玩家第一排牌河已填满 */
-                let seat = context.seat;
-                let charId = game._skillManager
-                    ? game._skillManager._activeCharacters[seat]
-                    : null;
-                if (!charId) return false;
-                let char = game._skillManager.getRegistry().getCharacter(charId);
-                if (!char || !char.skills[1]) return false;
+                /* 仅首巡可发动 */
+                return !!game._diyizimo;
+            },
+            execute: _executeNanpoKazue,
+            aiDecision: function(context) {
+                return true;
+            },
+        },
+        1: {
+            /* ② 你舍牌前，若场上所有玩家均完成第一排牌，你再摸两张牌并将两张牌置入王牌尾部 */
+            timing: TimingPoints.BEFORE_DISCARD,
+            type: SkillType.CONDITIONAL,
+            isOptional: true,
+            usageType: UsageType.ONCE_PER_GAME,
+            usageMax: 1,
+            condition: function(context) {
+                let game = context.game;
+                if (!game || context.player !== context.seat) return false;
+                /* 所有玩家第一排牌河已填满 */
                 let model = game._model;
                 for (let s = 0; s < 4; s++) {
                     let he = model.he[s];
@@ -2199,110 +2292,10 @@ const SKILL_EXECUTE_MAP = {
                 }
                 return true;
             },
-            execute: async function(context) {
-                let game = context.game;
-                let model = game._model;
-                let seat = context.seat;
-                let input = context.input;
-                let shoupai = model.shoupai[seat];
-                if (!shoupai) { context.done(); return; }
-                let spname = game._playerDisplayName(game._ctx.playerIndex(seat));
-
-                /* 保存原始摸牌（回退时需恢复） */
-                let origZimo = shoupai._zimo;
-
-                /* 阶段1：摸2张牌 */
-                let drawn = tileOps.popFront(model, 2);
-                for (let t of drawn) {
-                    tileOps.addToHand(shoupai, t);
-                }
-                game._add_action_log(spname + ' 发动技能，摸了2张牌', seat);
-
-                /* 阶段2：选择2张手牌放回王牌尾部 */
-                let handTiles = _getHandTiles(shoupai);
-                let aiWorst = [...handTiles].sort((a, b) =>
-                    _evalHandTileValue(a, shoupai, game, seat) -
-                    _evalHandTileValue(b, shoupai, game, seat)
-                ).slice(0, 2);
-
-                let selected = await input.pickHandTiles(2,
-                    '选2张手牌放回王牌尾部',
-                    () => aiWorst,
-                    handTiles,
-                    { confirmText: '确定', noCancel: true, hideCount: true });
-
-                if (!selected || selected.length < 2) {
-                    /* 取消或选牌不足，回退摸牌操作 */
-                    for (let t of drawn) {
-                        tileOps.removeFromHand(shoupai, t);
-                    }
-                    tileOps.pushFront(model, drawn.slice());
-                    /* 恢复原始摸牌 */
-                    if (origZimo && origZimo.length >= 2) {
-                        shoupai._zimo = origZimo;
-                    } else if (!shoupai._zimo || shoupai._zimo.length < 2) {
-                        let allTiles = _getHandTiles(shoupai);
-                        if (allTiles.length > 0) {
-                            shoupai._zimo = allTiles[Math.floor(Math.random() * allTiles.length)];
-                        }
-                    }
-                    context.done();
-                    return;
-                }
-
-                /* 移除手牌，放入王牌尾部 */
-                for (let t of selected) {
-                    tileOps.removeFromHand(shoupai, t);
-                }
-                /* 将两张牌作为完整1墩放入王牌尾部 */
-                tileOps.pushDeadWall(model, selected.slice());
-
-                game._add_action_log(spname + ' 将' + selected.length + '张牌放回王牌尾部', seat);
-
-                /* 阶段3：选择1张牌作为本巡摸牌 */
-                let handAfter = _getHandTiles(shoupai);
-                if (handAfter.length > 0) {
-                    /* AI：选择价值最高的牌 */
-                    let aiBest = [...handAfter].sort((a, b) =>
-                        _evalHandTileValue(b, shoupai, game, seat) -
-                        _evalHandTileValue(a, shoupai, game, seat)
-                    )[0];
-
-                    let zimoPick = await input.askHandTile(
-                        '选择一张牌作为摸牌',
-                        () => aiBest,
-                        handAfter);
-
-                    if (zimoPick) {
-                        shoupai._zimo = zimoPick;
-                    } else if (!shoupai._zimo || shoupai._zimo.length < 2) {
-                        /* 兜底：随机选一张 */
-                        shoupai._zimo = handAfter[Math.floor(Math.random() * handAfter.length)];
-                    }
-                }
-
-                /* 若立直，解除立直振听 */
-                if (game._lizhi[seat]) {
-                    game._neng_rong[seat] = true;
-                    game._add_action_log(spname + ' 解除了立直振听', seat);
-                }
-
-                /* 刷新手牌 UI（舍牌抉择由游戏流程在技能回调中重新发起） */
-                if (game._view && game._view.shoupai && game._view.shoupai[seat]) {
-                    game._view.shoupai[seat].redraw();
-                }
-
-                context.done();
-            },
+            execute: _executeNanpoKazue,
             aiDecision: function(context) {
-                /* AI：无条件发动 */
                 return true;
             },
-        },
-        1: {
-            /* ② 技能①的强化条件（无实际效果），供技能①检测"第一排牌河填满" */
-            timing: TimingPoints.CONTINUOUS,
-            type: SkillType.PASSIVE,
         },
     },
 
@@ -2772,30 +2765,39 @@ const SKILL_EXECUTE_MAP = {
                 /* 收集候补牌：
                    自摸时：点数或花色相同皆可
                    荣和时：仅点数相同 */
-                let waitNumbers = new Set(ting.map(function(t) { return tileUtils.numberOf(t); }));
-                let waitSuits = new Set(ting.map(function(t) { return tileUtils.suitOf(t); }));
                 let isRong = !!context.rongpai;
 
                 let candidates = new Set();
-                let suits = ['m', 'p', 's', 'z'];
-                for (let s = 0; s < suits.length; s++) {
-                    let maxN = suits[s] === 'z' ? 7 : 9;
+                let allSuits = ['m', 'p', 's', 'z'];
+                for (let si = 0; si < allSuits.length; si++) {
+                    let maxN = allSuits[si] === 'z' ? 7 : 9;
                     for (let n = 1; n <= maxN; n++) {
-                        let pai = suits[s] + n;
-                        if (isRong) {
-                            if (waitNumbers.has(n)) candidates.add(pai);
-                        } else {
-                            if (waitNumbers.has(n) || (suits[s] !== 'z' && waitSuits.has(suits[s]))) {
-                                candidates.add(pai);
+                        let pai = allSuits[si] + n;
+                        for (let waitTile of ting) {
+                            if (isRong) {
+                                if (tileUtils.sameNumber(waitTile, pai)) {
+                                    candidates.add(pai); break;
+                                }
+                            } else {
+                                if (tileUtils.sameNumber(waitTile, pai)
+                                    || tileUtils.sameSuit(waitTile, pai)) {
+                                    candidates.add(pai); break;
+                                }
                             }
                         }
                     }
-                    if (suits[s] !== 'z') {
-                        if (isRong) {
-                            if (waitNumbers.has(5)) candidates.add(suits[s] + '0');
-                        } else {
-                            if (waitNumbers.has(5) || waitSuits.has(suits[s])) {
-                                candidates.add(suits[s] + '0');
+                    if (allSuits[si] !== 'z') {
+                        let red5 = allSuits[si] + '0';
+                        for (let waitTile of ting) {
+                            if (isRong) {
+                                if (tileUtils.sameNumber(waitTile, red5)) {
+                                    candidates.add(red5); break;
+                                }
+                            } else {
+                                if (tileUtils.sameNumber(waitTile, red5)
+                                    || tileUtils.sameSuit(waitTile, red5)) {
+                                    candidates.add(red5); break;
+                                }
                             }
                         }
                     }
@@ -2993,116 +2995,69 @@ const SKILL_EXECUTE_MAP = {
                 if (!shoupai) { context.done(); return; }
                 let spname = game._playerDisplayName(game._ctx.playerIndex(seat));
 
-                /* 阶段0：过滤字牌，保留可交换的手牌 */
-                let allHandTiles = _getHandTiles(shoupai);
-                let handTiles = allHandTiles.filter(function(t) { return t[0] !== 'z'; });
-                if (handTiles.length === 0) { context.done(); return; }
+                const CLASS_TO_OFFSET = { main: 0, xiajia: 1, duimian: 2, shangjia: 3 };
+                const OFFSET_TO_CLASS = ['main', 'xiajia', 'duimian', 'shangjia'];
 
-                /* 阶段1：收集牌河中能被手牌匹配的牌（花色或点数相同） */
-                let matches = [], matchLabels = [], matchValues = [];
-                let seatNames = ['自家', '下家', '对家', '上家'];
-                for (let s = 0; s < 4; s++) {
-                    let he = model.he[s];
-                    if (!he) continue;
-                    for (let i = 0; i < he._pai.length; i++) {
-                        let t = he._pai[i];
-                        let base = t.replace(/[_\*]$/, '');
-                        if (base[0] === 'z') continue;  // 字牌没有花色，不参与交换
-                        /* 存在至少一张非字手牌与该河牌花色或点数相同 */
-                        let ok = false;
-                        for (let j = 0; j < handTiles.length; j++) {
-                            if (tileUtils.sameSuit(handTiles[j], base)
-                                || tileUtils.sameNumber(handTiles[j], base)) {
-                                ok = true;
-                                break;
+                /* ── ExchangePrompt 路径（人类玩家），AI 默认由 callback 处理 ── */
+                let pairs = await input.askExchange({
+                    swapCount: 1,
+                    condition: 'suit_or_number',
+                    pairing: 'hand_river',
+                    description: '选择手牌与牌河牌交换（同花色或同点数）',
+                }, () => {
+                    /* ── AI 默认：选价值最低的非字手牌，配价值最高的匹配河牌 ── */
+                    let allHandTiles = _getHandTiles(shoupai);
+                    let handTiles = allHandTiles.filter(t => t[0] !== 'z');
+                    if (handTiles.length === 0) return null;
+                    let worstHand = handTiles[0], worstVal = _evalHandTileValue(handTiles[0], shoupai, game, seat);
+                    for (let i = 1; i < handTiles.length; i++) {
+                        let v = _evalHandTileValue(handTiles[i], shoupai, game, seat);
+                        if (v < worstVal) { worstVal = v; worstHand = handTiles[i]; }
+                    }
+                    let bestRiver = null, bestRiverSeat = -1, bestRiverIdx = -1, bestVal = -Infinity;
+                    for (let s = 0; s < 4; s++) {
+                        let he = model.he[s];
+                        if (!he) continue;
+                        for (let i = 0; i < he._pai.length; i++) {
+                            let base = he._pai[i].replace(/[_\*]$/, '');
+                            if (base[0] === 'z') continue;
+                            if (tileUtils.sameSuit(worstHand, base) || tileUtils.sameNumber(worstHand, base)) {
+                                let v = _evalTileValue(base, game, seat);
+                                if (v > bestVal) { bestVal = v; bestRiver = base; bestRiverSeat = s; bestRiverIdx = i; }
                             }
                         }
-                        if (ok) {
-                            let relSeat = (s - seat + 4) % 4;
-                            let label = seatNames[relSeat] + '·' + game._pai_name(base);
-                            matches.push({ pai: base, seat: s, index: i, label: label });
-                            matchLabels.push(label);
-                            matchValues.push(s + ':' + i);
-                        }
                     }
-                }
-
-                if (matches.length === 0) { context.done(); return; }
-
-                /* 阶段2：选择牌河牌（牌河直接点击，仅1张自动跳过） */
-                let choice;
-                if (matches.length === 1) {
-                    choice = matchValues[0];
-                } else {
-                    let selected = await input.askRiverTile(
-                        '选择牌河中的牌交换',
-                        function() {
-                            let bestIdx = 0, bestVal = _evalTileValue(matches[0].pai, game, seat);
-                            for (let i = 1; i < matches.length; i++) {
-                                let val = _evalTileValue(matches[i].pai, game, seat);
-                                if (val > bestVal) { bestVal = val; bestIdx = i; }
-                            }
-                            return { pai: matches[bestIdx].pai, seat: matches[bestIdx].seat, index: matches[bestIdx].index };
-                        },
-                        matchValues);
-                    if (!selected) { context.done(); return; }
-                    choice = selected.seat + ':' + selected.index;
-                }
-                if (!choice) { context.done(); return; }
-
-                let parts = choice.split(':');
-                let targetSeat = parseInt(parts[0]), targetIdx = parseInt(parts[1]);
-                let match = null;
-                for (let i = 0; i < matches.length; i++) {
-                    if (matches[i].seat === targetSeat && matches[i].index === targetIdx) {
-                        match = matches[i];
-                        break;
+                    if (!bestRiver) return null;
+                    let riverClass = OFFSET_TO_CLASS[(bestRiverSeat - seat + 4) % 4];
+                    return [{ a: { tile: worstHand, player: 'hand', idx: -1 }, b: { tile: bestRiver, player: riverClass, idx: bestRiverIdx } }];
+                });
+                if (pairs && pairs.length > 0) {
+                    let p = pairs[0];
+                    let handTile, riverSeat, riverIdx;
+                    if (p.a.player === 'hand') {
+                        handTile = p.a.tile;
+                        riverSeat = (seat + (CLASS_TO_OFFSET[p.b.player] || 0)) % 4;
+                        riverIdx = p.b.idx;
+                    } else {
+                        handTile = p.b.tile;
+                        riverSeat = (seat + (CLASS_TO_OFFSET[p.a.player] || 0)) % 4;
+                        riverIdx = p.a.idx;
                     }
+                    if (handTile[0] === 'z') { context.done(); return; }
+                    let riverTile = model.he[riverSeat]._pai[riverIdx];
+                    if (!riverTile) { context.done(); return; }
+                    let riverBase = riverTile.replace(/[_\*]$/, '');
+                    if (riverBase[0] === 'z') { context.done(); return; }
+                    tileOps.removeFromHand(shoupai, handTile);
+                    model.he[riverSeat]._pai[riverIdx] = handTile + '_';
+                    tileOps.addToHand(shoupai, riverBase);
+                    shoupai._zimo = riverBase;
+                    game._add_action_log(spname + ' 将「' + game._pai_name(handTile)
+                        + '」与牌河「' + game._pai_name(riverBase) + '」交换', seat);
+                    if (game._view) game._view.redraw();
+                    context.done();
+                    return;
                 }
-                if (!match) { context.done(); return; }
-
-                let riverPai = match.pai;
-
-                /* 阶段3：选择能与该河牌交换的手牌（手牌直接点击，仅1张自动跳过） */
-                let matchingHand = [];
-                for (let i = 0; i < handTiles.length; i++) {
-                    let ht = handTiles[i];
-                    if (tileUtils.sameSuit(ht, riverPai) || tileUtils.sameNumber(ht, riverPai)) {
-                        matchingHand.push(ht);
-                    }
-                }
-                if (matchingHand.length === 0) { context.done(); return; }
-
-                let handTile;
-                if (matchingHand.length === 1) {
-                    handTile = matchingHand[0];
-                } else {
-                    handTile = await input.askHandTile(
-                        '选择与「' + game._pai_name(riverPai) + '」交换的手牌',
-                        function() {
-                            let worst = matchingHand[0];
-                            let worstVal = _evalHandTileValue(worst, shoupai, game, seat);
-                            for (let i = 1; i < matchingHand.length; i++) {
-                                let val = _evalHandTileValue(matchingHand[i], shoupai, game, seat);
-                                if (val < worstVal) { worstVal = val; worst = matchingHand[i]; }
-                            }
-                            return worst;
-                        },
-                        matchingHand);
-                }
-                if (!handTile) { context.done(); return; }
-
-                /* 阶段4：执行交换 */
-                tileOps.removeFromHand(shoupai, handTile);
-                model.he[targetSeat]._pai[targetIdx] = handTile + '_';
-                tileOps.addToHand(shoupai, match.pai);
-                shoupai._zimo = match.pai;
-
-                game._add_action_log(spname + ' 将「' + game._pai_name(handTile)
-                    + '」与' + match.label + '交换', seat);
-
-                /* 刷新牌河和手牌视图 */
-                if (game._view) game._view.redraw();
 
                 context.done();
             },
@@ -3146,6 +3101,7 @@ const SKILL_EXECUTE_MAP = {
             condition: function(context) {
                 let hule = context.hule;
                 if (!hule || !hule.fenpei) return false;
+                if (context.player !== context.seat) return false;  // 防止 FENPEI_CALCULATED 放铳者二次触发
                 return hule.fenpei[context.seat] > 0;
             },
             execute: function(context) {
@@ -3312,7 +3268,32 @@ const SKILL_EXECUTE_MAP = {
             priority: 350,
             effectType: EffectType.SWAP_TILES,
             condition: function(context) {
-                return !!(context.game && context.player === context.seat);
+                if (!(context.game && context.player === context.seat)) return false;
+                let model = context.game._model;
+                if (!model) return false;
+                let shoupai = model.shoupai[context.seat];
+                if (!shoupai) return false;
+                /* 检查手上是否有幺九牌 */
+                let allHandTiles = _getHandTiles(shoupai);
+                let hasYaojiu = allHandTiles.some(function(t) {
+                    if (t[0] === 'z') return true;
+                    let n = tileUtils.numberOf(t);
+                    return n === 1 || n === 9;
+                });
+                if (!hasYaojiu) return false;
+                /* 检查牌河中是否有自风/场风 */
+                let selfWind = 'z' + (context.seat + 1);
+                let fieldWind = 'z' + (model.zhuangfeng + 1);
+                for (let s = 0; s < 4; s++) {
+                    let he = model.he[s];
+                    if (!he) continue;
+                    for (let i = 0; i < he._pai.length; i++) {
+                        let t = he._pai[i];
+                        let base = t.replace(/[_\*]$/, '');
+                        if (base === selfWind || base === fieldWind) return true;
+                    }
+                }
+                return false;
             },
             execute: async function(context) {
                 let game = context.game;
@@ -3335,9 +3316,7 @@ const SKILL_EXECUTE_MAP = {
                 /* 阶段1：收集牌河中的自风/场风牌 */
                 let selfWind = 'z' + (seat + 1);
                 let fieldWind = 'z' + (model.zhuangfeng + 1);
-                let isSame = selfWind === fieldWind;
-
-                let matches = [], matchLabels = [], matchValues = [];
+                let matches = [];
                 let seatNames = ['自家', '下家', '对家', '上家'];
                 for (let s = 0; s < 4; s++) {
                     let he = model.he[s];
@@ -3349,76 +3328,77 @@ const SKILL_EXECUTE_MAP = {
                             let relSeat = (s - seat + 4) % 4;
                             let label = seatNames[relSeat] + '·' + game._pai_name(base);
                             matches.push({ pai: base, seat: s, index: i, label: label });
-                            matchLabels.push(label);
-                            matchValues.push(s + ':' + i);
                         }
                     }
                 }
 
                 if (matches.length === 0) { context.done(); return; }
 
-                /* 阶段2：选择牌河牌（直接点击，仅1张自动跳过） */
-                let choice;
-                if (matches.length === 1) {
-                    choice = matchValues[0];
-                } else {
-                    let selected = await input.askRiverTile(
-                        '选择牌河中的' + (isSame ? '自风/场风牌' : '自风或场风牌') + '交换',
-                        function() {
-                            return { pai: matches[0].pai, seat: matches[0].seat, index: matches[0].index };
-                        },
-                        matchValues);
-                    if (!selected) { context.done(); return; }
-                    choice = selected.seat + ':' + selected.index;
-                }
-                if (!choice) { context.done(); return; }
-
-                let parts = choice.split(':');
-                let targetSeat = parseInt(parts[0]), targetIdx = parseInt(parts[1]);
-                let match = null;
-                for (let i = 0; i < matches.length; i++) {
-                    if (matches[i].seat === targetSeat && matches[i].index === targetIdx) {
-                        match = matches[i];
-                        break;
+                /* ── ExchangePrompt 路径（人类玩家），AI 默认由 callback 处理 ── */
+                const OFFSET_TO_CLASS = ['main', 'xiajia', 'duimian', 'shangjia'];
+                let pairs = await input.askExchange({
+                    swapCount: 1,
+                    condition: 'none',
+                    pairing: 'hand_river',
+                    description: '用幺九牌交换牌河中的自风/场风牌',
+                    tileFilter: function(tile, source) {
+                        if (source === 'hand') {
+                            return tile[0] === 'z'
+                                || tileUtils.numberOf(tile) === 1
+                                || tileUtils.numberOf(tile) === 9;
+                        } else {
+                            return tile === selfWind || tile === fieldWind;
+                        }
+                    },
+                }, () => {
+                    /* ── AI 默认：选价值最低的幺九手牌，配第一个匹配的河牌 ── */
+                    if (matches.length === 0 || yaojiuHand.length === 0) return null;
+                    let m = matches[0];
+                    let worst = yaojiuHand[0], worstVal = _evalHandTileValue(yaojiuHand[0], shoupai, game, seat);
+                    for (let i = 1; i < yaojiuHand.length; i++) {
+                        let v = _evalHandTileValue(yaojiuHand[i], shoupai, game, seat);
+                        if (v < worstVal) { worstVal = v; worst = yaojiuHand[i]; }
                     }
+                    let riverClass = OFFSET_TO_CLASS[(m.seat - seat + 4) % 4];
+                    return [{ a: { tile: worst, player: 'hand', idx: -1 }, b: { tile: m.pai, player: riverClass, idx: m.index } }];
+                });
+                if (pairs && pairs.length > 0) {
+                    let p = pairs[0];
+                    const CLASS_TO_OFFSET = { main: 0, xiajia: 1, duimian: 2, shangjia: 3 };
+                    /* 区分手牌和牌河 */
+                    let handTile, riverSeat, riverIdx;
+                    if (p.a.player === 'hand') {
+                        handTile = p.a.tile;
+                        riverSeat = (seat + (CLASS_TO_OFFSET[p.b.player] || 0)) % 4;
+                        riverIdx = p.b.idx;
+                    } else {
+                        handTile = p.b.tile;
+                        riverSeat = (seat + (CLASS_TO_OFFSET[p.a.player] || 0)) % 4;
+                        riverIdx = p.a.idx;
+                    }
+                    /* 验证：河牌是自风/场风 */
+                    let riverTile = model.he[riverSeat]._pai[riverIdx];
+                    if (!riverTile || riverTile === '_') { context.done(); return; }
+                    let riverBase = riverTile.replace(/[_\*]$/, '');
+                    if (riverBase !== selfWind && riverBase !== fieldWind) { context.done(); return; }
+                    /* 验证：手牌是幺九牌 */
+                    let isYaojiu = (handTile[0] === 'z')
+                        || (tileUtils.numberOf(handTile) === 1 || tileUtils.numberOf(handTile) === 9);
+                    if (!isYaojiu) { context.done(); return; }
+                    /* 执行交换 */
+                    model.he[riverSeat]._pai[riverIdx] = handTile + '_';
+                    tileOps.swapInHand(shoupai, handTile, riverBase);
+                    game._add_action_log(spname + ' 将幺九牌「' + game._pai_name(handTile)
+                        + '」与' + seatNames[(riverSeat - seat + 4) % 4] + '·' + game._pai_name(riverBase) + '交换', seat);
+                    /* 若立直，交换后重置立直振听 */
+                    if (game._lizhi[seat]) {
+                        game._neng_rong[seat] = true;
+                        game._add_action_log(spname + ' 交换后重置了立直振听', seat);
+                    }
+                    if (game._view) game._view.redraw();
+                    context.done();
+                    return;
                 }
-                if (!match) { context.done(); return; }
-
-                /* 阶段3：选择幺九手牌（直接点击，仅1张自动跳过） */
-                let handTile;
-                if (yaojiuHand.length === 1) {
-                    handTile = yaojiuHand[0];
-                } else {
-                    handTile = await input.askHandTile(
-                        '选择幺九牌与「' + game._pai_name(match.pai) + '」交换',
-                        function() {
-                            let worst = yaojiuHand[0];
-                            let worstVal = _evalHandTileValue(worst, shoupai, game, seat);
-                            for (let i = 1; i < yaojiuHand.length; i++) {
-                                let val = _evalHandTileValue(yaojiuHand[i], shoupai, game, seat);
-                                if (val < worstVal) { worstVal = val; worst = yaojiuHand[i]; }
-                            }
-                            return worst;
-                        },
-                        yaojiuHand);
-                }
-                if (!handTile) { context.done(); return; }
-
-                /* 阶段4：执行交换（swapInHand 自动处理 _zimo） */
-                model.he[targetSeat]._pai[targetIdx] = handTile + '_';
-                tileOps.swapInHand(shoupai, handTile, match.pai);
-
-                game._add_action_log(spname + ' 将幺九牌「' + game._pai_name(handTile)
-                    + '」与' + match.label + '交换', seat);
-
-                /* 若立直，交换后重置立直振听 */
-                if (game._lizhi[seat]) {
-                    game._neng_rong[seat] = true;
-                    game._add_action_log(spname + ' 交换后重置了立直振听', seat);
-                }
-
-                /* 刷新牌河和手牌视图 */
-                if (game._view) game._view.redraw();
 
                 context.done();
             },
@@ -3855,8 +3835,8 @@ const SKILL_EXECUTE_MAP = {
                 let seat = context.seat;
                 if (game._lizhi[seat]) return false;
                 let dapai = context.dapai || '';
-                let base = dapai.replace(/\*$/, '');
-                if (!base || base.endsWith('_')) return false;
+                let base = dapai.replace(/[_*]$/, '');
+                if (!base) return false;
                 /* 手牌中存在靠张 */
                 let kaozhangSet = _getKaozhangSet(base);
                 let shoupai = game._model.shoupai[seat];
@@ -3876,7 +3856,7 @@ const SKILL_EXECUTE_MAP = {
                 let shoupai = model.shoupai[seat];
                 let input = context.input;
                 let dapai = context.dapai || '';
-                let base = dapai.replace(/\*$/, '');
+                let base = dapai.replace(/[_*]$/, '');
 
                 let kaozhangSet = _getKaozhangSet(base);
                 let handTiles = _getAllHandTiles(shoupai);
@@ -3894,8 +3874,12 @@ const SKILL_EXECUTE_MAP = {
                 if (candidates.length === 1) {
                     chosen = candidates[0];
                 } else {
-                    /* 多张靠张时取第一张（靠张之间无策略差异，跳过 UI 交互以避免 sync 模式 await 卡死） */
-                    chosen = candidates[0];
+                    /* 多张靠张时 UI 选择 */
+                    let sel = await input.pickHandTiles(1, '选择一张靠张暗切',
+                        () => [candidates[0]],
+                        candidates,
+                        { confirmText: '确定', noCancel: true });
+                    chosen = (sel && sel.length > 0) ? sel[0] : candidates[0];
                 }
                 if (!chosen) { context.done(); return; }
 
@@ -4089,11 +4073,10 @@ const SKILL_EXECUTE_MAP = {
                 /* 不在额外巡链中 */
                 if (game._extra_turn) return false;
                 if (typeof game._extra_chain_remaining === 'number' && game._extra_chain_remaining >= 0) return false;
-                /* 必须有副露（非暗杠） */
-                let seat = context.seat;
-                if (fanModifier.getFulouCount(game._model, seat) === 0) return false;
+                /* 仅副露/大明杠导致的舍牌巡目触发 */
+                if (!fanModifier.isFulouTurn(context)) return false;
                 /* 副露区满足染手条件（数牌花色不超过1） */
-                let shoupai = game._model.shoupai[seat];
+                let shoupai = game._model.shoupai[context.seat];
                 return _countMeldSuits(shoupai) <= 1;
             },
             execute: function(context) {
@@ -4284,8 +4267,8 @@ const SKILL_EXECUTE_MAP = {
             condition: function(context) {
                 let game = context.game;
                 if (!game || context.player !== context.seat) return false;
-                /* 有副露（非暗杠） */
-                return fanModifier.getFulouCount(game._model, context.seat) > 0;
+                /* 仅副露/大明杠导致的舍牌巡目触发 */
+                return fanModifier.isFulouTurn(context);
             },
             execute: function(context) {
                 context.game._extra_hidden_discard = true;
@@ -4740,6 +4723,7 @@ class SkillRegistry {
 
                 /* 检查使用次数 */
                 if (skill.usage.type !== UsageType.UNLIMITED &&
+                    skill.usage.type !== UsageType.AI_ONCE_PER_TURN &&
                     skill.usage.current >= skill.usage.max) continue;
 
                 /* 主时点匹配 */

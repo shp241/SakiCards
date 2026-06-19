@@ -217,7 +217,7 @@ class SkillManager {
         for (let match of matches) {
             let skill = match.skill;
             if (!skill.isOptional || skill.sealed.currently) continue;
-            if (skill.usage.type !== 'unlimited' && skill.usage.current >= skill.usage.max) continue;
+            if (skill.usage.type !== 'unlimited' && skill.usage.type !== 'ai_once_per_turn' && skill.usage.current >= skill.usage.max) continue;
             /* 本巡已发动过的 BEFORE_DISCARD 技能不再显示 */
             if (timing === TimingPoints.BEFORE_DISCARD && this._bdUsedThisTurn[skill.id]) continue;
             /* 检查条件：优先 part.condition，其次 trigger.condition */
@@ -277,7 +277,7 @@ class SkillManager {
         for (let skill of skills) {
             if (skill.sealed.currently) continue;
             if (!skill.huleExpander) continue;
-            if (skill.usage.type !== 'unlimited' && skill.usage.current >= skill.usage.max) continue;
+            if (skill.usage.type !== 'unlimited' && skill.usage.type !== 'ai_once_per_turn' && skill.usage.current >= skill.usage.max) continue;
             let candidates = skill.huleExpander(Object.assign({}, context, { seat }));
             if (candidates && candidates.length > 0) {
                 expanders.push({
@@ -304,7 +304,7 @@ class SkillManager {
         for (let skill of skills) {
             if (skill.sealed.currently) continue;
             if (!skill.tenpaiExpander) continue;
-            if (skill.usage.type !== 'unlimited' && skill.usage.current >= skill.usage.max) continue;
+            if (skill.usage.type !== 'unlimited' && skill.usage.type !== 'ai_once_per_turn' && skill.usage.current >= skill.usage.max) continue;
             let candidates = skill.tenpaiExpander(Object.assign({}, context, { seat }));
             if (candidates && candidates.length > 0) {
                 expanders.push({
@@ -331,7 +331,7 @@ class SkillManager {
         for (let skill of skills) {
             if (skill.sealed.currently) continue;
             if (!skill.ponExpander) continue;
-            if (skill.usage.type !== 'unlimited' && skill.usage.current >= skill.usage.max) continue;
+            if (skill.usage.type !== 'unlimited' && skill.usage.type !== 'ai_once_per_turn' && skill.usage.current >= skill.usage.max) continue;
             let candidates = skill.ponExpander(Object.assign({}, context, { seat }));
             if (candidates && candidates.length > 0) {
                 expanders.push({
@@ -358,7 +358,7 @@ class SkillManager {
         for (let skill of skills) {
             if (skill.sealed.currently) continue;
             if (!skill.kanExpander) continue;
-            if (skill.usage.type !== 'unlimited' && skill.usage.current >= skill.usage.max) continue;
+            if (skill.usage.type !== 'unlimited' && skill.usage.type !== 'ai_once_per_turn' && skill.usage.current >= skill.usage.max) continue;
             let candidates = skill.kanExpander(Object.assign({}, context, { seat }));
             if (candidates && candidates.length > 0) {
                 expanders.push({
@@ -385,7 +385,7 @@ class SkillManager {
         for (let skill of skills) {
             if (skill.sealed.currently) continue;
             if (!skill.chiExpander) continue;
-            if (skill.usage.type !== 'unlimited' && skill.usage.current >= skill.usage.max) continue;
+            if (skill.usage.type !== 'unlimited' && skill.usage.type !== 'ai_once_per_turn' && skill.usage.current >= skill.usage.max) continue;
             let candidates = skill.chiExpander(Object.assign({}, context, { seat }));
             if (candidates && candidates.length > 0) {
                 expanders.push({
@@ -417,7 +417,7 @@ class SkillManager {
         for (let skill of skills) {
             if (skill.sealed.currently) continue;
             if (!skill.yakuExpander) continue;
-            if (skill.usage.type !== 'unlimited' && skill.usage.current >= skill.usage.max) continue;
+            if (skill.usage.type !== 'unlimited' && skill.usage.type !== 'ai_once_per_turn' && skill.usage.current >= skill.usage.max) continue;
             let yakus = skill.yakuExpander(Object.assign({}, context, { seat }));
             if (yakus && yakus.length > 0) {
                 expanders.push({
@@ -451,7 +451,7 @@ class SkillManager {
             for (let skill of skills) {
                 if (skill.sealed.currently) continue;
                 if (!skill.huleRestrictor) continue;
-                if (skill.usage.type !== 'unlimited' && skill.usage.current >= skill.usage.max) continue;
+                if (skill.usage.type !== 'unlimited' && skill.usage.type !== 'ai_once_per_turn' && skill.usage.current >= skill.usage.max) continue;
                 // 注入 mySeat 让技能知道限制施加者是谁
                 let restriction = skill.huleRestrictor(
                     Object.assign({}, context, { mySeat: s, seat: targetSeat })
@@ -680,7 +680,8 @@ class SkillManager {
     markSkillUsed(skillId) {
         let skill = this._registry.getSkill(skillId);
         if (!skill) return;
-        if (skill.usage.type !== UsageType.UNLIMITED) {
+        if (skill.usage.type !== UsageType.UNLIMITED
+                && skill.usage.type !== UsageType.AI_ONCE_PER_TURN) {
             skill.usage.current++;
         }
     }
@@ -711,7 +712,8 @@ class SkillManager {
         }
 
         /* 标记使用 */
-        if (skill.usage.type !== UsageType.UNLIMITED) {
+        if (skill.usage.type !== UsageType.UNLIMITED
+                && skill.usage.type !== UsageType.AI_ONCE_PER_TURN) {
             skill.usage.current++;
         }
 
@@ -865,6 +867,7 @@ class SkillManager {
              }
             /* 正常增加使用次数（子技能可设 consumeUsage: false 跳过） */
             if (skill.usage.type !== UsageType.UNLIMITED
+                && skill.usage.type !== UsageType.AI_ONCE_PER_TURN
                 && (!part || part.consumeUsage !== false)) {
                 skill.usage.current++;
             }
@@ -873,6 +876,7 @@ class SkillManager {
 
         /* 标记使用 */
         if (skill.usage.type !== UsageType.UNLIMITED
+            && skill.usage.type !== UsageType.AI_ONCE_PER_TURN
             && (!part || part.consumeUsage !== false)) {
             skill.usage.current++;
         }
@@ -892,7 +896,8 @@ class SkillManager {
      */
     finalizePendingUsage(pendingSkill) {
         if (!pendingSkill) return;
-        if (pendingSkill.usage.type !== UsageType.UNLIMITED) {
+        if (pendingSkill.usage.type !== UsageType.UNLIMITED
+                && pendingSkill.usage.type !== UsageType.AI_ONCE_PER_TURN) {
             pendingSkill.usage.current++;
         }
     }
@@ -972,7 +977,8 @@ class SkillManager {
         if (!charId) return;
         let skills = this._registry.getCharacterSkills(charId);
         for (let skill of skills) {
-            if (skill.usage.type === UsageType.ONCE_PER_TURN) {
+            if (skill.usage.type === UsageType.ONCE_PER_TURN
+                    || skill.usage.type === UsageType.AI_ONCE_PER_TURN) {
                 skill.usage.current = 0;
             }
         }
@@ -1032,6 +1038,7 @@ class SkillManager {
             timing: s.trigger.timing,
             sealed: s.sealed.currently,
             remaining: s.usage.type !== UsageType.UNLIMITED
+                    && s.usage.type !== UsageType.AI_ONCE_PER_TURN
                 ? s.usage.max - s.usage.current : Infinity,
             cost: s.cost,
         }));

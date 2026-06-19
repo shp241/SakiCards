@@ -13,6 +13,12 @@ shoupai-size($width, $height, $bingpai-height, $fulou-height)
         pai-size: $bingpai-height
         .pai[role="button"]
             cursor: pointer
+        .pai.marked
+            box-shadow: 0 0 4px 1px #c0c0c0
+            border-radius: 2px
+        .pai.locked
+            box-shadow: 0 0 0 1px #666, inset 0 0 0 1px #666
+            border-radius: 2px
         .zimo
             margin-left: pai-width($bingpai-height) * 0.1
     .fulou

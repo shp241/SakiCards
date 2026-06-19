@@ -6,6 +6,23 @@
  *  扩展支持超能力技能系统、角色语音、BGM
  */
 "use strict";
+
+/* 如果指定了 --seed，用确定性 PRNG 替换 Math.random（可复现对局） */
+const seedArg = process.argv.find(a => a.startsWith('--seed='));
+if (seedArg) {
+    const SEED = parseInt(seedArg.split('=')[1], 10) || 0;
+    /* mulberry32 — 高质量 32-bit 种子 PRNG */
+    let s = SEED;
+    Math.random = function() {
+        s |= 0;
+        s = s + 0x6D2B79F5 | 0;
+        let t = Math.imul(s ^ s >>> 15, 1 | s);
+        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+    process.stderr.write(`[SRV] Math.random 已替换为种子 PRNG, seed=${SEED}\n`);
+}
+
 const fs    = require('fs');
 const path  = require('path');
 

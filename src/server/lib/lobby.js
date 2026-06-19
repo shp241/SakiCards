@@ -328,6 +328,18 @@ class Lobby {
                 }, 0);
             }
             /* 否则角色选择完成后由 _finalizeCharacterSelect 继续 qipai */
+
+            /* 注册每局角色重选回调（后续每局 qipai 后、zimo 前触发） */
+            this.ROOM[room_no].game.onHandStart(() => {
+                let game = this.ROOM[room_no].game;
+                if (!game) return;
+                let needSelect = game.startPerRoundCharacterSelect();
+                if (! needSelect) {
+                    /* RANDOM 模式：已自动分配，继续游戏 */
+                    game.resumeFromCharacterSelect();
+                }
+                /* 否则角色选择完成后由 _finalizeCharacterSelect 调用 resumeFromCharacterSelect */
+            });
         }
         else {
             /* 标准模式：直接开始 */

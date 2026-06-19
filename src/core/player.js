@@ -126,7 +126,12 @@ module.exports = class Player {
         console.log('[hand] dapai: menfeng=' + this._menfeng + ' dapai_l=' + dapai.l
             + ' p=' + dapai.p + ' shoupai=' + this.shoupai + ' paishu=' + this.shan.paishu);
 
-        if (this._callback) this.action_dapai(dapai);
+        if (this._callback) {
+            if (dapai.l != this._menfeng) {
+                console.error('[PLAYER] dapai → action_dapai menfeng=' + this._menfeng + ' dapai_l=' + dapai.l + ' p=' + dapai.p);
+            }
+            this.action_dapai(dapai);
+        }
 
         if (dapai.l == this._menfeng) {
             this._diyizimo = false;
@@ -198,15 +203,15 @@ module.exports = class Player {
     }
     get_chi_mianzi(shoupai, p) {
         return Majiang.Game.get_chi_mianzi(this._rule, shoupai, p,
-                                           this.shan.paishu);
+                                           this.shan.paishu) || [];
     }
     get_peng_mianzi(shoupai, p) {
         return Majiang.Game.get_peng_mianzi(this._rule, shoupai, p,
-                                            this.shan.paishu);
+                                            this.shan.paishu) || [];
     }
     get_gang_mianzi(shoupai, p) {
         return Majiang.Game.get_gang_mianzi(this._rule, shoupai, p,
-                                            this.shan.paishu, this._n_gang);
+                                            this.shan.paishu, this._n_gang) || [];
     }
     allow_lizhi(shoupai, p) {
         return Majiang.Game.allow_lizhi(this._rule, shoupai, p,

@@ -1,0 +1,173 @@
+/* 交换界面 — 纯浮动面板 + 原位可点击牌
+ *
+ * 无遮罩，面板自由拖动，手牌和牌河直接在原始 DOM 交互。
+ */
+
+/* ---- 浮动面板 ---- */
+
+.ex-panel
+    display: none
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    z-index: 210
+    pointer-events: none       /* 面板本身不阻挡屏幕 */
+    &.show
+        display: block
+
+.ex-center
+    pointer-events: auto
+    display: flex
+    flex-direction: column
+    align-items: center
+    min-width: 220px
+    max-width: 340px
+    padding: 12px 18px
+    background: rgba(10, 10, 30, 0.90)
+    border: 2px solid rgba(212, 175, 55, 0.55)
+    border-radius: 10px
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.55)
+
+.ex-drag-handle
+    cursor: grab
+    text-align: center
+    font-size: 16px
+    color: rgba(212, 175, 55, 0.4)
+    line-height: 1
+    margin-bottom: 4px
+    user-select: none
+    width: 100%
+
+    &:hover
+        color: rgba(212, 175, 55, 0.85)
+
+    &:active
+        cursor: grabbing
+
+.ex-desc
+    font-size: 14px
+    color: #d4af37
+    text-align: center
+    margin-bottom: 5px
+    text-shadow: 1px 1px 2px #000
+
+.ex-center-status
+    display: flex
+    align-items: center
+    justify-content: center
+    gap: 8px
+    margin-bottom: 6px
+
+.ex-status-text
+    font-size: 12px
+    color: #ccc
+    text-shadow: 1px 1px 1px #000
+
+.ex-cond-badge
+    font-size: 11px
+    color: #ffd700
+    background: rgba(255, 215, 0, 0.10)
+    border: 1px solid rgba(255, 215, 0, 0.20)
+    border-radius: 4px
+    padding: 1px 6px
+
+/* ---- 展示区（仅模式A） ---- */
+
+.ex-offer-label
+    font-size: 12px
+    color: #aaa
+    margin-bottom: 4px
+
+.ex-offer-tiles
+    display: flex
+    justify-content: center
+    gap: 4px
+    margin-bottom: 8px
+    min-height: 42px
+    flex-wrap: wrap
+
+.ex-tile
+    cursor: pointer
+    display: inline-block
+    transition: all 0.2s ease
+    pointer-events: auto
+    height: 56px
+    width: 40px
+
+    &:hover
+        transform: translateY(-3px)
+        filter: brightness(1.2)
+
+    &.selected
+        outline: 2px solid #ffd700
+        outline-offset: 1px
+        border-radius: 2px
+        box-shadow: 0 0 6px rgba(255, 215, 0, 0.4)
+
+    &.swapped
+        opacity: 0.60
+
+        &::after
+            content: '✓'
+            position: absolute
+            top: -5px
+            right: -5px
+            font-size: 10px
+            color: #4CAF50
+            background: rgba(0, 0, 0, 0.75)
+            border-radius: 50%
+            width: 14px
+            height: 14px
+            line-height: 14px
+            text-align: center
+            font-weight: bold
+
+/* ---- 原位可点击牌 ---- */
+
+.ex-selectable
+    cursor: pointer !important
+
+    &:hover
+        filter: brightness(1.25)
+
+.ex-selected
+    outline: 2px solid #ffd700 !important
+    outline-offset: 2px !important
+    filter: brightness(1.15)
+
+.ex-swapped
+    opacity: 0.60 !important
+    pointer-events: none !important
+
+/* ---- 底部按钮 ---- */
+
+.ex-btns
+    display: flex
+    gap: 8px
+
+.ex-btn
+    font-size: 13px
+    padding: 4px 20px
+    border: none
+    border-radius: 5px
+    cursor: pointer
+    color: #fff
+    text-shadow: 1px 1px 2px #000
+    transition: all 0.15s ease
+
+    &:disabled
+        opacity: 0.30
+        cursor: not-allowed
+
+.ex-btn-reset
+    background: rgba(139, 34, 34, 0.85)
+
+    &:hover:not(:disabled)
+        background: rgba(180, 50, 50, 0.90)
+
+.ex-btn-confirm
+    background: rgba(34, 139, 34, 0.85)
+
+    &:hover:not(:disabled)
+        background: rgba(50, 180, 50, 0.90)

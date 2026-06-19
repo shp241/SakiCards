@@ -27,6 +27,7 @@ module.exports = {
     InfoPanel:   require('./info_panel'),
     CharacterSelector: require('./character_selector'),
     SkillPrompt:     require('./skill_prompt'),
+    ExchangePrompt:  require('./exchange_prompt'),
     Toast:          require('./toast'),
     VoicePlayer:    require('./voice_player'),
     BgmPlayer:      require('./bgm_player'),

@@ -90,6 +90,10 @@ const bgmPlayer = new Majiang.UI.BgmPlayer();
         let toast = new Majiang.UI.Toast(pai);
         game.setToast(toast);
 
+        /* 初始化交换界面 UI 组件 */
+        let exchangePrompt = new Majiang.UI.ExchangePrompt($('#board'), pai);
+        game.setExchangePrompt(exchangePrompt);
+
         /* 发牌角色卡 */
         const modeMap = {
             'draw4': AssignmentMode.DRAW_4, 'draw2': AssignmentMode.DRAW_2,

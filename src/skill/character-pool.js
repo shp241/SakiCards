@@ -5,6 +5,7 @@
 'use strict';
 
 const { AssignmentMode } = require('./skill-types');
+const { SKILL_EXECUTE_MAP } = require('./skill-registry');
 
 class CharacterPool {
 
@@ -37,6 +38,12 @@ class CharacterPool {
                               'Seele_Vollerei','Sora_Kasugano','Takanashi_Rikka',
                               'Tokisaki_Kurumi'
                              ].includes(c.id)
+            );
+        } else {
+            /* 标准模式（全部可用）：仅包含已有技能实现的角色（排除测试角色） */
+            this._roster = allCharacters.filter(
+                c => c.id && c.id !== 'Test_Character'
+                     && Object.prototype.hasOwnProperty.call(SKILL_EXECUTE_MAP, c.id)
             );
         }
 

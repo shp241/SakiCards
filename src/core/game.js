@@ -99,6 +99,9 @@ module.exports = class Game {
         /** 技能系统：当前额外巡是否为暗切 */
         this._extra_hidden_discard = false;
 
+        /** 打牌标记：玩家选择的标记牌判定（仅当 discardMarked=true 时减少 _markedTiles 计数） */
+        this._dapaiDiscardMarked = true;
+
         /** 技能提示 UI 引用 */
         this._skillPrompt = null;
 
@@ -568,7 +571,10 @@ module.exports = class Game {
 
         /* 牌山见底 → 荒牌流局 */
         if (model.shan.paishu === 0) {
-            if (isExtraTurn) this._extra_turn = null;
+            if (isExtraTurn) {
+                this._extra_turn = null;
+                this._extra_chain_remaining = -1;
+            }
             return this.delay(() => this.pingju('', ['','','','']), 0);
         }
 
@@ -696,11 +702,15 @@ module.exports = class Game {
         /* 兜底：若打牌不在手牌中（技能已改变手牌），使用当前摸牌 */
         let shoupai = model.shoupai[lunban];
         let dapaiPai = dapai.replace(/[_*]$/, '');
-        if (shoupai._zimo !== dapai && shoupai.toString().indexOf(dapaiPai) < 0) {
+        let _s = dapaiPai[0], _n = dapaiPai.length >= 2 ? parseInt(dapaiPai.slice(1)) : -1;
+        let _inHand = shoupai._zimo === dapai
+                   || (_s && shoupai._bingpai[_s] && shoupai._bingpai[_s][_n] > 0);
+        if (!_inHand) {
             dapai = shoupai._zimo;
         }
 
-        model.shoupai[lunban].dapai(dapai);
+        model.shoupai[lunban].dapai(dapai, true, this._dapaiDiscardMarked);
+        this._dapaiDiscardMarked = true;
         let isHiddenDiscard = this._extra_hidden_discard;
         model.he[lunban].dapai(dapai, isHiddenDiscard);
         this._extra_hidden_discard = false;
@@ -714,6 +724,91 @@ module.exports = class Game {
 
         /* 记录舍牌者的立直前状态，供 chiExpander 等辨别立直宣言牌/摸切 */
         this._dapaiDiscarderPreRiichi = !!this._lizhi[lunban];
+
+        /* 包装舍牌后续处理（振听判定/消息发送等），
+         * 作为 DECLARE_RIICHI 技能结算完成后的回调，
+         * 确保技能（如辻垣内智叶观看牌山交换）结算完成后再发送舍牌消息。 */
+        let restOfDapai = () => {
+            /* 振听判定：手牌听牌在牌河中曾有过非暗切的牌 → 不能荣和 */
+            if (Majiang.Util.xiangting(model.shoupai[lunban]) == 0) {
+                let ting = Majiang.Util.tingpai(model.shoupai[lunban]);
+                let he = model.he[lunban];
+                let hasFuriten = ting && ting.find(p => {
+                    if (!he.find(p)) return false;
+                    let ps = p[0], pn = +p[1] || 5;
+                    /* 牌河现存牌 + 被副露移走的牌（不含暗切） */
+                    for (let hp of he.iterVisibleDiscards()) {
+                        let hs = hp[0], hn = +hp[1] || 5;
+                        if (ps === hs && pn === hn) return true;
+                    }
+                    return false;
+                });
+                if (hasFuriten) {
+                    this._neng_rong[lunban] = false;
+                }
+            }
+
+            this._dapai = dapai;
+            this._dapaiHidden = isHiddenDiscard;
+            this._lastDiscard[lunban] = isHiddenDiscard ? null : dapai.replace(/\*$/, '');  /* 记录舍牌（去立直标记），暗切记空 */
+
+            /* 立直后舍牌记录（不含暗切） */
+            if (this._lizhi.some(l => l) && !isHiddenDiscard) {
+                let basePai = dapai.replace(/\*$/, '');
+                basePai = basePai[0] + (+basePai[1] || 5);  /* 0→5 */
+                this._riichiDiscards.push(basePai);
+            }
+
+            let paipu = { dapai: { l: lunban, p: dapai, hidden: isHiddenDiscard } };
+            this.add_paipu(paipu);
+
+            /* 操作日志 */
+            let pname = this._playerDisplayName(this._ctx.currentPlayerIndex());
+            let paiName = this._pai_name(dapai.replace(/\*$/, ''));
+            let isRiichi = dapai.slice(-1) === '*';
+            if (isRiichi) {
+                this._add_action_log(pname + ' 打出了 ' + paiName + ' 并立直！', lunban);
+            } else if (isHiddenDiscard) {
+                this._add_action_log(pname + ' 暗切了', lunban);
+            } else {
+                this._add_action_log(pname + ' 打出了 ' + paiName, lunban);
+            }
+
+            if (this._gang) this.kaigang();
+
+            let msg = [];
+            for (let l = 0; l < 4; l++) {
+                msg[l] = JSON.parse(JSON.stringify(paipu));
+                if (isHiddenDiscard && l != lunban) {
+                    msg[l].dapai.p = '';  /* 暗切：不透露牌种给其他玩家（包括AI） */
+                }
+                /* 同步标记牌张（所有玩家都需要知道当前玩家的标记） */
+                msg[l].dapai.markedTiles = model.shoupai[lunban].markedTiles;
+                msg[l].dapai.hiddenTiles = model.shoupai[lunban].hiddenTiles;
+                msg[l].dapai.lockedTiles = model.shoupai[lunban].lockedTiles;
+                /* 技能扩展器预检：对手是否可通过扩展器荣和/吃/碰/杠 */
+                if (l != lunban && this._skillManager) {
+                    let savedHule = this._huleExpanderUsed;
+                    if (this.allow_hule(l)) msg[l].dapai.canHule = true;
+                    this._huleExpanderUsed = savedHule;
+                    let savedChi = this._chiExpanderUsed;
+                    let chiM = this.get_chi_mianzi(l);
+                    this._chiExpanderUsed = savedChi;
+                    if (chiM.length > 0) msg[l].dapai.chiMianzi = chiM;
+                    let savedPon = this._ponExpanderUsed;
+                    let pengM = this.get_peng_mianzi(l);
+                    this._ponExpanderUsed = savedPon;
+                    if (pengM.length > 0) msg[l].dapai.pengMianzi = pengM;
+                    let savedKan = this._kanExpanderUsed;
+                    let gangM = this.get_gang_mianzi(l);
+                    this._kanExpanderUsed = savedKan;
+                    if (gangM.length > 0) msg[l].dapai.gangMianzi = gangM;
+                }
+            }
+            this.call_players('dapai', msg);
+
+            if (this._view) this._view.update(paipu);
+        };
 
         if (dapai.slice(-1) == '*') {
             this._lizhi[lunban] = this._diyizimo ? 2 : 1;
@@ -732,91 +827,18 @@ module.exports = class Game {
             });
 
             if (riichiResult.actions && riichiResult.actions.length > 0) {
-                this._executeOptionalSkill(riichiResult.actions[0], {
+                let action = riichiResult.actions[0];
+                let isSkillAI = this._canAutoDecideSkill(this._ctx.playerIndex(action.seat));
+                this._executeOptionalSkill(action, {
                     player: lunban,
-                    seat: riichiResult.actions[0].seat,
+                    seat: action.seat,
                     dapai: dapai.replace(/\*$/, ''),
-                });
+                }, restOfDapai, isSkillAI ? { skipConfirm: true } : undefined);
+                return;
             }
         }
 
-        /* 振听判定：手牌听牌在牌河中曾有过非暗切的牌 → 不能荣和 */
-        if (Majiang.Util.xiangting(model.shoupai[lunban]) == 0) {
-            let ting = Majiang.Util.tingpai(model.shoupai[lunban]);
-            let he = model.he[lunban];
-            let hasFuriten = ting && ting.find(p => {
-                if (!he.find(p)) return false;
-                let ps = p[0], pn = +p[1] || 5;
-                /* 牌河现存牌 + 被副露移走的牌（不含暗切） */
-                for (let hp of he.iterVisibleDiscards()) {
-                    let hs = hp[0], hn = +hp[1] || 5;
-                    if (ps === hs && pn === hn) return true;
-                }
-                return false;
-            });
-            if (hasFuriten) {
-                this._neng_rong[lunban] = false;
-            }
-        }
-
-        this._dapai = dapai;
-        this._dapaiHidden = isHiddenDiscard;
-        this._lastDiscard[lunban] = isHiddenDiscard ? null : dapai.replace(/\*$/, '');  /* 记录舍牌（去立直标记），暗切记空 */
-
-        /* 立直后舍牌记录（不含暗切） */
-        if (this._lizhi.some(l => l) && !isHiddenDiscard) {
-            let basePai = dapai.replace(/\*$/, '');
-            basePai = basePai[0] + (+basePai[1] || 5);  /* 0→5 */
-            this._riichiDiscards.push(basePai);
-        }
-
-        let paipu = { dapai: { l: lunban, p: dapai, hidden: isHiddenDiscard } };
-        this.add_paipu(paipu);
-
-        /* 操作日志 */
-        let pname = this._playerDisplayName(this._ctx.currentPlayerIndex());
-        let paiName = this._pai_name(dapai.replace(/\*$/, ''));
-        let isRiichi = dapai.slice(-1) === '*';
-        if (isRiichi) {
-            this._add_action_log(pname + ' 打出了 ' + paiName + ' 并立直！', lunban);
-        } else if (isHiddenDiscard) {
-            this._add_action_log(pname + ' 暗切了', lunban);
-        } else {
-            this._add_action_log(pname + ' 打出了 ' + paiName, lunban);
-        }
-
-        if (this._gang) this.kaigang();
-
-        let msg = [];
-        for (let l = 0; l < 4; l++) {
-            msg[l] = JSON.parse(JSON.stringify(paipu));
-            if (isHiddenDiscard && l != lunban) {
-                msg[l].dapai.p = '';  /* 暗切：不透露牌种给其他玩家（包括AI） */
-            }
-            /* 同步标记牌张（所有玩家都需要知道当前玩家的标记） */
-            msg[l].dapai.markedTiles = model.shoupai[lunban].markedTiles;
-            /* 技能扩展器预检：对手是否可通过扩展器荣和/吃/碰/杠 */
-            if (l != lunban && this._skillManager) {
-                let savedHule = this._huleExpanderUsed;
-                if (this.allow_hule(l)) msg[l].dapai.canHule = true;
-                this._huleExpanderUsed = savedHule;
-                let savedChi = this._chiExpanderUsed;
-                let chiM = this.get_chi_mianzi(l);
-                this._chiExpanderUsed = savedChi;
-                if (chiM.length > 0) msg[l].dapai.chiMianzi = chiM;
-                let savedPon = this._ponExpanderUsed;
-                let pengM = this.get_peng_mianzi(l);
-                this._ponExpanderUsed = savedPon;
-                if (pengM.length > 0) msg[l].dapai.pengMianzi = pengM;
-                let savedKan = this._kanExpanderUsed;
-                let gangM = this.get_gang_mianzi(l);
-                this._kanExpanderUsed = savedKan;
-                if (gangM.length > 0) msg[l].dapai.gangMianzi = gangM;
-            }
-        }
-        this.call_players('dapai', msg);
-
-        if (this._view) this._view.update(paipu);
+        restOfDapai();
     }
 
     fulou(fulou) {
@@ -826,6 +848,7 @@ module.exports = class Game {
 
         /* 副露会取消待处理的额外巡 */
         this._extra_turn = null;
+        this._extra_chain_remaining = -1;
 
         this._diyizimo = false;
         this._yifa     = [0,0,0,0];
@@ -865,6 +888,75 @@ module.exports = class Game {
             roundId: this._roundIds[this._ctx.currentSeat()],
         });
 
+        /* 包装副露后续处理，作为 AFTER_FULOU 技能结算完成后的回调，
+         * 确保技能（如辻垣内智叶观看牌山交换）结算完成后再发送副露消息。 */
+        let processAfterFulou = () => {
+            let paipu = { fulou: { l: this._ctx.currentSeat(), m: fulou } };
+            this.add_paipu(paipu);
+
+            /* 操作日志 */
+            let pname = this._playerDisplayName(this._ctx.currentPlayerIndex());
+            let calledTile = meta.tiles[meta.calledTileIndex];
+            let handTiles = meta.tiles
+                .filter((_, i) => i !== meta.calledTileIndex)
+                .map(t => this._pai_name(t)).join('');
+            /* 判断副露类型 */
+            if (meta.type === 'minkan') {
+                let targetTile = this._pai_name(calledTile);
+                this._add_action_log(pname + ' 用 ' + handTiles + ' 大明杠了 ' + targetTile, this._ctx.currentSeat());
+            } else if (meta.type === 'pon') {
+                let targetTile = this._pai_name(calledTile);
+                this._add_action_log(pname + ' 用 ' + handTiles + ' 碰了 ' + targetTile, this._ctx.currentSeat());
+            } else if (meta.type === 'chi') {
+                let targetTile = this._pai_name(calledTile);
+                this._add_action_log(pname + ' 用 ' + handTiles + ' 吃了 ' + targetTile, this._ctx.currentSeat());
+            } else {
+                this._add_action_log(pname + ' 副露了', this._ctx.currentSeat());
+            }
+
+            /* 保存当前副露数据（技能回调中重新进入 action_fulou 时需要） */
+            let fulouSeat = this._ctx.currentSeat();
+            this._currentFulou = { l: fulouSeat, m: fulou };
+
+            /* 通用：BEFORE_DISCARD 可选技能（副露后舍牌前） */
+            let fulouSkillActions = null;
+            if (this._skillManager) {
+                let beforeActions = this._skillManager.getOptionalSkillDescriptions(
+                    TimingPoints.BEFORE_DISCARD, fulouSeat,
+                    {
+                        game: this, player: fulouSeat, seat: fulouSeat,
+                        tableCtx: this._ctx,
+                        turnId: this._turnId, turnOwner: this._turnOwner,
+                        turnType: this._turnType,
+                        roundId: this._roundIds[fulouSeat],
+                        firstTurn: this._isFirstTurn[fulouSeat],
+                        lastDiscard: this._lastDiscard,
+                        genbutsu: (s) => this.getGenbutsu(s),
+                        getSuji: (genbutsu) => this.getSuji(genbutsu),
+                    }
+                );
+                if (beforeActions.length > 0) {
+                    fulouSkillActions = beforeActions;
+                }
+            }
+
+            let msg = [];
+            for (let l = 0; l < 4; l++) {
+                msg[l] = JSON.parse(JSON.stringify(paipu));
+                /* 同步标记牌张 */
+                msg[l].fulou.markedTiles = model.shoupai[fulouSeat].markedTiles;
+                msg[l].fulou.hiddenTiles = model.shoupai[fulouSeat].hiddenTiles;
+                msg[l].fulou.lockedTiles = model.shoupai[fulouSeat].lockedTiles;
+                /* 副露玩家附加 BEFORE_DISCARD 技能按钮 */
+                if (l === fulouSeat && fulouSkillActions) {
+                    msg[l].fulou.skillActions = fulouSkillActions;
+                }
+            }
+            this.call_players('fulou', msg);
+
+            if (this._view) this._view.update(paipu);
+        };
+
         if (fulouResult.actions && fulouResult.actions.length > 0) {
             let action = fulouResult.actions[0];
             let isSkillAI = this._canAutoDecideSkill(this._ctx.playerIndex(action.seat));
@@ -874,71 +966,10 @@ module.exports = class Game {
                 fulou: fulou,
                 turnId: this._turnId,
                 turnOwner: this._turnOwner,
-            }, null, isSkillAI ? { skipConfirm: true } : undefined);
-        }
-
-        let paipu = { fulou: { l: this._ctx.currentSeat(), m: fulou } };
-        this.add_paipu(paipu);
-
-        /* 操作日志 */
-        let pname = this._playerDisplayName(this._ctx.currentPlayerIndex());
-        let calledTile = meta.tiles[meta.calledTileIndex];
-        let handTiles = meta.tiles
-            .filter((_, i) => i !== meta.calledTileIndex)
-            .map(t => this._pai_name(t)).join('');
-        /* 判断副露类型 */
-        if (meta.type === 'minkan') {
-            let targetTile = this._pai_name(calledTile);
-            this._add_action_log(pname + ' 用 ' + handTiles + ' 大明杠了 ' + targetTile, this._ctx.currentSeat());
-        } else if (meta.type === 'pon') {
-            let targetTile = this._pai_name(calledTile);
-            this._add_action_log(pname + ' 用 ' + handTiles + ' 碰了 ' + targetTile, this._ctx.currentSeat());
-        } else if (meta.type === 'chi') {
-            let targetTile = this._pai_name(calledTile);
-            this._add_action_log(pname + ' 用 ' + handTiles + ' 吃了 ' + targetTile, this._ctx.currentSeat());
+            }, processAfterFulou, isSkillAI ? { skipConfirm: true } : undefined);
         } else {
-            this._add_action_log(pname + ' 副露了', this._ctx.currentSeat());
+            processAfterFulou();
         }
-
-        /* 保存当前副露数据（技能回调中重新进入 action_fulou 时需要） */
-        let fulouSeat = this._ctx.currentSeat();
-        this._currentFulou = { l: fulouSeat, m: fulou };
-
-        /* 通用：BEFORE_DISCARD 可选技能（副露后舍牌前） */
-        let fulouSkillActions = null;
-        if (this._skillManager) {
-            let beforeActions = this._skillManager.getOptionalSkillDescriptions(
-                TimingPoints.BEFORE_DISCARD, fulouSeat,
-                {
-                    game: this, player: fulouSeat, seat: fulouSeat,
-                    tableCtx: this._ctx,
-                    turnId: this._turnId, turnOwner: this._turnOwner,
-                    turnType: this._turnType,
-                    roundId: this._roundIds[fulouSeat],
-                    firstTurn: this._isFirstTurn[fulouSeat],
-                    lastDiscard: this._lastDiscard,
-                    genbutsu: (s) => this.getGenbutsu(s),
-                    getSuji: (genbutsu) => this.getSuji(genbutsu),
-                }
-            );
-            if (beforeActions.length > 0) {
-                fulouSkillActions = beforeActions;
-            }
-        }
-
-        let msg = [];
-        for (let l = 0; l < 4; l++) {
-            msg[l] = JSON.parse(JSON.stringify(paipu));
-            /* 同步标记牌张 */
-            msg[l].fulou.markedTiles = model.shoupai[fulouSeat].markedTiles;
-            /* 副露玩家附加 BEFORE_DISCARD 技能按钮 */
-            if (l === fulouSeat && fulouSkillActions) {
-                msg[l].fulou.skillActions = fulouSkillActions;
-            }
-        }
-        this.call_players('fulou', msg);
-
-        if (this._view) this._view.update(paipu);
     }
 
     /**
@@ -968,7 +999,7 @@ module.exports = class Game {
                 this._skillManager.respondToSkill(
                     seat, skill.id, 'yes',
                     { player: lunban });
-                let spname = this._playerDisplayName(this._ctx.currentPlayerIndex());
+                let spname = this._playerDisplayName(this._ctx.playerIndex(seat));
                 this._add_action_log(spname + ' 发动了技能「' + (skill.characterName || '') + '·' + skill.description + '」', lunban);
                 if (decision.choice && decision.choice.pai && decision.choice.seat !== undefined) {
                     if (skill.execute) {
@@ -999,7 +1030,7 @@ module.exports = class Game {
                         seat, skill.id, 'yes',
                         { player: lunban });
 
-                    let spname = this._playerDisplayName(this._ctx.currentPlayerIndex());
+                    let spname = this._playerDisplayName(this._ctx.playerIndex(seat));
                     this._add_action_log(spname + ' 发动了技能「' + (skill.characterName || '') + '·' + skill.description + '」', lunban);
 
                     /* 检查技能是否有牌河过滤 */
@@ -1100,6 +1131,8 @@ module.exports = class Game {
             }
             /* 同步标记牌张（所有玩家都需要知道当前玩家的标记） */
             msg[l].zimo.markedTiles = model.shoupai[lunban].markedTiles;
+            msg[l].zimo.hiddenTiles = model.shoupai[lunban].hiddenTiles;
+            msg[l].zimo.lockedTiles = model.shoupai[lunban].lockedTiles;
             /* huleExpander: 预检是否可通过扩展器和牌（客户端 allow_hule 不感知扩展器） */
             if (l == lunban && this._skillManager) {
                 let savedExpander = this._huleExpanderUsed;
@@ -1292,6 +1325,13 @@ module.exports = class Game {
     }
 
     /**
+     * 设置交换界面 UI 组件引用
+     */
+    setExchangePrompt(prompt) {
+        this._exchangePrompt = prompt;
+    }
+
+    /**
      * 在配牌完毕后暂停游戏，用于插入角色选择界面
      * @param {Function} callback - 暂停后回调（用于显示角色选择器）
      */
@@ -1472,6 +1512,27 @@ module.exports = class Game {
                 });
             },
 
+            /** 交换界面选择器（ExchangePrompt），返回 Promise<swapPairs|null>
+             *
+             * 仅在人类玩家且 game._exchangePrompt 存在时生效。
+             * AI 或无 ExchangePrompt 时调用 aiDefault 获取结果，无 aiDefault 返回 null。
+             */
+            askExchange: function(opts, aiDefault) {
+                return new Promise(function(resolve) {
+                    if (isAI || !self._exchangePrompt || !self._exchangePrompt.showExchange) {
+                        if (typeof aiDefault === 'function') {
+                            resolve(aiDefault() || null);
+                        } else {
+                            resolve(null);
+                        }
+                        return;
+                    }
+                    self._exchangePrompt.showExchange(opts, function(pairs) {
+                        resolve(pairs || null);
+                    });
+                });
+            },
+
             /** 从手牌中直接选择固定张数牌（高亮手牌点击，有序多选），返回 Promise<string[]|null>
              * @param {string[]} [validTiles] - 可选牌过滤列表
              * @param {Object} [opts] - 可选配置 */
@@ -1541,8 +1602,21 @@ module.exports = class Game {
             let spname = self._playerDisplayName(socksIdx);
             self._add_action_log(spname + ' 发动了技能「' + (skill.characterName || '') + '·' + skill.description + '」', seat);
             self._skillManager.markSkillUsed(skill.id);
-            /* 标记本巡已发动，阻止同巡目重复显示 */
-            self._skillManager.markBDSkillUsed(skill.id);
+            /* 判定是否标记 _bdUsedThisTurn（同巡目禁止再次显示）：
+             * - AI_ONCE_PER_TURN 人类玩家不标记，可无限次发动
+             * - 非无限且未耗尽可能次数的技能不标记，允许本次数内的多次使用
+             * - 其余情况（无限/AI_ONCE_PER_TURN AI/次数耗尽）标记 */
+            let shouldMarkBD = true;
+            if (skill.usage.type === UsageType.AI_ONCE_PER_TURN && !isAI) {
+                shouldMarkBD = false;
+            } else if (skill.usage.type !== UsageType.UNLIMITED
+                    && skill.usage.type !== UsageType.AI_ONCE_PER_TURN
+                    && skill.usage.current < skill.usage.max) {
+                shouldMarkBD = false;
+            }
+            if (shouldMarkBD) {
+                self._skillManager.markBDSkillUsed(skill.id);
+            }
         }
 
         /** 执行技能内部逻辑（同步优先，异步兜底） */
@@ -1568,14 +1642,14 @@ module.exports = class Game {
                 return;
             }
             let result = executeFn(fullContext);
-            if (result && typeof result.then === 'function') {
-                /* 异步技能：通过 .then 链完成时触发 onComplete */
-                result.then(function() {
-                    if (!_done && onComplete) onComplete();
-                }).catch(function(e) {
-                    console.error(e);
-                    if (!_done && onComplete) onComplete();
-                });
+        if (result && typeof result.then === 'function') {
+            /* 异步技能：通过 .then 链完成时触发 onComplete */
+            result.then(function() {
+                if (!_done && onComplete) onComplete();
+            }).catch(function(e) {
+                console.error(e);
+                if (!_done && onComplete) onComplete();
+            });
             } else {
                 /* 同步技能：立即触发 onComplete */
                 if (!_done && onComplete) {
@@ -1646,50 +1720,27 @@ module.exports = class Game {
                     player: lunban, seat: action.seat,
                 }, function() {
                     /* 技能执行完毕，人类仍需选择舍牌。
-                     * 仅当前玩家需要更新手牌中的摸牌（技能可能替换了它），
-                     * 其他玩家看不到摸牌无需更新。
-                     * 避免 call_players('zimo') 导致 local-shan paishu 冗余递减。 */
+                     * 先通过 removeFromHand 正确移除 _zimo（仅设 null 不会减少计数），
+                     * 再走 _finish_zimo 正常流程重新发送 zimo 消息（含技能按钮、canHule 等）。
+                     * 同步保存并恢复 turnTriggerLog，避免 _finish_zimo 中的
+                     * clearTurnRecords 过早清除 discard_selected 阶段需要的记录。 */
                     self._debugSkill && console.log('[DEBUG] _executeBeforeDiscardFromButton 回调: 技能④执行完毕, turnTriggerLog=' +
                         JSON.stringify(self._skillManager?._turnTriggerLog));
                     let model = self._model;
                     let newP = model.shoupai[lunban]._zimo;
-                    let player = self._players[self.seatToPlayerIdx(lunban)];
-                    if (player) {
-                        /* 同步 player model 到游戏 model（技能只改了游戏 model。
-                         * 零碎的 dapai/zimo 无法还原技能的全部改动如手牌移除等，
-                         * 用 clone 整体同步避免 player model 与游戏 model 不一致。
-                         * 联网服务端 player 是 Socket（无 _model），跳过此步。 */
-                        if (player._model && player._model.shoupai) {
-                            player._model.shoupai[lunban] = model.shoupai[lunban].clone();
-                        }
-                        /* 刷新手牌视图（本地用 game._view，联网用 player._view） */
-                        let view = player._view || self._view;
-                        if (view) {
-                            view.update({ zimo: { l: lunban, p: newP } });
-                        }
-                        /* 重新进入 action_zimo 让人类选择舍牌/和牌/杠
-                         * 杠巡目中需传递 gangzimo=true 以保证和牌判定正确 */
-                        let isGangzimo = self._turnType === TurnType.KAN;
-                        if (typeof player.action_zimo === 'function') {
-                            player.action_zimo({ l: lunban, p: newP }, isGangzimo);
-                        } else {
-                            /* 联网服务端：player 是 Socket，重新发送 zimo 消息到客户端。
-                             * 先通过 removeFromHand 正确移除 _zimo（仅设 null 不会减少计数），
-                             * 再走 _finish_zimo 正常流程（含技能按钮、canHule 等）。
-                             * 同时保存并恢复 turnTriggerLog，避免 _finish_zimo 中的
-                             * clearTurnRecords 过早清除 discard_selected 阶段需要的记录。 */
-                            let oldZimo = model.shoupai[lunban]._zimo;
-                            if (oldZimo && oldZimo.length <= 2) {
-                                tileOps.removeFromHand(model.shoupai[lunban], oldZimo);
-                            }
-                            let savedTriggerLog = self._skillManager
-                                ? JSON.parse(JSON.stringify(self._skillManager._turnTriggerLog))
-                                : null;
-                            self._finish_zimo(lunban, newP, { isReentry: true });
-                            if (self._skillManager && savedTriggerLog) {
-                                self._skillManager._turnTriggerLog = savedTriggerLog;
-                            }
-                        }
+                    let oldZimo = model.shoupai[lunban]._zimo;
+                    console.log('[debug] _executeBeforeDiscardFromButton 回调: lunban=' + lunban + ' newP=' + newP + ' oldZimo=' + oldZimo +
+                        ' shoupai=' + model.shoupai[lunban].toString() + ' _isFirstTurn=' + self._isFirstTurn[lunban] +
+                        ' _diyizimo=' + self._diyizimo);
+                    if (oldZimo && oldZimo.length <= 2) {
+                        tileOps.removeFromHand(model.shoupai[lunban], oldZimo);
+                    }
+                    let savedTriggerLog = self._skillManager
+                        ? JSON.parse(JSON.stringify(self._skillManager._turnTriggerLog))
+                        : null;
+                    self._finish_zimo(lunban, newP, { isReentry: true });
+                    if (self._skillManager && savedTriggerLog) {
+                        self._skillManager._turnTriggerLog = savedTriggerLog;
                     }
                 }, { skipConfirm: true });
                 return;
@@ -1746,6 +1797,8 @@ module.exports = class Game {
             /* 同步标记牌张 */
             let gangSeat = this._ctx.currentSeat();
             msg[l].gang.markedTiles = model.shoupai[gangSeat].markedTiles;
+            msg[l].gang.hiddenTiles = model.shoupai[gangSeat].hiddenTiles;
+            msg[l].gang.lockedTiles = model.shoupai[gangSeat].lockedTiles;
         }
         this.call_players('gang', msg);
 
@@ -1782,6 +1835,15 @@ module.exports = class Game {
 
         let zimo = model.shan.gangzimo();
         model.shoupai[lunban].zimo(zimo);
+        this._debugSkill && console.log('[DEBUG] gangzimo: lunban=' + lunban
+            + ' zimo=' + zimo + ' _zimo=' + model.shoupai[lunban]._zimo
+            + ' handCount=' + (() => {
+                let c = 0;
+                let bp = model.shoupai[lunban]._bingpai;
+                for (let s of ['m','p','s','z']) if (bp[s]) for (let n = 1; n <= (s === 'z' ? 7 : 9); n++) c += bp[s][n] || 0;
+                c += bp._ || 0;
+                return c;
+            })() + ' turnId=' + this._turnId);
 
         /* 技能钩子：⑨开杠后 */
         this._skill_trigger(TimingPoints.AFTER_KAN, {
@@ -1887,6 +1949,7 @@ module.exports = class Game {
 
         /* 和牌会取消待处理的额外巡 */
         this._extra_turn = null;
+        this._extra_chain_remaining = -1;
 
         if (this._status != 'hule') {
             this._hule_option = this._status == 'gang'     ? 'qianggang'
@@ -1902,7 +1965,7 @@ module.exports = class Game {
                             : this._dapai.slice(0,2)
                        ) + '_+=-'[(4 + lunban - menfeng) % 4];
         let shoupai  = model.shoupai[menfeng].clone();
-        let fubaopai = shoupai.lizhi ? model.shan.fubaopai : null;
+        let fubaopai = shoupai.lizhi ? (model.shan._fubaopai ? model.shan._fubaopai.concat() : null) : null;
 
         let param = {
             rule:           this._rule,
@@ -2348,7 +2411,7 @@ module.exports = class Game {
             this._lianzhuang = true;
         }
 
-        if (this._rule['場数'] == 0) this._lianzhuang = true;
+        if (this._rule['場数'] == 0) this._lianzhuang = false;
 
         this._fenpei = fenpei;
 
@@ -2381,6 +2444,14 @@ module.exports = class Game {
     last() {
 
         let model = this._model;
+
+        /* 清理立直数据，防止旧局数据影响新局的小濑川白望技能等判断 */
+        this._lizhi     = [ 0, 0, 0, 0 ];
+        this._riichiDiscards = [];
+        this._riichiDeclarationTiles = [null, null, null, null];
+        /* 清理舍牌记录和巡主，防止新局现物计算读到残留值 */
+        this._lastDiscard = [null, null, null, null];
+        this._turnOwner = -1;
 
         model.lunban = -1;
         if (this._view) this._view.update();
@@ -2493,13 +2564,15 @@ module.exports = class Game {
      * @returns {string[]} 去重后的现物牌张数组，如 ['m1','m5','p9']
      */
     getGenbutsu(seat) {
-        const resultSet = new Set();
+        const resultList = [];
         const model = this._model;
 
         /* (a) 该玩家牌河中的所有曾舍牌（包括被副露的） */
         const he = model.he[seat];
         for (const p of he.iterVisibleDiscards()) {
-            resultSet.add(p);
+            const suit = p[0];
+            const num = (+p[1] || 5);  /* 0→5，同时去除 _/* 等状态标记 */
+            resultList.push(suit + num);
         }
         /* 暗切的牌在副露移走时也会不可见，_ 占位符不上报 */
 
@@ -2512,18 +2585,18 @@ module.exports = class Game {
             if (dp !== null) {
                 const suit = dp[0];
                 const num = (+dp[1] || 5);  /* 0→5 */
-                resultSet.add(suit + num);
+                resultList.push(suit + num);
             }
         }
 
         /* (c) 若该玩家已立直，追加立直后所有舍牌 */
         if (this._lizhi[seat]) {
             for (const p of this._riichiDiscards) {
-                resultSet.add(p);  /* 已做过0→5转换 */
+                resultList.push(p);  /* 已做过0→5转换 */
             }
         }
 
-        return [...resultSet];
+        return resultList;
     }
 
     /**
@@ -2599,8 +2672,8 @@ module.exports = class Game {
 
         /* ── 人类路径：已通过 UI 选择打牌/和牌/杠牌 ── */
         /* 辅助：包装 dapai 调用，插入通用 BEFORE_DISCARD / DISCARD_SELECTED 处理 */
-        let _doDapai = (dp) => {
-            this._debugSkill && console.log('[DEBUG] _doDapai 开始: dp=' + dp +
+        let _doDapai = (dp, discardMarked = true) => {
+            this._debugSkill && console.log('[DEBUG] _doDapai 开始: dp=' + dp + ' discardMarked=' + discardMarked +
                 ', turnTriggerLog=' + JSON.stringify(this._skillManager?._turnTriggerLog));
             /* 通用：触发 BEFORE_DISCARD 并收集可选技能动作 */
             let beforeResult = this._skill_trigger(TimingPoints.BEFORE_DISCARD, {
@@ -2619,12 +2692,15 @@ module.exports = class Game {
             this._beforeDiscardDone = true;
 
             let _doActualDapai = () => {
-                /* 只重置 DISCARD_SELECTED，不重置 BEFORE_DISCARD（避免死循环） */
-                this._discardSelectedDone = false;
+                /* AI 需要重置 DISCARD_SELECTED 让 dapai() 重新触发；
+                 * 人类已通过 _executeOptionalSkill 弹窗确认，保留标记防止二次弹窗。 */
+                if (this._canAutoDecideSkill(this._ctx.playerIndex(lunban))) {
+                    this._discardSelectedDone = false;
+                }
                 /* 技能可能要求重选打牌 */
                 let actualDp = this._skillRedapai != null ? this._skillRedapai : dp;
                 this._skillRedapai = null;
-                this.delay(() => this._safeDapai(actualDp), 0);
+                this.delay(() => this._safeDapai(actualDp, discardMarked), 0);
             };
 
             /* 通用：触发 DISCARD_SELECTED 并收集可选技能动作 */
@@ -2663,8 +2739,9 @@ module.exports = class Game {
                     let _tileValid = (tile) => {
                         if (!tile) return false;
                         let clean = tile.replace(/[_*]$/, '');
+                        let _s = clean[0], _n = clean.length >= 2 ? parseInt(clean.slice(1)) : -1;
                         return shoupai._zimo === tile
-                            || shoupai.toString().indexOf(clean) >= 0;
+                            || (_s && shoupai._bingpai[_s] && shoupai._bingpai[_s][_n] > 0);
                     };
 
                     if (typeof this._players[lunban].action_zimo === 'function') {
@@ -2799,28 +2876,35 @@ module.exports = class Game {
             return;
         }
         else if (reply.dapai) {
+            this._dapaiDiscardMarked = !!reply.discardMarked;
             let dapai = reply.dapai.replace(/\*$/,'');
             /* 庄家第一巡：根据规则书，初始手牌均视为手切，去掉 _ 后缀 */
             if (this._diyizimo) dapai = dapai.replace(/_$/,'');
             let dapais = this.get_dapai();
+            console.log('[debug] reply_zimo dapai验证: reply.dapai=' + reply.dapai + ' dapai=' + dapai +
+                ' _diyizimo=' + this._diyizimo + ' dapais=' + JSON.stringify(dapais) +
+                ' find=' + (dapais ? dapais.find(p => p == dapai) : 'null') +
+                ' find_tsumo=' + (dapais ? dapais.find(p => p == dapai + '_') : 'null'));
             if (dapais && dapais.find(p => p == dapai)) {
                 if (reply.dapai.slice(-1) == '*' && this.allow_lizhi(dapai)) {
                     this.say('lizhi', lunban);
-                    return _doDapai(reply.dapai);
+                    return _doDapai(reply.dapai, this._dapaiDiscardMarked);
                 }
-                return _doDapai(dapai);
+                return _doDapai(dapai, this._dapaiDiscardMarked);
             }
             /* 点击了摸入牌：匹配 tsumogiri 选项（带 _ 后缀） */
             if (dapais && dapais.find(p => p == dapai + '_')) {
                 /* 庄家第一巡：根据规则书，初始手牌均视为手切，不添加 _ 后缀 */
                 if (this._diyizimo) {
-                    return _doDapai(dapai);
+                    return _doDapai(dapai, this._dapaiDiscardMarked);
                 }
-                return _doDapai(dapai + '_');
+                return _doDapai(dapai + '_', this._dapaiDiscardMarked);
             }
         }
 
+        this._dapaiDiscardMarked = true;
         let p = this.get_dapai().pop();
+        console.log('[debug] reply_zimo 兜底: 无匹配dapai, pop=' + p + ' menfeng=' + this._model.shoupai[lunban]?.menfeng);
         _doDapai(p);
     }
 
@@ -3000,11 +3084,18 @@ module.exports = class Game {
     _syncAiBoardHand(seat) {
         let model = this._model;
         let playerIdx = this._ctx.playerIndex(seat);
-        let player = this._players[playerIdx];
-        if (!player || !player._model) return;
         let gameHand = model.shoupai[seat];
-        if (gameHand) {
+        if (!gameHand) return;
+
+        /* 同步 bot 玩家的 Board 模型 */
+        let player = this._players[playerIdx];
+        if (player && player._model) {
             player._model.shoupai[seat] = gameHand.clone();
+        }
+
+        /* 同步联机模式的 _aiPlayers（ServerGame 专用） */
+        if (this._aiPlayers && this._aiPlayers[playerIdx]) {
+            this._aiPlayers[playerIdx]._model.shoupai[seat] = gameHand.clone();
         }
     }
 
@@ -3014,32 +3105,83 @@ module.exports = class Game {
      */
     _aiReplyZimo(lunban) {
         let model = this._model;
+
+        /* 游戏已结束 → 跳过 AI 打牌决策 */
+        if (this._status === 'jieju') return;
+
         this._beforeDiscardDone = true;
 
-        let beforeResult = this._skill_trigger(TimingPoints.BEFORE_DISCARD, {
-            player: lunban, dapai: null,
-            turnId: this._turnId, turnOwner: this._turnOwner,
-            turnType: this._turnType,
-            roundId: this._roundIds[lunban],
-            firstTurn: this._isFirstTurn[lunban],
-            lastDiscard: this._lastDiscard,
-            genbutsu: (s) => this.getGenbutsu(s),
-            getSuji: (genbutsu) => this.getSuji(genbutsu),
-        });
-        let hasBeforeActions = beforeResult.actions && beforeResult.actions.length > 0;
-        this._debugSkill && console.log('[DEBUG] _aiReplyZimo: hasBeforeActions=' + hasBeforeActions +
-            ', beforeActions=' + JSON.stringify(beforeResult.actions?.map(a => a.skill?.id)));
+        /* 递归处理所有可执行的 BEFORE_DISCARD action */
+        const executeNext = () => {
+            /* 游戏在技能执行中结束 → 停止递归 */
+            if (this._status === 'jieju') return;
+            this._debugSkill && console.log('[DEBUG] _aiReplyZimo: lunban=' + lunban +
+                ' _zimo=' + model.shoupai[lunban]?._zimo +
+                ' shoupai=' + model.shoupai[lunban]);
 
-        if (hasBeforeActions) {
-            this._executeOptionalSkill(beforeResult.actions[0], {
-                player: lunban, seat: beforeResult.actions[0].seat,
-            }, () => {
-                this._aiDecideAfterBefore(lunban);
+            let beforeResult = this._skill_trigger(TimingPoints.BEFORE_DISCARD, {
+                player: lunban, dapai: null,
+                turnId: this._turnId, turnOwner: this._turnOwner,
+                turnType: this._turnType,
+                roundId: this._roundIds[lunban],
+                firstTurn: this._isFirstTurn[lunban],
+                lastDiscard: this._lastDiscard,
+                genbutsu: (s) => this.getGenbutsu(s),
+                getSuji: (genbutsu) => this.getSuji(genbutsu),
             });
-            return;
-        }
+            /* 过滤出使用次数未耗尽、本巡未发动、且 AI 会实际发动的 action */
+            let playerIdx = this._ctx.playerIndex(lunban);
+            let isAI = this._canAutoDecideSkill(playerIdx);
+            let executable = (beforeResult.actions || []).filter(a => {
+                let s = a.skill;
+                let bdBlocked = this._skillManager?._bdUsedThisTurn?.[s.id];
+                let usageOk = s.usage.type === 'unlimited'
+                    || s.usage.type === 'ai_once_per_turn'
+                    || s.usage.current < s.usage.max;
+                if (!usageOk || bdBlocked) return false;
+                /* AI 决策检查：如果 AI 不会实际发动此技能，跳过避免死循环 */
+                if (isAI) {
+                    let decisionFn = (a.part && a.part.aiDecision) ? a.part.aiDecision : s.aiDecision;
+                    if (decisionFn) {
+                        let aiCtx = {
+                            player: lunban, seat: a.seat, game: this,
+                            turnId: this._turnId, turnOwner: this._turnOwner,
+                            turnType: this._turnType,
+                            roundId: this._roundIds[lunban],
+                            firstTurn: this._isFirstTurn[lunban],
+                            lastDiscard: this._lastDiscard,
+                            genbutsu: (s) => this.getGenbutsu(s),
+                            getSuji: (genbutsu) => this.getSuji(genbutsu),
+                        };
+                        if (!decisionFn(aiCtx)) return false;
+                    }
+                }
+                return true;
+            });
+            this._debugSkill && console.log('[DEBUG] _aiReplyZimo: executable=' +
+                JSON.stringify(executable.map(a => a.skill?.id)) +
+                ', allActions=' + JSON.stringify(beforeResult.actions?.map(a => a.skill?.id)) +
+                ', after trigger _zimo=' + model.shoupai[lunban]?._zimo);
 
-        this._aiDecideAfterBefore(lunban);
+            if (executable.length > 0) {
+                let action = executable[0];
+                this._executeOptionalSkill(action, {
+                    player: lunban, seat: action.seat,
+                }, () => {
+                    this._debugSkill && console.log('[DEBUG] _aiReplyZimo: after skill, _zimo=' +
+                        model.shoupai[lunban]?._zimo + ' shoupai=' + model.shoupai[lunban]);
+                    this._syncAiBoardHand(lunban);
+                    executeNext();
+                });
+                return;
+            }
+
+            this._debugSkill && console.log('[DEBUG] _aiReplyZimo: calling _aiDecideAfterBefore, _zimo=' +
+                model.shoupai[lunban]?._zimo);
+            this._aiDecideAfterBefore(lunban);
+        };
+
+        executeNext();
     }
 
     /**
@@ -3051,6 +3193,13 @@ module.exports = class Game {
     _aiDecideAfterBefore(lunban) {
         let model = this._model;
 
+        /* 游戏已结束 → 跳过 AI 决策，防止用 null _zimo 触发 dapai 导致游戏继续运行 */
+        if (this._status === 'jieju') return;
+
+        this._debugSkill && console.log('[DEBUG] _aiDecideAfterBefore: before sync lunban=' + lunban
+            + ' game._zimo=' + model.shoupai[lunban]?._zimo
+            + ' turnId=' + this._turnId + ' status=' + this._status);
+
         /* 同步 AI Board 手牌（BEFORE_DISCARD 技能可能已改变手牌） */
         this._syncAiBoardHand(lunban);
 
@@ -3059,15 +3208,43 @@ module.exports = class Game {
         if (shoupai) {
             let playerIdx = this._ctx.playerIndex(lunban);
             let player = this._players[playerIdx];
-            if (typeof player.action_zimo === 'function') {
+            if (player && typeof player.action_zimo === 'function') {
+                /* DEBUG: 追踪 _zimo 来源 */
+                if (!shoupai._zimo) {
+                    let aiBoardZimo = player._model?.shoupai?.[lunban]?._zimo;
+                    let handCount = 0;
+                    for (let s of ['m','p','s','z']) {
+                        let bp = shoupai._bingpai[s];
+                        if (bp) { for (let n = 1; n <= (s === 'z' ? 7 : 9); n++) handCount += bp[n] || 0; }
+                    }
+                    handCount += shoupai._bingpai._ || 0;
+                    console.warn('[WARN] _aiDecideAfterBefore: lunban=' + lunban
+                        + ' gameModel._zimo=null'
+                        + ' aiBoard._zimo=' + aiBoardZimo
+                        + ' handCount=' + handCount
+                        + ' shoupai=' + shoupai + ' turnId=' + this._turnId);
+                    /* 防御：BEFORE_DISCARD 技能可能误清除 _zimo，导致 AI 无法决策。
+                     * 此时从手牌中取一张作为伪自摸牌，确保 get_dapai() 不返回 null。 */
+                    for (let s of ['m','p','s','z']) {
+                        let bp = shoupai._bingpai[s];
+                        if (!bp) continue;
+                        let maxN = s === 'z' ? 7 : 9;
+                        for (let n = 1; n <= maxN; n++) {
+                            if (bp[n] > 0) {
+                                shoupai._zimo = s + n;
+                                break;
+                            }
+                        }
+                        if (shoupai._zimo) break;
+                    }
+                    if (!shoupai._zimo && shoupai._bingpai._ > 0) {
+                        shoupai._zimo = '_';
+                    }
+                }
                 let savedSync = this._sync;
                 this._sync = true;
-                try {
-                    player.action_zimo(
-                        { l: lunban, p: shoupai._zimo }, false);
-                } catch(e) {
-                    /* AI 重评估异常，忽略 */
-                }
+                player.action_zimo(
+                    { l: lunban, p: shoupai._zimo }, false);
                 this._sync = savedSync;
             }
         }
@@ -3098,8 +3275,10 @@ module.exports = class Game {
             if (dapais && dapais.find(p => p == dapai || p == dapai + '_')) {
                 if (reply.dapai.slice(-1) == '*' && this.allow_lizhi(dapai)) {
                     this.say('lizhi', lunban);
+                    this._doDapaiAi(lunban, reply.dapai);
+                } else {
+                    this._doDapaiAi(lunban, dapai);
                 }
-                this._doDapaiAi(lunban, dapai);
                 return;
             }
             /* 兜底：AI 选的牌不在可选列表中（技能改变了手牌），
@@ -3205,6 +3384,7 @@ module.exports = class Game {
         }
 
         if (reply.dapai) {
+            let discardMarked = !!reply.discardMarked;
             let isAI = this._canAutoDecideSkill(this._ctx.playerIndex(lunban));
             if (isAI) {
                 /* AI：先触发 BEFORE_DISCARD 可选技能（如新子憧①副露交换牌河），
@@ -3222,35 +3402,40 @@ module.exports = class Game {
                 });
                 let hasBeforeActions = beforeResult.actions && beforeResult.actions.length > 0;
                 if (hasBeforeActions) {
+                    let _dm = discardMarked;
                     this._executeOptionalSkill(beforeResult.actions[0], {
                         player: lunban, seat: beforeResult.actions[0].seat,
                     }, () => {
                         /* 技能执行完毕，执行打牌（手牌可能已被技能修改） */
                         if (this.get_dapai().find(p => p == reply.dapai)) {
-                            this.delay(() => this._safeDapai(reply.dapai), 0);
+                            this.delay(() => this._safeDapai(reply.dapai, _dm), 0);
                         } else {
                             let p = this.get_dapai().pop();
-                            this.delay(() => this._safeDapai(p), 0);
+                            this.delay(() => this._safeDapai(p, true), 0);
                         }
                     });
                     return;
                 }
             }
             if (this.get_dapai().find(p => p == reply.dapai)) {
-                return this.delay(() => this._safeDapai(reply.dapai), 0);
+                return this.delay(() => this._safeDapai(reply.dapai, discardMarked), 0);
             }
         }
 
+        this._dapaiDiscardMarked = true;
         let p = this.get_dapai().pop();
-        this.delay(() => this._safeDapai(p), 0);
+        this.delay(() => this._safeDapai(p, true), 0);
     }
 
     /**
      * 安全打牌：兜底处理 bingpai 不一致导致的异常。
      * 技能操作可能使 shoupai 的 bingpai 与字符串表示不同步，
      * 此方法在打牌失败时依次尝试 _zimo 和剩余有效手牌。
+     * @param {string} dapai - 要打的牌
+     * @param {boolean} discardMarked - 是否减少 _markedTiles 计数
      */
-    _safeDapai(dapai) {
+    _safeDapai(dapai, discardMarked = true) {
+        this._dapaiDiscardMarked = discardMarked;
         try {
             this.dapai(dapai);
         } catch (e) {
@@ -3277,6 +3462,8 @@ module.exports = class Game {
                 let newShoupai = Majiang.Shoupai.fromString(paiStr);
                 /* 继承旧 shoupai 的关键状态 */
                 newShoupai._markedTiles = shoupai._markedTiles;
+                newShoupai._hiddenTiles = shoupai._hiddenTiles;
+                newShoupai._lockedTiles = shoupai._lockedTiles;
                 model.shoupai[lunban] = newShoupai;
                 /* 用新 shoupai 重试打牌 */
                 try { this.dapai(dapai); return; } catch (e4) {}
@@ -3306,7 +3493,8 @@ module.exports = class Game {
                 this._hule.push(l);
             }
             else {
-                let p = this._gang[0] + this._gang.slice(-1);
+                let gangTiles = meldParser.fulouTiles(this._gang);
+                let p = gangTiles && gangTiles[0] ? gangTiles[0] : '';
                 let shoupai = model.shoupai[l].clone().zimo(p);
                 if (Majiang.Util.xiangting(shoupai) == -1)
                                                 this._neng_rong[l] = false;

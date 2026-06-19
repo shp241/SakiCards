@@ -1014,6 +1014,8 @@ function removeFromHand(shoupai, tile) {
             let paiStr = shoupai.toString();
             let newShoupai = Majiang.Shoupai.fromString(paiStr);
             newShoupai._markedTiles = shoupai._markedTiles;
+            newShoupai._hiddenTiles = shoupai._hiddenTiles;
+            newShoupai._lockedTiles = shoupai._lockedTiles;
             /* 将重建的 shoupai 状态回写到原对象 */
             shoupai._bingpai = newShoupai._bingpai;
             shoupai._fulou = newShoupai._fulou;
@@ -1062,6 +1064,90 @@ function swapInHand(shoupai, outTile, inTile) {
     if (outIsZimo) shoupai._zimo = inTile;
 }
 
+/**
+ * 墙牌 ↔ 手牌/牌河 交换（辻垣内智叶模式）。
+ *
+ * 将 wallTile 放入手牌或牌河的指定位置，被换出的牌由调用方自行处理（如 swapWallFront）。
+ * 预期调用顺序：
+ *   swapWallFront(model, 0, swapInfo.sideTile);
+ *   exchangeWallSwap(model, seat, wallTile, swapInfo);
+ *
+ * @param {Object} model          — Game._model
+ * @param {number} seat           — 技能持有者席位
+ * @param {string} wallTile       — 牌山第一张（已 popFront）
+ * @param {Object} swapInfo       — 交换信息（来自 ExchangePrompt 模式 A 回调）
+ * @param {string} swapInfo.sideTile   — 被换出的牌
+ * @param {string} swapInfo.sidePlayer — 'hand'|'main'|'xiajia'|'duimian'|'shangjia'
+ * @param {number} swapInfo.sideIdx    — 索引
+ */
+function exchangeWallSwap(model, seat, wallTile, swapInfo) {
+    const { sideTile, sidePlayer, sideIdx } = swapInfo;
+
+    if (sidePlayer === 'hand') {
+        swapInHand(model.shoupai[seat], sideTile, wallTile);
+    } else {
+        const CLASS_TO_OFFSET = { main: 0, xiajia: 1, duimian: 2, shangjia: 3 };
+        const offset = CLASS_TO_OFFSET[sidePlayer];
+        if (offset === undefined) return;
+        const s = (seat + offset) % 4;
+        if (!model.he[s] || !model.he[s]._pai) return;
+        model.he[s]._pai[sideIdx] = wallTile;
+    }
+}
+
+/**
+ * 两张周界牌互换（ExchangePrompt 模式 B 用）。
+ *
+ * 处理四种组合：手牌↔手牌、手牌↔牌河、牌河↔手牌、牌河↔牌河。
+ * 注意：手牌↔手牌时两个 tile 值互换后 hand 的计数不变（功能性 no-op）。
+ *
+ * @param {Object} model          — Game._model
+ * @param {number} seat           — 技能持有者席位
+ * @param {Object} pair           — 交换对（来自 ExchangePrompt 模式 B 回调）
+ * @param {Object} pair.a         — { tile, player, idx }
+ * @param {Object} pair.b         — { tile, player, idx }
+ */
+function exchangeSideSwap(model, seat, pair) {
+    const pA = pair.a, pB = pair.b;
+    const shoupai = model.shoupai[seat];
+    const CLASS_TO_OFFSET = { main: 0, xiajia: 1, duimian: 2, shangjia: 3 };
+
+    /* 解析 player class → 模型 seat (非 hand 时) */
+    function resolve(player) {
+        if (player === 'hand') return { type: 'hand' };
+        const offset = CLASS_TO_OFFSET[player];
+        return { type: 'river', seat: (seat + offset) % 4 };
+    }
+
+    const rA = resolve(pA.player);
+    const rB = resolve(pB.player);
+
+    if (rA.type === 'hand' && rB.type === 'hand') {
+        /* 手牌↔手牌：值互换，计数不变 */
+        removeFromHand(shoupai, pA.tile);
+        removeFromHand(shoupai, pB.tile);
+        addToHand(shoupai, pA.tile);
+        addToHand(shoupai, pB.tile);
+    } else if (rA.type === 'hand' && rB.type === 'river') {
+        /* 手牌 → 牌河 */
+        removeFromHand(shoupai, pA.tile);
+        addToHand(shoupai, pB.tile);
+        model.he[rB.seat]._pai[rB.idx] = pA.tile;
+    } else if (rA.type === 'river' && rB.type === 'hand') {
+        /* 牌河 → 手牌 */
+        removeFromHand(shoupai, pB.tile);
+        addToHand(shoupai, pA.tile);
+        model.he[rA.seat]._pai[rA.idx] = pB.tile;
+    } else {
+        /* 牌河↔牌河 */
+        const tmp = model.he[rA.seat]._pai[rA.idx];
+        model.he[rA.seat]._pai[rA.idx] = model.he[rB.seat]._pai[rB.idx];
+        model.he[rB.seat]._pai[rB.idx] = tmp;
+    }
+
+    _refreshHandUI(shoupai);
+}
+
 /* ================================================================
  * 导出
  * ================================================================ */
@@ -1098,6 +1184,9 @@ module.exports = {
     removeFromHand,
     addToHand,
     swapInHand,
+    /* 交换 */
+    exchangeWallSwap,
+    exchangeSideSwap,
     /* 手牌变更回调 */
     setHandChangeCallback: function(cb) { _onHandChanged = cb; },
     /** 注入游戏引用，使 addToHand / removeFromHand 自动刷新手牌 UI */

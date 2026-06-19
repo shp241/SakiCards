@@ -40,6 +40,9 @@ const UsageType = {
     /** 不限次数 */
     UNLIMITED:         'unlimited',
 
+    /** AI 每巡限一次，人类可无限次发动（主要用于 BEFORE_DISCARD 技能） */
+    AI_ONCE_PER_TURN:  'ai_once_per_turn',
+
     /** 自定义 */
     CUSTOM:            'custom',
 };

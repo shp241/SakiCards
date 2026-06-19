@@ -30,7 +30,9 @@ module.exports = class Shoupai {
         this._fulouMeta = [];  /* 副露附加信息，与 _fulou 一一对应 */
         this._zimo      = null;
         this._lizhi     = false;
-        this._markedTiles = new Set();  /* 被标记对手牌牌张（对所有玩家可见） */
+        this._markedTiles = new Map();  /* 被标记手牌牌张 → 数量（按值计数） */
+        this._hiddenTiles = new Map();  /* 对自己也不可见的牌 → 数量 */
+        this._lockedTiles = new Map();  /* 无法打出或副露的牌 → 数量 */
 
         for (let p of qipai) {
             if (p == '_') {
@@ -137,7 +139,9 @@ module.exports = class Shoupai {
         }));
         shoupai._zimo      = this._zimo;
         shoupai._lizhi     = this._lizhi;
-        shoupai._markedTiles = new Set(this._markedTiles);
+        shoupai._markedTiles = new Map(this._markedTiles);
+        shoupai._hiddenTiles = new Map(this._hiddenTiles);
+        shoupai._lockedTiles = new Map(this._lockedTiles);
 
         return shoupai;
     }
@@ -158,7 +162,9 @@ module.exports = class Shoupai {
         }));
         this._zimo      = shoupai._zimo;
         this._lizhi     = shoupai._lizhi;
-        this._markedTiles = new Set(shoupai._markedTiles);
+        this._markedTiles = new Map(shoupai._markedTiles);
+        this._hiddenTiles = new Map(shoupai._hiddenTiles);
+        this._lockedTiles = new Map(shoupai._lockedTiles);
 
         return this;
     }
@@ -205,7 +211,7 @@ module.exports = class Shoupai {
         return this;
     }
 
-    dapai(p, check = true) {
+    dapai(p, check = true, discardMarked = true) {
         if (check && ! this._zimo)                  throw new Error([this, p]);
         if (p == '_') {
             this._bingpai._--;
@@ -217,7 +223,13 @@ module.exports = class Shoupai {
         this.decrease(s, n);
         this._zimo = null;
         if (p.slice(-1) == '*') this._lizhi = true;
-        this._markedTiles.delete(s + n);  /* 打出的牌自动取消标记 */
+        /* 打出的牌视 discardMarked 标记决定是否取消标记（减少计数） */
+        if (discardMarked) {
+            this._decrementMapCount(this._markedTiles, s + n);
+        }
+        /* 打出的牌同步减少隐藏/锁定牌的计数 */
+        this._decrementMapCount(this._hiddenTiles, s + n);
+        this._decrementMapCount(this._lockedTiles, s + n);
         return this;
     }
 
@@ -233,7 +245,10 @@ module.exports = class Shoupai {
             let tile = meta.tiles[i];
             let s = tile[0], n = +tile[1] || 5;
             this.decrease(s, n);
-            this._markedTiles.delete(s + n);
+            let _key = s + n;
+            this._decrementMapCount(this._markedTiles, _key);
+            this._decrementMapCount(this._hiddenTiles, _key);
+            this._decrementMapCount(this._lockedTiles, _key);
         }
         this._fulou.push(m);
         this._fulouMeta.push({
@@ -257,7 +272,10 @@ module.exports = class Shoupai {
             for (let tile of meta.tiles) {
                 let s = tile[0], n = +tile[1] || 5;
                 this.decrease(s, n);
-                this._markedTiles.delete(s + n);
+                let _key = s + n;
+                this._decrementMapCount(this._markedTiles, _key);
+                this._decrementMapCount(this._hiddenTiles, _key);
+                this._decrementMapCount(this._lockedTiles, _key);
             }
             this._fulou.push(m);
             this._fulouMeta.push({
@@ -287,7 +305,10 @@ module.exports = class Shoupai {
             };
             let lastTile = meta.tiles[meta.tiles.length - 1];
             this.decrease(lastTile[0], +lastTile[1] || 5);
-            this._markedTiles.delete(lastTile[0] + (+lastTile[1] || 5));
+            let _key = lastTile[0] + (+lastTile[1] || 5);
+            this._decrementMapCount(this._markedTiles, _key);
+            this._decrementMapCount(this._hiddenTiles, _key);
+            this._decrementMapCount(this._lockedTiles, _key);
         }
         else                                        throw new Error([this, m]);
         this._zimo = null;
@@ -303,22 +324,41 @@ module.exports = class Shoupai {
     }
 
     /**
+     * 从指定的计数 Map 中减少一张牌的计数
+     * @param {Map} map - 计数 Map（如 _markedTiles / _hiddenTiles / _lockedTiles）
+     * @param {string} key - 牌的关键字（如 "s8"）
+     */
+    _decrementMapCount(map, key) {
+        if (map.has(key)) {
+            let c = map.get(key);
+            if (c <= 1) map.delete(key);
+            else        map.set(key, c - 1);
+        }
+    }
+
+    /**
      * 标记手牌中的牌张（使这些牌对所有玩家可见）
      * @param {string[]} tiles — 要标记的牌张数组，如 ['m1','p5','z7']
      */
     markTiles(tiles) {
         for (let p of tiles) {
-            if (Shoupai.valid_pai(p)) this._markedTiles.add(p[0] + p[1]);
+            if (!Shoupai.valid_pai(p)) continue;
+            let key = p[0] + p[1];
+            this._markedTiles.set(key, (this._markedTiles.get(key) || 0) + 1);
         }
     }
 
     /**
-     * 取消手牌中的牌张标记
+     * 取消手牌中的牌张标记（减少计数）
      * @param {string[]} tiles — 要取消标记的牌张数组
      */
     unmarkTiles(tiles) {
         for (let p of tiles) {
-            this._markedTiles.delete(p[0] + p[1]);
+            let key = p[0] + p[1];
+            if (!this._markedTiles.has(key)) continue;
+            let c = this._markedTiles.get(key);
+            if (c <= 1) this._markedTiles.delete(key);
+            else        this._markedTiles.set(key, c - 1);
         }
     }
 
@@ -327,9 +367,97 @@ module.exports = class Shoupai {
         this._markedTiles.clear();
     }
 
-    /** 获取标记牌张列表 */
+    /** 获取标记牌张列表（含重复，用于序列化/联机同步） */
     get markedTiles() {
-        return Array.from(this._markedTiles);
+        let result = [];
+        for (let [key, count] of this._markedTiles) {
+            for (let i = 0; i < count; i++) result.push(key);
+        }
+        return result;
+    }
+
+    /* ==================== 隐藏牌（对自己不可见） ==================== */
+
+    /**
+     * 标记手牌中的牌为自己不可见（背面展示）
+     * @param {string[]} tiles — 要隐藏的牌张数组
+     */
+    markHidden(tiles) {
+        for (let p of tiles) {
+            if (!Shoupai.valid_pai(p)) continue;
+            let key = p[0] + p[1];
+            this._hiddenTiles.set(key, (this._hiddenTiles.get(key) || 0) + 1);
+        }
+    }
+
+    /**
+     * 取消手牌中的牌隐藏标记
+     * @param {string[]} tiles — 要取消隐藏的牌张数组
+     */
+    unmarkHidden(tiles) {
+        for (let p of tiles) {
+            let key = p[0] + p[1];
+            if (!this._hiddenTiles.has(key)) continue;
+            let c = this._hiddenTiles.get(key);
+            if (c <= 1) this._hiddenTiles.delete(key);
+            else        this._hiddenTiles.set(key, c - 1);
+        }
+    }
+
+    /** 清空所有隐藏牌标记 */
+    clearHiddenTiles() {
+        this._hiddenTiles.clear();
+    }
+
+    /** 获取隐藏牌张列表（含重复，用于序列化/联机同步） */
+    get hiddenTiles() {
+        let result = [];
+        for (let [key, count] of this._hiddenTiles) {
+            for (let i = 0; i < count; i++) result.push(key);
+        }
+        return result;
+    }
+
+    /* ==================== 锁定牌（无法打出/副露） ==================== */
+
+    /**
+     * 锁定手牌中的牌张（无法打出或副露，以黑框表示）
+     * @param {string[]} tiles — 要锁定的牌张数组
+     */
+    lockTiles(tiles) {
+        for (let p of tiles) {
+            if (!Shoupai.valid_pai(p)) continue;
+            let key = p[0] + p[1];
+            this._lockedTiles.set(key, (this._lockedTiles.get(key) || 0) + 1);
+        }
+    }
+
+    /**
+     * 取消手牌中的牌张锁定
+     * @param {string[]} tiles — 要取消锁定的牌张数组
+     */
+    unlockTiles(tiles) {
+        for (let p of tiles) {
+            let key = p[0] + p[1];
+            if (!this._lockedTiles.has(key)) continue;
+            let c = this._lockedTiles.get(key);
+            if (c <= 1) this._lockedTiles.delete(key);
+            else        this._lockedTiles.set(key, c - 1);
+        }
+    }
+
+    /** 清空所有锁定牌标记 */
+    clearLockedTiles() {
+        this._lockedTiles.clear();
+    }
+
+    /** 获取锁定牌张列表（含重复，用于序列化/联机同步） */
+    get lockedTiles() {
+        let result = [];
+        for (let [key, count] of this._lockedTiles) {
+            for (let i = 0; i < count; i++) result.push(key);
+        }
+        return result;
     }
 
     get menqian() {
@@ -374,6 +502,10 @@ module.exports = class Shoupai {
                     if (bingpai[n] == 0)  continue;
                     if (deny[s+n])        continue;
                     if (s+n == this._zimo && bingpai[n] == 1) continue;
+                    /* 锁定牌排除：若该种牌全部被锁定，则不可打 */
+                    let lockedCount = this._lockedTiles.get(s+n) || 0;
+                    let availCount = bingpai[n] - (s+n == this._zimo ? 1 : 0);
+                    if (lockedCount >= availCount) continue;
                     if (s == 'z' || n != 5)          dapai.push(s+n);
                     else {
                         if (bingpai[0] > 0

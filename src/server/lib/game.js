@@ -15,6 +15,7 @@ const AI = require('../../ai');
 const characters = require('../../skill/characters_skills');
 const { SkillManager, AssignmentMode } = require('../../skill/index');
 const MultiplayerSkillPrompt = require('./skill_prompt');
+const MultiplayerExchangePrompt = require('./exchange_prompt');
 
 function get_timer(type, limit, allowed = 0, wait) {
     if (type == 'jieju')                       return;
@@ -54,6 +55,8 @@ module.exports = class ServerGame extends Majiang.Game {
             this._sm.setGame(this);      // 设置游戏引用（供技能执行时使用）
             /* 注入联机技能提示适配器：所有玩家通过 WebSocket 交互，统一走父类逻辑 */
             this._skillPrompt = new MultiplayerSkillPrompt(this);
+            /* 注入联机交换界面适配器 */
+            this._exchangePrompt = new MultiplayerExchangePrompt(this);
         }
 
         /* 角色选择状态 */
@@ -260,12 +263,17 @@ module.exports = class ServerGame extends Majiang.Game {
                     }, timer);
                 }
             }
+            let hasSocket = !!this._players[id];
             if (this._players[id])
                     this._players[id].emit('GAME', msg[l]);
-            else    this._reply[id] = {};
+            else    { this._reply[id] = {}; }
             /* ---- 同步 bot AI 玩家模型 ---- */
             if (this._aiPlayers[id]) {
-                this._aiPlayers[id].action(msg[l], () => {});
+                try {
+                    this._aiPlayers[id].action(msg[l], () => {});
+                } catch(e) {
+                    process.stderr.write(`[SRV]   seat=${l} _aiPlayers.action CRASH: ${e?.message || e}\n`);
+                }
             }
         }
         if (type == 'jieju') {
@@ -585,8 +593,22 @@ module.exports = class ServerGame extends Majiang.Game {
             }
         }
 
-        /* 继续 qipai */
-        this.delay(()=>this.qipai(), 0);
+        /* 继续游戏：首局 → qipai；后续局 → resumeFromCharacterSelect */
+        if (this._isPerRoundSelect) {
+            this._isPerRoundSelect = false;
+            this.resumeFromCharacterSelect();
+        } else {
+            this.delay(()=>this.qipai(), 0);
+        }
+    }
+
+    /**
+     * 每局重新选角色（在 pauseBeforeZimo 回调中调用）
+     * 此时 qipai 已完成，选完后直接 zimo
+     */
+    startPerRoundCharacterSelect() {
+        this._isPerRoundSelect = true;
+        return this._startCharacterSelect();
     }
 
     /* ================================================================

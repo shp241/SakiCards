@@ -125,7 +125,7 @@ module.exports = class Player extends Majiang.Player {
         if (lizhi) this._default_reply = { dapai: lizhi[0] + '*' };
 
         let dapai_list = lizhi || this.get_dapai(this.shoupai);
-        console.log('[debug] select_dapai: dapai_list=', dapai_list, '_node.dapai.length=', this._node.dapai.length, '_node.dapai[0]=', this._node.dapai[0]);
+        console.log('[debug] select_dapai: dapai_list=', JSON.stringify(dapai_list), '_node.dapai.length=', this._node.dapai.length);
         for (let p of dapai_list) {
             let pai = $(p.slice(-1) == '_'
                             ? `.zimo .pai[data-pai="${p.slice(0,2)}"]`
@@ -137,8 +137,11 @@ module.exports = class Player extends Majiang.Player {
             }
             pai.attr('tabindex', 0).attr('role','button')
                 .on('click.dapai', (ev)=>{
+                    /* 锁定牌不可打出 */
+                    if ($(ev.target).hasClass('locked')) return;
                     $(ev.target).addClass('dapai');
-                    this.callback({dapai: p});
+                    let isMarked = !!$(ev.target).attr('data-marked');
+                    this.callback({dapai: p, discardMarked: isMarked});
                 });
         }
 
