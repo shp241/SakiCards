@@ -119,8 +119,6 @@ const Board = module.exports = class Board {
 
         this._timeout_id;
 
-        this.set_audio(audio);
-
         /* 信息面板（牌山 + 牌局日志） */
         this._info_panel = new InfoPanel(this._pai);
         $('#board .info-btn').on('click', () => {
@@ -140,18 +138,6 @@ const Board = module.exports = class Board {
         for (let l = 0; l < 4; l++) {
             this._voice[l].setCharacter(chars[l] || null);
         }
-    }
-
-    set_audio(audio) {
-        this._audio = {};
-        for (let name of ['dapai','chi','peng','gang','rong','zimo','lizhi']) {
-            this._audio[name] = [];
-            for (let l = 0; l < 4; l++) {
-                this._audio[name][l] = audio(name);
-            }
-        }
-        this._audio.gong = audio('gong');
-        return this;
     }
 
     redraw() {
@@ -242,10 +228,6 @@ const Board = module.exports = class Board {
         }
         else if (data.dapai) {
             this._view.shoupai[data.dapai.l].dapai(data.dapai.p);
-            if (this.sound_on) {
-                this._audio.dapai[data.dapai.l].currentTime = 0;
-                this._audio.dapai[data.dapai.l].play();
-            }
             this._view.he[data.dapai.l].dapai(data.dapai.p, data.dapai.hidden);
             this._view.he[data.dapai.l].redraw();
             this._lizhi = data.dapai.p.slice(-1) == '*';
@@ -288,8 +270,6 @@ const Board = module.exports = class Board {
 
         this._timeout_id = setTimeout(()=>{
             this._view.shoupai[hule.l].redraw(true);
-
-            if (this.sound_on && hule.damanguan) this._audio.gong.play();
 
             /* 渐进式展示役种 + 语音同步 */
         if (this.sound_on && hule.hupai && hule.hupai.length) {
@@ -445,12 +425,6 @@ const Board = module.exports = class Board {
 
     say(name, l) {
         if (this.sound_on) {
-            /* 有角色语音时只播放角色语音，否则播放原版音效 */
-            let charName = this._voice[l]._charName;
-            if (!charName) {
-                this._audio[name][l].currentTime = 0;
-                this._audio[name][l].play();
-            }
             this._voice[l].play(name);
         }
         show(this._view.say[l].text(say_text[name]));

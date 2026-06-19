@@ -37,7 +37,6 @@ module.exports = class Player extends Majiang.Player {
         this._mianzi = mianzi(pai);
 
         this.sound_on = true;
-        this._audio   = { beep: audio('beep') };
 
         this.clear_handler();
     }
@@ -191,8 +190,7 @@ module.exports = class Player extends Majiang.Player {
     action(msg, callback) {
         let limit, allowed;
         if (msg.timer) [ limit, allowed ] = msg.timer;
-        let audio = ! (msg.kaiju || msg.hule || msg.pingju) && this._audio.beep;
-        if (limit) this.set_timer(limit, allowed, audio);
+        if (limit) this.set_timer(limit, allowed);
 
         super.action(msg, callback);
     }
@@ -205,6 +203,19 @@ module.exports = class Player extends Majiang.Player {
             setSelector($('.kaiju', this._node.root), 'kaiju',
                         { touch: false });
         }, 800);
+    }
+
+    /**
+     * 获取可打牌列表（涩谷尧深手切限制时过滤摸入牌）
+     */
+    get_dapai(shoupai) {
+        let dp = super.get_dapai(shoupai);
+        let handDiscard = this._model && this._model._skillHandDiscard;
+        if (handDiscard && handDiscard.seat === this._menfeng) {
+            let zimoTile = shoupai._zimo;
+            dp = dp.filter(p => p !== zimoTile && p !== zimoTile + '_');
+        }
+        return dp;
     }
 
     action_qipai(qipai) { this.callback() }

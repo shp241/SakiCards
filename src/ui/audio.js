@@ -15,6 +15,9 @@ module.exports = function(loaddata) {
     });
 
     return function(name){
+        if (! audio[name]) {
+            return { play() {}, pause() {}, currentTime: 0 };
+        }
         let new_audio = audio[name].clone()[0];
         let volume    = audio[name].attr('volume');
         if (volume) {
