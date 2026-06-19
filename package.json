@@ -7,7 +7,7 @@
     "build:html": "pug -o dist -P src/html/page/",
     "build:css": "stylus src/css/index.styl -o dist/css/majiang-2.5.1.css",
     "build:js": "webpack --mode development --devtool inline-source-map",
-    "build:res": "mkdir -p dist/resources/头像 dist/resources/music dist/resources/voice && cp resources/头像/*.png dist/resources/头像/ && cp resources/music/*.mp3 dist/resources/music/ && cp -r resources/voice/* dist/resources/voice/",
+    "build:res": "mkdir -p dist/resources/头像 dist/resources/music dist/resources/voice dist/img && cp resources/头像/*.png dist/resources/头像/ && cp resources/music/*.mp3 dist/resources/music/ && cp -r resources/voice/* dist/resources/voice/ && cp -r resources/img/* dist/img/",
     "build": "npm run build:html && npm run build:css && npm run build:js && npm run build:res",
     "release": "npm run build:html && npm run build:css && webpack --mode production",
     "clean": "rm -f dist/*.html dist/js/* dist/css/*",
