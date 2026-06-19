@@ -210,10 +210,16 @@ module.exports = class Player extends Majiang.Player {
      */
     get_dapai(shoupai) {
         let dp = super.get_dapai(shoupai);
-        let handDiscard = this._model && this._model._skillHandDiscard;
+        let handDiscard = this._skillHandDiscard;
         if (handDiscard && handDiscard.seat === this._menfeng) {
-            let zimoTile = shoupai._zimo;
+            /* 优先使用服务端下发的摸牌牌面（_skillHandDiscardTile），
+             * 避免河底摸牌时客户端 _zimo 与实际摸牌不一致导致的过滤失效 */
+            let zimoTile = this._skillHandDiscardTile || shoupai._zimo;
+            console.log('[takami-dbg] 手切限制: zimoTile=' + zimoTile
+                + ' (from ' + (this._skillHandDiscardTile ? 'server' : 'shoupai._zimo') + ')'
+                + ' dp before filter=' + JSON.stringify(dp));
             dp = dp.filter(p => p !== zimoTile && p !== zimoTile + '_');
+            console.log('[takami-dbg] 手切限制: dp after filter=' + JSON.stringify(dp));
         }
         return dp;
     }
@@ -222,6 +228,20 @@ module.exports = class Player extends Majiang.Player {
 
     action_zimo(zimo, gangzimo) {
         if (zimo.l != this._menfeng) return this.callback();
+
+        /* 涩谷尧深手切限制：存储服务端下发的 skillHandDiscard 标记和摸牌牌面 */
+        console.log('[takami-dbg] action_zimo: 收到完整zimo消息=' + JSON.stringify(zimo));
+        if (zimo.skillHandDiscard) {
+            this._skillHandDiscard = { seat: this._menfeng };
+            this._skillHandDiscardTile = zimo.p;
+            console.log('[takami-dbg] action_zimo: 收到 skillHandDiscard 标记, tile=' + zimo.p
+                + ' _zimo=' + (this.shoupai ? this.shoupai._zimo : 'null'));
+        } else {
+            this._skillHandDiscard = null;
+            this._skillHandDiscardTile = null;
+            console.log('[takami-dbg] action_zimo: 未收到 skillHandDiscard 标记'
+                + ' (zimo keys=' + Object.keys(zimo).join(',') + ')');
+        }
 
         console.log('[debug] action_zimo: zimo.p=' + zimo.p + ' menfeng=' + this._menfeng);
         console.log('[debug] action_zimo: hand=' + this.shoupai.toString() + ' paishu=' + this.shan.paishu);
@@ -307,6 +327,10 @@ module.exports = class Player extends Majiang.Player {
 
         /* 暗切牌不可见，无法荣和或副露 */
         if (!dapai.p) {
+            /* 暗切牌本身无花色数字，但服务器已预检（canHule=true），显示荣和按钮 */
+            if (dapai.canHule) {
+                this.set_button('rong', ()=>this.callback({hule: '-'}));
+            }
             this.show_button(()=>this.callback());
             return;
         }

@@ -245,7 +245,7 @@ module.exports = class Shoupai {
             let tile = meta.tiles[i];
             let s = tile[0], n = +tile[1] || 5;
             this.decrease(s, n);
-            let _key = s + n;
+            let _key = s + tile[1];  // 使用原始牌面字符（如 "s0"/"s5"），保持与元数据 map key 一致
             this._decrementMapCount(this._markedTiles, _key);
             this._decrementMapCount(this._hiddenTiles, _key);
             this._decrementMapCount(this._lockedTiles, _key);
@@ -272,7 +272,7 @@ module.exports = class Shoupai {
             for (let tile of meta.tiles) {
                 let s = tile[0], n = +tile[1] || 5;
                 this.decrease(s, n);
-                let _key = s + n;
+                let _key = s + tile[1];  // 使用原始牌面字符
                 this._decrementMapCount(this._markedTiles, _key);
                 this._decrementMapCount(this._hiddenTiles, _key);
                 this._decrementMapCount(this._lockedTiles, _key);
@@ -305,7 +305,7 @@ module.exports = class Shoupai {
             };
             let lastTile = meta.tiles[meta.tiles.length - 1];
             this.decrease(lastTile[0], +lastTile[1] || 5);
-            let _key = lastTile[0] + (+lastTile[1] || 5);
+            let _key = lastTile[0] + lastTile[1];  // 使用原始牌面字符
             this._decrementMapCount(this._markedTiles, _key);
             this._decrementMapCount(this._hiddenTiles, _key);
             this._decrementMapCount(this._lockedTiles, _key);

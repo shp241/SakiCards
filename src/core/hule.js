@@ -617,13 +617,11 @@ function get_post_hupai(shoupai, rongpai, baopai, fubaopai) {
             }
         }
     }
-    console.log('[dora-log] 宝牌: 指示牌=' + JSON.stringify(baopaiLog.indicators) + ' 宝牌=' + JSON.stringify(baopaiLog.dora) + ' 手牌匹配=' + JSON.stringify(baopaiLog.matchedTiles) + ' 合计=' + n_baopai);
     if (n_baopai) post_hupai.push({ name: '宝牌', fanshu: n_baopai, type: 'dora' });
 
     let n_hongpai = 0;
     let nn = paistr.match(/0/g);
     if (nn) n_hongpai = nn.length;
-    console.log('[dora-log] 红宝牌: 赤五数=' + n_hongpai);
     if (n_hongpai) post_hupai.push({ name: '红宝牌', fanshu: n_hongpai, type: 'dora' });
 
     let n_fubaopai = 0;
@@ -645,7 +643,6 @@ function get_post_hupai(shoupai, rongpai, baopai, fubaopai) {
             }
         }
     }
-    console.log('[dora-log] 里宝牌: 指示牌=' + JSON.stringify(fubaopaiLog.indicators) + ' 里宝牌=' + JSON.stringify(fubaopaiLog.uraDora) + ' 手牌匹配=' + JSON.stringify(fubaopaiLog.matchedTiles) + ' 合计=' + n_fubaopai);
     if (n_fubaopai) post_hupai.push({ name: '里宝牌', fanshu: n_fubaopai, type: 'dora' });
 
     return post_hupai;
@@ -791,7 +788,8 @@ function hule_param(param = {}) {
 }
 
 module.exports = {
-    hule:        hule,
-    hule_param:  hule_param,
-    hule_mianzi: hule_mianzi,
+    hule:           hule,
+    hule_param:     hule_param,
+    hule_mianzi:    hule_mianzi,
+    get_post_hupai: get_post_hupai,
 };

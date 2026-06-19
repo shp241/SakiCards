@@ -4,3 +4,4 @@ dist/
 resources/log
 test/paipu/
 test/logs/
+test/online-paipu/

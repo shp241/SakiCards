@@ -119,6 +119,7 @@ function _loadSkillExecute(character, skillIndex, skill) {
         if (handler.yakuExpander) skill.yakuExpander = handler.yakuExpander;
         if (handler.huleRestrictor) skill.huleRestrictor = handler.huleRestrictor;
         if (handler.shouldAutoExecute) skill.shouldAutoExecute = handler.shouldAutoExecute;
+        if (handler.riverTileFilter) skill.riverTileFilter = handler.riverTileFilter;
         /* 多时点子技能（parts），如"检查荣和资格"+"宣言和牌时选牌" */
         if (handler.parts) skill.parts = handler.parts;
     }
@@ -2545,6 +2546,33 @@ const SKILL_EXECUTE_MAP = {
             type: SkillType.PASSIVE,
             effectType: EffectType.VIEW_AS_YAKU,
 
+            yakuExpander: function(context) {
+                let shoupai = context.shoupai;
+                let game = context.game;
+                let seat = context.seat;
+                if (!shoupai || !game) return [];
+                let model = game._model;
+                if (!model) return [];
+
+                let yakus = [];
+
+                /* 三副露 */
+                let nonAnkanMelds = fanModifier.getFulouCount(model, seat);
+                if (nonAnkanMelds >= 3) {
+                    yakus.push({ name: '三副露', fanshu: 1 });
+                }
+
+                /* 追立：已通过 DISCARD_SELECTED 记录且有普通立直（非两立直） */
+                let isChaseRiichi = game._skillManager
+                    ? game._skillManager.getSkillData(seat, 'Anetai_Toyone', '_chaseRiichi')
+                    : false;
+                if (isChaseRiichi && game._lizhi && game._lizhi[seat] >= 1) {
+                    yakus.push({ name: '追立', fanshu: 2 });
+                }
+
+                return yakus;
+            },
+
             parts: [
                 {
                     /* Part A — DISCARD_SELECTED：记录是否追立 */
@@ -2565,36 +2593,6 @@ const SKILL_EXECUTE_MAP = {
                                 break;
                             }
                         }
-                        return { executed: true };
-                    },
-                },
-                {
-                    /* Part B — HULE_SETTLE：三副露→1番,追立→2番（独立役种） */
-                    timing: TimingPoints.HULE_SETTLE,
-                    condition: function(context) {
-                        return context.seat === context.player
-                            && !!(context.hule && context.hule.hupai);
-                    },
-                    execute: function(context) {
-                        let hule = context.hule;
-                        let seat = context.seat;
-                        let game = context.game;
-                        let model = game._model;
-
-                        /* 追立：独立的2番役种 */
-                        let isChaseRiichi = game._skillManager
-                            ? game._skillManager.getSkillData(seat, 'Anetai_Toyone', '_chaseRiichi')
-                            : false;
-                        if (isChaseRiichi && hanOps.hasYaku(hule, '立直')) {
-                            hanOps.setYakuHan(hule, '追立', 2);
-                        }
-
-                        /* 三副露 */
-                        let nonAnkanMelds = fanModifier.getFulouCount(model, seat);
-                        if (nonAnkanMelds >= 3) {
-                            hanOps.setYakuHan(hule, '三副露', 1);
-                        }
-
                         return { executed: true };
                     },
                 },
@@ -3516,7 +3514,9 @@ const SKILL_EXECUTE_MAP = {
                 let game = context.game;
                 let seat = context.seat;
                 /* 标记本巡须手切（不可切摸入牌） */
-                game._skillHandDiscard = { seat: seat };
+                game._model._skillHandDiscard = { seat: seat };
+                let pl = game._players[game.seatToPlayerIdx(seat)];
+                if (pl) pl._skillHandDiscard = { seat: seat };
             },
             aiDecision: function(context) {
                 let game = context.game;
@@ -4011,20 +4011,45 @@ const SKILL_EXECUTE_MAP = {
                 let game = context.game;
                 if (!game || context.player !== context.seat) return false;
                 let model = game._model;
-                let lastDiscard = context.lastDiscard;
-                if (!lastDiscard) return false;
+                if (!model || !model.he) return false;
 
                 for (let s = 0; s < 4; s++) {
-                    let t = lastDiscard[s];
-                    if (!t) continue;
-                    /* 红宝牌 */
-                    if (tileUtils.isRed5(t)) return true;
-                    /* 表宝牌/杠宝牌（不含里宝牌） */
-                    if (tileUtils.isDora(t, model.shan._baopai)) return true;
-                    /* 立直宣言牌：精确匹配宣言立直时打出的那张牌（非后续摸切） */
+                    let he = model.he[s];
+                    if (!he || !he._pai || he._pai.length === 0) continue;
+                    let lastIdx = he._pai.length - 1;
+                    let p = he._pai[lastIdx];
+                    if (p === '_') continue;  // 不可见的占位符，跳过
+
+                    /* 暗切牌（隐藏标记）：仅判断是否为立直宣言牌，不往前找 */
+                    if (he._hidden && he._hidden[lastIdx]) {
+                        let tile = p.replace(/\*$/, '');
+                        if (game._riichiDeclarationTiles
+                            && game._riichiDeclarationTiles[s] === tile) {
+                            console.log('[tomoki-dbg] 玩家' + s + '暗切牌' + tile + '是立直宣言牌 ✓');
+                            return true;
+                        }
+                        continue;
+                    }
+
+                    /* 正常可见牌：全量检测 */
+                    let lastTile = p.replace(/\*$/, '');
+                    if (tileUtils.isRed5(lastTile)) {
+                        console.log('[tomoki-dbg] 玩家' + s + '最后一张舍牌' + lastTile + '是红宝牌 ✓');
+                        return true;
+                    }
+                    if (tileUtils.isDora(lastTile, model.shan._baopai)) {
+                        console.log('[tomoki-dbg] 玩家' + s + '最后一张舍牌' + lastTile
+                            + '是宝牌（指示牌=' + JSON.stringify(model.shan._baopai) + '） ✓');
+                        return true;
+                    }
                     if (game._riichiDeclarationTiles
-                        && game._riichiDeclarationTiles[s] === t) return true;
+                        && game._riichiDeclarationTiles[s] === lastTile) {
+                        console.log('[tomoki-dbg] 玩家' + s + '最后一张舍牌' + lastTile
+                            + '是立直宣言牌 ✓');
+                        return true;
+                    }
                 }
+                console.log('[tomoki-dbg] 未检测到任何宝牌/立直宣言牌，条件不满足');
                 return false;
             },
             execute: function(context) {
@@ -4069,19 +4094,20 @@ const SKILL_EXECUTE_MAP = {
             priority: 100,
             condition: function(context) {
                 let game = context.game;
-                if (!game || context.player !== context.seat) return false;
-                /* 不在额外巡链中 */
-                if (game._extra_turn) return false;
-                if (typeof game._extra_chain_remaining === 'number' && game._extra_chain_remaining >= 0) return false;
-                /* 仅副露/大明杠导致的舍牌巡目触发 */
-                if (!fanModifier.isFulouTurn(context)) return false;
-                /* 副露区满足染手条件（数牌花色不超过1） */
+                if (!game) { console.log('[someya-dbg] no game'); return false; }
+                if (context.player !== context.seat) { console.log('[someya-dbg] player!==seat', context.player, context.seat); return false; }
+                if (game._extra_turn) { console.log('[someya-dbg] _extra_turn exists', game._extra_turn); return false; }
+                if (typeof game._extra_chain_remaining === 'number' && game._extra_chain_remaining >= 0) { console.log('[someya-dbg] in extra chain', game._extra_chain_remaining); return false; }
+                if (!fanModifier.isFulouTurn(context)) { console.log('[someya-dbg] not fulou turn', context.turnId, context.roundId); return false; }
                 let shoupai = game._model.shoupai[context.seat];
-                return _countMeldSuits(shoupai) <= 1;
+                let suitCount = _countMeldSuits(shoupai);
+                console.log('[someya-dbg] suitCount=' + suitCount + ' seat=' + context.seat + ' dapai=' + context.dapai);
+                return suitCount <= 1;
             },
             execute: function(context) {
                 let game = context.game;
                 let seat = context.seat;
+                console.log('[someya-dbg] EXECUTE extra turn! seat=' + seat + ' dapai=' + context.dapai);
                 game._add_action_log('染谷真子 发动技能进行额外巡', seat);
                 extraTurn.start(game, seat, 1);
                 context.done();
@@ -4287,23 +4313,28 @@ const SKILL_EXECUTE_MAP = {
             priority: 100,
             condition: function(context) {
                 let game = context.game;
-                if (!game || context.player !== context.seat) return false;
-                /* 不在额外巡链中 */
-                if (game._extra_turn) return false;
-                if (typeof game._extra_chain_remaining === 'number' && game._extra_chain_remaining >= 0) return false;
-                /* 舍牌点数为 2 或 8 */
+                if (!game) { console.log('[takimi-dbg] condition: no game'); return false; }
+                if (context.player !== context.seat) { console.log('[takimi-dbg] condition: player!==seat', context.player, context.seat); return false; }
+                if (game._extra_turn) { console.log('[takimi-dbg] condition: _extra_turn exists', game._extra_turn); return false; }
+                if (typeof game._extra_chain_remaining === 'number' && game._extra_chain_remaining >= 0) { console.log('[takimi-dbg] condition: in extra chain', game._extra_chain_remaining); return false; }
+                if (game._dapaiHidden) { console.log('[takimi-dbg] condition: is hidden/anqie discard'); return false; }
                 let dapai = context.dapai || '';
+                console.log('[takimi-dbg] condition: dapai=' + dapai + ' turnId=' + context.turnId + ' roundId=' + context.roundId);
                 let base = dapai.replace(/\*$/, '');
-                if (!base || base.endsWith('_')) return false;
-                if (base[0] === 'z') return false;
+                if (!base) { console.log('[takimi-dbg] condition: base empty', base); return false; }
+                if (base[0] === 'z') { console.log('[takimi-dbg] condition: is zi'); return false; }
                 let n = parseInt(base[1]);
-                return n === 2 || n === 8;
+                let result = n === 2 || n === 8;
+                console.log('[takimi-dbg] condition: n=' + n + ' result=' + result);
+                return result;
             },
             execute: function(context) {
                 let game = context.game;
                 let seat = context.seat;
+                console.log('[takimi-dbg] EXECUTE 技能② 额外巡! seat=' + seat + ' dapai=' + context.dapai + ' _extra_turn之前=' + JSON.stringify(game._extra_turn));
                 game._add_action_log('泷见春 舍弃' + game._pai_name(context.dapai) + '后进行额外巡', seat);
                 extraTurn.start(game, seat, 1);
+                console.log('[takimi-dbg] EXECUTE 后 _extra_turn=' + JSON.stringify(game._extra_turn) + ' _extra_chain_remaining=' + game._extra_chain_remaining);
                 context.done();
             },
             aiDecision: function(context) {
@@ -4338,16 +4369,27 @@ const SKILL_EXECUTE_MAP = {
 
                 /* 候选牌：手牌中出现的牌（0和5互为相同牌） */
                 let candidates = new Set();
+                let zimo = shoupai._zimo;
                 for (let s of ['m', 'p', 's']) {
                     let bp = shoupai._bingpai[s];
                     if (!bp) continue;
                     for (let n = 3; n <= 7; n++) {
                         if ((bp[n] || 0) > 0) {
+                            if (zimo && zimo[0] === s && zimo[1] === String(n)) continue;
                             candidates.add(s + n);
                             if (n === 5) candidates.add(s + '0');
                         }
                     }
-                    if ((bp[0] || 0) > 0) { candidates.add(s + '5'); candidates.add(s + '0'); }
+                    if ((bp[0] || 0) > 0) {
+                        let isZimo50 = zimo && zimo[0] === s && (zimo[1] === '5' || zimo[1] === '0');
+                        if (!isZimo50) {
+                            candidates.add(s + '5'); candidates.add(s + '0');
+                        } else {
+                            /* 摸到红5或普通5时，排除摸到的那张，保留另一张 */
+                            if (zimo[1] === '0') candidates.add(s + '5');
+                            else candidates.add(s + '0');
+                        }
+                    }
                 }
                 return Array.from(candidates);
             },
@@ -4562,10 +4604,12 @@ const SKILL_EXECUTE_MAP = {
                 if (game._extra_turn) return false;
                 if (typeof game._extra_chain_remaining === 'number'
                     && game._extra_chain_remaining >= 0) return false;
+                /* 暗切不能发动 */
+                if (game._dapaiHidden) return false;
                 /* 舍牌为幺九牌（1/9 数牌或字牌） */
                 let dapai = context.dapai || '';
                 let base = dapai.replace(/\*$/, '');
-                if (!base || base.endsWith('_')) return false;
+                if (!base) return false;
                 if (base[0] === 'z') return true;
                 let n = parseInt(base[1]);
                 return n === 1 || n === 9;

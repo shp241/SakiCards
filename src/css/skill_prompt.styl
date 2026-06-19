@@ -10,6 +10,7 @@
     text-align: center
     width: auto
     max-width: 680px
+    pointer-events: none
 
     &.show
         display: block
@@ -35,6 +36,12 @@
             cursor: pointer
             color: #fff
             text-shadow: 1px 1px 2px #000
+            pointer-events: auto
+
+    .skill-prompt-cancel-row
+        margin-top: 6px
+        button
+            pointer-events: auto
 
         .skill-prompt-yes
             background: rgba(34, 139, 34, 0.85)
