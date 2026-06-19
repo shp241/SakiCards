@@ -93,15 +93,17 @@ class Lobby {
             this.USER[user.uid] = { user: user, sock: sock };
         }
         else if (this.USER[user.uid].sock) {
-            /* 重连竞态：旧 socket 可能尚未触发 disconnect 事件。
-             * 检查旧 socket 是否仍活跃，若不活跃则接受新连接。
-             * 旧 socket 的 disconnect 处理器中有 staleness check 防止误清理。 */
-            if (this.USER[user.uid].sock.connected) {
-                sock.emit('ERROR', '既に接続済みです');
-                sock.disconnect(true);
-                return;
+            let oldSock = this.USER[user.uid].sock;
+            if (oldSock.connected) {
+                /* 重连竞态：旧 socket 的心跳超时尚未触发（pingTimeout=15s），
+                 * 但客户端已经发起重连。此时应接受新连接并断开旧 socket，
+                 * 因为旧 socket 的传输层实际上已经死了，继续等待 ping 超时
+                 * 只会浪费宝贵的重连窗口。 */
+                console.log(`[重连] ${user.name} 使用新 socket 重连，断开旧 socket`);
+                oldSock.removeAllListeners();
+                oldSock.disconnect(true);
             }
-            /* 旧 socket 已断线但事件未处理，直接替换 */
+            /* 替换为新 socket */
             this.USER[user.uid].sock = sock;
         }
         else {

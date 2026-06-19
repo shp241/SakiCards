@@ -76,10 +76,50 @@ const http = require('http').createServer(app);
 const io   = require('socket.io')(http, {
     path: `${base}/socket.io/`,
     cors: { origin: '*' },
-    pingInterval: 25000,     /* 25 秒一次心跳，避免后台标签页被浏览器限频时误判 */
-    pingTimeout:  60000,     /* 60 秒无 pong 才视为断开，容忍浏览器后台限频 */
-    connectTimeout: 10000
+    pingInterval: 15000,     /* 15 秒一次心跳 */
+    pingTimeout:  30000,     /* 30 秒无 pong 判定为断开（容忍浏览器后台标签节流） */
+    connectTimeout: 15000
 });
+
+/*
+ * ================================================================
+ *  服务器崩溃保护
+ * ================================================================
+ */
+
+/* 捕获未处理异常，防止服务器崩溃导致所有玩家同时掉线 */
+process.on('uncaughtException', (err) => {
+    console.error(`[崩溃保护] 未捕获异常: ${err.message}`);
+    console.error(err.stack);
+    /* 不退出进程，记录错误后继续运行 */
+});
+
+/* 捕获未处理的 Promise 异常 */
+process.on('unhandledRejection', (reason, promise) => {
+    console.error(`[崩溃保护] 未处理的 Promise 拒绝:`, reason);
+});
+
+/* 优雅关闭：收到终止信号时先断开所有 Socket.IO 连接，再退出 */
+function gracefulShutdown(signal) {
+    console.log(`\n[关闭] 收到 ${signal} 信号，执行优雅关闭...`);
+    io.close(() => {
+        http.close(() => {
+            console.log('[关闭] HTTP 服务已关闭');
+            process.exit(0);
+        });
+    });
+    /* 最多等 5 秒，超时强制退出 */
+    setTimeout(() => {
+        console.error('[关闭] 强制退出');
+        process.exit(1);
+    }, 5000);
+}
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT',  () => gracefulShutdown('SIGINT'));
+
+/* ================================================================
+ *  Socket.IO session 共享 + 房间管理
+ * ================================================================ */
 
 /* Socket.IO 共享 Express session 中间件 — 否则 sock.request 拿不到 session */
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);

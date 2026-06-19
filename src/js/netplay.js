@@ -74,15 +74,29 @@ $(function(){
         let icon = $('<div>').addClass('disconnect-icon').text('⚠');
         let msg = $('<div>').addClass('disconnect-msg')
             .text('连接中断');
+        let status = $('<div>').addClass('disconnect-status')
+            .text('正在重连...');
         let btn = $('<button>').addClass('disconnect-retry-btn')
-            .text('手动重连').on('click', () => {
-                console.log('[重连] 手动重连...');
+            .text('立即重连').on('click', () => {
+                console.log('[重连] 手动触发立即重连...');
                 sock.connect();
+                btn.prop('disabled', true).text('正在重连...');
+                setTimeout(() => btn.prop('disabled', false).text('立即重连'), 5000);
             });
-        box.append(icon, msg, btn);
+        box.append(icon, msg, status, btn);
         overlay.append(box);
         $('body').append(overlay);
         _$disconnectOverlay = overlay;
+    }
+
+    function _updateReconnectStatus(text) {
+        if (_$disconnectOverlay) {
+            let statusEl = _$disconnectOverlay.find('.disconnect-status');
+            if (statusEl.length) statusEl.text(text);
+            /* 重连尝试中，允许用户手动触发 */
+            let btn = _$disconnectOverlay.find('.disconnect-retry-btn');
+            if (btn.length) btn.prop('disabled', false).text('立即重连');
+        }
     }
 
     function _hideDisconnectOverlay() {
@@ -107,7 +121,12 @@ $(function(){
             sock = io('/', {
                 path: `${base}/server/socket.io/`,
                 transports: ['websocket', 'polling'],
-                reconnection: false            /* 禁用自动重连，改为手动 */
+                reconnection: true,
+                reconnectionDelay: 1000,
+                reconnectionDelayMax: 10000,
+                reconnectionAttempts: Infinity,
+                randomizationFactor: 0.5,
+                timeout: 15000,
             });
         } catch(e) {
             console.error('Socket.IO 初始化失败，请检查服务器是否在线', e);
@@ -120,14 +139,29 @@ $(function(){
         sock.on('END', end);
         sock.on('ERROR', file.error);
 
-        /* 断线处理：不切换页面，弹出遮罩，手动重连 */
+        /* 断线处理：弹出遮罩，显示自动重连状态 */
         sock.on('disconnect', (reason) => {
             console.log(`[断线] 连接中断: ${reason}`);
             _showDisconnectOverlay();
         });
-        /* 重连成功：关闭遮罩 */
+        /* 重连中 */
+        sock.on('reconnect_attempt', (attempt) => {
+            console.log(`[重连] 第 ${attempt} 次尝试...`);
+            _updateReconnectStatus(`正在重连... (第 ${attempt} 次)`);
+        });
+        /* 重连失败 -> 进入下一次尝试 */
+        sock.on('reconnect_error', (err) => {
+            console.log(`[重连] 失败: ${err.message}`);
+            _updateReconnectStatus('重连失败，自动重试中...');
+        });
+        /* 重连成功 */
+        sock.on('reconnect', () => {
+            console.log('[重连] 成功恢复连接');
+            _hideDisconnectOverlay();
+        });
+        /* 普通连接成功（含初次连接和重连后的 connect 事件） */
         sock.on('connect', () => {
-            console.log('[重连] 连接成功');
+            console.log('[连接] 连接已建立');
             _hideDisconnectOverlay();
         });
     }
@@ -832,6 +866,15 @@ $(function(){
     });
 
     $(window).on('resize', ()=>scale($('#board'), $('#space')));
+
+    /* 页面可见性检测：切回前台时如有断线则立即触发重连 */
+    $(document).on('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && sock && sock.disconnected) {
+            console.log('[可见性] 页面回到前台，检测到断线，触发重连');
+            _showDisconnectOverlay();
+            sock.connect();
+        }
+    });
 
     $(window).on('load', ()=>setTimeout(init, 500));
     if (loaded) $(window).trigger('load');

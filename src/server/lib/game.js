@@ -175,9 +175,11 @@ module.exports = class ServerGame extends Majiang.Game {
                     `${name} 座席:${id}(${['東','南','西','北'][id]}) ` +
                     `原因:${reason}`);
         this._players[id] = null;
-        /* 给予 30 秒重连宽限期，避免短暂心跳超时就终止整局 */
+        /* 给予 45 秒重连宽限期（匹配 pingInterval 10s + pingTimeout 15s + 重连延迟），
+         * 避免短暂心跳超时就终止整局。客户端已启用自动重连，通常可在 5-20 秒内恢复。 */
         this._disconnectTime = this._disconnectTime || {};
         this._disconnectTime[id] = Date.now();
+        const GRACE_PERIOD = 45000;  /* 45 秒重连宽限期 */
         /* 检查是否还有人类玩家在线（bot 有真实 socket，不能用 _players.find 判断） */
         let humanOnline = this._players.some((s, i) => s && !this._aiPlayers[i]);
         if (! humanOnline) {
@@ -192,12 +194,15 @@ module.exports = class ServerGame extends Majiang.Game {
                 /* 检查是否有玩家在宽限期内刚断线 */
                 let now = Date.now();
                 let allRecent = Object.values(this._disconnectTime)
-                    .every(t => (now - t) < 30000);
+                    .every(t => (now - t) < GRACE_PERIOD);
                 if (! allRecent) {
-                    console.log(`[断线] 所有人类玩家超过30秒未重连，终止対局`);
+                    console.log(`[断线] 所有人类玩家超过 ${GRACE_PERIOD/1000} 秒未重连，终止対局`);
                     this._stopGameLoop();
                     this._callback(this._paipu);
                     return;  /* 已终止，跳过后续 reply/notify */
+                }
+                else {
+                    console.log(`[断线] 人类玩家断线，${GRACE_PERIOD/1000} 秒内等待重连...`);
                 }
             }
         }

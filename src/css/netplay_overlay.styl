@@ -121,3 +121,64 @@
         background: #555
     border-radius: 3px
     background: #fffef0
+
+/* 断线重连 - 遮罩 */
+.disconnect-overlay
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background: rgba(0, 0, 0, 0.85)
+    z-index: 99999
+    display: flex
+    align-items: center
+    justify-content: center
+
+.disconnect-box
+    background: #1a1a2e
+    border: 2px solid #e74c3c
+    border-radius: 12px
+    padding: 32px 40px
+    text-align: center
+    min-width: 280px
+    box-shadow: 0 0 30px rgba(231, 76, 60, 0.3)
+    animation: disconnect-pulse 2s ease-in-out infinite
+
+@keyframes disconnect-pulse
+    0%, 100%
+        box-shadow: 0 0 30px rgba(231, 76, 60, 0.3)
+    50%
+        box-shadow: 0 0 50px rgba(231, 76, 60, 0.5)
+
+.disconnect-icon
+    font-size: 48px
+    line-height: 1
+    margin-bottom: 12px
+
+.disconnect-msg
+    color: #ecf0f1
+    font-size: 1.3em
+    font-weight: bold
+    margin-bottom: 8px
+
+.disconnect-status
+    color: #bdc3c7
+    font-size: 0.95em
+    margin-bottom: 20px
+    min-height: 1.4em
+
+.disconnect-retry-btn
+    padding: 10px 28px
+    font-size: 1em
+    cursor: pointer
+    background: #e74c3c
+    color: white
+    border: none
+    border-radius: 6px
+    transition: background 0.2s
+    &:hover
+        background: #c0392b
+    &:disabled
+        opacity: 0.4
+        cursor: not-allowed
